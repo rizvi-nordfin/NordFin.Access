@@ -1,0 +1,283 @@
+﻿<%@ Master Language="C#" AutoEventWireup="true" CodeBehind="Nordfin.master.cs" Inherits="Nordfin.Nordfin" %>
+
+<!DOCTYPE html>
+
+<html>
+<head runat="server">
+    <title></title>
+    <asp:ContentPlaceHolder ID="head" runat="server">
+    </asp:ContentPlaceHolder>
+
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+
+
+    <link href="Styles/bootstrap.min.css" rel="stylesheet" />
+    <link href="Styles/NordfinMaster.css?version=<%=ConfigurationManager.AppSettings["VersionConfiguration"].ToString() %>" rel="stylesheet" />
+
+    <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,300i,400,400i,600,600i,700,700i,900,900i&display=swap" rel="stylesheet">
+
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+    <script src="Scripts/popper.min.js"></script>
+    <script src="Scripts/bootstrap.min.js"></script>
+    <script src="Scripts/NordfinMaster.js?version=<%=ConfigurationManager.AppSettings["VersionConfiguration"].ToString() %>"></script>
+
+    <script src="Scripts/angular.min.js"></script>
+  
+
+    <script src="Scripts/jquery.signalR-2.2.2.min.js"></script>
+
+    <script src="signalr/hubs"></script>
+
+    <script src="Scripts/font-Awesome.js"></script>
+    <link rel="icon" type="image/png" href="Images/NFC_logo_black.png" sizes="128x128" />
+
+
+</head>
+
+<body>
+    <form id="form1" runat="server">
+
+        <asp:ScriptManager EnablePartialRendering="true"
+            ID="ScriptManager1" runat="server">
+        </asp:ScriptManager>
+
+        <div>
+
+            <!-- Top Menu  -->
+            <div class="topMenu">
+
+                <div class="sideMenuLogo">
+                    <img src="Images/NFC_logo_white.svg" />
+                </div>
+
+                <div class="topMenuSearchContainer">
+                    <div class="topMenuSearch">
+                        <div class="topMenuSearchInputContainer">
+                            <img class="topMenuSearchLoupe" src="Images/NFC_search.svg" runat="server" style="height: 25px; width: 25px;" id="iSearch" alt="" />
+                            <asp:TextBox runat="server" class="form-control searchInput" AutoPostBack="false" placeholder="Add invoice number or customer number" ID="txtSearch"></asp:TextBox>
+                        </div>
+
+
+
+                        <div class="topMenuSearchAdvanced">
+                            <span>Advanced<span class="topMenuSearchAdvanced_searchText"> search</span></span>
+                            <i class="fa fa-bars"></i>
+                            <br />
+                        </div>
+                        <div id="dropdownAdvanceSearch" class="dropdownAdvanceSearch hidden">
+                            <div class="dropdownAdvanceSearchInput">
+                                <label>
+                                    Customer Name
+                        <asp:TextBox ID="txtCustomerName" runat="server" CssClass="form-control" ToolTip="Type min three letters of Customer Name" placeholder="Type min three letters of Customer Name"></asp:TextBox>
+                                </label>
+                            </div>
+
+                            <div class="dropdownAdvanceSearchInput">
+                                <label>
+                                    Email
+                          <asp:TextBox ID="txtEmail" runat="server" CssClass="form-control"></asp:TextBox>
+                                </label>
+                            </div>
+
+                            <div class="dropdownAdvanceSearchInput">
+                                <label>
+                                    SSN/REG.Number
+                          <asp:TextBox ID="txtPersonalNumber" runat="server" CssClass="form-control"></asp:TextBox>
+                                </label>
+                            </div>
+
+                        </div>
+                        <asp:Button Text="Search" OnClick="Search_Click" ID="Search" OnClientClick="return AdvanceSearch();" class="button topMenuSearchButton" runat="server" />
+
+
+                    </div>
+
+                </div>
+
+
+                <div class="topMenuRight">
+                    <div class="topMenuNotification featureNotAvailableTriggerNotification">
+                        <asp:Panel runat="server" ID="pnlNotification">
+
+                            <i style="display: none;" class="fa fa-circle" id="iNotification"></i>
+                            <img src="~/Images/NFC_notification.svg" runat="server" id="Img1" alt="Notification icon" />
+                        </asp:Panel>
+                    </div>
+                    <div id="dropdownNotification" class="dropdownNotification hidden">
+
+
+                        <div id="dropdownNotifiedText"  class="dropdownNotifiedtext">
+                        </div>
+                    </div>
+                    <div id="divDropdown" class="topMenuOpenDropdown">
+                        <div class="topMenuUser">
+                            <i style="color: lightgreen; font-size: 10px;" class="fa fa-circle"></i>
+                            <asp:Label runat="server" class="index" ID="lblUserName"></asp:Label>
+                        </div>
+
+                        <div class="topMenuClientName">
+                            <asp:TextBox ID="txtClientName" ReadOnly="true" runat="server"></asp:TextBox>
+
+                        </div>
+
+                        <div class="topMenuMenubutton">
+                            <hr class="menu_hr_one">
+                            <hr class="menu_hr_two">
+                            <hr class="menu_hr_three">
+                        </div>
+
+
+
+                        <div id="dropdownClientName" class="dropdownMenu hidden">
+                            <!-- <div class="dropdownMenuHeadline">My Brands</div> -->
+
+                            <div class="dropdownMenuAccounts">
+                                <asp:GridView ID="grdClientName" runat="server" AutoGenerateColumns="true" ViewStateMode="Enabled" Visible="true" ShowHeaderWhenEmpty="true">
+                                </asp:GridView>
+                                <%--  <asp:ListView runat="server" AutoPostBack="true"   OnSelectedIndexChanged="cboClientName_SelectedIndexChanged" ID="lvwClientName">
+                      </asp:ListView>--%>
+                            </div>
+
+
+                            <div class="dropdownMenuItem"></div>
+                            <div class="dropdownMenuHeadline">Account</div>
+                            <div class="dropdownMenuItem"><a onclick="document.getElementById('btnAccountSettings').click();">Account Settings</a></div>
+                            <div class="dropdownMenuItem dropdownMenuLogout">
+                                <!-- I don’t know why this a select with one option instead of a link or button, but I’m leaving it as-is in case it’s important it be done like this — Cenk  -->
+                                <a href="#" onclick="logout();">Log Out</a>
+
+                                <%--<asp:ListBox runat="server" AutoPostBack="true" CssClass="logout"  OnSelectedIndexChanged="lstLogout_SelectedIndexChanged" ID="lstLogout" >
+                           <asp:ListItem Text="Log Out" />
+                        </asp:ListBox>--%>
+                            </div>
+
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+
+
+
+
+            <div class="sideMenu">
+                <div class="sideMenuButton">
+                    <div id="tdCalendar">
+                        <div class="sideMenuCalendar">
+                            <span id="spnCalendar"></span>
+                            <span id="spnDate"></span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="sideMenuEmptyCell">
+                </div>
+
+                <div class="sideMenuButton">
+                    <div id="tdchart">
+                        <button runat="server" onserverclick="btnChart_ServerClick" id="btnChart">
+                            <img class="sideMenuIcon" src="Images/NFC_dashboard.svg" id="iChart" alt="Dashboard" />
+                        </button>
+                    </div>
+                </div>
+
+                <div class="sideMenuButton">
+                    <div id="tdInvoiceSearch">
+                        <button runat="server" onserverclick="btnUsd_ServerClick" id="btnInvoiceSearch">
+                            <img class="sideMenuIcon" src="Images/NFC_invoices.svg" id="faInvoiceSearch" alt="Invoices" />
+                        </button>
+                    </div>
+                </div>
+
+                <div class="sideMenuButton">
+                    <div id="tdUser">
+                        <button runat="server" onserverclick="btnCustomer_ServerClick" id="btnCustomer">
+                            <img class="sideMenuIcon" src="Images/NFC_customers.svg" id="iUser" alt="Customers" />
+                        </button>
+                    </div>
+                </div>
+
+                <div class="sideMenuButton">
+                    <div id="tdReport">
+                        <button runat="server" onserverclick="btnPaymentInfo_ServerClick" id="btnReports">
+                            <img class="sideMenuIcon iReports" src="Images/NFC_reports.svg" runat="server" id="iReports" alt="Reports" />
+                        </button>
+                    </div>
+                </div>
+                <asp:Panel ID="pnlsideMenuButton" runat="server">
+                    <div class="sideMenuButton sideMenuButtonStatistics">
+                        <div id="tbBatches" runat="server">
+                            <%-- <button  runat="server" id="btnStatistics"  onclick="return StatisticsClick()" > --%>
+                            <button runat="server" id="btnStatistics">
+                                <img class="sideMenuIcon imgStatistics" src="Images/NFC_batches.svg" id="imgStatistics" runat="server" alt="Batches" />
+                            </button>
+
+
+
+                        </div>
+                    </div>
+                </asp:Panel>
+                <!-- <div class="sideMenuButton">
+                <button  runat="server" id="Button">
+                  <i class="fas fa-cog"></i>
+                </button>
+              </div>   -->
+                <%--  <div class="sideMenuButton">   
+                
+              </div>--%>
+            </div>
+            <div>
+                <!-- <asp:ListBox runat="server" CssClass="listControl" AutoPostBack="true" OnSelectedIndexChanged="lstStatistics_SelectedIndexChanged" style="display:block;"  ID="lstStatistics" >  
+                <asp:ListItem  Text="Statistics" />
+              </asp:ListBox> -->
+                <div class="sideMenuStatistics hidden">
+                    <asp:Panel ID="pnlStatistics" runat="server">
+                        <a href="/frmBatches.aspx">Statistics</a>
+                    </asp:Panel>
+                    <asp:Panel ID="pnlInvoiceBatches" runat="server">
+                        <a href="/frmInvoiceBatches.aspx">Invoice Batches</a>
+                    </asp:Panel>
+                    <asp:Panel ID="pnlTraffic" runat="server">
+                        <a href="frmUserLoginInformation.aspx">Traffic</a>
+                    </asp:Panel>
+                    <asp:Panel ID="pnlTrafficDetails" runat="server">
+                        <a href="frmTrafficDetails.aspx">Traffic Details</a>
+                    </asp:Panel>
+
+                </div>
+            </div>
+
+
+            <asp:ContentPlaceHolder ID="NordfinContentHolder" runat="server">
+            </asp:ContentPlaceHolder>
+
+
+
+        </div>
+
+
+        <asp:HiddenField ID="hdnClientName" runat="server" />
+        <asp:HiddenField ID="hdnClientID" runat="server" />
+        <asp:HiddenField ID="hdnAdvanceSearch" runat="server" />
+        <asp:Button ID="btnClientName" runat="server" Style="display: none;" OnClick="btnClientName_Click" />
+        <asp:Button ID="btnlogout" runat="server" Style="display: none;" OnClick="lnkLogout_Click" />
+        <asp:Button ID="btnAccountSettings" runat="server" Style="display: none;" OnClick="btnAccountSettings_Click" />
+
+        <input type="button" id="btnNotification" style="display: none;" />
+    </form>
+    <div class="featureNotAvailableBG hidden">
+        <div class="featureNotAvailable">
+            <div class="featureNotAvailableX">✕</div>
+           Detailed view only available in Google Chrome
+        </div>
+    </div>
+
+     <div class="featureNotAvailableMsgBG hidden">
+        <div class="featureNotAvailableMsg">
+            <div class="featureNotAvailableMsgX">✕</div>
+            This feature is still in development and will be available soon
+        </div>
+    </div>
+</body>
+</html>

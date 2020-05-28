@@ -1,0 +1,90 @@
+.sideMenuButtonStatistics {background-color: rgb(44, 56, 80);}
+.sideMenuButtonStatistics img.sideMenuIcon {filter: brightness(0) saturate(100%) invert(78%) sepia(49%) saturate(3809%) hue-rotate(359deg) brightness(101%) contrast(106%);}
+
+
+﻿.form-group .dashboardHeader {
+    height: 60px;
+}
+.batchesDownloadButton {
+    float: right;
+    margin-top: -31px;
+    color: #3dadc5;
+}
+.invBatchesTable {
+    table-layout: fixed;
+    color: white;
+    overflow-x: scroll;
+    overflow-y: scroll;
+    min-width: 1200px;
+}
+
+.table tbody tr th {
+    color: #A9BFD5;
+    text-transform: uppercase;
+    font-size: 13px;
+    font-weight: 400;
+    white-space: nowrap;
+}
+.table td, .table th {
+    text-align: right;
+}
+
+.table td, .table th {
+    /* border-top: 1px solid #485774 !important; */
+    border-top: none;
+    text-align: center;
+    font-size: small;
+}
+
+th {
+    background: #475672;
+}
+
+.table tbody tr td {
+    color: #FFFFFF;
+    text-transform: uppercase;
+    font-size: 13px;
+    font-weight: normal;
+}
+.table tbody tr:hover td {color: #FFB100;}
+.table td:nth-child(3n + 4) {
+    border-right: 1px solid #A9BFD5;
+}
+
+.table td:nth-child(2) {
+    border-right: 1px solid #A9BFD5;
+}
+.table tr:nth-child(even) {
+    background-color: rgba(242, 242, 242, 0.05);
+}
+.table tr:nth-child(even):hover {
+  background-color: rgba(242, 242, 242, 0.15);
+}
+
+
+.table > tbody > tr:last-child > td:nth-child(3n + 4) {
+    border-right: none;
+}
+.table > tbody > tr:last-child > td:nth-child(2) {
+    border-right: none;
+}
+
+/* Left-aligning the first column (year) */
+.table td:first-child, .table th:first-child {
+  text-align: left;
+  padding-left: 20px;
+}
+.table td:first-child, .table td:nth-child(2) {background: rgba(255, 177, 0, 0.08);}
+
+
+
+.InvoiceBatchesTableSummary {
+  border-top: 2px solid #fff;
+} 
+
+.InvoiceBatchesTableSummary tr, .InvoiceBatchesTableSummary td {
+  background-color: transparent !important;
+}
+
+
+

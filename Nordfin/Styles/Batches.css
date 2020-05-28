@@ -1,0 +1,150 @@
+
+.sideMenuButtonStatistics {background-color: rgb(44, 56, 80);}
+.sideMenuButtonStatistics img.sideMenuIcon {filter: brightness(0) saturate(100%) invert(78%) sepia(49%) saturate(3809%) hue-rotate(359deg) brightness(101%) contrast(106%);}
+
+
+
+.table td, .table th {
+    /* border-top: 1px solid #485774 !important; */
+    border-top: none;
+    text-align: center;
+    font-size: small;
+}
+
+th {
+    background: #475672;
+}
+
+.divHeading {
+    height: 70px;
+    padding-top: 15px;
+    background-color: #2C3850;
+}
+
+table.table {
+  border: none;
+}
+.table tbody {
+      border: none;
+}
+
+.table tbody tr th {
+    color: #A9BFD5;
+    text-transform: uppercase;
+    font-size: 13px;
+    font-weight: 400;
+    white-space: nowrap;
+}
+
+.table tbody tr td {
+    text-transform: uppercase;
+    font-size: 13px;
+    font-weight: normal;
+}
+
+
+
+/* Right-aligning all columns  */
+.table td, .table th {
+  text-align: right;
+}
+
+/* Left-aligning the first column (year) 
+   Since we know the size of this column we can set it here to give the other columns more space to breathe
+*/
+.table td:first-child, .table th:first-child {
+  text-align: left;
+  padding-left: 20px;
+  width: 60px;
+}
+.table td:first-child, .table td:nth-child(2) {background: rgba(255, 177, 0, 0.08);}
+
+/* Same for month */
+.table td:nth-child(2), .table th:nth-child(2) {
+  text-align: center;
+  padding-left: 0;
+  width: 40px;
+}
+
+
+/* Zebra Stripes  */
+
+table.table tr:nth-child(odd) {
+  background-color: rgba(242, 242, 242, 0.05);
+}
+table.table tr:nth-child(odd):hover {
+  color:#FFB100;
+  background-color: rgba(255, 255, 255, 0.15);
+}
+table.batchesTableWithTotal td:last-child {background: rgba(255, 177, 0, 0.08);}
+
+
+.dashboardHeadline {
+  text-transform: capitalize;
+    letter-spacing: 0;
+    font-size: 20px;
+}
+
+.divDisplay {
+    display:grid;
+    grid-template-columns:4fr 1fr;
+}
+.divbuttonAlign {
+    text-align: right;
+   
+}
+
+.buttonCss {
+    width: 150px;
+    background-color: #232D41;
+    border: 1px solid #3DADC5;
+    color: #3DADC5;
+    height: 50px;
+}
+
+.batchContainer {
+    position: relative;
+    margin-left: 85px;
+    margin-top: 85px;
+    padding-left: 20px;
+    padding-right: 20px;
+    padding-top: 20px;
+}
+
+.batchesDownloadButton {
+  float: right;
+  margin-top: -31px;
+  color: #3dadc5;
+}
+
+
+.form-group {
+  margin-bottom: 40px;
+}
+
+.form-group .dashboardHeader {
+  height: 60px;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+@media all and (max-width: 600px)  {
+  .batchesDownloadButton {display: block; margin-top: 10px; float: none;}
+  .form-group .dashboardHeader {height: 80px;}
+  
+  
+}
+  

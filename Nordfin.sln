@@ -1,0 +1,55 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.29215.179
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WorkflowWebUI", "Nordfin\WorkflowWebUI.csproj", "{23E7AC9D-97D3-4A33-87BA-CCF3BAF74A27}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Nordfin.workflow.Entity", "Nordfin.workflow.Entity\Nordfin.workflow.Entity.csproj", "{E7456246-E764-419C-9B6B-D5304D3807FB}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Nordfin.workflow.DataAccessLayer", "Nordfin.workflow.DataAccessLayer\Nordfin.workflow.DataAccessLayer.csproj", "{20F50746-877C-4C7E-B7EA-E36902AFD9BA}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Nordfin.workflow.PresentationBusinessLayer", "Nordfin.workflow.PresentationBusinessLayer\Nordfin.workflow.PresentationBusinessLayer.csproj", "{32D476BF-7AAB-4749-AE7F-AF23A6BDEDA0}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Nordfin.workflow.BusinessDataLayerInterface", "Nordfin.workflow.BusinessDataLayerInterface\Nordfin.workflow.BusinessDataLayerInterface.csproj", "{346419C1-F296-4432-A608-D95B2B082BD3}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Nordfin.workflow.BusinessLayer", "Nordfin.workflow.Business\Nordfin.workflow.BusinessLayer.csproj", "{30AC2EA4-A4E8-497E-B350-F88510675423}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{23E7AC9D-97D3-4A33-87BA-CCF3BAF74A27}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{23E7AC9D-97D3-4A33-87BA-CCF3BAF74A27}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{23E7AC9D-97D3-4A33-87BA-CCF3BAF74A27}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{23E7AC9D-97D3-4A33-87BA-CCF3BAF74A27}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E7456246-E764-419C-9B6B-D5304D3807FB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E7456246-E764-419C-9B6B-D5304D3807FB}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E7456246-E764-419C-9B6B-D5304D3807FB}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E7456246-E764-419C-9B6B-D5304D3807FB}.Release|Any CPU.Build.0 = Release|Any CPU
+		{20F50746-877C-4C7E-B7EA-E36902AFD9BA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{20F50746-877C-4C7E-B7EA-E36902AFD9BA}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{20F50746-877C-4C7E-B7EA-E36902AFD9BA}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{20F50746-877C-4C7E-B7EA-E36902AFD9BA}.Release|Any CPU.Build.0 = Release|Any CPU
+		{32D476BF-7AAB-4749-AE7F-AF23A6BDEDA0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{32D476BF-7AAB-4749-AE7F-AF23A6BDEDA0}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{32D476BF-7AAB-4749-AE7F-AF23A6BDEDA0}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{32D476BF-7AAB-4749-AE7F-AF23A6BDEDA0}.Release|Any CPU.Build.0 = Release|Any CPU
+		{346419C1-F296-4432-A608-D95B2B082BD3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{346419C1-F296-4432-A608-D95B2B082BD3}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{346419C1-F296-4432-A608-D95B2B082BD3}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{346419C1-F296-4432-A608-D95B2B082BD3}.Release|Any CPU.Build.0 = Release|Any CPU
+		{30AC2EA4-A4E8-497E-B350-F88510675423}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{30AC2EA4-A4E8-497E-B350-F88510675423}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{30AC2EA4-A4E8-497E-B350-F88510675423}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{30AC2EA4-A4E8-497E-B350-F88510675423}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {88719245-D465-4732-9066-016D767D50E8}
+	EndGlobalSection
+EndGlobal

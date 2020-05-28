@@ -1,0 +1,255 @@
+#tdInvoiceSearch {background-color: rgb(44, 56, 80);}
+#tdInvoiceSearch img.sideMenuIcon {filter: brightness(0) saturate(100%) invert(78%) sepia(49%) saturate(3809%) hue-rotate(359deg) brightness(101%) contrast(106%);}
+
+
+
+﻿.Buttoncolor {
+    background-color: #2C3850;
+    border: 1px solid #3DADC5;
+    color: #FFFFFF;
+}
+
+.labelcolor {
+    color: #FFB100;
+}
+
+.table td, .table th {
+    border-top: 1px solid #485774 !important;
+
+}
+
+.table{
+    border:none;
+}
+
+.table tbody tr th {
+    color: #A9BFD5;
+    text-transform: uppercase;
+    font-size: 13px;
+    font-weight: 400;
+}
+
+.table tbody tr td {
+    text-transform: uppercase;
+    font-size: 13px;
+    font-weight: normal;
+}
+
+.tableFixHead {
+    overflow-y: auto;
+    height: 600px;
+}
+
+th {
+    background: #475672;
+}
+
+.tableFixHead th {
+    position: sticky;
+    top: -1px;
+}
+
+
+.itemalign {
+    text-align: center;
+    font-size: small;
+    border: none;
+}
+
+a.linkcss {
+    color: #FFB100;
+    text-decoration: none;
+    border: none;
+    cursor:pointer;
+}
+
+.Background {
+    overflow: hidden !important;
+}
+
+.Popup {
+    position: absolute !important;
+    margin-left: 100px !important;
+    height: 750px !important;
+    width: 90% !important;
+    left: 50px !important;
+    top: 200px !important;
+    overflow: hidden !important;
+}
+.GVFixedHeader {
+    font-weight: bold;
+    background-color: Green;
+    position: relative;
+    top: expression(this.parentNode.parentNode.parentNode.scrollTop-1);
+}
+
+
+.Emptyrow td {
+    border: none;
+}
+
+
+
+
+
+
+
+
+
+
+/* New Styles  */
+
+
+.invoicesDownloadAsButton {
+  border: 1px solid #A9BFD5;
+  color: #A9BFD5;
+  width: 200px;
+  float: right;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  text-align: left;
+  background-color: transparent;
+  border-radius: 0;
+  font-size: 12px;
+  height: 50px;
+  padding-left: 20px;
+}
+.invoicesDownloadAsButton:hover {
+  background-color: #A9BFD5;
+  color: #2c3850;
+}
+
+
+/* 
+.invoicesDownloadButton {
+  background-color: #38435f;
+  height: 34px;
+  width: 85px;
+  border: 1px solid #41acc8;
+  font-size: 11px;
+}
+
+.invoicesDownloadButton:hover {
+      background-color: #54607f;
+}
+
+ */
+
+.invoicesDownloadButton{
+    width:75px;
+}
+
+@media all and (max-width: 905px) {
+    .Popup {
+     position: absolute !important;
+     margin-left: 0 !important;
+     height: 100% !important;
+     width: 100% !important;
+     left: 0 !important;
+     top: 5% !important;
+     overflow: scroll !important;
+   }
+   #popupHTML {overflow-y: scroll !important;}
+   
+ }
+ 
+
+@media only screen and (min-width : 600px) {
+.tableFixHead {height: auto;}
+    
+}
+
+.modalbutton {
+    width: 100px;
+    text-transform: uppercase;
+    background-color: #232D41;
+    border: 1px solid #3DADC5;
+    height: 35px;
+    line-height: 29px;
+    color: #3DADC5;
+    display: inline-block;
+    text-transform: uppercase;
+    letter-spacing: 1.5px;
+    font-size: 11px;
+    margin: 0;
+    padding: 0px;
+    border-radius: 0;
+    box-shadow: none;
+    outline: 0;
+    background-clip: border-box;
+    margin: 20px;
+    margin-top: 25px;
+}
+.modalcloseButton {
+    background-color: transparent;
+    border: none;
+    color: #ffffff;
+    display: block;
+    width: 30px;
+    height: 30px;
+    line-height: 27px;
+    font-size: 16px;
+    position: absolute;
+    top: 1px;
+    right: 2px;
+    padding: 0;
+    z-index: 100;
+}
+.hide {
+    display: none !important;
+}
+.updateInfoButton:focus {
+    background-color: transparent;
+    border: 1px solid #3DADC5;
+    color: #3DADC5;
+    display: block;
+}
+.updateInfoButton {
+    width: 128px;
+    background-color: transparent;
+    border: 1px solid #3DADC5;
+    color: #3DADC5;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+}
+.textboxModalColor, .textboxModalColor:focus {
+    background-color: #2c3850;
+    border-color: #2c3850;
+    color: #a9bed8;
+    width: 100%;
+}
+.modalbutton {
+    width: 100px;
+    text-transform: uppercase;
+    background-color: #232D41;
+    border: 1px solid #3DADC5;
+    height: 35px;
+    line-height: 29px;
+    color: #3DADC5;
+    display: inline-block;
+    text-transform: uppercase;
+    letter-spacing: 1.5px;
+    font-size: 11px;
+    margin: 0;
+    padding: 0px;
+    border-radius: 0;
+    box-shadow: none;
+    outline: 0;
+    background-clip: border-box;
+    margin: 20px;
+    margin-top: 25px;
+}
+
+.col-lg-3 {
+    padding-right: 25px !important;
+    
+}
+.textOrange {
+    color: #3DADC5;
+    background: #38445D;
+    padding: 5px;
+    font-size:13px;
+   
+   
+}

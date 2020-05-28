@@ -1,0 +1,48 @@
+﻿body {
+    background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)),url("../Images/HomeAdmin.jpg") no-repeat center center fixed;
+    background-size: cover;
+    height: 100%;
+}
+
+
+#frmLogin {
+    border: 0px solid #ffff;
+    -webkit-box-shadow: -1px 4px 26px 11px rgba(0,0,0,0.75);
+    -moz-box-shadow: -1px 4px 26px 11px rgba(0,0,0,0.75);
+    box-shadow: -1px 4px 26px 11px rgba(0,0,0,0.75);
+    padding: 50px 60px;
+    color:#ffff;
+    
+}
+
+.loginBox {
+  min-width: 480px;
+}
+
+.header {
+    margin-top: 25vh;
+    color:#ffff;
+    margin-bottom: 40px;
+    text-align: center;
+    padding: 0;
+}
+
+
+#btnSubmit {
+  background-color: #3DADC5;
+  border: 2px solid #3DADC5;
+  border-radius: 0;
+}
+
+#btnSubmit:hover {
+  background-color: #232d41;
+  border: 2px solid #3DADC5;
+}
+
+
+@media screen and (max-width: 500px){
+  .loginBox {min-width: 100%;}
+  #frmLogin {padding: 30px;}
+  #ReCaptchContainer {transform:scale(0.85);-webkit-transform:scale(0.85);transform-origin:0 0;-webkit-transform-origin:0 0;}
+}
+

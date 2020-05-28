@@ -1,0 +1,58 @@
+﻿.form-group .dashboardHeader {
+    height: 60px;
+}
+
+.grdTrafficDetails {
+    table-layout: fixed;
+    color: white;
+    overflow-x: scroll;
+    overflow-y: scroll;
+    min-width: 400px;
+}
+
+.table tbody tr th {
+    color: #A9BFD5;
+    text-transform: uppercase;
+    font-size: 13px;
+    font-weight: 400;
+    white-space: nowrap;
+    background: #475672;
+}
+
+.table td, .table th {
+    text-align: right;
+}
+
+.table td, .table th {
+    border-top: none;
+    text-align: center;
+    font-size: small;
+}
+
+
+.table tbody tr td {
+    color: #FFFFFF;
+    text-transform: uppercase;
+    font-size: 13px;
+    font-weight: normal;
+}
+
+
+#mychart {
+  max-width: 100%;
+  margin-left: 20px;
+}
+
+
+
+@media all and (max-width: 800px)  {
+  
+  #divChart {width: 100%;}
+  #mychart {
+    display: block;
+    max-width: 200px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+  
+}
