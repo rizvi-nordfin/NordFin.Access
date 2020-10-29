@@ -4,7 +4,7 @@ using Nordfin.workflow.DataAccessLayer;
 using System.Data;
 using Nordfin.workflow.Entity;
 using System.Collections.Generic;
-using System.Text;
+
 
 namespace Nordfin.workflow.Business
 {
@@ -42,10 +42,6 @@ namespace Nordfin.workflow.Business
         {
             return objInvoiceDashboardlayer.GetCustomerMapRegion(ClientID,IsMatch);
         }
-        int IInvoiceDashboardPresentationBusinessLayer.setPayments(DataTable dataTable, StringBuilder stringBuilder)
-        {
-            return objInvoiceDashboardlayer.setPayments(dataTable, stringBuilder);
-
-        }
+       
     }
 }

@@ -5,7 +5,7 @@ using System.Collections.Generic;
 using System.Data;
 using System.Globalization;
 using System.Linq;
-using System.Text;
+
 
 namespace Nordfin.workflow.DataAccessLayer
 {
@@ -251,13 +251,7 @@ namespace Nordfin.workflow.DataAccessLayer
             return objCustomerMapList;
         }
 
-        int IInvoiceDashboardBusinessDataLayer.setPayments(DataTable dataTable,StringBuilder stringBuilder)
-        {
-            DBInitialize("usp_InsertCustomerInvoiceXmlData");
-            DatabaseName.AddInParameter(DBBaseCommand, "@xmlCustomerInvoices", System.Data.DbType.Xml, stringBuilder.ToString());
-            DataSet dataSet = DatabaseName.ExecuteDataSet(DBBaseCommand);
-            return 0;
-        }
+       
 
 
 
