@@ -60,7 +60,6 @@ namespace Nordfin
                     userInformation.HostName = System.Net.Dns.GetHostEntry(userInformation.IP).HostName;
                     userInformation.BrowserName = Request.Browser.Browser;
                     userInformation.Version = Request.Browser.Version;
-                    HttpBrowserCapabilities browse = Request.Browser;
                     string platform = "";
 
                     var os = Request.Browser.Platform;

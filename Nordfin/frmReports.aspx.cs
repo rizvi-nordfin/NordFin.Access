@@ -41,10 +41,7 @@ namespace Nordfin
           
             using (XLWorkbook wb = new XLWorkbook())
             {
-                DataGrid dg = new DataGrid();
-               
                 wb.Worksheets.Add(dataSet.Tables[0]);
-
                 Response.Clear();
                 Response.Buffer = true;
                 Response.Charset = "";

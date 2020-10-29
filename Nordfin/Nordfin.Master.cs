@@ -68,7 +68,6 @@ namespace Nordfin
 
         protected void btnUsd_ServerClick(object sender, EventArgs e)
         {
-            string InvoiceorCustNum = (string)Session["InvoiceorCustNum"];
             Response.Redirect("frmInvoices.aspx");
         }
 

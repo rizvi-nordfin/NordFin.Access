@@ -62,64 +62,38 @@ namespace Nordfin
 
                     lblUnpaidNumber.Text = dataTable.Rows[1].ItemArray[1].ToString();
                     lblUnpaidAmount.Text = string.Format(CultureInfo.GetCultureInfo("sv-SE"), "{0:#,###0}", decimal.Truncate(dUnpaid));
-                    try
-                    {
-                        lblUnpaidPrecent.Text = Convert.ToString(Math.Round(((dUnpaid / dSendout) * 100), 2)) + "%";
-                    }
-                    catch
-                    {
-                        //catch the issue
-                    }
-
+                   
                     lblPaidNumber.Text = dataTable.Rows[2].ItemArray[1].ToString();
                     lblPaidAmount.Text = string.Format(CultureInfo.GetCultureInfo("sv-SE"), "{0:#,###0}", decimal.Truncate(ConvertStringToDecimal(dataTable.Rows[2].ItemArray[2].ToString())));
-                    try
-                    {
-                        lblPaidPercent.Text = Convert.ToString(100 - Convert.ToDecimal(lblUnpaidPrecent.Text.Replace("%", ""))) + "%";
-                    }
-
-                    catch
-                    {
-                        //catch the issue
-                    }
+                   
                     lblRemainderNumber.Text = dataTable.Rows[3].ItemArray[1].ToString();
                     lblRemainderAmount.Text = string.Format(CultureInfo.GetCultureInfo("sv-SE"), "{0:#,###0}", decimal.Truncate(dRemainder));
-                    try
-                    {
-                        lblRemainderPercent.Text = Convert.ToString(Math.Round(((dRemainder / dSendout) * 100), 2)) + "%";
-                    }
-
-                    catch
-                    {
-                        //catch the issue
-                    }
+                  
                     lblDCNumber.Text = dataTable.Rows[4].ItemArray[1].ToString();
                     lblDCAmount.Text = string.Format(CultureInfo.GetCultureInfo("sv-SE"), "{0:#,###0}", decimal.Truncate(dDC));
-                    try
-                    {
-                        lblDCPercent.Text = Convert.ToString(Math.Round(((dDC / dSendout) * 100), 2)) + "%";
-                    }
-                    catch
-                    {
-                        //catch the issue
-                    }
+                   
 
                     lblExtNumber.Text = dataTable.Rows[5].ItemArray[1].ToString();
                     lblExtAmount.Text = string.Format(CultureInfo.GetCultureInfo("sv-SE"), "{0:#,###0}", decimal.Truncate(dExt));
-                    try
-                    {
-                        lblExtPercent.Text = Convert.ToString(Math.Round(((dExt / dSendout) * 100), 2)) + "%";
-                    }
-                    catch
-                    {
-                        //catch the issue
-                    }
+                  
 
                     lblTotalSentoutAmount.Text = lblSenoutAmount.Text;
                     lblTotalUnpaidAmount.Text = lblUnpaidAmount.Text;
                     lblTotalAvgPaidDay.Text = lblPaidPercent.Text;
 
+                    try
+                    {
+                        lblUnpaidPrecent.Text = Convert.ToString(Math.Round(((dUnpaid / dSendout) * 100), 2)) + "%";
+                        lblPaidPercent.Text = Convert.ToString(100 - Convert.ToDecimal(lblUnpaidPrecent.Text.Replace("%", ""))) + "%";
+                        lblRemainderPercent.Text = Convert.ToString(Math.Round(((dRemainder / dSendout) * 100), 2)) + "%";
+                        lblDCPercent.Text = Convert.ToString(Math.Round(((dDC / dSendout) * 100), 2)) + "%";
+                        lblExtPercent.Text = Convert.ToString(Math.Round(((dExt / dSendout) * 100), 2)) + "%";
+                    }
 
+                    catch
+                    {
+                        //catch the issue
+                    }
 
 
 
