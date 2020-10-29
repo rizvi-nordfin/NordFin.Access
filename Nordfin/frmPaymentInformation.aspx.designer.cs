@@ -168,6 +168,42 @@ namespace Nordfin
         protected global::System.Web.UI.WebControls.TextBox txtCollectionStopUntil;
 
         /// <summary>
+        /// lblContested control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblContested;
+
+        /// <summary>
+        /// cboContested control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.DropDownList cboContested;
+
+        /// <summary>
+        /// lblContestedDate control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblContestedDate;
+
+        /// <summary>
+        /// txtContestedDate control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox txtContestedDate;
+
+        /// <summary>
         /// txtPaymentMethodLabel control.
         /// </summary>
         /// <remarks>

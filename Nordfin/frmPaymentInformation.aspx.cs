@@ -5,7 +5,7 @@ using Nordfin.workflow.PresentationBusinessLayer;
 using System;
 using System.Collections.Generic;
 using System.IO;
-using System.Linq;
+using System.Text.RegularExpressions;
 using System.Web;
 using System.Web.Script.Serialization;
 using System.Web.Services;
@@ -55,6 +55,14 @@ namespace Nordfin
                 txtCollectionStopUntil.Text = string.IsNullOrEmpty(objPaymentInfo.Collectionstopuntil) ? "" : objPaymentInfo.Collectionstopuntil;
                 txtPaymentMethod.Text = string.IsNullOrEmpty(objPaymentInfo.Paymentmethod) ? "" : objPaymentInfo.Paymentmethod;
                 hdnPurchased.Value = objPaymentInfo.Purchased;
+                cboContested.SelectedValue =cboContested.Items.FindByText(objPaymentInfo.Contested).Value;
+                txtContestedDate.Text = objPaymentInfo.ContestedDate;
+                if(objPaymentInfo.Contested.ToUpper()=="YES")
+                {
+                    cboCollectionStop.Attributes.Add("disabled", "disabled");
+                    txtCollectionStopUntil.Attributes.Add("disabled", "disabled");
+                    txtCollectionStopUntil.Text = "";
+                }
 
                 if (Convert.ToDouble(sRemainAmount.Replace(" ","").Replace(".", ",")) < 0)
                 {
@@ -169,11 +177,6 @@ namespace Nordfin
             ClearSession();
             var json = new JavaScriptSerializer().Serialize(name);
             Notes objNotes = JsonConvert.DeserializeObject<Notes>(json);
-            //JavaScriptSerializer json_serializer = new JavaScriptSerializer();
-            //Notes dc = json_serializer.Deserialize<Notes>(json);
-            //Notes listNumber = ((Notes)name);
-
-            //var h = JsonConvert.DeserializeObject<List<Notes>>(name);
             objNotes.InvoiceID = Convert.ToInt32(HttpContext.Current.Session["InvoiceID"]);
             objNotes.InvoiceNumber = (string)HttpContext.Current.Session["InvoiceNum"];
             objNotes.CustomerID = (string)HttpContext.Current.Session["custNum"];
@@ -198,14 +201,14 @@ namespace Nordfin
         {
             ClearSession();
             FTPFileProcess fileProcess = new FTPFileProcess();
-            // fileProcess.WinscpConnection();
             string sFileExt = System.Configuration.ConfigurationManager.AppSettings["FileExtension"].ToString();
             string sFileName = FileName + sFileExt;
             string sPDFViewerLink = "";
             bool bResult = false;
             string ResultFile = "";
+            string subfolder = ClientName.Substring(ClientName.LastIndexOf("/") + 1) + Execute(sFileName.Split('_')[1].Trim());
             if (sFileName != "")
-                bResult = fileProcess.FileDownload(ClientName, sFileName, out ResultFile);
+                bResult = fileProcess.FileDownload(ClientName, subfolder, sFileName, out ResultFile);
             if (!bResult)
             {
                 sPDFViewerLink =  (string)HttpContext.Current.Session["InvoiceNum"];
@@ -226,6 +229,41 @@ namespace Nordfin
            
             //updateInterest
         }
+
+        public static string Execute(string invNumber)
+        {
+            var r = Regex.Replace(invNumber, "[^0-9]", "");
+
+            var n = int.TryParse(r, out var x) ? x : 0;
+
+            // n is invoice number which is int or only numbers
+
+            /* if invoice number is more than 9 digits it will keep only 9 digits from the right and remove the rest but 
+             it will not change invoice number in the file name */
+
+            if (r.Length > 9)
+                n = int.TryParse(r.Remove(0, r.Length - 9), out var m) ? m : 0;
+            const int i = 1000000000;
+            const int n2 = 100000;
+            var newPath = "";
+            var index = 0;
+            var n1 = 0;
+            var n3 = n2;
+
+            while (index < i)
+            {
+                index++;
+                if (n > n1 && n <= n3)
+                {
+                    newPath = n1 + "_" + n3;
+                    break;
+                }
+                n1 += n2;
+                n3 += n2;
+            }
+            return newPath;
+        }
+
         [WebMethod]
         public static string RemovePayout(string PayoutID)
         {
@@ -251,7 +289,9 @@ namespace Nordfin
                         Directory.Delete(HttpContext.Current.Server.MapPath(sDirectory), true);
                     }
                 }
-                catch { }
+                catch {
+                    //catch the issue
+                }
                 HttpContext.Current.Session.Abandon();
                 HttpContext.Current.Response.Redirect("frmLogin.aspx");
 

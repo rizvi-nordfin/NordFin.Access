@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using System.Data;
 using System.Globalization;
 using System.IO;
-using System.Linq;
 using System.Web;
 using System.Web.Script.Serialization;
 using System.Web.Services;
@@ -45,7 +44,7 @@ namespace Nordfin
 
                     lblSentoutNumber.Text = dataTable.Rows[0].ItemArray[1].ToString();
 
-                    lblSenoutAmount.Text = string.Format(CultureInfo.GetCultureInfo("sv-SE"), "{0:#,###0}", decimal.Truncate(ConvertStringToDecimal(dataTable.Rows[0].ItemArray[2].ToString())));// String.Format(daDK, "{0:00.00}",ConvertStringToDecimal(dataTable.Rows[0].ItemArray[2].ToString()));
+                    lblSenoutAmount.Text = string.Format(CultureInfo.GetCultureInfo("sv-SE"), "{0:#,###0}", decimal.Truncate(ConvertStringToDecimal(dataTable.Rows[0].ItemArray[2].ToString())));
 
                     if (lblSentoutNumber.Text == "0" && lblSenoutAmount.Text == "0")
                     {
@@ -69,7 +68,7 @@ namespace Nordfin
                     }
                     catch
                     {
-
+                        //catch the issue
                     }
 
                     lblPaidNumber.Text = dataTable.Rows[2].ItemArray[1].ToString();
@@ -81,7 +80,7 @@ namespace Nordfin
 
                     catch
                     {
-
+                        //catch the issue
                     }
                     lblRemainderNumber.Text = dataTable.Rows[3].ItemArray[1].ToString();
                     lblRemainderAmount.Text = string.Format(CultureInfo.GetCultureInfo("sv-SE"), "{0:#,###0}", decimal.Truncate(dRemainder));
@@ -92,7 +91,7 @@ namespace Nordfin
 
                     catch
                     {
-
+                        //catch the issue
                     }
                     lblDCNumber.Text = dataTable.Rows[4].ItemArray[1].ToString();
                     lblDCAmount.Text = string.Format(CultureInfo.GetCultureInfo("sv-SE"), "{0:#,###0}", decimal.Truncate(dDC));
@@ -102,7 +101,7 @@ namespace Nordfin
                     }
                     catch
                     {
-
+                        //catch the issue
                     }
 
                     lblExtNumber.Text = dataTable.Rows[5].ItemArray[1].ToString();
@@ -113,7 +112,7 @@ namespace Nordfin
                     }
                     catch
                     {
-
+                        //catch the issue
                     }
 
                     lblTotalSentoutAmount.Text = lblSenoutAmount.Text;
@@ -195,7 +194,7 @@ namespace Nordfin
                     }
                     catch
                     {
-
+                        //catch the issue
                     }
                 }
 
@@ -213,7 +212,7 @@ namespace Nordfin
                     }
                     catch
                     {
-
+                        //catch the issue
                     }
                 }
 
@@ -336,7 +335,9 @@ namespace Nordfin
                         Directory.Delete(HttpContext.Current.Server.MapPath(sDirectory), true);
                     }
                 }
-                catch { }
+                catch {
+                    //catch the issue
+                }
                 HttpContext.Current.Session.Abandon();
                 HttpContext.Current.Response.Redirect("frmLogin.aspx");
 
@@ -379,6 +380,8 @@ namespace Nordfin
 
         protected void btnCustomerData_Click(object sender, EventArgs e)
         {
+
+           
             pnlCustomerData.Visible = true;
             divInvoiceData.Visible = false;
             

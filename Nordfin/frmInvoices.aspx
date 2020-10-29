@@ -271,7 +271,10 @@
             <asp:HiddenField ID="hdnArchiveLink" runat="server" />
             <asp:HiddenField ID="hdnInvoiceNumber" runat="server" />
             <asp:HiddenField ID="hdnEmailID" runat="server" />
-            <a id="pdfViewer" href="" runat="server" target="_blank"></a>
+            <a id="pdfViewer" href="" runat="server" target="_blank">
+                
+
+            </a>
         </div>
 
     </div>

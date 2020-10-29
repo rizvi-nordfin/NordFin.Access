@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿
 
 namespace Nordfin.workflow.Entity
 {
@@ -23,6 +19,8 @@ namespace Nordfin.workflow.Entity
         public string NoteText { get; set; }
         public int InvoiceID { get; set; }
         public string NoteDate { get; set; }
+        public string Contested { get; set; }
+        public string ContestedDate { get; set; }
 
     }
 }

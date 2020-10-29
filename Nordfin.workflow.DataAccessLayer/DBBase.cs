@@ -11,18 +11,20 @@ namespace Nordfin.workflow.DataAccessLayer
         public Database DatabaseName { get; set; }
         public DbCommand DBBaseCommand { get; set; }
 
-        string Connection = "";
+        
 
         protected void DBInitialize(string storedProcedure)
         {
             try
             {
-                this.Connection = ConfigurationManager.ConnectionStrings["NordfinConnec"].ToString();
+                string Connection = "";
+               Connection = ConfigurationManager.ConnectionStrings["NordfinConnec"].ToString();
                 InitializeDatabase(storedProcedure, Connection);
+                
             }
-            catch(Exception)
+            catch(Exception EX)
             {
-                throw;
+                //catch the block
             }
         }
 
@@ -40,9 +42,9 @@ namespace Nordfin.workflow.DataAccessLayer
                     DBBaseCommand = DatabaseName.GetStoredProcCommand(storedProcedure);
                     objCon.Close();
                 }
-                catch (Exception)
+                catch (Exception EX)
                 {
-                    throw;
+                    //catch the block
 
                 }
                 finally

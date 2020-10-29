@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.Data;
 using System.Globalization;
 using System.Linq;
+using System.Text;
 
 namespace Nordfin.workflow.DataAccessLayer
 {
@@ -137,18 +138,7 @@ namespace Nordfin.workflow.DataAccessLayer
 
             }
 
-            //if (dataSet.Tables[2].Rows.Count > 0)
-            //{
-
-            //    objCustomerMapList = dataSet.Tables[2].AsEnumerable().Select(dataRow => new CustomerMap
-            //    {
-            //        CustomerCity = dataRow.Field<string>("CustomerCity"),
-            //        CustomerNumber = dataRow.Field<int>("CustomerNumber")
-
-
-            //    }).ToList();
-
-            //}
+     
 
             if (dataSet.Tables[2].Rows.Count > 0)
             {
@@ -213,19 +203,7 @@ namespace Nordfin.workflow.DataAccessLayer
                customerGrowthsList.Add(customerGrowth);
             }
 
-            //objCustomerGrowthList
-            //if (dataSet.Tables[2].Rows.Count > 0)
-            //{
-
-            //    objCustomerMapList = dataSet.Tables[2].AsEnumerable().Select(dataRow => new CustomerMap
-            //    {
-            //        CustomerCity = dataRow.Field<string>("CustomerCity"),
-            //        CustomerNumber = dataRow.Field<int>("CustomerNumber")
-
-
-            //    }).ToList();
-
-            //}
+        
 
             customerInfoDTO.objCustomerData = objCustomerDataList;
             customerInfoDTO.objDemographicsList = objDemographicsList;
@@ -251,7 +229,6 @@ namespace Nordfin.workflow.DataAccessLayer
         }
         IList<CustomerMap> IInvoiceDashboardBusinessDataLayer.GetCustomerMapRegion(string ClientID,string IsMatch) 
         {
-            CustomerInfoDTO customerInfoDTO = new CustomerInfoDTO();
             DBInitialize("usp_getCustomerDataRegion");
             DatabaseName.AddInParameter(DBBaseCommand, "@clientID", System.Data.DbType.Int32, Convert.ToInt32(ClientID));
             DatabaseName.AddInParameter(DBBaseCommand, "@isPincode", System.Data.DbType.String, IsMatch);
@@ -273,6 +250,16 @@ namespace Nordfin.workflow.DataAccessLayer
             }
             return objCustomerMapList;
         }
+
+        int IInvoiceDashboardBusinessDataLayer.setPayments(DataTable dataTable,StringBuilder stringBuilder)
+        {
+            DBInitialize("usp_InsertCustomerInvoiceXmlData");
+            DatabaseName.AddInParameter(DBBaseCommand, "@xmlCustomerInvoices", System.Data.DbType.Xml, stringBuilder.ToString());
+            DataSet dataSet = DatabaseName.ExecuteDataSet(DBBaseCommand);
+            return 0;
+        }
+
+
 
     }
 }

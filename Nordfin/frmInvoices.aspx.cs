@@ -11,7 +11,6 @@ using System.Linq;
 using System.Net;
 using System.Net.Mail;
 using System.Text.RegularExpressions;
-using System.Threading;
 using System.Web;
 using System.Web.Services;
 using System.Web.UI;
@@ -74,12 +73,7 @@ namespace Nordfin
                    .Sum(r => ConvertStringToDecimal(Regex.Replace(r.Field<string>("Remainingamount").Trim(), @"\s", "").Replace(",", "."))));
                 }
 
-                //}
-                //else
-                //{
-                //    grdInvoices.DataSource = new List<string>();
-                //    grdInvoices.DataBind();
-                //}
+               
             }
 
         }
@@ -102,22 +96,18 @@ namespace Nordfin
             Response.Redirect("frmCustomer.aspx");
         }
 
-        protected void grdInvoices_Sorting(object sender, GridViewSortEventArgs e)
-        {
-
-        }
+       
         protected void btnPDFDownload_Click(object sender, EventArgs e)
         {
-
+            string subFolderName = hdnClientName.Value.Substring(hdnClientName.Value.LastIndexOf("/") + 1) + Execute(((Button)sender).CommandArgument.Trim().Replace("INV-",""));
             FTPFileProcess fileProcess = new FTPFileProcess();
-            // fileProcess.WinscpConnection();
             string sFileExt = System.Configuration.ConfigurationManager.AppSettings["FileExtension"].ToString();
             string sFileName = hdnFileName.Value + "_" + ((Button)sender).CommandArgument.Trim() + "_" + "inv" + "." + sFileExt;
             string sPDFViewerLink = "";
             bool bResult = false;
             string ResultFile = "";
             if (sFileName != "")
-                bResult = fileProcess.FileDownload(hdnClientName.Value, sFileName,out ResultFile);
+                bResult = fileProcess.FileDownload(hdnClientName.Value,subFolderName, sFileName,out ResultFile);
             if (!bResult)
             {
                 sPDFViewerLink = hdnArchiveLink.Value + ((Button)sender).CommandArgument.Trim();
@@ -140,7 +130,7 @@ namespace Nordfin
             string sPDFViewerLink = "";
             string ResultFile = "";
             if (sResultFileName != "")
-                fileProcess.FileDownload(hdnClientName, sResultFileName, out ResultFile);
+                fileProcess.FileDownload(hdnClientName,"", sResultFileName, out ResultFile);
             else
             {
                 sPDFViewerLink = hdnArchieveLink + InvoiceNum;
@@ -173,7 +163,9 @@ namespace Nordfin
                         Directory.Delete(Server.MapPath(sDirectory), true);
                     }
                 }
-                catch { }
+                catch {
+                    //catch the issue
+                }
                 Session.Abandon();
                 Response.Redirect("frmLogin.aspx");
 
@@ -245,11 +237,8 @@ namespace Nordfin
             }
 
             catch (Exception ex)
-
             {
-
-
-
+                //catch the issue
             }
         }
 
@@ -259,8 +248,6 @@ namespace Nordfin
             response.Clear();
             response.Charset = "";
 
-            //response.ContentType = "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet";
-            //response.AddHeader("Content-Disposition", "attachment;filename=\"" + filename + "\"");
             DataTable dataTable = (DataTable)Session["InvoiceGrid"];
             try
             {
@@ -270,7 +257,9 @@ namespace Nordfin
                 dataTable.Columns.Remove("InvoiceID");
                 dataTable.Columns.Remove("OrderID");
             }
-            catch { }
+            catch { 
+              //catch the issue
+            }
            
             
             if (dataTable.Rows.Count > 0)
@@ -307,12 +296,14 @@ namespace Nordfin
                   
                     dataTable.Columns["Overpayment"].SetOrdinal(11);
                 }
-                catch { }
+                catch {
+                    //catch the issue
+                }
 
             }
             foreach (DataColumn column in dataTable.Columns)
                 column.ColumnName = column.ColumnName.ToUpper();
-                using (XLWorkbook wb = new XLWorkbook())
+            using (XLWorkbook wb = new XLWorkbook())
             {
                
 
@@ -334,26 +325,41 @@ namespace Nordfin
             }
         }
 
-        //protected void btnEmail_Click(object sender, EventArgs e)
-        //{
+        public static string Execute(string invNumber)
+        {
+            var r = Regex.Replace(invNumber, "[^0-9]", "");
 
-        //    FTPFileProcess fileProcess = new FTPFileProcess();
-        //    // fileProcess.WinscpConnection();
-        //    string sFileExt = System.Configuration.ConfigurationManager.AppSettings["FileExtension"].ToString();
-        //    string sFileName = hdnFileName.Value + "_" + hdnInvoiceNumber.Value + "_" + "inv" + "." + sFileExt;
-        //    bool bResult = false;
-        //    string ResultFile = "";
-        //    if (sFileName != "")
-        //        bResult = fileProcess.FileDownload(hdnClientName.Value, sFileName, out ResultFile);
+            var n = int.TryParse(r, out var x) ? x : 0;
 
-        //    if (bResult)
-        //    {
-        //        Button btn = (Button)sender;
-        //        ThreadStart threadStart = delegate () { SendMail(hdnInvoiceNumber.Value, txtCustEmail.Text); };
-        //        Thread thread = new Thread(threadStart);
-        //        thread.Start();
-        //    }
+            // n is invoice number which is int or only numbers
 
-        //}
+            /* if invoice number is more than 9 digits it will keep only 9 digits from the right and remove the rest but 
+             it will not change invoice number in the file name */
+
+            if (r.Length > 9)
+                n = int.TryParse(r.Remove(0, r.Length - 9), out var m) ? m : 0;
+            const int i = 1000000000;
+            const int n2 = 100000;
+            var newPath = "";
+            var index = 0;
+            var n1 = 0;
+            var n3 = n2;
+
+            while (index < i)
+            {
+                index++;
+                if (n > n1 && n <= n3)
+                {
+                    newPath = n1 + "_" + n3;
+                    break;
+                }
+                n1 += n2;
+                n3 += n2;
+            }
+            return newPath;
+        }
+
+
+        
     }
 }

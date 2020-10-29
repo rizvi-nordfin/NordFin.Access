@@ -1040,17 +1040,17 @@ transition: .1s;
 
 
 
-#cboCollectionStop {
-  background: #475672;
-  color: #fff;
-  border: none;
+#cboCollectionStop, #cboContested {
+    background: #475672;
+    color: #fff;
+    border: none;
 }
 
-#cboCollectionStop option {
-  background: #475672;
-  color: #fff;
-  border: none;
-}
+    #cboCollectionStop, #cboContested option {
+        background: #475672;
+        color: #fff;
+        border: none;
+    }
 
 
 

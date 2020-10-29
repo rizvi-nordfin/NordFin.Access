@@ -1,11 +1,10 @@
 ﻿using Nordfin.workflow.BusinessDataLayerInterface;
 using Nordfin.workflow.Entity;
 using System;
-using System.Collections.Generic;
+
 using System.Data;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+
 
 namespace Nordfin.workflow.DataAccessLayer
 {
@@ -13,18 +12,22 @@ namespace Nordfin.workflow.DataAccessLayer
     {
         Tuple<AccountSettings,DataTable> IAccountSettingsBusinessDataLayer.getAccountSettingsInfo(string ClientID,string UserID)
         {
+           return getAccountSettingsInfo(ClientID, UserID);
+        }
+        protected Tuple<AccountSettings, DataTable> getAccountSettingsInfo(string ClientID, string UserID)
+        {
             AccountSettings accountSettings = new AccountSettings();
             DBInitialize("usp_getAccountSettingsInfo");
             DatabaseName.AddInParameter(DBBaseCommand, "@clientID", System.Data.DbType.Int32, Convert.ToInt32(ClientID));
             DatabaseName.AddInParameter(DBBaseCommand, "@userID", System.Data.DbType.Int32, Convert.ToInt32(UserID));
             DataSet dataSet = DatabaseName.ExecuteDataSet(DBBaseCommand);
-            if(dataSet.Tables.Count>0 && dataSet.Tables[0].Rows.Count > 0)
+            if (dataSet.Tables.Count > 0 && dataSet.Tables[0].Rows.Count > 0)
             {
                 accountSettings = dataSet.Tables[0].AsEnumerable().Select(dataRow => new AccountSettings
                 {
                     FirstName = dataRow.Field<string>("FirstName"),
                     LastName = dataRow.Field<string>("LastName"),
-                   
+
                     UserName = dataRow.Field<string>("UserName"),
                     Email = dataRow.Field<string>("Email"),
                     PhoneNumber = dataRow.Field<string>("PhoneNumber"),
@@ -35,7 +38,6 @@ namespace Nordfin.workflow.DataAccessLayer
             Tuple<AccountSettings, DataTable> tuple = new Tuple<AccountSettings, DataTable>(accountSettings, dataSet.Tables[1]);
             return tuple;
         }
-
 
         int IAccountSettingsBusinessDataLayer.checkPasswordExists(string sUserID, string sPasswordHash)
         {

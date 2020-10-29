@@ -37,7 +37,9 @@ namespace Nordfin
                 {
                     Session["GarphData"] = ds.Tables[2];
                 }
-                catch { }
+                catch {
+                    //catch the issue
+                }
             }
         }
 
@@ -54,7 +56,9 @@ namespace Nordfin
                         Directory.Delete(Server.MapPath(sDirectory), true);
                     }
                 }
-                catch { }
+                catch {
+                    //catch the issue
+                }
                 Session.Abandon();
                 Response.Redirect("frmLogin.aspx");
 

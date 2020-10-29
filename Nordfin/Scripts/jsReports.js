@@ -9,12 +9,15 @@ jQuery(document).ready(function () {
     jq10("#NordfinContentHolder_txtToDate").datepicker({ dateFormat: 'yy-mm-dd' });
 });
 function DateSelection(sHeading) {
-  
-    jq3("#NordfinContentHolder_txtFromDate").val('');
-    jq3("#NordfinContentHolder_txtToDate").val('');
-    jq3("#informModalLabel").text(sHeading);
-    jq3('#mdlReport').modal({ backdrop: 'static', keyboard: false }, 'show');
-
+    if (sHeading == "Periodic report" && jq3("#NordfinContentHolder_hdnAdmin").val() != "0" && jq3("#NordfinContentHolder_hdnAdmin").val() != "1") {
+        Message();
+    }
+    else {
+        jq3("#NordfinContentHolder_txtFromDate").val('');
+        jq3("#NordfinContentHolder_txtToDate").val('');
+        jq3("#informModalLabel").text(sHeading);
+        jq3('#mdlReport').modal({ backdrop: 'static', keyboard: false }, 'show');
+    }
     return false;
 }
 

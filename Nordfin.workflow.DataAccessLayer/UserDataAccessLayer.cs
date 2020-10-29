@@ -16,7 +16,7 @@ namespace Nordfin.workflow.DataAccessLayer
         {
             Users user = new Users();
             DBInitialize("usp_getUserName");
-            DatabaseName.AddInParameter(DBBaseCommand, "@UserName", System.Data.DbType.String, UserName);
+            DatabaseName.AddInParameter(DBBaseCommand, "@Username", System.Data.DbType.String, UserName);
             DatabaseName.AddInParameter(DBBaseCommand, "@Password", System.Data.DbType.String, Password);
 
             DataSet ds = DatabaseName.ExecuteDataSet(DBBaseCommand);
@@ -81,16 +81,12 @@ namespace Nordfin.workflow.DataAccessLayer
             DatabaseName.AddInParameter(DBBaseCommand, "@Country", System.Data.DbType.String, loginUserInformation.Country);
             DatabaseName.AddInParameter(DBBaseCommand, "@Org", System.Data.DbType.String, loginUserInformation.Org);
             DatabaseName.AddInParameter(DBBaseCommand, "@Loc", System.Data.DbType.String, loginUserInformation.Loc);
-            //DatabaseName.AddInParameter(DBBaseCommand, "@Lon", System.Data.DbType.String, loginUserInformation.lon);
             DatabaseName.AddInParameter(DBBaseCommand, "@Zip", System.Data.DbType.String, loginUserInformation.Postal);
             DatabaseName.AddInParameter(DBBaseCommand, "@Browser", System.Data.DbType.String, loginUserInformation.BrowserName);
             DatabaseName.AddInParameter(DBBaseCommand, "@Version", System.Data.DbType.String, loginUserInformation.Version);
             DatabaseName.AddInParameter(DBBaseCommand, "@OS", System.Data.DbType.String, loginUserInformation.OS);
             DatabaseName.AddInParameter(DBBaseCommand, "@LastGenerated", System.Data.DbType.String, loginUserInformation.CILastReGenerate);
             DatabaseName.AddInParameter(DBBaseCommand, "@Status", System.Data.DbType.Int32, loginUserInformation.iStatus);
-            //DatabaseName.AddInParameter(DBBaseCommand, "@IsMobile", System.Data.DbType.Boolean, loginUserInformation.IsMobile);
-            //DatabaseName.AddInParameter(DBBaseCommand, "@IsAccess", System.Data.DbType.Boolean, loginUserInformation.IsAccess);
-            //DatabaseName.AddInParameter(DBBaseCommand, "@Password", System.Data.DbType.String, loginUserInformation.Password);
             DatabaseName.ExecuteNonQuery(DBBaseCommand);
 
             return 0;

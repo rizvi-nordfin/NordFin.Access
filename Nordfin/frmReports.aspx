@@ -120,7 +120,18 @@
                         </div>
                     </div>
 
-
+                      <div class="reportsCardContainer col-md-3">
+                        <div class="reportsCard">
+                            <div class="info-icon"></div>
+                            <div class="reportsCardContent">
+                                <img src="Images/NFC_reports_ledgerlist.svg" alt="" />
+                                <div class="reportsCardCaption">Contested Invoices</div>
+                            </div>
+                            <div class="reportsCardBottom">
+                                <asp:Button CssClass="button reportsCardButton form-control" runat="server" Text="Download" ID="btnContested" OnClick="btnContested_Click"></asp:Button>
+                            </div>
+                        </div>
+                    </div>
 
 
                     <div class="modal fade" id="mdlReport" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -170,5 +181,5 @@
         </div>
     </div>
      <asp:HiddenField ID="hdnExport" Value="0" runat="server" />
-
+      <asp:HiddenField ID="hdnAdmin" Value="0" runat="server" />
 </asp:Content>

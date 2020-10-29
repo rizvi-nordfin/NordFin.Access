@@ -15,6 +15,8 @@ namespace Nordfin.workflow.Entity
         public string Collectionstopuntil { get; set; }
         public string Paymentmethod { get; set; }
         public string Purchased { get; set; }
+        public string Contested { get; set; }
+        public string ContestedDate { get; set; }
 
     }
   

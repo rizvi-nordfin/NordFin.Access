@@ -1,5 +1,4 @@
-﻿using System;
-
+﻿
 namespace Nordfin.workflow.Entity
 {
     public class Interest

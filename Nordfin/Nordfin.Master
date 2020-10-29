@@ -23,7 +23,7 @@
     <script src="Scripts/NordfinMaster.js?version=<%=ConfigurationManager.AppSettings["VersionConfiguration"].ToString() %>"></script>
 
     <script src="Scripts/angular.min.js"></script>
-  
+   
 
     <script src="Scripts/jquery.signalR-2.2.2.min.js"></script>
 
@@ -47,9 +47,10 @@
             <!-- Top Menu  -->
             <div class="topMenu">
 
-                <div class="sideMenuLogo">
-                    <img src="Images/NFC_logo_white.svg" />
-                </div>
+                <asp:Panel runat="server" onclick="PanelClick();" style="cursor:pointer;" class="sideMenuLogo">
+
+                    <img  src="Images/NFC_logo_white.svg" />
+                </asp:Panel>
 
                 <div class="topMenuSearchContainer">
                     <div class="topMenuSearch">
@@ -144,7 +145,6 @@
                             <div class="dropdownMenuHeadline">Account</div>
                             <div class="dropdownMenuItem"><a onclick="document.getElementById('btnAccountSettings').click();">Account Settings</a></div>
                             <div class="dropdownMenuItem dropdownMenuLogout">
-                                <!-- I don’t know why this a select with one option instead of a link or button, but I’m leaving it as-is in case it’s important it be done like this — Cenk  -->
                                 <a href="#" onclick="logout();">Log Out</a>
 
                                 <%--<asp:ListBox runat="server" AutoPostBack="true" CssClass="logout"  OnSelectedIndexChanged="lstLogout_SelectedIndexChanged" ID="lstLogout" >

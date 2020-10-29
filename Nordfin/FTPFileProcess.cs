@@ -6,7 +6,6 @@ using System.Net;
 using System.Net.Security;
 using System.Security.Cryptography.X509Certificates;
 using System.Web;
-using System.Linq;
 
 
 namespace Nordfin
@@ -104,9 +103,9 @@ namespace Nordfin
 
         }
 
-        public bool FileDownload(string FolderName,string FileName,out string ResultFileName)
+        public bool FileDownload(string FolderName,string subfolder,string FileName,out string ResultFileName)
         {
-            FtpWebRequest request = (FtpWebRequest)WebRequest.Create(FTPAzureDomain + FolderName + "/" + FileName);
+            FtpWebRequest request = (FtpWebRequest)WebRequest.Create(FTPAzureDomain + FolderName +  "/" + subfolder + "/" + FileName);
             request.Method = WebRequestMethods.Ftp.DownloadFile;
             request.Credentials = new NetworkCredential(FTPAzureUserName, FTPAzurePassword);
             request.UseBinary = true;
@@ -135,7 +134,6 @@ namespace Nordfin
             }
             catch(Exception ex)
             {
-                //FolderName += "/" + System.Configuration.ConfigurationManager.AppSettings["FileFolder"].ToString();
                 bool bfalse = FileArchiveDownload(FolderName, FileName,out string sResultFileName);
                 ResultFileName = sResultFileName;
                 return bfalse;
@@ -231,11 +229,15 @@ namespace Nordfin
 
                                             }
                                         }
-                                        catch { }
+                                        catch {
+                                            //catch the issue
+                                        }
                                     }
                                 }
                             }
-                            catch { }
+                            catch {
+                                //catch the issue
+                            }
                         }
                     }
 
@@ -248,7 +250,7 @@ namespace Nordfin
             }
             catch (WebException ex)
             {
-                //throw new Exception((ex.Response as FtpWebResponse).StatusDescription);
+                //catch the issue
             }
 
             return (objFTPFileDetails.Count > 0) ? objFTPFileDetails[0].FileName : "";
@@ -310,41 +312,6 @@ namespace Nordfin
                 return false;
             }
         }
-        //public void WinscpConnection()
-        //{
-
-        //    var sessionOptions = new SessionOptions
-
-        //    {
-
-        //        Protocol = Protocol.Ftp,
-
-        //        HostName = "admin.nordfincapital.com",
-
-        //        PortNumber = 21,
-
-        //        UserName = "nordfinftp",
-
-        //        Password = "ymLzybGr",
-
-        //        FtpSecure = FtpSecure.Explicit,
-
-        //        TlsHostCertificateFingerprint = "bc:b9:e3:16:b1:6c:d3:33:b5:ff:e0:ae:64:6c:25:97:db:6f:d5:86"
-
-        //    };
-
-
-
-        //    sessionOptions.AddRawSettings("ProxyPort", "1");
-
-        //    sessionOptions.AddRawSettings("FtpForcePasvIp2", "0");
-        //    using (var session = new Session())
-        //    {
-        //        session.Open(sessionOptions);
-
-        //        var files = session.ListDirectory("/files/GNP_Energy");
-        //       // List<RemoteFileInfo> files = session.EnumerateRemoteFiles(path, "*>=2018-04-01", EnumerationOptions.AllDirectories).ToList();
-        //    }
-        //}
+   
     }
 }

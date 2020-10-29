@@ -113,10 +113,49 @@ jQuery(document).ready(function () {
         document.addEventListener('keydown', logKey);
 
 
+        jq142("#cboContested").change(function () {
+           
+            if (jq142("#cboContested").val() == "1") {
+                jq142("#cboCollectionStop").val('1');
+                jq142("#cboCollectionStop").attr("disabled", "disabled");
+                var currentDate = new Date();
+                var day = currentDate.getDate();
+                var imonth = currentDate.getMonth() + 1;
+                var month = (imonth < 10) ? '0' + imonth : imonth;
+                var year = currentDate.getFullYear();
+                var dateFormat = year + "-" + month + "-" + day;
+                jq142("#txtContestedDate").val(dateFormat);
+                jq142("#txtContestedDate").attr("disabled", "disabled");
+                jq142("#txtCollectionStopUntil").val('');
+                
+            }
+            else {
+                document.getElementById("spnBody").innerText = "Are you sure you want to remove ?"
+                jq13("#btnYes").unbind();
+                angular.element(document.getElementById('AngularDiv')).scope().showModal(function (confirm) {
+                  
+                    if (confirm) {
+                        jq142("#cboCollectionStop").val('0');
+                        jq142("#cboCollectionStop").removeAttr("disabled");
+                        jq142("#txtContestedDate").val('');
+                        jq142("#txtCollectionStopUntil").val('');
+                    }
+                    else {
+                        jq142("#cboContested").val('1');
+                    }
+                }
+                );
+            }
+            
+        });
 
+        function getDate() {
+           
+           
+        }
 
-        jq142("select").change(function () {
-         
+        jq142("#cboCollectionStop").change(function () {
+          
            
             if (jq142("#cboCollectionStop").val() == "0") {
 
@@ -384,6 +423,12 @@ app.controller("myCtrl", function ($scope, $http) {
             jq13("#mdlDeleteConfirm").modal('hide');
            
         });
+        jq13("#btnNo").on("click", function () {
+            callback(false);
+            
+
+        });
+        
       
     }
   
@@ -471,7 +516,7 @@ app.controller("myCtrl", function ($scope, $http) {
         }
        
     }
-  
+    
     $scope.notesUpdate = function ($event) {
        
         var sDueDate = "";
@@ -494,6 +539,7 @@ app.controller("myCtrl", function ($scope, $http) {
         jq13("#btnYes").unbind();
         $scope.showModal(function (confirm) {
             if (confirm) {
+              
                 const notesData = [];
                 const notes = {
                     DueDateNewValue: sDueDate,
@@ -503,7 +549,8 @@ app.controller("myCtrl", function ($scope, $http) {
                     CollectionStopUntilOldValue: document.getElementById("hdnCollectionStopUntil").value,
                     CollectionStopOldValue: document.getElementById("hdnCollectionStop").value,
                     NoteText: document.getElementById("txtNotes").value,
-                    
+                    Contested: jq13("#cboContested option:selected").text(),
+                    ContestedDate: document.getElementById("txtContestedDate").value,
                 };
 
                 notesData.push(notes);

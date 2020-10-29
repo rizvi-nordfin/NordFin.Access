@@ -12,8 +12,8 @@ namespace Nordfin
 
 
     public partial class Nordfin
-
     {
+
         /// <summary>
         /// head control.
         /// </summary>

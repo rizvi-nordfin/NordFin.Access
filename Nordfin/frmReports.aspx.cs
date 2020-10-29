@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Data;
 using System.IO;
 using System.Linq;
@@ -17,6 +16,8 @@ namespace Nordfin
         {
             
             ClearSession();
+
+            hdnAdmin.Value = ClientSession.Admin;
         }
 
         protected void btnLederlistReport_Click(object sender, EventArgs e)
@@ -37,8 +38,6 @@ namespace Nordfin
             response.Clear();
             response.Charset = "";
            
-            //response.ContentType = "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet";
-            //response.AddHeader("Content-Disposition", "attachment;filename=\"" + filename + "\"");
           
             using (XLWorkbook wb = new XLWorkbook())
             {
@@ -78,7 +77,9 @@ namespace Nordfin
                         Directory.Delete(Server.MapPath(sDirectory), true);
                     }
                 }
-                catch { }
+                catch {
+                    //catch the issue
+                }
                 Session.Abandon();
                 Response.Redirect("frmLogin.aspx");
 
@@ -98,8 +99,8 @@ namespace Nordfin
             IReportsPresentationBusinessLayer objReportsLayer = new ReportsBusinessLayer();
             if (hdnExport.Value == "Periodic report")
             {
-                ExportPeriodicreport(objReportsLayer.usp_getPeriodicReport(ClientSession.ClientID, txtFromDate.Text.Trim(), txtToDate.Text.Trim()), "PeriodicReport_"+ txtFromDate.Text.Trim()+"_" + txtToDate.Text.Trim());
-
+                ExportPeriodicreport(objReportsLayer.usp_getPeriodicReport(ClientSession.ClientID, txtFromDate.Text.Trim(), txtToDate.Text.Trim()), "PeriodicReport_" + txtFromDate.Text.Trim() + "_" + txtToDate.Text.Trim());
+               
             }
             else
             {
@@ -114,8 +115,6 @@ namespace Nordfin
             response.Clear();
             response.Charset = "";
 
-            //response.ContentType = "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet";
-            //response.AddHeader("Content-Disposition", "attachment;filename=\"" + filename + "\"");
 
             using (XLWorkbook wb = new XLWorkbook())
             {
@@ -175,27 +174,16 @@ namespace Nordfin
 
                     }
 
-                    //dataSet.Tables[0].AsEnumerable().ToList<DataColumn>().ForEach(a =>
-                    //{
-                    //    int iNum = 0;
-                    //    bool btrue = int.TryParse(a.ColumnName, out iNum);
-                    //    if(btrue)
-                    //    {
-                    //        a["InvoiceAmount"] = "";
-                    //    }
-
-                    //});
+                 
 
                 }
 
 
                var ws= wb.Worksheets.Add(dataSet.Tables[0]);
-                //ws.AutoFilter.Enabled = false;
                 ws.Tables.FirstOrDefault().SetShowAutoFilter(false);
                
-                //DataSet demographicsTable = GetDemographicsTable(customerInfoDTO.objDemographicsList);
                 var ws1 = wb.Worksheet(1).Cell(7, 1).InsertTable(dataSet.Tables[1]);
-                ws1.SetShowAutoFilter(false);//.FirstOrDefault().SetShowAutoFilter(false);
+                ws1.SetShowAutoFilter(false);
                
                
                 var ws2 = wb.Worksheet(1).Cell(9, 1).InsertTable(dataSet.Tables[2]);
@@ -206,16 +194,11 @@ namespace Nordfin
                 
                 var ws4=wb.Worksheet(1).Cell(21, 1).InsertTable(dataSet.Tables[4]);
                 ws4.SetShowAutoFilter(false);
-                //ws.Columns().AdjustToContents();
-                //DataSet custRegionTable = GetCustomerRegionTable(customerInfoDTO.objCustomerRegionList);
-                //wb.Worksheet(1).Cell(15, 1).InsertTable(custRegionTable.Tables[0]);
-                // wb.Range("A1:B1").SetAutoFilter(false);//.FirstOrDefault().SetAutoFilter(false);
 
                 wb.Worksheet(1).Columns().AdjustToContents();
 
 
 
-                //ws.Tables.AsEnumerable().FirstOrDefault().SetAutoFilter = false;// (x => x.ShowAutoFilter = false);
 
                 Response.Clear();
                 Response.Buffer = true;
@@ -233,6 +216,12 @@ namespace Nordfin
             }
 
 
+        }
+
+        protected void btnContested_Click(object sender, EventArgs e)
+        {
+            IReportsPresentationBusinessLayer objReportsLayer = new ReportsBusinessLayer();
+            ExporttoExcel(objReportsLayer.GetContestedReport(ClientSession.ClientID), "ContestedList");
         }
     }
 }

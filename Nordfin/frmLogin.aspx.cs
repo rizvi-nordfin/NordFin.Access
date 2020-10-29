@@ -1,6 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
@@ -11,10 +9,6 @@ using Nordfin.workflow.Business;
 using System.Net;
 using System.IO;
 using Newtonsoft.Json.Linq;
-using System.Net.Mail;
-using System.ComponentModel.DataAnnotations;
-using System.Net.Cache;
-using System.Text.RegularExpressions;
 using Newtonsoft.Json;
 
 namespace Nordfin
@@ -37,7 +31,6 @@ namespace Nordfin
                     
                 }
 
-               // ScriptManager.RegisterStartupScript(this, this.GetType(), "EmailConf", "EmailVerification('" + emailCount + "');", true);
             }
           
 
@@ -59,7 +52,7 @@ namespace Nordfin
                 {
                     string IPAddress = GetIPAddress();
 
-                    string sUserDetails = GetUserIPDetails("http://ipinfo.io/" + IPAddress + "/json");// GetUserIPDetails("http://ip-api.com/json/" + IPAddress);
+                    string sUserDetails = GetUserIPDetails("http://ipinfo.io/" + IPAddress + "/json");
 
                     userInformation = JsonConvert.DeserializeObject<LoginUserInformation>(sUserDetails);
                     userInformation.Email = txtUserName.Value;
@@ -83,7 +76,7 @@ namespace Nordfin
                     {
                         platform = "linux";
                     }
-                    userInformation.OS = platform;// getOperatinSystemDetails(Request.UserAgent);
+                    userInformation.OS = platform;
                     userInformation.CILastReGenerate = Convert.ToString(System.DateTimeOffset.Now.ToUnixTimeSeconds());
                     if (userInformation.HostName == null)
                         userInformation.HostName = "Can't find";
@@ -100,7 +93,7 @@ namespace Nordfin
                 }
                 catch
                 {
-
+                    //catch the issue
                 }
 
                 if (objuser.UserName != null)
@@ -146,13 +139,13 @@ namespace Nordfin
 
 
             if (ua.Contains("Android"))
-                return "Android"; //string.Format("Android"), GetMobileVersion(ua, "Android"));
+                return "Android"; 
 
             if (ua.Contains("iPad"))
-                return "iPad"; //string.Format("iPad OS {0}", GetMobileVersion(ua, "OS"));
+                return "iPad"; 
 
             if (ua.Contains("iPhone"))
-                return "iPhone"; //string.Format("iPhone OS {0}", GetMobileVersion(ua, "OS"));
+                return "iPhone";
 
             if (ua.Contains("Linux") && ua.Contains("KFAPWI"))
                 return "Kindle Fire";
@@ -160,8 +153,6 @@ namespace Nordfin
             if (ua.Contains("RIM Tablet") || (ua.Contains("BB") && ua.Contains("Mobile")))
                 return "Black Berry";
 
-            //if (ua.Contains("Windows Phone"))
-            //    return string.Format("Windows Phone {0}", GetMobileVersion(ua, "Windows Phone"));
 
             if (ua.Contains("Mac OS"))
                 return "Mac";
@@ -254,7 +245,9 @@ namespace Nordfin
                     Directory.Delete(HttpContext.Current.Server.MapPath(sDirectory), true);
                 }
             }
-            catch { }
+            catch {
+                //catch the issue
+            }
         }
 
         public bool IsReCaptchValid()

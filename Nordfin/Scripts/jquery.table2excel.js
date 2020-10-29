@@ -165,7 +165,7 @@
 
                                 try {
                                     if ($(tdValue).text().indexOf('.') >= 0) {
-                                        $(tdValue).text((parseFloat($(tdValue).text()) * 100).toFixed(2).toString().replace(',','.') + '%');
+                                        $(tdValue).text((parseFloat($(tdValue).text()) * 100).toFixed(2).toString().replace('.',',') + '%');
                                       
                                     }
                                     

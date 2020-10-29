@@ -27,12 +27,14 @@ namespace Nordfin.workflow.DataAccessLayer
                 objpaymentinfo.PaymentReference = ds.Tables[0].Rows[0].ItemArray[0].ToString();
                 objpaymentinfo.Delivery = ds.Tables[0].Rows[0].ItemArray[1].ToString();
                 objpaymentinfo.Collectionstatus = ds.Tables[0].Rows[0].ItemArray[2].ToString();
-                objpaymentinfo.CollectionDate = Convert.ToDateTime(string.IsNullOrEmpty(ds.Tables[0].Rows[0].ItemArray[3].ToString()) ? DateTime.MinValue : ds.Tables[0].Rows[0].ItemArray[3]);
-                objpaymentinfo.DueDate = Convert.ToDateTime(ds.Tables[0].Rows[0].ItemArray[4]);
+                objpaymentinfo.CollectionDate = string.IsNullOrEmpty(ds.Tables[0].Rows[0].ItemArray[3].ToString()) ? DateTime.MinValue : Convert.ToDateTime(ds.Tables[0].Rows[0].ItemArray[3]);
+                objpaymentinfo.DueDate = string.IsNullOrEmpty(ds.Tables[0].Rows[0].ItemArray[4].ToString()) ? DateTime.MinValue : Convert.ToDateTime(ds.Tables[0].Rows[0].ItemArray[4]);
                 objpaymentinfo.Collectionstop = ds.Tables[0].Rows[0].ItemArray[5].ToString();
                 objpaymentinfo.Collectionstopuntil = ds.Tables[0].Rows[0].ItemArray[6].ToString();
                 objpaymentinfo.Paymentmethod = ds.Tables[0].Rows[0].ItemArray[7].ToString();
                 objpaymentinfo.Purchased = ds.Tables[0].Rows[0].ItemArray[8].ToString();
+                objpaymentinfo.Contested = ds.Tables[0].Rows[0].ItemArray[9].ToString();
+                objpaymentinfo.ContestedDate = ds.Tables[0].Rows[0].ItemArray[10].ToString();
 
             }
             IList<Notes> objlstNotes = new List<Notes>();
@@ -225,6 +227,8 @@ namespace Nordfin.workflow.DataAccessLayer
             DatabaseName.AddInParameter(DBBaseCommand, "@OldCollStopUntil", System.Data.DbType.String, objNotes.CollectionStopUntilOldValue);
             DatabaseName.AddInParameter(DBBaseCommand, "@NewCollStop", System.Data.DbType.String, objNotes.CollectionStopNewValue);
             DatabaseName.AddInParameter(DBBaseCommand, "@OldCollStop", System.Data.DbType.String, objNotes.CollectionStopOldValue);
+            DatabaseName.AddInParameter(DBBaseCommand, "@Contested", System.Data.DbType.String, objNotes.Contested);
+            DatabaseName.AddInParameter(DBBaseCommand, "@ContestedDate", System.Data.DbType.String, objNotes.ContestedDate);
 
             DataSet ds = DatabaseName.ExecuteDataSet(DBBaseCommand);
 

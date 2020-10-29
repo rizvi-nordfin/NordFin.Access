@@ -1,6 +1,4 @@
-﻿using System.Collections.Generic;
-using System.Data;
-using Nordfin.workflow.Entity;
+﻿using System.Data;
 
 namespace Nordfin.workflow.BusinessDataLayerInterface
 {

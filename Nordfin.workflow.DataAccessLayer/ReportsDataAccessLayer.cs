@@ -50,6 +50,14 @@ namespace Nordfin.workflow.DataAccessLayer
             return dataSet;
         }
 
+        DataSet IReportsBusinessDataLayer.GetContestedReport(string ClientID)
+        {
+            DBInitialize("usp_getContestedReport");
+            DatabaseName.AddInParameter(DBBaseCommand, "@ClientID", System.Data.DbType.Int32, Convert.ToInt32(ClientID));
+            DataSet dataSet = DatabaseName.ExecuteDataSet(DBBaseCommand);
+            return dataSet;
+        }
+
 
     }
 }

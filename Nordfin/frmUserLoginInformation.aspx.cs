@@ -1,10 +1,8 @@
 ﻿using Nordfin.workflow.BusinessLayer;
 using Nordfin.workflow.PresentationBusinessLayer;
 using System;
-using System.Collections.Generic;
 using System.Data;
 using System.IO;
-using System.Linq;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
@@ -41,7 +39,9 @@ namespace Nordfin
                         Directory.Delete(Server.MapPath(sDirectory), true);
                     }
                 }
-                catch { }
+                catch {
+                    //catch the issue
+                }
                 Session.Abandon();
                 Response.Redirect("frmLogin.aspx");
 

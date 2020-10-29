@@ -30,5 +30,10 @@ namespace Nordfin.workflow.Business
         {
             return objReportlist.usp_getPeriodicReport(ClientID, sFromDate, sToDate);
         }
+        DataSet IReportsPresentationBusinessLayer.GetContestedReport(string ClientID)
+        {
+            return objReportlist.GetContestedReport(ClientID);
+        }
+
     }
 }

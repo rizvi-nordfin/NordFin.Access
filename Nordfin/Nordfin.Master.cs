@@ -64,10 +64,7 @@ namespace Nordfin
         }
 
         
-        protected void usd_Click(object sender, EventArgs e)
-        {
-
-        }
+       
 
         protected void btnUsd_ServerClick(object sender, EventArgs e)
         {
@@ -144,7 +141,9 @@ namespace Nordfin
                     Directory.Delete(HttpContext.Current.Server.MapPath(sDirectory), true);
                 }
             }
-            catch { }
+            catch {
+                //catch the issue
+            }
             IUserPresentationBusinessLayer objUserLayer = new UserBusinessLayer();
             int iResult = objUserLayer.UpdateSessionID(ClientSession.UserName.Trim(), System.DateTimeOffset.Now.ToUnixTimeSeconds());
             Session.Abandon();
@@ -169,7 +168,9 @@ namespace Nordfin
                         Directory.Delete(Server.MapPath(sDirectory), true);
                     }
                 }
-                catch { }
+                catch {
+                    //catch the issue
+                }
                 Session.Abandon();
                 Response.Redirect("frmLogin.aspx");
 

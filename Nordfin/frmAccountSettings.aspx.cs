@@ -114,7 +114,9 @@ namespace Nordfin
                         Directory.Delete(Server.MapPath(sDirectory), true);
                     }
                 }
-                catch { }
+                catch {
+                    //catch the issue
+                }
                 Session.Abandon();
                 Response.Redirect("frmLogin.aspx");
 
@@ -204,11 +206,8 @@ namespace Nordfin
             }
 
             catch (Exception ex)
-
             {
-
-
-
+                //catch the issue
             }
         }
 

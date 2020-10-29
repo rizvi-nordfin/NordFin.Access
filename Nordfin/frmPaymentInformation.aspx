@@ -30,7 +30,7 @@
 </head>
 <body>
     <form id="form1" runat="server">
-        <div data-ng-app="myApp" data-ng-controller="myCtrl" class="paymentInfoModal">
+        <div data-ng-app="myApp" id="AngularDiv" data-ng-controller="myCtrl" class="paymentInfoModal">
 
 
 
@@ -109,7 +109,7 @@
                                          Text="Due Date:"
                                          AssociatedControlID="txtDueDate"
                                          runat="server">
-                                  <asp:TextBox runat="server" class="form-control controlColor"  ID="txtDueDate"></asp:TextBox>
+                                  <asp:TextBox runat="server" class="form-control controlColor" AutoCompleteType="Disabled" ID="txtDueDate"></asp:TextBox>
                               </asp:Label>
                                 
                             </div>
@@ -141,6 +141,35 @@
                               </asp:Label>
                                 
                             </div>
+
+                            <div class="col-md-3">
+                              <asp:Label ID="lblContested"
+                                         Text="Contested"
+                                         AssociatedControlID="cboContested"
+                                         runat="server">
+                                        <asp:DropDownList runat="server" ID="cboContested"  CssClass="form-control selectColor">
+                                             <asp:ListItem Text="NO" Value="0" ></asp:ListItem>
+                                             <asp:ListItem Text="YES" Value="1"></asp:ListItem>
+                                         </asp:DropDownList>
+                              </asp:Label>
+                                
+                            </div>
+
+
+                            <div class="col-md-3">
+                              <asp:Label ID="lblContestedDate"
+                                         Text="Contested Date"
+                                         AssociatedControlID="txtContestedDate"
+                                         runat="server">
+                                         <asp:TextBox runat="server" CssClass="form-control controlColor" disabled="disabled" AutoCompleteType="Disabled" ID="txtContestedDate"></asp:TextBox>
+                              </asp:Label>
+                                
+                            </div>
+                          
+
+                        </div>
+                        <br />
+                        <div class="row" style="padding-top:5px;">
                             <div class="col-md-6">
                               <asp:Label ID="txtPaymentMethodLabel"
                                          Text="Payment Method"
@@ -150,9 +179,7 @@
                               </asp:Label>
                                 
                             </div>
-
-                        </div>
-                        <br />
+                             </div>
 
                     </div>
 
@@ -168,7 +195,7 @@
                                          Text="Notes"
                                          AssociatedControlID="txtNotes"
                                          runat="server">
-                                         <asp:TextBox ID="txtNotes" TextMode="MultiLine" Style="height: 140px;color:white;" runat="server" CssClass="form-control controlColor"></asp:TextBox>
+                                         <asp:TextBox ID="txtNotes" TextMode="MultiLine" Style="height: 100px;color:white;" runat="server" CssClass="form-control controlColor"></asp:TextBox>
                               </asp:Label>
                               
                             </div>
@@ -433,9 +460,9 @@
         </div>
 
   
-            <div class="modal fade" id="mdlDeleteConfirm" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal fade" style="top:100px !important;" id="mdlDeleteConfirm" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
                 <div class="modal-dialog" role="document">
-                    <div class="modal-content" style="background: none;border:none;width: 46%;">
+                    <div class="modal-content" style="background: none;border:none;width: 75%;">
                         <div class="modal-header dashboardHeadline" style="background-color: #323e53; color: #fff;font-size:16px;">
                             <h5 class="modal-title" id="exampleModalLabel">Information</h5>
                             <button type="button" class="modalcloseButton" data-dismiss="modal" aria-label="Close" style="top: 30px;right: 0px;">

@@ -12,7 +12,6 @@ namespace Nordfin.workflow.DataAccessLayer
     {
         DataSet IInvoicesBusinessDataLayer.getInvoicesList(string custorinvoiceNum, string clientID, bool bCustomer, AdvanceSearch advanceSearch)
         {
-            IList<Invoices> objInvoiceList = new List<Invoices>();
             if (advanceSearch != null)
             {
                 DBInitialize("usp_getInvoicesAdvanceSearch");
@@ -32,10 +31,8 @@ namespace Nordfin.workflow.DataAccessLayer
                 DatabaseName.AddInParameter(DBBaseCommand, "@custInvoicesNum", System.Data.DbType.String, custorinvoiceNum);
                 DatabaseName.AddInParameter(DBBaseCommand, "@clientID", System.Data.DbType.Int32, Convert.ToInt32(clientID));
                 DatabaseName.AddInParameter(DBBaseCommand, "@bCustomer", System.Data.DbType.Boolean, bCustomer);
-                // DatabaseName.AddInParameter(DBBaseCommand, "@custNum", System.Data.DbType.String, bCustomer);
             }
             DataSet ds = DatabaseName.ExecuteDataSet(DBBaseCommand);
-            //string.Format("{0:#,###0}", decimal.Truncate(dUnpaid)).Replace(",", " ")
             if (ds.Tables[0].Rows.Count > 0)
             {
                 try
@@ -49,7 +46,9 @@ namespace Nordfin.workflow.DataAccessLayer
                         a["Overpayment"] = String.Format(CultureInfo.GetCultureInfo("sv-SE"), "{0:#,0.00}", ConvertStringToDecimal(a.Field<string>("Overpayment")));
                     });
                 }
-                catch { }
+                catch {
+                    //catch the issue
+                }
             }
             return ds;
         }
@@ -120,7 +119,6 @@ namespace Nordfin.workflow.DataAccessLayer
             DatabaseName.AddInParameter(DBBaseCommand, "@positiveInvoices", System.Data.DbType.String, PositiveInvoices);
             DatabaseName.AddInParameter(DBBaseCommand, "@userID", System.Data.DbType.Int32, Convert.ToInt32(UserID));
            
-            // DatabaseName.AddInParameter(DBBaseCommand, "@custNum", System.Data.DbType.String, bCustomer);
 
             DataSet ds = DatabaseName.ExecuteDataSet(DBBaseCommand);
 

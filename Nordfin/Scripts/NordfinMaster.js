@@ -243,3 +243,8 @@ $(function () {
         });
     }
 });
+
+
+function PanelClick() {
+    window.location.href = "frmDashboard.aspx";
+}

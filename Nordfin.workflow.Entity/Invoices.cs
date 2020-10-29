@@ -1,6 +1,4 @@
-﻿using System;
-
-namespace Nordfin.workflow.Entity
+﻿namespace Nordfin.workflow.Entity
 {
     public class Invoices
     {

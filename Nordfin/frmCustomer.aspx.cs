@@ -6,7 +6,6 @@ using System.IO;
 using System.Linq;
 using System.Net.Mail;
 using System.Text.RegularExpressions;
-using System.Threading;
 using System.Web;
 using System.Web.Script.Serialization;
 using System.Web.Services;
@@ -38,7 +37,6 @@ namespace Nordfin
                     grdCustomer.DataBind();
 
 
-                    //  decimal sum = Convert.ToDecimal(ds.Tables[0].Compute("SUM(Fees)", string.Empty));
 
                     if (ds.Tables[0].Rows.Count > 0)
                     {
@@ -61,7 +59,7 @@ namespace Nordfin
                         lblRemain.Text = String.Format(CultureInfo.GetCultureInfo("sv-SE"), "{0:#,0.00}", ds.Tables[0].AsEnumerable()
                         .Sum(r => ConvertStringToDecimal(Regex.Replace(r.Field<string>("Remainingamount").Trim(), @"\s", "").Replace(",", "."))));
                     }
-                    // grdCustomer.HeaderRow.TableSection = TableRowSection.TableHeader;
+                    
                     if (ds.Tables.Count > 1)
                     {
                         DataTable dtResult = ds.Tables[1];
@@ -115,7 +113,9 @@ namespace Nordfin
                                     lblInsuredAmount.Text = String.Format(CultureInfo.GetCultureInfo("sv-SE"), "{0:#,0.00}", ConvertStringToDecimal(dtResult.Rows[0].ItemArray[11].ToString()));
                                     lblRemainingIns.Text = String.Format(CultureInfo.GetCultureInfo("sv-SE"), "{0:#,0.00}", ConvertStringToDecimal(dtResult.Rows[0].ItemArray[14].ToString()));
                                 }
-                                catch { }
+                                catch {
+                                    //catch the issue
+                                }
                                 pnlInsuredClient.Visible = Convert.ToBoolean(dtResult.Rows[0].ItemArray[13]);
 
                                 if (!pnlInsuredClient.Visible)
@@ -123,7 +123,9 @@ namespace Nordfin
                                     pnlPhone.Attributes.CssStyle.Add("padding-bottom", "25px");
                                 }
                             }
-                            catch { }
+                            catch {
+                                //catch the issue
+                            }
                         }
 
 
@@ -169,7 +171,9 @@ namespace Nordfin
 
                             });
                         }
-                        catch { }
+                        catch {
+                            //catch the issue                            
+                        }
 
 
                         grdInvoiceRemaining.DataSource = dtInvoiceremain;
@@ -180,7 +184,6 @@ namespace Nordfin
                         hdnMatch.Value = "false";
                     }
 
-                    //  Session["custNum"] = null;
                 }
                 else
                 {
@@ -200,15 +203,15 @@ namespace Nordfin
 
         protected void btnPDFDownload_Click(object sender, EventArgs e)
         {
+            string subFolderName = hdnClientName.Value.Substring(hdnClientName.Value.LastIndexOf("/") + 1) + Execute(((Button)sender).CommandArgument.Trim());
             FTPFileProcess fileProcess = new FTPFileProcess();
-            // fileProcess.WinscpConnection();
             string sFileExt = System.Configuration.ConfigurationManager.AppSettings["FileExtension"].ToString();
             string sFileName = hdnFileName.Value + "_" + ((Button)sender).CommandArgument.Trim() + "_" + "inv" + "." + sFileExt;
             string sPDFViewerLink = "";
             bool bResult = false;
             string ResultFile = "";
             if (sFileName != "")
-                bResult = fileProcess.FileDownload(hdnClientName.Value, sFileName, out ResultFile);
+                bResult = fileProcess.FileDownload(hdnClientName.Value, subFolderName, sFileName, out ResultFile);
             if (!bResult)
             {
                 sPDFViewerLink = hdnArchiveLink.Value + ((Button)sender).CommandArgument.Trim();
@@ -219,19 +222,6 @@ namespace Nordfin
             }
             Button btn = (Button)sender;
             ScriptManager.RegisterStartupScript(this, this.GetType(), "PDFViewerNewTab", "PDFViewer('" + sFileName + "','" + sPDFViewerLink + "','" + Session.SessionID + "','" + bResult + "','" + btn.ClientID + "');", true);
-            //FTPFileProcess fileProcess = new FTPFileProcess();
-            //// fileProcess.WinscpConnection();
-            //string sFileName = hdnFileName.Value + "_" + ((Button)sender).CommandArgument.Trim();
-            //string sResultFileName = fileProcess.GetFilesDetailsFromFTP(hdnClientName.Value, sFileName);
-            //string sPDFViewerLink = "";
-            //bool bResult = false;
-            //if (sResultFileName != "")
-            //    bResult = fileProcess.FileDownload(hdnClientName.Value, sResultFileName);
-            //if (!bResult)
-            //{
-            //    sPDFViewerLink = hdnArchiveLink.Value + ((Button)sender).CommandArgument.Trim();
-            //}
-            //ScriptManager.RegisterStartupScript(this, this.GetType(), "PDFViewerNewTab", "PDFViewer('" + sResultFileName + "','" + sPDFViewerLink + "','" + Session.SessionID + "','" + bResult + "');", true);
         }
 
         public void ClearSession()
@@ -247,7 +237,9 @@ namespace Nordfin
                         Directory.Delete(Server.MapPath(sDirectory), true);
                     }
                 }
-                catch { }
+                catch {
+                    //catch the issue
+                }
                 Session.Abandon();
                 Response.Redirect("frmLogin.aspx");
 
@@ -318,11 +310,8 @@ namespace Nordfin
             }
 
             catch (Exception ex)
-
             {
-
-
-
+                //catch the issue
             }
         }
 
@@ -333,8 +322,6 @@ namespace Nordfin
             response.Clear();
             response.Charset = "";
 
-            //response.ContentType = "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet";
-            //response.AddHeader("Content-Disposition", "attachment;filename=\"" + filename + "\"");
             DataTable dataTable = (DataTable)Session["CustomerGrid"];
             try
             {
@@ -344,7 +331,9 @@ namespace Nordfin
                 dataTable.Columns.Remove("InvoiceID");
                 dataTable.Columns.Remove("OrderID");
             }
-            catch { }
+            catch {
+                //catch the issue
+            }
 
 
             if (dataTable.Rows.Count > 0)
@@ -378,7 +367,9 @@ namespace Nordfin
                     dataTable.Columns["TotalRemaining"].SetOrdinal(8);
                     dataTable.Columns["Overpayment"].SetOrdinal(11);
                 }
-                catch { }
+                catch {
+                    //catch the issue
+                }
 
             }
             foreach (DataColumn column in dataTable.Columns)
@@ -521,24 +512,42 @@ namespace Nordfin
 
 
         }
-        //protected void btnEmail_Click(object sender, EventArgs e)
-        //{
-        //    FTPFileProcess fileProcess = new FTPFileProcess();
-        //    // fileProcess.WinscpConnection();
-        //    string sFileExt = System.Configuration.ConfigurationManager.AppSettings["FileExtension"].ToString();
-        //    string sFileName = hdnFileName.Value + "_" + hdnInvoiceNumber.Value + "_" + "inv" + "." + sFileExt;
-        //    bool bResult = false;
-        //    string ResultFile = "";
-        //    if (sFileName != "")
-        //        bResult = fileProcess.FileDownload(hdnClientName.Value, sFileName, out ResultFile);
 
-        //    if (bResult)
-        //    {
+        public static string Execute(string invNumber)
+        {
+            var r = Regex.Replace(invNumber, "[^0-9]", "");
 
-        //        ThreadStart threadStart = delegate () { SendMail(hdnInvoiceNumber.Value, txtCustEmail.Text); };
-        //        Thread thread = new Thread(threadStart);
-        //        thread.Start();
-        //    }
-        //}
+            var n = int.TryParse(r, out var x) ? x : 0;
+
+            // n is invoice number which is int or only numbers
+
+            /* if invoice number is more than 9 digits it will keep only 9 digits from the right and remove the rest but 
+             it will not change invoice number in the file name */
+
+            if (r.Length > 9)
+                n = int.TryParse(r.Remove(0, r.Length - 9), out var m) ? m : 0;
+            const int i = 1000000000;
+            const int n2 = 100000;
+            var newPath = "";
+            var index = 0;
+            var n1 = 0;
+            var n3 = n2;
+
+            while (index < i)
+            {
+                index++;
+                if (n > n1 && n <= n3)
+                {
+                    newPath = n1 + "_" + n3;
+                    break;
+                }
+                n1 += n2;
+                n3 += n2;
+            }
+            return newPath;
+        }
+
+
+       
     }
 }

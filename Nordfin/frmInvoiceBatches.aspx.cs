@@ -1,17 +1,10 @@
-﻿using Nordfin.workflow.Business;
-using Nordfin.workflow.BusinessLayer;
-using Nordfin.workflow.Entity;
+﻿using Nordfin.workflow.BusinessLayer;
 using Nordfin.workflow.PresentationBusinessLayer;
 using System;
-using System.Collections.Generic;
 using System.Data;
-using System.Linq;
 using System.Web;
-using System.Web.Script.Serialization;
 using System.Web.Services;
 using System.Web.UI;
-using System.Web.UI.WebControls;
-
 using Newtonsoft.Json;
 using System.IO;
 
@@ -22,9 +15,7 @@ namespace Nordfin
         protected void Page_Load(object sender, EventArgs e)
         {
             ClearSession();
-            if (!IsPostBack)
-            {
-            }
+           
         }
       
 
@@ -65,7 +56,9 @@ namespace Nordfin
                         Directory.Delete(HttpContext.Current.Server.MapPath(sDirectory), true);
                     }
                 }
-                catch { }
+                catch {
+                    //catch the issue
+                }
                 HttpContext.Current.Session.Abandon();
                 HttpContext.Current.Response.Redirect("frmLogin.aspx");
 
