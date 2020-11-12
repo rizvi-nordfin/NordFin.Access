@@ -12,6 +12,6 @@ namespace Nordfin.workflow.Entity
         public IList<CustomerInvoiceAmount> objInvoiceAmountList = new List<CustomerInvoiceAmount>();
         public string objClientLand = "";
         public IList<CustomerGrowth> objCustomerGrowthList = new List<CustomerGrowth>();
-        
+
     }
 }

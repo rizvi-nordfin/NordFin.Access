@@ -30,7 +30,7 @@ namespace Nordfin
         }
 
 
-        public string GetFilesDetailsFromFTP(string ClientName,string FileName)
+        public string GetFilesDetailsFromFTP(string ClientName, string FileName)
         {
             IList<FTPFileDetails> objFTPFileDetails = new List<FTPFileDetails>();
             try
@@ -68,7 +68,7 @@ namespace Nordfin
                             }
                         }
                     }
-                        
+
                 }
 
 
@@ -85,7 +85,7 @@ namespace Nordfin
 
         }
 
-        private DateTime GetFtpFileDateTime(string FileName,string FolderName)
+        private DateTime GetFtpFileDateTime(string FileName, string FolderName)
         {
             string uri = FTPDomain + FolderName + "/" + FileName;
             FtpWebRequest request = (FtpWebRequest)WebRequest.Create(uri);
@@ -99,13 +99,13 @@ namespace Nordfin
             {
                 return response.LastModified;
             }
-               
+
 
         }
 
-        public bool FileDownload(string FolderName,string subfolder,string FileName,out string ResultFileName)
+        public bool FileDownload(string FolderName, string subfolder, string FileName, out string ResultFileName)
         {
-            FtpWebRequest request = (FtpWebRequest)WebRequest.Create(FTPAzureDomain + FolderName +  "/" + subfolder + "/" + FileName);
+            FtpWebRequest request = (FtpWebRequest)WebRequest.Create(FTPAzureDomain + FolderName + "/" + subfolder + "/" + FileName);
             request.Method = WebRequestMethods.Ftp.DownloadFile;
             request.Credentials = new NetworkCredential(FTPAzureUserName, FTPAzurePassword);
             request.UseBinary = true;
@@ -132,9 +132,9 @@ namespace Nordfin
                     return true;
                 }
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
-                bool bfalse = FileArchiveDownload(FolderName, FileName,out string sResultFileName);
+                bool bfalse = FileArchiveDownload(FolderName, FileName, out string sResultFileName);
                 ResultFileName = sResultFileName;
                 return bfalse;
             }
@@ -172,8 +172,8 @@ namespace Nordfin
             }
             catch (Exception ex)
             {
-                string sFileNameDownload=  GetCombinedFilesDetailsFromFTP(FolderName, FileName.Replace("_inv.pdf",""));
-                bool bReturn = CombinedFileDownload(FolderName, sFileNameDownload,out string sCombinedResultFileName );
+                string sFileNameDownload = GetCombinedFilesDetailsFromFTP(FolderName, FileName.Replace("_inv.pdf", ""));
+                bool bReturn = CombinedFileDownload(FolderName, sFileNameDownload, out string sCombinedResultFileName);
                 ResultFileName = sCombinedResultFileName;
                 return bReturn;
             }
@@ -229,13 +229,15 @@ namespace Nordfin
 
                                             }
                                         }
-                                        catch {
+                                        catch
+                                        {
                                             //catch the issue
                                         }
                                     }
                                 }
                             }
-                            catch {
+                            catch
+                            {
                                 //catch the issue
                             }
                         }
@@ -277,7 +279,7 @@ namespace Nordfin
 
         }
 
-        public bool CombinedFileDownload(string FolderName, string FileName,out string sCombinedResultFileName)
+        public bool CombinedFileDownload(string FolderName, string FileName, out string sCombinedResultFileName)
         {
             FtpWebRequest request = (FtpWebRequest)WebRequest.Create(FTPDomain + FolderName + "/" + FileName);
             request.Method = WebRequestMethods.Ftp.DownloadFile;
@@ -312,6 +314,6 @@ namespace Nordfin
                 return false;
             }
         }
-   
+
     }
 }

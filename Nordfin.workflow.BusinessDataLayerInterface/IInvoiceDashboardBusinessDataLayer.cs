@@ -14,6 +14,6 @@ namespace Nordfin.workflow.BusinessDataLayerInterface
         CustomerInfoDTO getCustomerData(string clientID);
         int setCustomerRegion(string sPostalCode, string sCustomerRegion, string ClientID, string IsMatch);
         IList<CustomerMap> GetCustomerMapRegion(string ClientID, string IsMatch);
-        
+
     }
 }

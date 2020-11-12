@@ -1,4 +1,8 @@
-﻿using System;
+﻿using ClosedXML.Excel;
+using Nordfin.workflow.Business;
+using Nordfin.workflow.Entity;
+using Nordfin.workflow.PresentationBusinessLayer;
+using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Globalization;
@@ -7,11 +11,6 @@ using System.Web;
 using System.Web.Script.Serialization;
 using System.Web.Services;
 using System.Web.UI;
-using System.Web.UI.WebControls;
-using ClosedXML.Excel;
-using Nordfin.workflow.Business;
-using Nordfin.workflow.Entity;
-using Nordfin.workflow.PresentationBusinessLayer;
 
 namespace Nordfin
 {
@@ -56,35 +55,39 @@ namespace Nordfin
                     }
                     decimal dSendout = ConvertStringToDecimal(dataTable.Rows[0].ItemArray[2].ToString());
                     decimal dUnpaid = ConvertStringToDecimal(dataTable.Rows[1].ItemArray[2].ToString());
-                    decimal dRemainder = ConvertStringToDecimal(dataTable.Rows[3].ItemArray[2].ToString());
-                    decimal dDC = ConvertStringToDecimal(dataTable.Rows[4].ItemArray[2].ToString());
-                    decimal dExt = ConvertStringToDecimal(dataTable.Rows[5].ItemArray[2].ToString());
+                    decimal dPaid = ConvertStringToDecimal(dataTable.Rows[2].ItemArray[2].ToString());
+                    decimal dCredited= ConvertStringToDecimal(dataTable.Rows[3].ItemArray[2].ToString());
+                    decimal dRemainder = ConvertStringToDecimal(dataTable.Rows[4].ItemArray[2].ToString());
+                    decimal dDC = ConvertStringToDecimal(dataTable.Rows[5].ItemArray[2].ToString());
+                    decimal dExt = ConvertStringToDecimal(dataTable.Rows[6].ItemArray[2].ToString());
 
                     lblUnpaidNumber.Text = dataTable.Rows[1].ItemArray[1].ToString();
                     lblUnpaidAmount.Text = string.Format(CultureInfo.GetCultureInfo("sv-SE"), "{0:#,###0}", decimal.Truncate(dUnpaid));
-                   
+
                     lblPaidNumber.Text = dataTable.Rows[2].ItemArray[1].ToString();
                     lblPaidAmount.Text = string.Format(CultureInfo.GetCultureInfo("sv-SE"), "{0:#,###0}", decimal.Truncate(ConvertStringToDecimal(dataTable.Rows[2].ItemArray[2].ToString())));
-                   
-                    lblRemainderNumber.Text = dataTable.Rows[3].ItemArray[1].ToString();
+
+                    lblCreditedNumber.Text = dataTable.Rows[3].ItemArray[1].ToString();
+                    lblCreditedAmount.Text = string.Format(CultureInfo.GetCultureInfo("sv-SE"), "{0:#,###0}", decimal.Truncate(dCredited));
+
+                    lblRemainderNumber.Text = dataTable.Rows[4].ItemArray[1].ToString();
                     lblRemainderAmount.Text = string.Format(CultureInfo.GetCultureInfo("sv-SE"), "{0:#,###0}", decimal.Truncate(dRemainder));
-                  
-                    lblDCNumber.Text = dataTable.Rows[4].ItemArray[1].ToString();
+
+                    lblDCNumber.Text = dataTable.Rows[5].ItemArray[1].ToString();
                     lblDCAmount.Text = string.Format(CultureInfo.GetCultureInfo("sv-SE"), "{0:#,###0}", decimal.Truncate(dDC));
-                   
 
-                    lblExtNumber.Text = dataTable.Rows[5].ItemArray[1].ToString();
+
+                    lblExtNumber.Text = dataTable.Rows[6].ItemArray[1].ToString();
                     lblExtAmount.Text = string.Format(CultureInfo.GetCultureInfo("sv-SE"), "{0:#,###0}", decimal.Truncate(dExt));
-                  
 
-                    lblTotalSentoutAmount.Text = lblSenoutAmount.Text;
-                    lblTotalUnpaidAmount.Text = lblUnpaidAmount.Text;
-                    lblTotalAvgPaidDay.Text = lblPaidPercent.Text;
+
+                   
 
                     try
                     {
                         lblUnpaidPrecent.Text = Convert.ToString(Math.Round(((dUnpaid / dSendout) * 100), 2)) + "%";
-                        lblPaidPercent.Text = Convert.ToString(100 - Convert.ToDecimal(lblUnpaidPrecent.Text.Replace("%", ""))) + "%";
+                        lblPaidPercent.Text = Convert.ToString(Math.Round(((dPaid / dSendout) * 100), 2)) + "%";
+                        lblCreditedPercent.Text = Convert.ToString(Math.Round(((dCredited / dSendout) * 100), 2)) + "%";
                         lblRemainderPercent.Text = Convert.ToString(Math.Round(((dRemainder / dSendout) * 100), 2)) + "%";
                         lblDCPercent.Text = Convert.ToString(Math.Round(((dDC / dSendout) * 100), 2)) + "%";
                         lblExtPercent.Text = Convert.ToString(Math.Round(((dExt / dSendout) * 100), 2)) + "%";
@@ -94,7 +97,9 @@ namespace Nordfin
                     {
                         //catch the issue
                     }
-
+                    lblTotalSentoutAmount.Text = lblSenoutAmount.Text;
+                    lblTotalUnpaidAmount.Text = lblUnpaidAmount.Text;
+                    lblTotalAvgPaidDay.Text = lblPaidPercent.Text;
 
 
                 }
@@ -309,7 +314,8 @@ namespace Nordfin
                         Directory.Delete(HttpContext.Current.Server.MapPath(sDirectory), true);
                     }
                 }
-                catch {
+                catch
+                {
                     //catch the issue
                 }
                 HttpContext.Current.Session.Abandon();
@@ -355,10 +361,10 @@ namespace Nordfin
         protected void btnCustomerData_Click(object sender, EventArgs e)
         {
 
-           
+
             pnlCustomerData.Visible = true;
             divInvoiceData.Visible = false;
-            
+
             btnCustomerData.CssClass = "form-control form-control buttonDefault";
             btnInvoiceData.CssClass = "form-control form-control buttonClass";
             if (ClientSession.Admin == "0" && ClientSession.Admin == "1")
@@ -400,7 +406,7 @@ namespace Nordfin
         }
 
         [WebMethod]
-        public static string UpdateCustomerRegion(string CountryRegion, string CountryPostalCode,string IsMatch)
+        public static string UpdateCustomerRegion(string CountryRegion, string CountryPostalCode, string IsMatch)
         {
 
 
@@ -419,21 +425,21 @@ namespace Nordfin
 
             IInvoiceDashboardPresentationBusinessLayer objInvoiceDashboard = new InvoiceDashboardBusinessLayer();
 
-            IList<CustomerMap> objCustMapList = objInvoiceDashboard.GetCustomerMapRegion(ClientSession.ClientID,IsMatch);
+            IList<CustomerMap> objCustMapList = objInvoiceDashboard.GetCustomerMapRegion(ClientSession.ClientID, IsMatch);
             string jsonCustomerMap = new JavaScriptSerializer().Serialize(objCustMapList);
 
             string CustMapList = "{\"CustomerMapList\" :" + jsonCustomerMap + "}";
             return CustMapList;
 
-            
+
         }
 
         protected void btnExcel_Click(object sender, EventArgs e)
         {
-            CustomerInfoDTO  customerInfoDTO= (CustomerInfoDTO)Session["CustomerData"];
+            CustomerInfoDTO customerInfoDTO = (CustomerInfoDTO)Session["CustomerData"];
 
 
-            
+
             using (XLWorkbook wb = new XLWorkbook())
             {
 
@@ -502,7 +508,7 @@ namespace Nordfin
             DataTable dataTable = new DataTable();
             dataTable.Columns.Add("REGION", typeof(string));
             dataTable.Columns.Add("NO. OF CUSTOMERS", typeof(string));
-          
+
 
             for (int i = 0; i < customerRegions.Count; i++)
             {

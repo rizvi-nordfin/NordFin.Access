@@ -211,6 +211,17 @@
                                                 <td>
                                                     <asp:Label ID="lblPaidPercent" Text="0%" runat="server" /></td>
                                             </tr>
+                                             <tr>
+                                                <td class="tableLeftAlign">
+                                                    <asp:Label ID="lblCredited" Text="Credited" runat="server" /></td>
+                                                <td>
+                                                    <asp:Label ID="lblCreditedNumber" runat="server" /></td>
+                                                <td>
+                                                    <asp:Label ID="lblCreditedAmount" runat="server" /></td>
+                                                <td>
+                                                    <asp:Label ID="lblCreditedPercent" Text="0%" runat="server" /></td>
+                                            </tr>
+
                                             <tr>
                                                 <td class="tableLeftAlign">
                                                     <asp:Label ID="lblRemainder" Text="Reminder" runat="server" /></td>

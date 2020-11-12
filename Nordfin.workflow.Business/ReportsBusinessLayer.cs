@@ -1,7 +1,7 @@
-﻿using System.Data;
-using Nordfin.workflow.BusinessDataLayerInterface;
+﻿using Nordfin.workflow.BusinessDataLayerInterface;
 using Nordfin.workflow.DataAccessLayer;
 using Nordfin.workflow.PresentationBusinessLayer;
+using System.Data;
 
 namespace Nordfin.workflow.Business
 {

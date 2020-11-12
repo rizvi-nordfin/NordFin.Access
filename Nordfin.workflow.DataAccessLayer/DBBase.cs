@@ -1,7 +1,7 @@
-﻿using System;
-using Microsoft.Practices.EnterpriseLibrary.Data;
-using System.Data.Common;
+﻿using Microsoft.Practices.EnterpriseLibrary.Data;
+using System;
 using System.Configuration;
+using System.Data.Common;
 
 
 namespace Nordfin.workflow.DataAccessLayer
@@ -11,18 +11,18 @@ namespace Nordfin.workflow.DataAccessLayer
         public Database DatabaseName { get; set; }
         public DbCommand DBBaseCommand { get; set; }
 
-        
+
 
         protected void DBInitialize(string storedProcedure)
         {
             try
             {
                 string Connection = "";
-               Connection = ConfigurationManager.ConnectionStrings["NordfinConnec"].ToString();
+                Connection = ConfigurationManager.ConnectionStrings["NordfinConnec"].ToString();
                 InitializeDatabase(storedProcedure, Connection);
-                
+
             }
-            catch(Exception EX)
+            catch (Exception EX)
             {
                 //catch the block
             }
@@ -53,8 +53,8 @@ namespace Nordfin.workflow.DataAccessLayer
                         objCon.Close();
                 }
             }
-               
-              
+
+
         }
     }
 }

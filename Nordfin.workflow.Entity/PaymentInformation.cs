@@ -19,5 +19,5 @@ namespace Nordfin.workflow.Entity
         public string ContestedDate { get; set; }
 
     }
-  
+
 }

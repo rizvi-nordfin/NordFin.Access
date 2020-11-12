@@ -1,10 +1,10 @@
-﻿using System;
+﻿using Nordfin.workflow.BusinessDataLayerInterface;
+using System;
 using System.Data;
-using Nordfin.workflow.BusinessDataLayerInterface;
 
 namespace Nordfin.workflow.DataAccessLayer
 {
-    public class ReportsDataAccessLayer : DBBase,IReportsBusinessDataLayer
+    public class ReportsDataAccessLayer : DBBase, IReportsBusinessDataLayer
     {
         DataSet IReportsBusinessDataLayer.GetLedgerlistReport(string ClientID)
         {
@@ -30,7 +30,7 @@ namespace Nordfin.workflow.DataAccessLayer
             DataSet dataSet = DatabaseName.ExecuteDataSet(DBBaseCommand);
             return dataSet;
         }
-        DataSet IReportsBusinessDataLayer.usp_getInvoicePeriodReport(string ClientID,string sFromDate,string sToDate)
+        DataSet IReportsBusinessDataLayer.usp_getInvoicePeriodReport(string ClientID, string sFromDate, string sToDate)
         {
             DBInitialize("usp_getInvoicePeriodReport");
             DatabaseName.AddInParameter(DBBaseCommand, "@ClientID", System.Data.DbType.Int32, Convert.ToInt32(ClientID));

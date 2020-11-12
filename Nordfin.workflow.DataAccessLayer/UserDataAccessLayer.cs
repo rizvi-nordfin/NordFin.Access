@@ -1,15 +1,15 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Data;
+﻿using Nordfin.workflow.BusinessDataLayerInterface;
 using Nordfin.workflow.Entity;
-using Nordfin.workflow.BusinessDataLayerInterface;
+using System;
+using System.Collections.Generic;
+using System.Data;
+using System.Linq;
 
 
 
 namespace Nordfin.workflow.DataAccessLayer
 {
-    public class UserDataAccessLayer: DBBase,IUserBusinessDataLayer
+    public class UserDataAccessLayer : DBBase, IUserBusinessDataLayer
     {
 
         Users IUserBusinessDataLayer.GetUser(string UserName, string Password)
@@ -20,7 +20,7 @@ namespace Nordfin.workflow.DataAccessLayer
             DatabaseName.AddInParameter(DBBaseCommand, "@Password", System.Data.DbType.String, Password);
 
             DataSet ds = DatabaseName.ExecuteDataSet(DBBaseCommand);
-            if(ds.Tables.Count > 0 && ds.Tables[0].Rows.Count > 0)
+            if (ds.Tables.Count > 0 && ds.Tables[0].Rows.Count > 0)
             {
                 user = ds.Tables[0].AsEnumerable().Select(dataRow => new Users
                 {
@@ -34,11 +34,11 @@ namespace Nordfin.workflow.DataAccessLayer
             }
             return user;
 
-            
+
         }
-        
-        
-        IList<ClientList> IUserBusinessDataLayer.GetClientList(int Admin, int ClientID,string UserID, out string BatchValues)
+
+
+        IList<ClientList> IUserBusinessDataLayer.GetClientList(int Admin, int ClientID, string UserID, out string BatchValues)
         {
             IList<ClientList> objClientList = new List<ClientList>();
 
@@ -54,17 +54,17 @@ namespace Nordfin.workflow.DataAccessLayer
                 ClientName = dataRow.Field<string>("ClientName")
                ,
                 ClientID = dataRow.Field<int>("ClientID"),
-               
+
             }).ToList();
 
             BatchValues = Convert.ToString(DatabaseName.GetParameterValue(DBBaseCommand, "@BatchesValue"));
             return objClientList;
         }
 
-        void IUserBusinessDataLayer.UpdateClientID(string UserName,string ClientID)
+        void IUserBusinessDataLayer.UpdateClientID(string UserName, string ClientID)
         {
             DBInitialize("usp_setClientID");
-            DatabaseName.AddInParameter(DBBaseCommand, "@ClientID", System.Data.DbType.Int32,Convert.ToInt32(ClientID));
+            DatabaseName.AddInParameter(DBBaseCommand, "@ClientID", System.Data.DbType.Int32, Convert.ToInt32(ClientID));
             DatabaseName.AddInParameter(DBBaseCommand, "@Username", System.Data.DbType.String, UserName);
             DatabaseName.ExecuteNonQuery(DBBaseCommand);
 
@@ -91,7 +91,7 @@ namespace Nordfin.workflow.DataAccessLayer
 
             return 0;
         }
-        int IUserBusinessDataLayer.UpdateSessionID(string UserName,long SessionID)
+        int IUserBusinessDataLayer.UpdateSessionID(string UserName, long SessionID)
         {
             DBInitialize("usp_setSessionID");
             DatabaseName.AddInParameter(DBBaseCommand, "@SessionID", System.Data.DbType.Int64, SessionID);

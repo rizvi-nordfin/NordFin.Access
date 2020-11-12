@@ -1,4 +1,8 @@
-﻿using System;
+﻿using ClosedXML.Excel;
+using Nordfin.workflow.Business;
+using Nordfin.workflow.Entity;
+using Nordfin.workflow.PresentationBusinessLayer;
+using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Globalization;
@@ -11,10 +15,6 @@ using System.Web.Script.Serialization;
 using System.Web.Services;
 using System.Web.UI;
 using System.Web.UI.WebControls;
-using ClosedXML.Excel;
-using Nordfin.workflow.Business;
-using Nordfin.workflow.Entity;
-using Nordfin.workflow.PresentationBusinessLayer;
 
 namespace Nordfin
 {
@@ -59,7 +59,7 @@ namespace Nordfin
                         lblRemain.Text = String.Format(CultureInfo.GetCultureInfo("sv-SE"), "{0:#,0.00}", ds.Tables[0].AsEnumerable()
                         .Sum(r => ConvertStringToDecimal(Regex.Replace(r.Field<string>("Remainingamount").Trim(), @"\s", "").Replace(",", "."))));
                     }
-                    
+
                     if (ds.Tables.Count > 1)
                     {
                         DataTable dtResult = ds.Tables[1];
@@ -86,7 +86,7 @@ namespace Nordfin
                             {
                                 pnlUpdate.Style.Add("height", "90px");
                                 pnlUpdate.Style.Add("padding-top", "20px");
-                              
+
 
                             }
                             try
@@ -113,7 +113,8 @@ namespace Nordfin
                                     lblInsuredAmount.Text = String.Format(CultureInfo.GetCultureInfo("sv-SE"), "{0:#,0.00}", ConvertStringToDecimal(dtResult.Rows[0].ItemArray[11].ToString()));
                                     lblRemainingIns.Text = String.Format(CultureInfo.GetCultureInfo("sv-SE"), "{0:#,0.00}", ConvertStringToDecimal(dtResult.Rows[0].ItemArray[14].ToString()));
                                 }
-                                catch {
+                                catch
+                                {
                                     //catch the issue
                                 }
                                 pnlInsuredClient.Visible = Convert.ToBoolean(dtResult.Rows[0].ItemArray[13]);
@@ -123,7 +124,8 @@ namespace Nordfin
                                     pnlPhone.Attributes.CssStyle.Add("padding-bottom", "25px");
                                 }
                             }
-                            catch {
+                            catch
+                            {
                                 //catch the issue
                             }
                         }
@@ -171,7 +173,8 @@ namespace Nordfin
 
                             });
                         }
-                        catch {
+                        catch
+                        {
                             //catch the issue                            
                         }
 
@@ -191,7 +194,7 @@ namespace Nordfin
                     grdCustomer.DataBind();
                 }
 
-               
+
             }
         }
 
@@ -237,7 +240,8 @@ namespace Nordfin
                         Directory.Delete(Server.MapPath(sDirectory), true);
                     }
                 }
-                catch {
+                catch
+                {
                     //catch the issue
                 }
                 Session.Abandon();
@@ -331,7 +335,8 @@ namespace Nordfin
                 dataTable.Columns.Remove("InvoiceID");
                 dataTable.Columns.Remove("OrderID");
             }
-            catch {
+            catch
+            {
                 //catch the issue
             }
 
@@ -367,7 +372,8 @@ namespace Nordfin
                     dataTable.Columns["TotalRemaining"].SetOrdinal(8);
                     dataTable.Columns["Overpayment"].SetOrdinal(11);
                 }
-                catch {
+                catch
+                {
                     //catch the issue
                 }
 
@@ -379,7 +385,7 @@ namespace Nordfin
 
 
                 wb.Worksheets.Add(dataTable);
-              
+
                 Response.Clear();
                 Response.Buffer = true;
                 Response.Charset = "";
@@ -408,9 +414,9 @@ namespace Nordfin
 
             if (lblName.Text != txtCustomerName.Text)
                 sComments += xmlString(spnCustomerName.Text, lblName.Text, txtCustomerName.Text);
-            if(lblAddress.Text!=txtAddress1.Text)
+            if (lblAddress.Text != txtAddress1.Text)
                 sComments += xmlString(spnAddress1.Text, lblAddress.Text, txtAddress1.Text);
-            if(lblAddress1.Text!=txtAddress2.Text)
+            if (lblAddress1.Text != txtAddress2.Text)
                 sComments += xmlString(spnAddress2.Text, lblAddress1.Text, txtAddress2.Text);
 
             if (lblPostalCode.Text != txtPostalCode.Text)
@@ -435,8 +441,8 @@ namespace Nordfin
             customerInfo.Email = txtEmail.Text;
             customerInfo.PhoneNumber = txtPhoneNumber.Text;
             customerInfo.Comments = sComments;
-            customerInfo.CustomerID =Convert.ToInt32(txtCustomerID.Text);
-            customerInfo.UserID =Convert.ToInt32(ClientSession.UserID);
+            customerInfo.CustomerID = Convert.ToInt32(txtCustomerID.Text);
+            customerInfo.UserID = Convert.ToInt32(ClientSession.UserID);
             customerInfo.CustomerNumber = lblCustomerNumber.Text;
 
 
@@ -466,9 +472,9 @@ namespace Nordfin
 
         }
 
-        protected string xmlString(string labelText,string oldValue,string newValue)
+        protected string xmlString(string labelText, string oldValue, string newValue)
         {
-            return "<" + labelText.Replace(" ", "") + "><old>" + oldValue + "</old>" + "<new>" + newValue + "</new>" + "</"+ labelText.Replace(" ", "") + ">";
+            return "<" + labelText.Replace(" ", "") + "><old>" + oldValue + "</old>" + "<new>" + newValue + "</new>" + "</" + labelText.Replace(" ", "") + ">";
         }
 
 
@@ -477,7 +483,7 @@ namespace Nordfin
         {
 
             IInvoicesPresentationBusinessLayer objInvoicesLayer = new InvoicesBusinessLayer();
-            IList<MatchInvoices> Result = objInvoicesLayer.GetMatchedInvoices(Regex.Replace(NegativeinvAmount.Trim(), @"\s", "").Replace(",", ".") , Regex.Replace(PositiveinvAmount.Trim(), @"\s", "").Replace(",", "."), ClientSession.UserID);
+            IList<MatchInvoices> Result = objInvoicesLayer.GetMatchedInvoices(Regex.Replace(NegativeinvAmount.Trim(), @"\s", "").Replace(",", "."), Regex.Replace(PositiveinvAmount.Trim(), @"\s", "").Replace(",", "."), ClientSession.UserID);
             string jsonMatchedInv = new JavaScriptSerializer().Serialize(Result);
             string MatchedInv = "{\"MatchInvoice\" :" + jsonMatchedInv + "}";
             return MatchedInv;
@@ -548,6 +554,6 @@ namespace Nordfin
         }
 
 
-       
+
     }
 }

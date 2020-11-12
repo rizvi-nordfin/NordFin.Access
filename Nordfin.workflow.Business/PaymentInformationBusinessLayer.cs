@@ -16,7 +16,7 @@ namespace Nordfin.workflow.Business
             return objuser.GetPaymentInformation(InvoiceNumber, ClientID);
         }
         PaymentInformationDTO IPaymentInformationPresentationBusinessLayer.GetPaymentInformationPayments(string InvoiceID)
-       
+
         {
             return objuser.GetPaymentInformationPayments(InvoiceID);
         }

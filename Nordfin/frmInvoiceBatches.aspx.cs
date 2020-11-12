@@ -1,12 +1,11 @@
-﻿using Nordfin.workflow.BusinessLayer;
+﻿using Newtonsoft.Json;
+using Nordfin.workflow.BusinessLayer;
 using Nordfin.workflow.PresentationBusinessLayer;
 using System;
 using System.Data;
+using System.IO;
 using System.Web;
 using System.Web.Services;
-using System.Web.UI;
-using Newtonsoft.Json;
-using System.IO;
 
 namespace Nordfin
 {
@@ -15,9 +14,9 @@ namespace Nordfin
         protected void Page_Load(object sender, EventArgs e)
         {
             ClearSession();
-           
+
         }
-      
+
 
 
         [WebMethod]
@@ -31,7 +30,7 @@ namespace Nordfin
 
             string jsonSummaryBatchList = DataTableToJSONWithJSONNet(ds.Tables[1]);
 
-            string sResultList = "{\"InvoiceBatchesList\" :" + jsonBatchList  +"," + "\"SummaryBatchList\" :" + jsonSummaryBatchList + "}";
+            string sResultList = "{\"InvoiceBatchesList\" :" + jsonBatchList + "," + "\"SummaryBatchList\" :" + jsonSummaryBatchList + "}";
 
             return sResultList;
         }
@@ -56,7 +55,8 @@ namespace Nordfin
                         Directory.Delete(HttpContext.Current.Server.MapPath(sDirectory), true);
                     }
                 }
-                catch {
+                catch
+                {
                     //catch the issue
                 }
                 HttpContext.Current.Session.Abandon();

@@ -1,10 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using Nordfin.workflow.BusinessDataLayerInterface;
 using Nordfin.workflow.Entity;
-using Nordfin.workflow.BusinessDataLayerInterface;
+using System;
+using System.Collections.Generic;
 using System.Data;
-using System.Linq;
 using System.Globalization;
+using System.Linq;
 
 namespace Nordfin.workflow.DataAccessLayer
 {
@@ -46,7 +46,8 @@ namespace Nordfin.workflow.DataAccessLayer
                         a["Overpayment"] = String.Format(CultureInfo.GetCultureInfo("sv-SE"), "{0:#,0.00}", ConvertStringToDecimal(a.Field<string>("Overpayment")));
                     });
                 }
-                catch {
+                catch
+                {
                     //catch the issue
                 }
             }
@@ -118,7 +119,7 @@ namespace Nordfin.workflow.DataAccessLayer
             DatabaseName.AddInParameter(DBBaseCommand, "@negativeInvoices", System.Data.DbType.String, NegativeInvoices);
             DatabaseName.AddInParameter(DBBaseCommand, "@positiveInvoices", System.Data.DbType.String, PositiveInvoices);
             DatabaseName.AddInParameter(DBBaseCommand, "@userID", System.Data.DbType.Int32, Convert.ToInt32(UserID));
-           
+
 
             DataSet ds = DatabaseName.ExecuteDataSet(DBBaseCommand);
 
@@ -129,9 +130,9 @@ namespace Nordfin.workflow.DataAccessLayer
 
                 objMatchInvoices = ds.Tables[0].AsEnumerable().Select(dataRow => new MatchInvoices
                 {
-                    InvoiceID =Convert.ToString(dataRow.Field<int>("InvoiceID")),
+                    InvoiceID = Convert.ToString(dataRow.Field<int>("InvoiceID")),
                     Remainingamount = String.Format(CultureInfo.GetCultureInfo("sv-SE"), "{0:#,0.00}", ConvertStringToDecimal(dataRow.Field<string>("Remainingamount")))
-            }).ToList();
+                }).ToList();
             }
 
             return objMatchInvoices;

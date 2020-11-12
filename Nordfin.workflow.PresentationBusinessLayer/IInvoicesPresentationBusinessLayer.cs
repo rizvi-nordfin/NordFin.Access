@@ -6,7 +6,7 @@ namespace Nordfin.workflow.PresentationBusinessLayer
 {
     public interface IInvoicesPresentationBusinessLayer
     {
-        DataSet getInvoicesList(string custorinvoiceNum, string clientID,bool bCustomer, AdvanceSearch advanceSearch);
+        DataSet getInvoicesList(string custorinvoiceNum, string clientID, bool bCustomer, AdvanceSearch advanceSearch);
         string GetCustInvoiceEmailID(string ClientID, string CustomerNumber);
         int DeleteCustomerLogin(string ClientID, string CustomerNumber);
         int UpdateCustomerInfo(CustomerInfo customerInfo, string ClientID);

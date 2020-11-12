@@ -3,9 +3,6 @@ using Nordfin.workflow.PresentationBusinessLayer;
 using System;
 using System.Data;
 using System.IO;
-using System.Web;
-using System.Web.UI;
-using System.Web.UI.WebControls;
 
 namespace Nordfin
 {
@@ -17,7 +14,7 @@ namespace Nordfin
             if (!IsPostBack)
             {
                 IUserLoginInformationPresentationBusinessLayer objLoginInformLayer = new UserLoginInformationBusinessLayer();
-                DataSet ds = objLoginInformLayer.GetUserLoginInformation(ClientSession.UserName,System.DateTimeOffset.Now.ToUnixTimeSeconds());
+                DataSet ds = objLoginInformLayer.GetUserLoginInformation(ClientSession.UserName, System.DateTimeOffset.Now.ToUnixTimeSeconds());
                 grdUserLoginInformation.DataSource = ds.Tables[0];
                 grdUserLoginInformation.DataBind();
 
@@ -39,7 +36,8 @@ namespace Nordfin
                         Directory.Delete(Server.MapPath(sDirectory), true);
                     }
                 }
-                catch {
+                catch
+                {
                     //catch the issue
                 }
                 Session.Abandon();

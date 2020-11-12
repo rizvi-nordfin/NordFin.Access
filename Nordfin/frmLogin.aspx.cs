@@ -1,15 +1,12 @@
-﻿using System;
-using System.Web;
-using System.Web.UI;
-using System.Web.UI.WebControls;
+﻿using Newtonsoft.Json;
+using Newtonsoft.Json.Linq;
+using Nordfin.workflow.Business;
 using Nordfin.workflow.Entity;
 using Nordfin.workflow.PresentationBusinessLayer;
-
-using Nordfin.workflow.Business;
-using System.Net;
+using System;
 using System.IO;
-using Newtonsoft.Json.Linq;
-using Newtonsoft.Json;
+using System.Net;
+using System.Web;
 
 namespace Nordfin
 {
@@ -25,21 +22,21 @@ namespace Nordfin
 
                 if (emailCount > 0)
                 {
-                   
+
                     Response.Redirect("frmLogin.aspx");
 
-                    
+
                 }
 
             }
-          
+
 
 
         }
-        
+
         protected void btnSubmit_Click(object sender, EventArgs e)
         {
-         
+
             if (IsReCaptchValid())
             {
                 DeleteDirectory();
@@ -67,7 +64,7 @@ namespace Nordfin
                     {
                         platform = "mac";
                     }
-                    else if(os.ToUpper().ToUpper().Contains("WIN"))
+                    else if (os.ToUpper().ToUpper().Contains("WIN"))
                     {
                         platform = "windows";
                     }
@@ -88,7 +85,7 @@ namespace Nordfin
                     {
                         userInformation.OS = GetUserPlatform(Request.UserAgent);
                     }
-                      
+
                 }
                 catch
                 {
@@ -128,7 +125,7 @@ namespace Nordfin
             }
 
 
-       
+
 
         }
 
@@ -138,10 +135,10 @@ namespace Nordfin
 
 
             if (ua.Contains("Android"))
-                return "Android"; 
+                return "Android";
 
             if (ua.Contains("iPad"))
-                return "iPad"; 
+                return "iPad";
 
             if (ua.Contains("iPhone"))
                 return "iPhone";
@@ -244,7 +241,8 @@ namespace Nordfin
                     Directory.Delete(HttpContext.Current.Server.MapPath(sDirectory), true);
                 }
             }
-            catch {
+            catch
+            {
                 //catch the issue
             }
         }

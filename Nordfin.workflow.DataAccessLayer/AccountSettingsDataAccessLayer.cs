@@ -10,9 +10,9 @@ namespace Nordfin.workflow.DataAccessLayer
 {
     public class AccountSettingsDataAccessLayer : DBBase, IAccountSettingsBusinessDataLayer
     {
-        Tuple<AccountSettings,DataTable> IAccountSettingsBusinessDataLayer.getAccountSettingsInfo(string ClientID,string UserID)
+        Tuple<AccountSettings, DataTable> IAccountSettingsBusinessDataLayer.getAccountSettingsInfo(string ClientID, string UserID)
         {
-           return getAccountSettingsInfo(ClientID, UserID);
+            return getAccountSettingsInfo(ClientID, UserID);
         }
         protected Tuple<AccountSettings, DataTable> getAccountSettingsInfo(string ClientID, string UserID)
         {
@@ -44,7 +44,7 @@ namespace Nordfin.workflow.DataAccessLayer
             DBInitialize("usp_getUserExsits");
             try
             {
-                DatabaseName.AddInParameter(DBBaseCommand, "@userID", System.Data.DbType.Int32,Convert.ToInt32(sUserID));
+                DatabaseName.AddInParameter(DBBaseCommand, "@userID", System.Data.DbType.Int32, Convert.ToInt32(sUserID));
                 DatabaseName.AddInParameter(DBBaseCommand, "@Password", System.Data.DbType.String, sPasswordHash);
                 DatabaseName.AddOutParameter(DBBaseCommand, "@Count", DbType.Int32, 50);
                 DatabaseName.ExecuteNonQuery(DBBaseCommand);
@@ -58,7 +58,7 @@ namespace Nordfin.workflow.DataAccessLayer
 
         }
 
-        int IAccountSettingsBusinessDataLayer.UpdateUserPassword(string userID, string password,string phoneNumber)
+        int IAccountSettingsBusinessDataLayer.UpdateUserPassword(string userID, string password, string phoneNumber)
         {
             DBInitialize("usp_setAdminUserInformation");
             DatabaseName.AddInParameter(DBBaseCommand, "@userID", System.Data.DbType.Int32, Convert.ToInt32(userID));

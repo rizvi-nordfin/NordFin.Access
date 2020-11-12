@@ -1,8 +1,8 @@
-﻿using System.Collections.Generic;
-using Nordfin.workflow.BusinessDataLayerInterface;
+﻿using Nordfin.workflow.BusinessDataLayerInterface;
 using Nordfin.workflow.DataAccessLayer;
 using Nordfin.workflow.Entity;
 using Nordfin.workflow.PresentationBusinessLayer;
+using System.Collections.Generic;
 
 namespace Nordfin.workflow.Business
 {
@@ -16,7 +16,7 @@ namespace Nordfin.workflow.Business
 
         IList<ClientList> IUserPresentationBusinessLayer.GetClientList(int Admin, int ClientID, string UserID, out string BatchValues)
         {
-            return objuser.GetClientList(Admin, ClientID, UserID,out BatchValues);
+            return objuser.GetClientList(Admin, ClientID, UserID, out BatchValues);
         }
         void IUserPresentationBusinessLayer.UpdateClientID(string UserName, string ClientID)
         {

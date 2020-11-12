@@ -13,7 +13,7 @@ namespace Nordfin.workflow.DataAccessLayer
     {
         DataSet IInvoiceDashboardBusinessDataLayer.getOverviewDashboard(string ClientID)
         {
-           
+
             DBInitialize("usp_getDashboardOverview");
             DatabaseName.AddInParameter(DBBaseCommand, "@ClientID", System.Data.DbType.Int32, Convert.ToInt32(ClientID));
             DataSet dataSet = DatabaseName.ExecuteDataSet(DBBaseCommand);
@@ -39,7 +39,7 @@ namespace Nordfin.workflow.DataAccessLayer
                     Year = dataRow.Field<int>("Year"),
                     Month = dataRow.Field<int>("Month"),
                     InvoiceNumber = dataRow.Field<string>("Invoice Number"),
-                    InvoiceAmount = string.Format("{0:#,###0}", decimal.Truncate(ConvertStringToDecimal(dataRow.Field<string>("Invoice Amount")))).Replace(","," ") 
+                    InvoiceAmount = string.Format("{0:#,###0}", decimal.Truncate(ConvertStringToDecimal(dataRow.Field<string>("Invoice Amount")))).Replace(",", " ")
                 }).ToList();
             }
 
@@ -82,7 +82,7 @@ namespace Nordfin.workflow.DataAccessLayer
                     NotesText = dataRow.Field<string>("NoteText"),
                     NotesUser = dataRow.Field<string>("UserName"),
                     NotesInvoice = dataRow.Field<string>("InvoiceNumber"),
-                  
+
                 }).ToList();
             }
             return objNotificationList;
@@ -111,7 +111,7 @@ namespace Nordfin.workflow.DataAccessLayer
                     custType = dataRow.Field<string>("custType"),
                     TotalCust = String.Format(CultureInfo.GetCultureInfo("sv-SE"), "{0:#,0}", dataRow.Field<int>("Total")),
                     custPercentage = String.Format(CultureInfo.GetCultureInfo("sv-SE"), "{0:#,0.00}", (Convert.ToDecimal(dataRow.Field<int>("custCount")) / Convert.ToDecimal(dataRow.Field<int>("Total"))) * 100)
-                    
+
                 }).ToList();
             }
             if (dataSet.Tables[1].Columns.Count > 0)
@@ -138,7 +138,7 @@ namespace Nordfin.workflow.DataAccessLayer
 
             }
 
-     
+
 
             if (dataSet.Tables[2].Rows.Count > 0)
             {
@@ -177,9 +177,9 @@ namespace Nordfin.workflow.DataAccessLayer
             if (dataSet.Tables[5].Rows.Count > 0)
             {
 
-               
+
                 CustomerGrowth customerGrowth = new CustomerGrowth();
-                int yearCount =dataSet.Tables[5].AsEnumerable().Sum(a => a.Field<int>("YearDate"));
+                int yearCount = dataSet.Tables[5].AsEnumerable().Sum(a => a.Field<int>("YearDate"));
                 int monthCount = 0;
                 var TotalCount = dataSet.Tables[5].AsEnumerable().Where(a => a.Field<int>("MonthDate") == Convert.ToInt32(DateTime.Now.ToString("MM"))).ToList();
                 if (TotalCount.Count > 0)
@@ -200,10 +200,10 @@ namespace Nordfin.workflow.DataAccessLayer
                 customerGrowth.YearCount = "0";
                 customerGrowth.MonthCount = "0";
 
-               customerGrowthsList.Add(customerGrowth);
+                customerGrowthsList.Add(customerGrowth);
             }
 
-        
+
 
             customerInfoDTO.objCustomerData = objCustomerDataList;
             customerInfoDTO.objDemographicsList = objDemographicsList;
@@ -217,7 +217,7 @@ namespace Nordfin.workflow.DataAccessLayer
             return customerInfoDTO;
         }
 
-        int IInvoiceDashboardBusinessDataLayer.setCustomerRegion(string sPostalCode,string sCustomerRegion,string ClientID, string IsMatch)
+        int IInvoiceDashboardBusinessDataLayer.setCustomerRegion(string sPostalCode, string sCustomerRegion, string ClientID, string IsMatch)
         {
             DBInitialize("usp_setCustomerRegion");
             DatabaseName.AddInParameter(DBBaseCommand, "@CustomerPostalCode", System.Data.DbType.String, sPostalCode);
@@ -227,13 +227,13 @@ namespace Nordfin.workflow.DataAccessLayer
             DatabaseName.ExecuteNonQuery(DBBaseCommand);
             return 0;
         }
-        IList<CustomerMap> IInvoiceDashboardBusinessDataLayer.GetCustomerMapRegion(string ClientID,string IsMatch) 
+        IList<CustomerMap> IInvoiceDashboardBusinessDataLayer.GetCustomerMapRegion(string ClientID, string IsMatch)
         {
             DBInitialize("usp_getCustomerDataRegion");
             DatabaseName.AddInParameter(DBBaseCommand, "@clientID", System.Data.DbType.Int32, Convert.ToInt32(ClientID));
             DatabaseName.AddInParameter(DBBaseCommand, "@isPincode", System.Data.DbType.String, IsMatch);
             DataSet dataSet = DatabaseName.ExecuteDataSet(DBBaseCommand);
-          
+
             IList<CustomerMap> objCustomerMapList = new List<CustomerMap>();
 
             if (dataSet.Tables[0].Rows.Count > 0)
@@ -251,7 +251,7 @@ namespace Nordfin.workflow.DataAccessLayer
             return objCustomerMapList;
         }
 
-       
+
 
 
 

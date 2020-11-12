@@ -8,7 +8,7 @@ namespace Nordfin.workflow.DataAccessLayer
 {
     public class ClientInformationDataAccessLayer : DBBase, IClientInformationBusinessDataLayer
     {
-        Tuple<ClientInformation, ClientDetails>  IClientInformationBusinessDataLayer.getClientInformationLogin(string ClientID, string UserID)
+        Tuple<ClientInformation, ClientDetails> IClientInformationBusinessDataLayer.getClientInformationLogin(string ClientID, string UserID)
         {
             ClientInformation clientInformation = new ClientInformation();
             DBInitialize("usp_getClientInformationLogin");
@@ -18,8 +18,8 @@ namespace Nordfin.workflow.DataAccessLayer
             if (dataSet.Tables.Count > 0 && dataSet.Tables[0].Rows.Count > 0)
             {
                 clientInformation.AccessSuccess = dataSet.Tables[0].Rows[0].Field<int>("AccessSuccess");
-                clientInformation.AccessFail= dataSet.Tables[0].Rows[0].Field<int>("AccessFail");
-                clientInformation.MypageSuccess= dataSet.Tables[0].Rows[1].Field<int>("AccessSuccess");
+                clientInformation.AccessFail = dataSet.Tables[0].Rows[0].Field<int>("AccessFail");
+                clientInformation.MypageSuccess = dataSet.Tables[0].Rows[1].Field<int>("AccessSuccess");
                 clientInformation.MypageFail = dataSet.Tables[0].Rows[1].Field<int>("AccessFail");
             }
 
@@ -42,7 +42,7 @@ namespace Nordfin.workflow.DataAccessLayer
             Tuple<ClientInformation, ClientDetails> tuple = new Tuple<ClientInformation, ClientDetails>(clientInformation, clientDetails);
             return tuple;
 
-           
+
         }
     }
 }

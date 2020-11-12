@@ -8,7 +8,7 @@ namespace Nordfin.workflow.BusinessLayer
     public sealed class UserLoginInformationBusinessLayer : IUserLoginInformationPresentationBusinessLayer
     {
         IUserLoginInformationBusinessDataLayer objuserLoginInform = new UserLoginInformationDataAccessLayer();
-        DataSet IUserLoginInformationPresentationBusinessLayer.GetUserLoginInformation(string UserName,long Date)
+        DataSet IUserLoginInformationPresentationBusinessLayer.GetUserLoginInformation(string UserName, long Date)
         {
             return objuserLoginInform.GetUserLoginInformation(UserName, Date);
         }

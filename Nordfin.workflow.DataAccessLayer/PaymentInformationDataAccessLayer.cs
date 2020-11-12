@@ -10,9 +10,9 @@ namespace Nordfin.workflow.DataAccessLayer
     public class PaymentInformationDataAccessLayer : DBBase, IPaymentInformationBusinessDataLayer
     {
 
-        Tuple<PaymentInformation,IList<Notes>> IPaymentInformationBusinessDataLayer.GetPaymentInformation(string InvoiceNumber, string ClientID)
+        Tuple<PaymentInformation, IList<Notes>> IPaymentInformationBusinessDataLayer.GetPaymentInformation(string InvoiceNumber, string ClientID)
         {
-            
+
             PaymentInformation objpaymentinfo = new PaymentInformation();
 
             DBInitialize("usp_getPaymentInformation");
@@ -44,7 +44,7 @@ namespace Nordfin.workflow.DataAccessLayer
                 {
                     InvoiceNumber = dataRow.Field<string>("InvoiceID"),
                     NoteType = dataRow.Field<string>("NoteType"),
-                    NoteDate =Convert.ToDateTime(dataRow.Field<string>("NoteDate")).ToString("yyyy-MM-dd HH:mm"),
+                    NoteDate = Convert.ToDateTime(dataRow.Field<string>("NoteDate")).ToString("yyyy-MM-dd HH:mm"),
                     UserName = dataRow.Field<string>("UserName"),
                     NoteText = dataRow.Field<string>("NoteText")
 
@@ -116,7 +116,7 @@ namespace Nordfin.workflow.DataAccessLayer
                     {
                         BankAccount = dataRow.Field<string>("BankAccount"),
                         OverpayCreditID = dataRow.Field<int>("overpay_id"),
-                        PayoutID= dataRow.Field<int>("PayoutID")
+                        PayoutID = dataRow.Field<int>("PayoutID")
                     }).ToList();
                 }
                 else
@@ -210,7 +210,7 @@ namespace Nordfin.workflow.DataAccessLayer
             return objInterestList;
         }
 
-        Tuple<Notes,IList<Notes>> IPaymentInformationBusinessDataLayer.insertInterest(Notes objNotes)
+        Tuple<Notes, IList<Notes>> IPaymentInformationBusinessDataLayer.insertInterest(Notes objNotes)
         {
             Notes objNotesinfo = new Notes();
             DBInitialize("usp_setNotes");
@@ -237,7 +237,7 @@ namespace Nordfin.workflow.DataAccessLayer
                 objNotesinfo.DueDateNewValue = ds.Tables[0].Rows[0].ItemArray[0].ToString();
                 objNotesinfo.CollectionStopNewValue = ds.Tables[0].Rows[0].ItemArray[1].ToString();
                 objNotesinfo.CollectionStopUntilNewValue = ds.Tables[0].Rows[0].ItemArray[2].ToString();
-              
+
             }
             IList<Notes> objlstNotes = new List<Notes>();
             if (ds.Tables.Count > 0 && ds.Tables[1].Rows.Count > 0)
@@ -261,7 +261,7 @@ namespace Nordfin.workflow.DataAccessLayer
         {
             DBInitialize("usp_setRemovePayout");
             DatabaseName.AddInParameter(DBBaseCommand, "@payoutID", System.Data.DbType.Int32, payoutID);
-           
+
             DatabaseName.ExecuteNonQuery(DBBaseCommand);
             return 0;
         }

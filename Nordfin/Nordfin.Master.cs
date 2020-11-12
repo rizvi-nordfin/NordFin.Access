@@ -1,15 +1,13 @@
-﻿using Nordfin.workflow.PresentationBusinessLayer;
+﻿using Nordfin.workflow.Business;
 using Nordfin.workflow.Entity;
-
-using Nordfin.workflow.Business;
-
+using Nordfin.workflow.PresentationBusinessLayer;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
-using System.IO;
 
 namespace Nordfin
 {
@@ -21,18 +19,18 @@ namespace Nordfin
             ClearSession();
             if (!IsPostBack)
             {
-                
+
                 lblUserName.Text = ClientSession.LabelUser;
                 IUserPresentationBusinessLayer objUserLayer = new UserBusinessLayer();
                 string BatchValues = "";
-                IList<ClientList> objClientLsit = objUserLayer.GetClientList(Convert.ToInt32(ClientSession.Admin),Convert.ToInt32(ClientSession.ClientID),ClientSession.UserID, out BatchValues);
+                IList<ClientList> objClientLsit = objUserLayer.GetClientList(Convert.ToInt32(ClientSession.Admin), Convert.ToInt32(ClientSession.ClientID), ClientSession.UserID, out BatchValues);
 
                 grdClientName.DataSource = objClientLsit;
 
                 grdClientName.DataBind();
-               
+
                 if (objClientLsit.Count > 0 && objClientLsit.Any(a => a.ClientID == Convert.ToInt32(ClientSession.ClientID)))
-                { 
+                {
                     txtClientName.Text = objClientLsit.Where(a => a.ClientID == Convert.ToInt32(ClientSession.ClientID)).ToList()[0].ClientName;
                     txtClientName.Attributes.Add("ClientID", ClientSession.ClientID);
                     ClientSession.ClientName = txtClientName.Text;
@@ -58,20 +56,20 @@ namespace Nordfin
             }
 
 
-       
+
 
             ScriptManager.RegisterStartupScript(this, this.GetType(), "CallAlert", "save();", true);
         }
 
-        
-       
+
+
 
         protected void btnUsd_ServerClick(object sender, EventArgs e)
         {
             Response.Redirect("frmInvoices.aspx");
         }
 
-    
+
 
         protected void btnCustomer_ServerClick(object sender, EventArgs e)
         {
@@ -96,7 +94,7 @@ namespace Nordfin
             btnUsd_ServerClick(sender, e);
         }
 
-       
+
 
         protected void btnChart_ServerClick(object sender, EventArgs e)
         {
@@ -105,7 +103,7 @@ namespace Nordfin
 
         protected void btnPaymentInfo_ServerClick(object sender, EventArgs e)
         {
-            
+
             Response.Redirect("frmReports.aspx");
         }
 
@@ -114,9 +112,9 @@ namespace Nordfin
             Response.Redirect("frmBatches.aspx");
         }
 
-      
 
-     
+
+
 
         protected void btnClientName_Click(object sender, EventArgs e)
         {
@@ -125,7 +123,7 @@ namespace Nordfin
             IUserPresentationBusinessLayer objUserLayer = new UserBusinessLayer();
             objUserLayer.UpdateClientID(ClientSession.UserName.Trim(), hdnClientID.Value);
             ClientSession.ClientID = hdnClientID.Value;
-         
+
             Response.Redirect("frmDashboard.aspx");
             ScriptManager.RegisterStartupScript(this, this.GetType(), "CallAlert", "save();", true);
         }
@@ -140,7 +138,8 @@ namespace Nordfin
                     Directory.Delete(HttpContext.Current.Server.MapPath(sDirectory), true);
                 }
             }
-            catch {
+            catch
+            {
                 //catch the issue
             }
             IUserPresentationBusinessLayer objUserLayer = new UserBusinessLayer();
@@ -167,7 +166,8 @@ namespace Nordfin
                         Directory.Delete(Server.MapPath(sDirectory), true);
                     }
                 }
-                catch {
+                catch
+                {
                     //catch the issue
                 }
                 Session.Abandon();
@@ -176,6 +176,6 @@ namespace Nordfin
             }
         }
 
-      
+
     }
 }

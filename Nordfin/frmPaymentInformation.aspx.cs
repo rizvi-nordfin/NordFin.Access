@@ -9,8 +9,6 @@ using System.Text.RegularExpressions;
 using System.Web;
 using System.Web.Script.Serialization;
 using System.Web.Services;
-using System.Web.UI;
-using System.Web.UI.WebControls;
 
 
 namespace Nordfin
@@ -23,7 +21,7 @@ namespace Nordfin
             if (!IsPostBack)
             {
                 ClearSession();
-               
+
                 string InvoiceData = Request.QueryString["InvoiceData"];
                 string sRemainAmount = Request.QueryString["Remain"];
                 string sOverPaidAmount = Request.QueryString["OverPaid"];
@@ -31,7 +29,7 @@ namespace Nordfin
                 hdnFileName.Value = Request.QueryString["FileName"];
                 hdnClientName.Value = Request.QueryString["ClientName"];
 
-              
+
 
                 if (InvoiceData.Split('|').Length > 1)
                 {
@@ -55,16 +53,16 @@ namespace Nordfin
                 txtCollectionStopUntil.Text = string.IsNullOrEmpty(objPaymentInfo.Collectionstopuntil) ? "" : objPaymentInfo.Collectionstopuntil;
                 txtPaymentMethod.Text = string.IsNullOrEmpty(objPaymentInfo.Paymentmethod) ? "" : objPaymentInfo.Paymentmethod;
                 hdnPurchased.Value = objPaymentInfo.Purchased;
-                cboContested.SelectedValue =cboContested.Items.FindByText(objPaymentInfo.Contested).Value;
+                cboContested.SelectedValue = cboContested.Items.FindByText(objPaymentInfo.Contested).Value;
                 txtContestedDate.Text = objPaymentInfo.ContestedDate;
-                if(objPaymentInfo.Contested.ToUpper()=="YES")
+                if (objPaymentInfo.Contested.ToUpper() == "YES")
                 {
                     cboCollectionStop.Attributes.Add("disabled", "disabled");
                     txtCollectionStopUntil.Attributes.Add("disabled", "disabled");
                     txtCollectionStopUntil.Text = "";
                 }
 
-                if (Convert.ToDouble(sRemainAmount.Replace(" ","").Replace(".", ",")) < 0)
+                if (Convert.ToDouble(sRemainAmount.Replace(" ", "").Replace(".", ",")) < 0)
                 {
                     txtPayoutCreditPayment.Text = sRemainAmount.Trim();
                     hdnPaymentCheck.Value = "credit";
@@ -73,7 +71,7 @@ namespace Nordfin
                 if (Convert.ToDouble(sOverPaidAmount.Replace(" ", "").Replace(".", ",")) > 0)
                 {
                     txtPayoutOverPayment.Text = sOverPaidAmount.Trim();
-                    hdnPaymentCheck.Value += "|"+"overpayment";
+                    hdnPaymentCheck.Value += "|" + "overpayment";
                 }
                 hdnDueDate.Value = txtDueDate.Text;
                 hdnCollectionStopUntil.Value = txtCollectionStopUntil.Text;
@@ -90,9 +88,9 @@ namespace Nordfin
                     grdNotes.DataBind();
                 }
 
-               
 
-              
+
+
             }
 
         }
@@ -180,21 +178,21 @@ namespace Nordfin
             objNotes.InvoiceID = Convert.ToInt32(HttpContext.Current.Session["InvoiceID"]);
             objNotes.InvoiceNumber = (string)HttpContext.Current.Session["InvoiceNum"];
             objNotes.CustomerID = (string)HttpContext.Current.Session["custNum"];
-            objNotes.UserID =Convert.ToInt32(ClientSession.UserID);
+            objNotes.UserID = Convert.ToInt32(ClientSession.UserID);
             objNotes.ClientID = Convert.ToInt32(ClientSession.ClientID);
             objNotes.UserName = ClientSession.UserName;
             IPaymentInformationPresentationBusinessLayer objPresentationInfoLayer = new PaymentInformationBusinessLayer();
             var objNotesInformation = objPresentationInfoLayer.insertInterest(objNotes);
-           
+
             string jsonResult = new JavaScriptSerializer().Serialize(objNotesInformation.Item1);
             string jsonNotesListResult = new JavaScriptSerializer().Serialize(objNotesInformation.Item2);
-            string sResultList = "{\"NotesInfo\" :" + jsonResult +","+ "\"NotesList\" :" + jsonNotesListResult + "}";
+            string sResultList = "{\"NotesInfo\" :" + jsonResult + "," + "\"NotesList\" :" + jsonNotesListResult + "}";
             return sResultList;
             //updateInterest
         }
 
-      
-     
+
+
 
         [WebMethod]
         public static string PDFDownload(string ClientName, string FileName)
@@ -211,12 +209,12 @@ namespace Nordfin
                 bResult = fileProcess.FileDownload(ClientName, subfolder, sFileName, out ResultFile);
             if (!bResult)
             {
-                sPDFViewerLink =  (string)HttpContext.Current.Session["InvoiceNum"];
+                sPDFViewerLink = (string)HttpContext.Current.Session["InvoiceNum"];
             }
 
             string jsonFileName = new JavaScriptSerializer().Serialize(sFileName);
             string jsonViewerLink = new JavaScriptSerializer().Serialize(sPDFViewerLink);
-            string jsonSession= new JavaScriptSerializer().Serialize(HttpContext.Current.Session.SessionID);
+            string jsonSession = new JavaScriptSerializer().Serialize(HttpContext.Current.Session.SessionID);
             string jsonBoolResult = new JavaScriptSerializer().Serialize(bResult);
             if (ResultFile != "")
             {
@@ -226,7 +224,7 @@ namespace Nordfin
             return sResultList;
 
 
-           
+
             //updateInterest
         }
 
@@ -276,7 +274,7 @@ namespace Nordfin
             return sResultList;
         }
 
-            public static void ClearSession()
+        public static void ClearSession()
         {
             if (ClientSession.ClientID.Trim() == "")
             {
@@ -289,7 +287,8 @@ namespace Nordfin
                         Directory.Delete(HttpContext.Current.Server.MapPath(sDirectory), true);
                     }
                 }
-                catch {
+                catch
+                {
                     //catch the issue
                 }
                 HttpContext.Current.Session.Abandon();

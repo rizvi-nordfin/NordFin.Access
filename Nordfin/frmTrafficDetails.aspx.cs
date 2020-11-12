@@ -9,7 +9,6 @@ using System.Linq;
 using System.Web;
 using System.Web.Script.Serialization;
 using System.Web.Services;
-using System.Web.UI;
 using System.Web.UI.WebControls;
 
 namespace Nordfin
@@ -30,14 +29,15 @@ namespace Nordfin
                 }
                 if (ds.Tables[1].Rows.Count > 0)
                 {
-                    hdnSuccess.Value =Convert.ToString(ds.Tables[1].Rows[0].Field<int>("Success"));
+                    hdnSuccess.Value = Convert.ToString(ds.Tables[1].Rows[0].Field<int>("Success"));
                     hdnFail.Value = Convert.ToString(ds.Tables[1].Rows[0].Field<int>("Fail"));
                 }
                 try
                 {
                     Session["GarphData"] = ds.Tables[2];
                 }
-                catch {
+                catch
+                {
                     //catch the issue
                 }
             }
@@ -56,7 +56,8 @@ namespace Nordfin
                         Directory.Delete(Server.MapPath(sDirectory), true);
                     }
                 }
-                catch {
+                catch
+                {
                     //catch the issue
                 }
                 Session.Abandon();
@@ -92,7 +93,7 @@ namespace Nordfin
             return sResultList;
 
 
-           
+
         }
     }
 }

@@ -12,10 +12,9 @@ using System.Web;
 using System.Web.Script.Serialization;
 using System.Web.Services;
 using System.Web.UI;
-using System.Web.UI.WebControls;
 
 namespace Nordfin
-{ 
+{
     public partial class frmAccountSettings : System.Web.UI.Page
     {
         protected void Page_Load(object sender, EventArgs e)
@@ -52,18 +51,18 @@ namespace Nordfin
                 }
             }
         }
-           
-        
 
-      
+
+
+
 
 
         [WebMethod]
         public static string OldPasswordCheck(string sPassword)
         {
-    
 
-            
+
+
             IAccountSettingsPresentationBusinessLayer objAccountSettingsList = new AccountSettingsBusinessLayer();
 
             int iResult = objAccountSettingsList.checkPasswordExists(ClientSession.UserID, GetHashPassword(sPassword));
@@ -114,7 +113,8 @@ namespace Nordfin
                         Directory.Delete(Server.MapPath(sDirectory), true);
                     }
                 }
-                catch {
+                catch
+                {
                     //catch the issue
                 }
                 Session.Abandon();
@@ -126,7 +126,7 @@ namespace Nordfin
         protected void btnUpdateInfo_Click(object sender, EventArgs e)
         {
             ClearSession();
-          
+
             IAccountSettingsPresentationBusinessLayer objAccountSettingsList = new AccountSettingsBusinessLayer();
 
 
@@ -139,11 +139,11 @@ namespace Nordfin
                 txtEmail.Text = txtNewEmail.Text;
             }
 
-            if (txtNewNumber.Text!="")
+            if (txtNewNumber.Text != "")
             {
                 txtPhone.Text = txtNewNumber.Text;
             }
-          
+
             txtNewNumber.Text = "";
             txtNewEmail.Text = "";
         }
@@ -153,7 +153,7 @@ namespace Nordfin
         {
             try
             {
-                
+
                 string sRandomNumber = Session.SessionID.Substring(3, 9) + RandomString();
                 string urlRandomNumber = HttpContext.Current.Request.Url.AbsoluteUri.Replace("frmAccountSettings.aspx", "frmLogin.aspx") + "?emailConf=" + sRandomNumber;
                 string sEmail = System.Configuration.ConfigurationManager.AppSettings["Email"].ToString();
@@ -185,7 +185,7 @@ namespace Nordfin
 
                 SmtpServer.Credentials = new System.Net.NetworkCredential(sEmail, sEmailPassword);
 
-                SmtpServer.EnableSsl = true;    
+                SmtpServer.EnableSsl = true;
 
 
 
@@ -200,7 +200,7 @@ namespace Nordfin
 
                 IAccountSettingsPresentationBusinessLayer objAccountSettingsList = new AccountSettingsBusinessLayer();
                 int iResult = objAccountSettingsList.UpdateUserEmail(ClientSession.UserID, userEmail);
-               
+
                 pnlInfo.Visible = true;
                 ScriptManager.RegisterStartupScript(this.Page, this.Page.GetType(), "panelInfo", " $('.featureNotAvailableBGpnl').toggleClass('hidden');", true);
             }

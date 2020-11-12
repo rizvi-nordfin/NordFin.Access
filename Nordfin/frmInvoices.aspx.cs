@@ -3,12 +3,10 @@ using Nordfin.workflow.Business;
 using Nordfin.workflow.Entity;
 using Nordfin.workflow.PresentationBusinessLayer;
 using System;
-using System.Collections.Generic;
 using System.Data;
 using System.Globalization;
 using System.IO;
 using System.Linq;
-using System.Net;
 using System.Net.Mail;
 using System.Text.RegularExpressions;
 using System.Web;
@@ -23,7 +21,7 @@ namespace Nordfin
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-           
+
             if (!IsPostBack)
             {
 
@@ -48,8 +46,8 @@ namespace Nordfin
                     hdnClientName.Value = dtResult.Rows[0].ItemArray[0].ToString();
                     hdnFileName.Value = dtResult.Rows[0].ItemArray[1].ToString();
                     hdnArchiveLink.Value = dtResult.Rows[0].ItemArray[2].ToString();
-                     
-                
+
+
                 }
                 if (ds.Tables[0].Rows.Count > 0)
                 {
@@ -73,21 +71,21 @@ namespace Nordfin
                    .Sum(r => ConvertStringToDecimal(Regex.Replace(r.Field<string>("Remainingamount").Trim(), @"\s", "").Replace(",", "."))));
                 }
 
-               
+
             }
 
         }
 
-       
 
-       
+
+
 
         protected void gridLink_Click(object sender, EventArgs e)
         {
             Session["InvoiceNum"] = ((LinkButton)sender).Text.Trim();
             Session["custNum"] = ((LinkButton)sender).CommandArgument.Split('|')[0].Trim();
             Session["InvoiceID"] = ((LinkButton)sender).CommandArgument.Split('|')[1].Trim();
-            
+
         }
 
         protected void gridLinkCustNum_Click(object sender, EventArgs e)
@@ -96,10 +94,10 @@ namespace Nordfin
             Response.Redirect("frmCustomer.aspx");
         }
 
-       
+
         protected void btnPDFDownload_Click(object sender, EventArgs e)
         {
-            string subFolderName = hdnClientName.Value.Substring(hdnClientName.Value.LastIndexOf("/") + 1) + Execute(((Button)sender).CommandArgument.Trim().Replace("INV-",""));
+            string subFolderName = hdnClientName.Value.Substring(hdnClientName.Value.LastIndexOf("/") + 1) + Execute(((Button)sender).CommandArgument.Trim().Replace("INV-", ""));
             FTPFileProcess fileProcess = new FTPFileProcess();
             string sFileExt = System.Configuration.ConfigurationManager.AppSettings["FileExtension"].ToString();
             string sFileName = hdnFileName.Value + "_" + ((Button)sender).CommandArgument.Trim() + "_" + "inv" + "." + sFileExt;
@@ -107,22 +105,22 @@ namespace Nordfin
             bool bResult = false;
             string ResultFile = "";
             if (sFileName != "")
-                bResult = fileProcess.FileDownload(hdnClientName.Value,subFolderName, sFileName,out ResultFile);
+                bResult = fileProcess.FileDownload(hdnClientName.Value, subFolderName, sFileName, out ResultFile);
             if (!bResult)
             {
                 sPDFViewerLink = hdnArchiveLink.Value + ((Button)sender).CommandArgument.Trim();
             }
-            if(ResultFile!="")
+            if (ResultFile != "")
             {
                 sFileName = ResultFile;
             }
 
             Button btn = (Button)sender;
-            ScriptManager.RegisterStartupScript(this, this.GetType(), "PDFViewerNewTab", "PDFViewer('" + sFileName + "','" + sPDFViewerLink + "','" + Session.SessionID + "','" + bResult+ "','" + btn.ClientID+ "');", true);
+            ScriptManager.RegisterStartupScript(this, this.GetType(), "PDFViewerNewTab", "PDFViewer('" + sFileName + "','" + sPDFViewerLink + "','" + Session.SessionID + "','" + bResult + "','" + btn.ClientID + "');", true);
         }
 
         [WebMethod]
-        public static string PDFDownload(string hdnValue, string InvoiceNum,string hdnArchieveLink,string hdnClientName)
+        public static string PDFDownload(string hdnValue, string InvoiceNum, string hdnArchieveLink, string hdnClientName)
         {
             FTPFileProcess fileProcess = new FTPFileProcess();
             string sFileName = hdnValue + "_" + InvoiceNum;
@@ -130,7 +128,7 @@ namespace Nordfin
             string sPDFViewerLink = "";
             string ResultFile = "";
             if (sResultFileName != "")
-                fileProcess.FileDownload(hdnClientName,"", sResultFileName, out ResultFile);
+                fileProcess.FileDownload(hdnClientName, "", sResultFileName, out ResultFile);
             else
             {
                 sPDFViewerLink = hdnArchieveLink + InvoiceNum;
@@ -146,7 +144,7 @@ namespace Nordfin
         [WebMethod]
         public static string UnloadPage(string Test)
         {
-          
+
             return Test;
         }
 
@@ -163,7 +161,8 @@ namespace Nordfin
                         Directory.Delete(Server.MapPath(sDirectory), true);
                     }
                 }
-                catch {
+                catch
+                {
                     //catch the issue
                 }
                 Session.Abandon();
@@ -187,10 +186,10 @@ namespace Nordfin
             IInvoicesPresentationBusinessLayer objInvoicesLayer = new InvoicesBusinessLayer();
             string scustEmail = objInvoicesLayer.GetCustInvoiceEmailID(ClientSession.ClientID, custNumber);
             return scustEmail;
-     
+
         }
 
-       public void SendMail(string InvoiceNumber,string toEmail)
+        public void SendMail(string InvoiceNumber, string toEmail)
         {
             try
             {
@@ -251,17 +250,18 @@ namespace Nordfin
             DataTable dataTable = (DataTable)Session["InvoiceGrid"];
             try
             {
-               
+
                 dataTable.Columns.Remove("Customername");
                 dataTable.Columns.Remove("CombineInvoice");
                 dataTable.Columns.Remove("InvoiceID");
                 dataTable.Columns.Remove("OrderID");
             }
-            catch { 
-              //catch the issue
+            catch
+            {
+                //catch the issue
             }
-           
-            
+
+
             if (dataTable.Rows.Count > 0)
             {
                 try
@@ -273,7 +273,7 @@ namespace Nordfin
                     dataTable.Columns.Add("overpayment", typeof(decimal));
                     dataTable.AsEnumerable().ToList<DataRow>().ForEach(a =>
                     {
-                        a["InvoiceAmount"] =ConvertStringToDecimal( Regex.Replace(a.Field<string>("Invoiceamount").Trim(), @"\s", "").Replace(",", "."));
+                        a["InvoiceAmount"] = ConvertStringToDecimal(Regex.Replace(a.Field<string>("Invoiceamount").Trim(), @"\s", "").Replace(",", "."));
                         a["RemainingAmount"] = ConvertStringToDecimal(Regex.Replace(a.Field<string>("Remainingamount").Trim(), @"\s", "").Replace(",", "."));
                         a["Totalremaining"] = ConvertStringToDecimal(Regex.Replace(a.Field<string>("TotalRemaining").Trim(), @"\s", "").Replace(",", "."));
 
@@ -288,15 +288,16 @@ namespace Nordfin
                     dataTable.Columns.RemoveAt(5);
                     dataTable.Columns.RemoveAt(5);
                     dataTable.Columns["InvoiceAmount"].SetOrdinal(3);
-                    
+
                     dataTable.Columns["Fees"].SetOrdinal(4);
 
                     dataTable.Columns["RemainingAmount"].SetOrdinal(7);
                     dataTable.Columns["TotalRemaining"].SetOrdinal(8);
-                  
+
                     dataTable.Columns["Overpayment"].SetOrdinal(11);
                 }
-                catch {
+                catch
+                {
                     //catch the issue
                 }
 
@@ -305,7 +306,7 @@ namespace Nordfin
                 column.ColumnName = column.ColumnName.ToUpper();
             using (XLWorkbook wb = new XLWorkbook())
             {
-               
+
 
                 wb.Worksheets.Add(dataTable);
 
@@ -360,6 +361,6 @@ namespace Nordfin
         }
 
 
-        
+
     }
 }

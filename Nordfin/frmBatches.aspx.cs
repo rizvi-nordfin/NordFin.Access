@@ -2,14 +2,11 @@
 using Nordfin.workflow.BusinessLayer;
 using Nordfin.workflow.PresentationBusinessLayer;
 using System;
-using System.Collections.Generic;
 using System.Data;
 using System.Globalization;
 using System.IO;
 using System.Linq;
 using System.Web;
-using System.Web.UI;
-using System.Web.UI.WebControls;
 
 namespace Nordfin
 {
@@ -35,12 +32,12 @@ namespace Nordfin
                     {
                         int number = int.Parse(a.ItemArray[i].ToString());
                         if (number > 0)
-                            a[i] = String.Format(CultureInfo.GetCultureInfo("sv-SE"),"{0:### ###}", number);
+                            a[i] = String.Format(CultureInfo.GetCultureInfo("sv-SE"), "{0:### ###}", number);
                     }
-                  
+
                 });
-                
-                
+
+
                 grdInvoicesPerClient.DataSource = ds.Tables[2];
                 grdInvoicesPerClient.DataBind();
 
@@ -91,7 +88,8 @@ namespace Nordfin
                         Directory.Delete(Server.MapPath(sDirectory), true);
                     }
                 }
-                catch {
+                catch
+                {
                     //catch the issue
                 }
                 Session.Abandon();

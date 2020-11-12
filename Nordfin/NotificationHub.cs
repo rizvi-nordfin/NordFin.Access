@@ -4,7 +4,7 @@ namespace Nordfin
 {
     public class NotificationHub : Hub
     {
-       
+
 
         public void Send(string ClientID)
         {
