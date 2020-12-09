@@ -22,13 +22,25 @@
     border:none;
 }
 
-.table tbody tr th {
+    .table tbody tr th {
+        color: #A9BFD5;
+        text-transform: uppercase;
+        font-size: 13px;
+        font-weight: 400;
+    }
+.table tbody tr th a{
     color: #A9BFD5;
     text-transform: uppercase;
     font-size: 13px;
     font-weight: 400;
-}
+    
 
+
+}
+        .table tbody tr th a:hover {
+            color: #FFB100;
+            text-decoration: none;
+        }
 .table tbody tr td {
     text-transform: uppercase;
     font-size: 13px;
