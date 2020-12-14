@@ -1,34 +1,36 @@
-﻿<%@ Page Language="C#" MasterPageFile="~/Nordfin.Master" AutoEventWireup="true" Title="NordfinCapital" CodeBehind="frmCustomer.aspx.cs" Inherits="Nordfin.frmCustomer" %>
+﻿<%@ Page Language="C#" MasterPageFile="~/Nordfin.Master" AutoEventWireup="true" Title="NordfinCapital" EnableEventValidation="false" CodeBehind="frmCustomer.aspx.cs" Inherits="Nordfin.frmCustomer" %>
 
 
 <%@ Register Assembly="AjaxControlToolkit" Namespace="AjaxControlToolkit" TagPrefix="ModalWindow" %>
+<%@ Register Src="~/ucManualInvoice.ascx" TagPrefix="uc1" TagName="ucManualInvoice" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="NordfinContentHolder" runat="server" style="background-color: #232D41;">
     <link href="Styles/Customer.css?version=<%=ConfigurationManager.AppSettings["VersionConfiguration"].ToString() %>" rel="stylesheet" />
-
+    <link href="Styles/ManualInvoice.css" rel="stylesheet" />
+    <script src="Scripts/jsManualInvoice.js"></script>
     <script src="Scripts/jsCustomer.js?version=<%=ConfigurationManager.AppSettings["VersionConfiguration"].ToString() %>"></script>
 
 
     <div class="dashboardContainer">
         <div class="container-fluid">
             <div class="dashboardHeader">
-                <div class="dashboardHeadline">Customer</div>
+                <div class="dashboardHeadline">Customer
+                </div>
                 <div style="position:absolute;">
-                 <asp:Button Text="Match Credit" id="btnInvoice" class="updateInfoButton export"  OnClientClick="return InvoiceInfo();"  runat="server"  Style="margin-top: -20px; margin-right: 100px;display:none;" />
-                    <asp:Button Text="Export" id="btnExport" class="updateInfoButton export" Visible="false"   runat="server" OnClick="btnExport_Click"  Style="margin-top: -25px;    margin-right: 18px;   width: 75px;" />
-                    </div>
+                 <%--<asp:Button Text="Match Credit" id="btnInvoice" class="updateInfoButton export"  OnClientClick="return InvoiceInfo();"  runat="server"  Style="margin-top: -20px; margin-right: 100px;display:none" />--%>
+                 <asp:Button Text="Export" id="btnExport" class="updateInfoButton export" Visible="false"   runat="server" OnClick="btnExport_Click"  Style="margin-top: -25px;margin-right: 18px;width: 75px;" />
+                </div>
                 <%--<div>OnClientClick="return InvoiceInfo();"--%>
                
                 <%--OnClientClick="return ExportExcel();"--%>
-                  <%--<asp:Button Text="Export Detail" id="btnExportDetail" class="updateInfoButton export" OnClick="btnExportDetail_Click"  runat="server"  Style="margin-top: -25px; margin-right: 10px;" />--%>
+                  <%--<asp:Button Text="Export Detail" id="btnExportDetail" class="updateInfoButton export" OnClick="btnExportDetail_Click"  runat="server"  Style="margin-top: -25px; margin-right: 10px;"  OnClientClick="return ShowPopup();" OnClick="btnShowPopup_Click" />--%>
                 </div>
-            </div>
-        <div></div>
+       
  
             <div>
                 <div class="row " style="height: 50px; margin-left: 0px;">
 
 
-                    <div class="col-md-2 divPadding customerInfoSidebar" style="color: #FFFFFF;">
+                    <div class="col-md-3 divPadding customerInfoSidebar" style="color: #FFFFFF;max-width:22%">
                         <div style="background-color: #3E4B64;">
 
 
@@ -156,26 +158,39 @@
                             </asp:Panel>
 
                         </div>
-                        <asp:Panel runat="server" ID="pnlUpdate" class="updateInfoButtonContainer" style="height:70px;">
-                            <asp:Button Text="Update info" class="button updateInfoButton form-control" runat="server" ID="btnUpdateInfo" OnClientClick="return UpdateInfo();" Width="150px" />
-                           
-                          
+                        <div class="container-fluid" style="padding-left: 10px;background-color: #475672;">
+                        <div class="row" style="margin-bottom:-5px">
+                            <div class="col-md-6">
+                                 <asp:Panel runat="server" ID="pnlUpdate" class="updateInfoButtonContainer">
+                            <asp:Button Text="Update info" class="button panelButton form-control" runat="server" ID="btnUpdateInfo" OnClientClick="return UpdateInfo();" />
                         </asp:Panel>
-
-                          <asp:Panel runat="server" ID="pnlCreditCheck" class="updateInfoButtonContainer" style="height:70px;">
-                            <asp:Button Text="Credit Check" class="button updateInfoButton form-control" runat="server" ID="btnCreditCheck" OnClientClick="return CreditCheck();" Width="150px" />
-                           
-                          
+                            </div>
+                            <div class="col-md-6">
+                                <asp:Panel runat="server" ID="pnlCreditCheck" class="updateInfoButtonContainer">
+                            <asp:Button Text="Credit Check" class="button panelButton form-control" runat="server" ID="btnCreditCheck" OnClientClick="return CreditCheck();" />
                         </asp:Panel>
-                          <asp:Panel runat="server" ID="pnlReset" Visible="false" CssClass="updateInfoButtonContainer">
-                            <asp:Button Text="Reset mypages" class="button updateInfoButton form-control" runat="server" OnClientClick="return RestoreMypage();" Width="150px" />
-                           
-                          
-                        </asp:Panel>
-
-
-
-
+                            </div>
+                        </div>
+                       <div class="row">
+                           <div class="col-md-6">
+                          <asp:Panel runat="server" ID="pnlManualInvoice" Visible="true" CssClass="updateInfoButtonContainer">
+                            <asp:Button CssClass="button panelButton form-control" id="btnManualInv" Text="Manual Invoice" runat="server" OnClientClick="return showManualInvoice();" Style="padding-left: 8px;"></asp:Button> 
+                           </asp:Panel>
+                              </div>
+                            <div class="col-md-6">
+                                  <asp:Panel runat="server" ID="pnlMatch" Visible="true" CssClass="updateInfoButtonContainer">
+                            <asp:Button Text="Match Credit" id="btnInvoice" class="button panelButton form-control"  OnClientClick="return InvoiceInfo();"  runat="server" />
+                           </asp:Panel>
+                              </div>
+                        </div>
+                            <div class="row">
+                           <div class="col-md-6">
+                            <asp:Panel runat="server" ID="pnlReset" Visible="false" CssClass="updateInfoButtonContainer">
+                            <asp:Button Text="Reset mypages" class="button panelButton form-control" runat="server" OnClientClick="return RestoreMypage();" Style="padding-left: 10px;"/>
+                            </asp:Panel>
+                              </div>
+                        </div>
+                          </div>
                     </div>
 
                     <asp:Button ID="btnOpenModal" runat="server" Style="display: none;" />
@@ -190,7 +205,7 @@
 
 
 
-                    <div class="col-md-10 tableFixHead table-responsive customerTable tableMarginTop" style="background-color: #2C3850;">
+                    <div class="col-md-9 table-responsive customerTable tableMarginTop" style="background-color: #2C3850;flex:0 0 80%;max-width:78%;bottom:30px">
 
 
                         <asp:GridView ID="grdCustomer" runat="server" EmptyDataRowStyle-CssClass="Emptyrow" AutoGenerateColumns="False" ViewStateMode="Enabled" Visible="true" Style="color: white; font-size: small;    margin-top: -4px;" ShowHeaderWhenEmpty="true" CssClass="table">
@@ -247,9 +262,9 @@
 
                     </div>
 
-                    <div class="col-md-2">
+                    <div class="col-md-3" style="max-width:22%">
                     </div>
-                    <div class="col-md-10 table-responsive customerNotes">
+                    <div class="col-md-9 table-responsive customerNotes" style="flex:0 0 80%;max-width:78%">
                         <div class="row totalsum" style="display: none;">
 
 
@@ -369,6 +384,7 @@
         </div>
 
 
+            </div>
         <div class="modal fade" id="mdlUpdateInfo" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
                         <div class="modal-dialog" role="document">
                             <div class="modal-content" style="top: 200px;background: none;border:none;">
@@ -426,6 +442,7 @@
                             </div>
                         </div>
 
+
                            <div class="modal-footer" style="background-color: #323E53;padding:0px;">
                                <asp:Button runat="server" CssClass="modalbutton" id="btnOk"  Text="Yes" OnClick="btnOk_Click"></asp:Button>
                             <button type="button" class="modalbutton" id="btnNo" data-dismiss="modal">No</button>
@@ -441,7 +458,7 @@
 
         <div class="modal fade" id="mdlAccessInfo" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
                         <div class="modal-dialog" role="document">
-                            <div class="modal-content" style="                                    top: -50px;
+                            <div class="modal-content" style="top: -50px;
                                     background: none;
                                     border: none;">
                                 <div class="modal-header dashboardHeadline" style="background-color: #323e53; color: #fff;font-size:16px;">
@@ -594,8 +611,19 @@
                 </div>
             </div>
 
-
-
+            <div class="modal" id="mdlManualInvoice" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true" runat="server">
+                <div class="modal-dialog" role="document"  style="overflow-y: initial !important;">
+                    <div class="modal-content" style="height:100vh;width:900px;background-color:#323e53 !important">
+                        <div class="modal-body" style="margin-top:-15px;overflow-y:scroll">
+                            <asp:UpdatePanel runat="server" ID="pnlManualInv" UpdateMode="Conditional">
+                            <ContentTemplate>
+                                   <uc1:ucManualInvoice runat="server" id="ucManualInvoice"/>
+                           </ContentTemplate>
+                            </asp:UpdatePanel>
+                        </div>
+                    </div>
+                </div>
+            </div>
          <asp:HiddenField ID="hdnInvoiceNumber" runat="server" />
              <asp:HiddenField ID="hdnEmailID" runat="server" />
         <asp:HiddenField ID="hdnMatch" runat="server" Value="true" />

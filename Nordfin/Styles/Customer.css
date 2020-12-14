@@ -62,6 +62,7 @@ table {
     overflow-y: scroll;
     height: 430px;
 }
+
 .table tbody tr th{
     height:30px;
 }
@@ -247,6 +248,20 @@ body ::-webkit-scrollbar-thumb {
     display: block;
     margin-left: auto;
     margin-right: auto;
+}
+
+.panelButton {
+    background-color: transparent;
+    border: 1px solid #3DADC5;
+    color: #3DADC5;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    width: 110px;
+    padding-left: 15px;
+    font-size: 10px;
+    height: 90%;
+    line-height: 25px
 }
 
 .customerInfoSidebar {
@@ -440,4 +455,34 @@ input[type=checkbox] {
     box-shadow: none;
     outline: 0;
     background-clip: border-box;
+}
+
+.modalBackground { /*#2C3850*/
+    width: 900px !important;
+    height: 500px !important;
+    background-color: #323e53 !important;
+    color: #fff !important;
+    left: 25% !important;
+    top: 15% !important;
+    overflow: auto;
+    position: fixed !important;
+}
+
+.manualInvoicePanel {
+    width: 900px !important;
+    left: 25% !important;
+    top: 13% !important;
+    height: 500px !important;
+    overflow: auto;
+    padding-top: 10px;
+    padding-left: 10px;
+    position:fixed !important;
+}
+
+.modal {
+    position: absolute;
+    float: left;
+    left: 40%;
+    top: 50%;
+    transform: translate(-50%, -50%);
 }

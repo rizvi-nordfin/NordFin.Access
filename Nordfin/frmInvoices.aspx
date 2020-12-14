@@ -13,17 +13,17 @@
         <div class="container-fluid">
 
             <div class="row dashboardHeader">
-                <div class="col-lg-3 dashboardHeadline">Invoices: Overview</div>
+                <div class="col-md-3 dashboardHeadline">Invoices: Overview</div>
               
 
-                <div class="col-lg-9 col-md-12 dashboardSummary divVisible" style="/* margin-right: 0px; */
-    font-size: 14px;">
+                <div class="col-lg-9 dashboardSummary divVisible" style="/* margin-right: 0px; */
+    font-size: 14px;position:fixed">
                     <div class="row" style="margin-right: -38px; /* float: right; */">
 
-                        <div class="col-lg-2">
+                        <div class="col-md-2">
 
                             <div class="row summarycolor">
-                                <div class="col-lg-12 textOrange" style="background: #38445D; padding: 5px;">
+                                <div class="col-md-12 textOrange" style="background: #38445D; padding: 5px;">
                                    Amount
                                     &nbsp; 
                                     <asp:Label runat="server" CssClass="textWhite" ID="lblSumAmount"></asp:Label>
@@ -33,10 +33,10 @@
 
                         </div>
 
-                        <div class="col-lg-2">
+                        <div class="col-md-2">
 
                             <div class="row summarycolor" >
-                                 <div class="col-lg-12 textOrange" style="background: #38445D; padding: 5px;">
+                                 <div class="col-md-12 textOrange" style="background: #38445D; padding: 5px;">
                                     FEES
                                       &nbsp;&nbsp;
                                     <asp:Label runat="server"  CssClass="textWhite"  ID="lblFeesAmount"></asp:Label>
@@ -46,11 +46,11 @@
 
                         </div>
 
-                         <div class="col-lg-2">
+                         <div class="col-md-2">
 
                             <div class="row summarycolor" >
 
-                                 <div class="col-lg-12 textOrange" style="background: #38445D; padding: 5px;">
+                                 <div class="col-md-12 textOrange" style="background: #38445D; padding: 5px;">
                                     REMAIN
                                       &nbsp;&nbsp;
                                     <asp:Label ID="lblRemain" CssClass="textWhite"  runat="server" />
@@ -59,11 +59,11 @@
                             </div>
 
                         </div>
-                        <div class="col-lg-3">
+                        <div class="col-md-3">
 
                             <div class="row summarycolor" >
 
-                                 <div class="col-lg-12 textOrange" style="background: #38445D; padding: 5px;">
+                                 <div class="col-md-12 textOrange" style="background: #38445D; padding: 5px;">
                                     TOTAL REMAIN
                                       &nbsp;&nbsp;
                                     <asp:Label ID="lblTotalRemain" CssClass="textWhite" runat="server" />
@@ -73,11 +73,10 @@
 
                         </div>
 
-                        <div class="col-lg-2">
-                             <div class="row summarycolor" style="margin-right: 7px;
-    margin-left: -25px;" >
+                        <div class="col-md-2">
+                             <div class="row summarycolor" style="margin-right: 7px;" >
 
-                                 <div class="col-lg-12 textOrange" style="background: #38445D; padding: 5px;">
+                                 <div class="col-md-12 textOrange" style="background: #38445D; padding: 5px;">
                                    OVERPAID
                                       &nbsp;&nbsp;
                                    <asp:Label ID="lblOverPaid"  CssClass="textWhite" runat="server" />
@@ -87,10 +86,10 @@
 
                           
                         </div>
-                        <div class="col-lg-1" style="margin-top: 2px;">
+                        <div class="col-md-1" style="margin-top: 2px;">
                             
                                 
-                                 <asp:Button ID="btnExport"  Text="Export" CssClass="export" style="width:75px;"  OnClick="btnExport_Click" runat="server" />
+                                 <asp:Button ID="btnExport"  Text="Download" CssClass="export" style="width:75px;padding-left: 6px; padding-right: 6px;border-radius:0px"  OnClick="btnExport_Click" runat="server" />
                                 
 
                           

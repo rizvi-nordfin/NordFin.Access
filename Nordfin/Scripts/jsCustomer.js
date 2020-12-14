@@ -68,7 +68,7 @@ window.onload = function () {
 
         var element = document.createElement("input");
         element.type = 'button';
-        element.value = 'Export';
+        element.value = 'Download';
         element.name = 'btncheck';
         element.onclick = function () {
             document.getElementById("NordfinContentHolder_btnExportreport").click();
@@ -76,9 +76,10 @@ window.onload = function () {
         element.classList = 'button button-table downloadButton';
         var foo = document.getElementById("tdExport");
         foo.appendChild(element);
-    }
+    } 
     if (this.document.getElementById("NordfinContentHolder_hdnMatch").value == "true") {
-        addInButton();
+        //addInButton();
+        $('#NordfinContentHolder_pnlMatch').show();
         function addInButton() {
             var element = document.createElement("input");
             element.type = 'button';
@@ -317,6 +318,13 @@ function CreditCheck() {
     $('.featureNotAvailableMsgBG').toggleClass('hidden');
     return false;
 }
+
+function showManualInvoice() {
+    $(function () {
+        $('#NordfinContentHolder_mdlManualInvoice').modal({ backdrop: 'static', keyboard: false }, 'show');
+    });
+    return false;
+};
 
 //function Email(button) {
 

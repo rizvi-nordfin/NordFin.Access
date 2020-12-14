@@ -5,6 +5,8 @@ using System.IO;
 using System.Net;
 using System.Net.Security;
 using System.Security.Cryptography.X509Certificates;
+using System.Text;
+using System.Threading.Tasks;
 using System.Web;
 
 
@@ -18,6 +20,8 @@ namespace Nordfin
         private string FTPAzureUserName { get; set; }
         private string FTPAzurePassword { get; set; }
         private string FTPAzureDomain { get; set; }
+        private string FTPManualInvoiceUserName { get; set; }
+        private string FTPManualInvoicePassword { get; set; }
         public FTPFileProcess()
         {
             FTPUserName = System.Configuration.ConfigurationManager.AppSettings["FTPUserName"].ToString();
@@ -26,6 +30,8 @@ namespace Nordfin
             FTPAzureUserName = System.Configuration.ConfigurationManager.AppSettings["FTPAzureUserName"].ToString();
             FTPAzurePassword = System.Configuration.ConfigurationManager.AppSettings["FTPAzurePassword"].ToString();
             FTPAzureDomain = System.Configuration.ConfigurationManager.AppSettings["FTPAzureDomain"].ToString();
+            FTPManualInvoiceUserName = System.Configuration.ConfigurationManager.AppSettings["FTPManualInvoiceUserName"].ToString();
+            FTPManualInvoicePassword = System.Configuration.ConfigurationManager.AppSettings["FTPManualInvoicePassword"].ToString();
             ServicePointManager.ServerCertificateValidationCallback = new RemoteCertificateValidationCallback(CertificateValidation);
         }
 
@@ -185,8 +191,6 @@ namespace Nordfin
             return true;
         }
 
-
-
         public string GetCombinedFilesDetailsFromFTP(string ClientName, string FileName)
         {
             IList<FTPFileDetails> objFTPFileDetails = new List<FTPFileDetails>();
@@ -259,8 +263,6 @@ namespace Nordfin
 
         }
 
-
-
         private DateTime GetFtpCombinedFileDateTime(string FileName, string FolderName)
         {
             string uri = FTPDomain + FolderName + "/" + FileName;
@@ -312,6 +314,27 @@ namespace Nordfin
             {
                 sCombinedResultFileName = "";
                 return false;
+            }
+        }
+
+        public FtpStatusCode UploadStandardXml(string standardFile, string fileName)
+        {
+            var bytes = Encoding.UTF8.GetBytes(standardFile);
+            string uri = FTPAzureDomain + fileName;
+            FtpWebRequest request = (FtpWebRequest)WebRequest.Create(uri);
+            request.Method = WebRequestMethods.Ftp.UploadFile;
+            request.Credentials = new NetworkCredential(FTPManualInvoiceUserName, FTPManualInvoicePassword);
+            request.UseBinary = true;
+            request.UsePassive = true;
+            request.KeepAlive = true;
+            request.EnableSsl = true;
+            ServicePointManager.ServerCertificateValidationCallback = (s, certificate, chain, sslPolicyErrors) => true;
+            var requestStream = request.GetRequestStream();
+            requestStream.Write(bytes, 0, bytes.Length);
+            requestStream.Close();
+            using (FtpWebResponse response = (FtpWebResponse)request.GetResponse())
+            {
+                return response.StatusCode;
             }
         }
 

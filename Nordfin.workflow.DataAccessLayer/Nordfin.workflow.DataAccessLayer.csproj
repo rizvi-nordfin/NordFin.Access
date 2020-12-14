@@ -31,6 +31,9 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Dapper, Version=2.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Dapper.2.0.78\lib\net461\Dapper.dll</HintPath>
+    </Reference>
     <Reference Include="Microsoft.Practices.EnterpriseLibrary.Common, Version=3.1.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
       <HintPath>..\packages\Microsoft.Practices.EnterpriseLibrary.Common.dll.3.1.0\lib\2.0\Microsoft.Practices.EnterpriseLibrary.Common.dll</HintPath>
     </Reference>
@@ -56,6 +59,7 @@
     <Compile Include="ClientInformationDataAccessLayer.cs" />
     <Compile Include="InvoiceDashboardDataAccessLayer.cs" />
     <Compile Include="InvoicesDataAccessLayer.cs" />
+    <Compile Include="ManualInvoiceDataAccessLayer.cs" />
     <Compile Include="PaymentInformationDataAccessLayer.cs" />
     <Compile Include="ReportsDataAccessLayer.cs" />
     <Compile Include="UserDataAccessLayer.cs" />

@@ -52,23 +52,23 @@ namespace Nordfin
                 if (ds.Tables[0].Rows.Count > 0)
                 {
                     lblSumAmount.Text = String.Format(CultureInfo.GetCultureInfo("sv-SE"), "{0:#,0.00}", ds.Tables[0].AsEnumerable()
-                    .Sum(r => ConvertStringToDecimal(Regex.Replace(r.Field<string>("Invoiceamount").Trim(), @"\s", "").Replace(",", "."))));
+                    .Sum(r => ConvertStringToDecimal(Regex.Replace(r.Field<decimal>("Invoiceamount").ToString().Trim(), @"\s", "").Replace(",", "."))));
 
 
 
                     lblFeesAmount.Text = String.Format(CultureInfo.GetCultureInfo("sv-SE"), "{0:#,0.00}", ds.Tables[0].AsEnumerable()
-                    .Sum(r => ConvertStringToDecimal(Regex.Replace(r.Field<string>("Fees").Trim(), @"\s", "").Replace(",", "."))));
+                    .Sum(r => ConvertStringToDecimal(Regex.Replace(r.Field<decimal>("Fees").ToString().Trim(), @"\s", "").Replace(",", "."))));
 
 
                     lblTotalRemain.Text = String.Format(CultureInfo.GetCultureInfo("sv-SE"), "{0:#,0.00}", ds.Tables[0].AsEnumerable()
-                    .Sum(r => ConvertStringToDecimal(Regex.Replace(r.Field<string>("TotalRemaining").Trim(), @"\s", "").Replace(",", "."))));
+                    .Sum(r => ConvertStringToDecimal(Regex.Replace(r.Field<decimal>("TotalRemaining").ToString().Trim(), @"\s", "").Replace(",", "."))));
 
 
                     lblOverPaid.Text = String.Format(CultureInfo.GetCultureInfo("sv-SE"), "{0:#,0.00}", ds.Tables[0].AsEnumerable()
-                    .Sum(r => ConvertStringToDecimal(Regex.Replace(r.Field<string>("Overpayment").Trim(), @"\s", "").Replace(",", "."))));
+                    .Sum(r => ConvertStringToDecimal(Regex.Replace(r.Field<decimal>("Overpayment").ToString().Trim(), @"\s", "").Replace(",", "."))));
 
                     lblRemain.Text = String.Format(CultureInfo.GetCultureInfo("sv-SE"), "{0:#,0.00}", ds.Tables[0].AsEnumerable()
-                   .Sum(r => ConvertStringToDecimal(Regex.Replace(r.Field<string>("Remainingamount").Trim(), @"\s", "").Replace(",", "."))));
+                   .Sum(r => ConvertStringToDecimal(Regex.Replace(r.Field<decimal>("Remainingamount").ToString().Trim(), @"\s", "").Replace(",", "."))));
                 }
 
 

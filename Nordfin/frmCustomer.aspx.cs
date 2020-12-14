@@ -27,7 +27,6 @@ namespace Nordfin
             {
                 ClearSession();
                 string InvoiceNum = (string)Session["custNum"];
-
                 if (InvoiceNum != null && ClientSession.ClientID != null)
                 {
                     IInvoicesPresentationBusinessLayer objInvoicesLayer = new InvoicesBusinessLayer();
@@ -36,28 +35,26 @@ namespace Nordfin
                     grdCustomer.DataSource = ds;
                     grdCustomer.DataBind();
 
-
-
                     if (ds.Tables[0].Rows.Count > 0)
                     {
                         lblSumAmount.Text = String.Format(CultureInfo.GetCultureInfo("sv-SE"), "{0:#,0.00}", ds.Tables[0].AsEnumerable()
-                        .Sum(r => ConvertStringToDecimal(Regex.Replace(r.Field<string>("Invoiceamount").Trim(), @"\s", "").Replace(",", "."))));
+                        .Sum(r => ConvertStringToDecimal(Regex.Replace(r.Field<decimal>("Invoiceamount").ToString().Trim(), @"\s", "").Replace(",", "."))));
 
 
 
                         lblFeesAmount.Text = String.Format(CultureInfo.GetCultureInfo("sv-SE"), "{0:#,0.00}", ds.Tables[0].AsEnumerable()
-                        .Sum(r => ConvertStringToDecimal(Regex.Replace(r.Field<string>("Fees").Trim(), @"\s", "").Replace(",", "."))));
+                        .Sum(r => ConvertStringToDecimal(Regex.Replace(r.Field<decimal>("Fees").ToString().Trim(), @"\s", "").Replace(",", "."))));
 
 
                         lblTotalRemain.Text = String.Format(CultureInfo.GetCultureInfo("sv-SE"), "{0:#,0.00}", ds.Tables[0].AsEnumerable()
-                        .Sum(r => ConvertStringToDecimal(Regex.Replace(r.Field<string>("TotalRemaining").Trim(), @"\s", "").Replace(",", "."))));
+                        .Sum(r => ConvertStringToDecimal(Regex.Replace(r.Field<decimal>("TotalRemaining").ToString().Trim(), @"\s", "").Replace(",", "."))));
 
 
                         lblOverPaid.Text = String.Format(CultureInfo.GetCultureInfo("sv-SE"), "{0:#,0.00}", ds.Tables[0].AsEnumerable()
-                        .Sum(r => ConvertStringToDecimal(Regex.Replace(r.Field<string>("Overpayment").Trim(), @"\s", "").Replace(",", "."))));
+                        .Sum(r => ConvertStringToDecimal(Regex.Replace(r.Field<decimal>("Overpayment").ToString().Trim(), @"\s", "").Replace(",", "."))));
 
                         lblRemain.Text = String.Format(CultureInfo.GetCultureInfo("sv-SE"), "{0:#,0.00}", ds.Tables[0].AsEnumerable()
-                        .Sum(r => ConvertStringToDecimal(Regex.Replace(r.Field<string>("Remainingamount").Trim(), @"\s", "").Replace(",", "."))));
+                        .Sum(r => ConvertStringToDecimal(Regex.Replace(r.Field<decimal>("Remainingamount").ToString().Trim(), @"\s", "").Replace(",", "."))));
                     }
 
                     if (ds.Tables.Count > 1)
@@ -84,8 +81,8 @@ namespace Nordfin
                             }
                             else
                             {
-                                pnlUpdate.Style.Add("height", "90px");
-                                pnlUpdate.Style.Add("padding-top", "20px");
+                                pnlUpdate.Style.Add("height", "70px");
+                                pnlUpdate.Style.Add("padding-top", "10px");
 
 
                             }
@@ -184,7 +181,7 @@ namespace Nordfin
                     }
                     else
                     {
-                        hdnMatch.Value = "false";
+                        pnlMatch.Visible = false;
                     }
 
                 }
@@ -193,7 +190,7 @@ namespace Nordfin
                     grdCustomer.DataSource = new List<string>();
                     grdCustomer.DataBind();
                 }
-
+                LoadManualInvoiceCustomerData();
 
             }
         }
@@ -227,6 +224,22 @@ namespace Nordfin
             ScriptManager.RegisterStartupScript(this, this.GetType(), "PDFViewerNewTab", "PDFViewer('" + sFileName + "','" + sPDFViewerLink + "','" + Session.SessionID + "','" + bResult + "','" + btn.ClientID + "');", true);
         }
 
+        private void LoadManualInvoiceCustomerData()
+        {
+            var custNum = (TextBox)ucManualInvoice.FindControl("txtCustNum");
+            custNum.Text = lblCustomerNumber.Text;
+            var custName = (TextBox)ucManualInvoice.FindControl("txtCustName");
+            custName.Text = lblName.Text;
+            var custContact = (TextBox)ucManualInvoice.FindControl("txtCustContact");
+            custContact.Text = lblAddress.Text;
+            var custAddress = (TextBox)ucManualInvoice.FindControl("txtCustAddress");
+            custAddress.Text = lblAddress1.Text;
+            var custPostCode = (TextBox)ucManualInvoice.FindControl("txtPostCode");
+            custPostCode.Text = lblPostalCode.Text;
+            var custCity = (TextBox)ucManualInvoice.FindControl("txtCity");
+            custCity.Text = lblCity.Text;
+        }
+
         public void ClearSession()
         {
             if (ClientSession.ClientID.Trim() == "")
@@ -249,6 +262,7 @@ namespace Nordfin
 
             }
         }
+
         public decimal ConvertStringToDecimal(string sDecimal)
         {
             CultureInfo cultures = new CultureInfo("en-US");
