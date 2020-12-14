@@ -54,7 +54,7 @@ namespace Nordfin
                     userInformation = JsonConvert.DeserializeObject<LoginUserInformation>(sUserDetails);
                     userInformation.Email = txtUserName.Value;
                     userInformation.IP = IPAddress;
-                    userInformation.HostName = System.Net.Dns.GetHostEntry(userInformation.IP).HostName;
+                    userInformation.HostName = (sUserDetails.ToLower().Contains("host")) ? System.Net.Dns.GetHostEntry(userInformation.IP).HostName : "";
                     userInformation.BrowserName = Request.Browser.Browser;
                     userInformation.Version = Request.Browser.Version;
                     string platform = "";

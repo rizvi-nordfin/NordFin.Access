@@ -208,33 +208,31 @@
                     <div class="col-md-9 table-responsive customerTable tableMarginTop" style="background-color: #2C3850;flex:0 0 80%;max-width:78%;bottom:30px">
 
 
-                        <asp:GridView ID="grdCustomer" runat="server" EmptyDataRowStyle-CssClass="Emptyrow" AutoGenerateColumns="False" ViewStateMode="Enabled" Visible="true" Style="color: white; font-size: small;    margin-top: -4px;" ShowHeaderWhenEmpty="true" CssClass="table">
+                        <asp:GridView ID="grdCustomer" runat="server" EmptyDataRowStyle-CssClass="Emptyrow" AllowSorting="true"  OnSorting="grdCustomer_Sorting" AutoGenerateColumns="False" ViewStateMode="Enabled" Visible="true" Style="color: white; font-size: small;    margin-top: -4px;" ShowHeaderWhenEmpty="true" CssClass="table">
                             <HeaderStyle BackColor="#475672" />
                             <Columns>
-                                <asp:TemplateField ItemStyle-CssClass="labelcolor itemalign" HeaderStyle-CssClass="itemalign">
+                                <asp:TemplateField ItemStyle-CssClass="labelcolor itemalign" HeaderText="INVOICE" SortExpression="Invoicenumber" HeaderStyle-CssClass="itemalign">
                                     <ItemTemplate>
 
                                         <asp:LinkButton CssClass="linkcss" Text='<%# Bind("Invoicenumber") %>' overpaymentData='<%# Eval("Overpayment") %>'
                                             remainData='<%# Eval("Remainingamount") %>' invoiceData='<%# Eval("Customernumber") +"|"+ Eval("InvoiceID")%>' OnClientClick="return LinkClick(this);" ID="gridLink" OnClick="gridLink_Click" runat="server" />
                                     </ItemTemplate>
-                                    <HeaderTemplate>
-                                        INVOICE
-                                    </HeaderTemplate>
+                                   
                                 </asp:TemplateField>
 
                                 <asp:BoundField DataField="CurrencyCode" HeaderStyle-CssClass="itemalign" ItemStyle-CssClass="itemalign" HeaderText="CURRENCY" SortExpression="CurrencyCode" />
-                                <asp:BoundField DataField="Invoiceamount" HeaderStyle-CssClass="itemalign" ItemStyle-CssClass="itemalign" HeaderText="AMOUNT" SortExpression="Invoiceamount" />
-                                <asp:BoundField DataField="Fees" HeaderStyle-CssClass="itemalign" ItemStyle-CssClass="itemalign" HeaderText="FEES" SortExpression="Fees" />
+                                <asp:BoundField DataField="Invoiceamount" DataFormatString="{0:#,0.00}" HeaderStyle-CssClass="itemalign" ItemStyle-CssClass="itemalign" HeaderText="AMOUNT" SortExpression="Invoiceamount" />
+                                <asp:BoundField DataField="Fees" DataFormatString="{0:#,0.00}" HeaderStyle-CssClass="itemalign" ItemStyle-CssClass="itemalign" HeaderText="FEES" SortExpression="Fees" />
 
                                 <asp:BoundField DataField="Billdate" HeaderStyle-CssClass="itemalign" ItemStyle-CssClass="itemalign tableNoWrap" HeaderText="BILL DATE" SortExpression="Billdate" />
                                 <asp:BoundField DataField="Duedate" HeaderStyle-CssClass="itemalign" ItemStyle-CssClass="itemalign tableNoWrap" HeaderText="DUE DATE" SortExpression="Duedate" />
-                                <asp:BoundField DataField="Remainingamount" HeaderStyle-CssClass="itemalign" ItemStyle-CssClass="itemalign" HeaderText="REMAIN" SortExpression="Remainingamount" />
+                                <asp:BoundField DataField="Remainingamount" DataFormatString="{0:#,0.00}" HeaderStyle-CssClass="itemalign" ItemStyle-CssClass="itemalign" HeaderText="REMAIN" SortExpression="Remainingamount" />
 
-                                <asp:BoundField DataField="TotalRemaining" HeaderStyle-CssClass="itemalign" ItemStyle-CssClass="itemalign" HeaderText="TOTAL REMAIN" SortExpression="TotalRemaining" />
+                                <asp:BoundField DataField="TotalRemaining" DataFormatString="{0:#,0.00}" HeaderStyle-CssClass="itemalign" ItemStyle-CssClass="itemalign" HeaderText="TOTAL REMAIN" SortExpression="TotalRemaining" />
                                   <asp:BoundField DataField="Collectionstatus" HeaderStyle-CssClass="itemalign" ItemStyle-CssClass="itemalign" HeaderText="Collection Status" SortExpression="Collectionstatus" />
 
                                 <asp:BoundField DataField="Paymentreference" HeaderStyle-CssClass="itemalign" ItemStyle-CssClass="itemalign" HeaderText="PAY REF" SortExpression="Paymentreference" />
-                                <asp:BoundField DataField="Overpayment" HeaderStyle-CssClass="itemalign" ItemStyle-CssClass="itemalign" HeaderText="OVER PAID" SortExpression="Overpayment" />
+                                <asp:BoundField DataField="Overpayment" DataFormatString="{0:#,0.00}" HeaderStyle-CssClass="itemalign" ItemStyle-CssClass="itemalign" HeaderText="OVER PAID" SortExpression="Overpayment" />
                                 <asp:TemplateField ItemStyle-CssClass="itemalign" HeaderStyle-CssClass="itemalign">
                                     <ItemTemplate>
 
@@ -344,7 +342,7 @@
                         <div>
                             <span id="spnBody" style="color: #A9BFD5;">
 
-                                <asp:GridView ID="grdInvoiceRemaining" runat="server" EmptyDataRowStyle-CssClass="Emptyrow" AutoGenerateColumns="False" ViewStateMode="Enabled" Visible="true" Style="color: white; font-size: small;" ShowHeaderWhenEmpty="true" CssClass="table">
+                                <asp:GridView ID="grdInvoiceRemaining" runat="server"  EmptyDataRowStyle-CssClass="Emptyrow" AutoGenerateColumns="False" ViewStateMode="Enabled" Visible="true" Style="color: white; font-size: small;" ShowHeaderWhenEmpty="true" CssClass="table">
                                     <HeaderStyle BackColor="#475672" />
                                     <Columns>
 

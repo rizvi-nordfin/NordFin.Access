@@ -33,24 +33,24 @@ namespace Nordfin.workflow.DataAccessLayer
                 DatabaseName.AddInParameter(DBBaseCommand, "@bCustomer", System.Data.DbType.Boolean, bCustomer);
             }
             DataSet ds = DatabaseName.ExecuteDataSet(DBBaseCommand);
-            if (ds.Tables[0].Rows.Count > 0)
-            {
-                try
-                {
-                    ds.Tables[0].AsEnumerable().ToList<DataRow>().ForEach(a =>
-                    {
-                        a["Invoiceamount"] = String.Format(CultureInfo.GetCultureInfo("sv-SE"), "{0:#,0.00}", ConvertStringToDecimal(a.Field<string>("Invoiceamount")));
-                        a["Remainingamount"] = String.Format(CultureInfo.GetCultureInfo("sv-SE"), "{0:#,0.00}", ConvertStringToDecimal(a.Field<string>("Remainingamount")));
-                        a["TotalRemaining"] = String.Format(CultureInfo.GetCultureInfo("sv-SE"), "{0:#,0.00}", ConvertStringToDecimal(a.Field<string>("TotalRemaining")));
-                        a["Fees"] = String.Format(CultureInfo.GetCultureInfo("sv-SE"), "{0:#,0.00}", ConvertStringToDecimal(a.Field<string>("Fees")));
-                        a["Overpayment"] = String.Format(CultureInfo.GetCultureInfo("sv-SE"), "{0:#,0.00}", ConvertStringToDecimal(a.Field<string>("Overpayment")));
-                    });
-                }
-                catch
-                {
-                    //catch the issue
-                }
-            }
+            //if (ds.Tables[0].Rows.Count > 0)
+            //{
+            //    try
+            //    {
+            //        ds.Tables[0].AsEnumerable().ToList<DataRow>().ForEach(a =>
+            //        {
+            //            a["Invoiceamount"] = String.Format(CultureInfo.GetCultureInfo("sv-SE"), "{0:#,0.00}", ConvertStringToDecimal(a.Field<string>("Invoiceamount")));
+            //            a["Remainingamount"] = String.Format(CultureInfo.GetCultureInfo("sv-SE"), "{0:#,0.00}", ConvertStringToDecimal(a.Field<string>("Remainingamount")));
+            //            a["TotalRemaining"] = String.Format(CultureInfo.GetCultureInfo("sv-SE"), "{0:#,0.00}", ConvertStringToDecimal(a.Field<string>("TotalRemaining")));
+            //            a["Fees"] = String.Format(CultureInfo.GetCultureInfo("sv-SE"), "{0:#,0.00}", ConvertStringToDecimal(a.Field<string>("Fees")));
+            //            a["Overpayment"] = String.Format(CultureInfo.GetCultureInfo("sv-SE"), "{0:#,0.00}", ConvertStringToDecimal(a.Field<string>("Overpayment")));
+            //        });
+            //    }
+            //    catch
+            //    {
+            //        //catch the issue
+            //    }
+            //}
             return ds;
         }
 

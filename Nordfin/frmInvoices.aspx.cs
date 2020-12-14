@@ -1,4 +1,5 @@
 ﻿using ClosedXML.Excel;
+using DocumentFormat.OpenXml.Spreadsheet;
 using Nordfin.workflow.Business;
 using Nordfin.workflow.Entity;
 using Nordfin.workflow.PresentationBusinessLayer;
@@ -19,6 +20,20 @@ namespace Nordfin
 {
     public partial class frmInvoices : System.Web.UI.Page
     {
+        private const string ASCENDING = " ASC";
+        private const string DESCENDING = " DESC";
+
+        public SortDirection GridViewSortDirection
+        {
+            get
+            {
+                if (ViewState["sortDirection"] == null)
+                    ViewState["sortDirection"] = SortDirection.Ascending;
+
+                return (SortDirection)ViewState["sortDirection"];
+            }
+            set { ViewState["sortDirection"] = value; }
+        }
         protected void Page_Load(object sender, EventArgs e)
         {
 
@@ -51,24 +66,11 @@ namespace Nordfin
                 }
                 if (ds.Tables[0].Rows.Count > 0)
                 {
-                    lblSumAmount.Text = String.Format(CultureInfo.GetCultureInfo("sv-SE"), "{0:#,0.00}", ds.Tables[0].AsEnumerable()
-                    .Sum(r => ConvertStringToDecimal(Regex.Replace(r.Field<decimal>("Invoiceamount").ToString().Trim(), @"\s", "").Replace(",", "."))));
-
-
-
-                    lblFeesAmount.Text = String.Format(CultureInfo.GetCultureInfo("sv-SE"), "{0:#,0.00}", ds.Tables[0].AsEnumerable()
-                    .Sum(r => ConvertStringToDecimal(Regex.Replace(r.Field<decimal>("Fees").ToString().Trim(), @"\s", "").Replace(",", "."))));
-
-
-                    lblTotalRemain.Text = String.Format(CultureInfo.GetCultureInfo("sv-SE"), "{0:#,0.00}", ds.Tables[0].AsEnumerable()
-                    .Sum(r => ConvertStringToDecimal(Regex.Replace(r.Field<decimal>("TotalRemaining").ToString().Trim(), @"\s", "").Replace(",", "."))));
-
-
-                    lblOverPaid.Text = String.Format(CultureInfo.GetCultureInfo("sv-SE"), "{0:#,0.00}", ds.Tables[0].AsEnumerable()
-                    .Sum(r => ConvertStringToDecimal(Regex.Replace(r.Field<decimal>("Overpayment").ToString().Trim(), @"\s", "").Replace(",", "."))));
-
-                    lblRemain.Text = String.Format(CultureInfo.GetCultureInfo("sv-SE"), "{0:#,0.00}", ds.Tables[0].AsEnumerable()
-                   .Sum(r => ConvertStringToDecimal(Regex.Replace(r.Field<decimal>("Remainingamount").ToString().Trim(), @"\s", "").Replace(",", "."))));
+                    lblSumAmount.Text =string.Format("{0:#,0.00}", (ds.Tables[0].AsEnumerable().Sum(r => r.Field<decimal>("Invoiceamount"))));
+                    lblFeesAmount.Text = string.Format("{0:#,0.00}", ds.Tables[0].AsEnumerable().Sum(r => r.Field<decimal>("Fees")));
+                    lblTotalRemain.Text = string.Format( "{0:#,0.00}", ds.Tables[0].AsEnumerable().Sum(r =>r.Field<decimal>("TotalRemaining")));
+                    lblOverPaid.Text = string.Format("{0:#,0.00}", ds.Tables[0].AsEnumerable().Sum(r => r.Field<decimal>("Overpayment")));
+                    lblRemain.Text = string.Format("{0:#,0.00}", ds.Tables[0].AsEnumerable().Sum(r => r.Field<decimal>("Remainingamount")));
                 }
 
 
@@ -141,12 +143,6 @@ namespace Nordfin
         }
 
 
-        [WebMethod]
-        public static string UnloadPage(string Test)
-        {
-
-            return Test;
-        }
 
         public void ClearSession()
         {
@@ -170,14 +166,6 @@ namespace Nordfin
 
             }
         }
-
-        public decimal ConvertStringToDecimal(string sDecimal)
-        {
-            CultureInfo cultures = new CultureInfo("en-US");
-
-            return Convert.ToDecimal(sDecimal, cultures);
-        }
-
 
         [WebMethod]
         public static string GetCustEmail(string custNumber)
@@ -246,84 +234,43 @@ namespace Nordfin
             HttpResponse response = HttpContext.Current.Response;
             response.Clear();
             response.Charset = "";
-
             DataTable dataTable = (DataTable)Session["InvoiceGrid"];
+            foreach (DataColumn column in dataTable.Columns)
+                column.ColumnName = column.ColumnName.ToUpper();
             try
+
             {
 
-                dataTable.Columns.Remove("Customername");
-                dataTable.Columns.Remove("CombineInvoice");
-                dataTable.Columns.Remove("InvoiceID");
-                dataTable.Columns.Remove("OrderID");
+                using (XLWorkbook wb = new XLWorkbook())
+                {
+
+                    var ws = wb.Worksheets.Add(dataTable);
+
+                    Response.Clear();
+                    Response.Buffer = true;
+                    Response.Charset = "";
+                    string filename = "Invoices" + DateTime.Now.ToString("yyyy-MM-dd hh:mm tt") + ".xlsx";
+                    ws.Column(1).Delete();
+                    ws.Column(1).Delete();
+                    ws.Column(13).Delete();
+                    ws.Column(14).Delete();
+                    ws.Column(13).Delete();
+                    Response.ContentType = "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet";
+                    Response.AddHeader("Content-Disposition", "attachment;filename=\"" + filename + "\"");
+                    using (MemoryStream MyMemoryStream = new MemoryStream())
+                    {
+                        wb.SaveAs(MyMemoryStream);
+                        MyMemoryStream.WriteTo(Response.OutputStream);
+                        Response.Flush();
+                        Response.End();
+                    }
+                }
             }
-            catch
+            catch(Exception ex)
             {
                 //catch the issue
             }
 
-
-            if (dataTable.Rows.Count > 0)
-            {
-                try
-                {
-                    dataTable.Columns.Add("InvoiceAmount", typeof(decimal));
-                    dataTable.Columns.Add("RemainingAmount", typeof(decimal));
-                    dataTable.Columns.Add("Totalremaining", typeof(decimal));
-                    dataTable.Columns.Add("fees", typeof(decimal));
-                    dataTable.Columns.Add("overpayment", typeof(decimal));
-                    dataTable.AsEnumerable().ToList<DataRow>().ForEach(a =>
-                    {
-                        a["InvoiceAmount"] = ConvertStringToDecimal(Regex.Replace(a.Field<string>("Invoiceamount").Trim(), @"\s", "").Replace(",", "."));
-                        a["RemainingAmount"] = ConvertStringToDecimal(Regex.Replace(a.Field<string>("Remainingamount").Trim(), @"\s", "").Replace(",", "."));
-                        a["Totalremaining"] = ConvertStringToDecimal(Regex.Replace(a.Field<string>("TotalRemaining").Trim(), @"\s", "").Replace(",", "."));
-
-                        a["fees"] = ConvertStringToDecimal(Regex.Replace(a.Field<string>("Fees").Trim(), @"\s", "").Replace(",", "."));
-                        a["overpayment"] = ConvertStringToDecimal(Regex.Replace(a.Field<string>("Overpayment").Trim(), @"\s", "").Replace(",", "."));
-
-                    });
-
-                    dataTable.Columns.RemoveAt(3);
-                    dataTable.Columns.RemoveAt(3);
-                    dataTable.Columns.RemoveAt(5);
-                    dataTable.Columns.RemoveAt(5);
-                    dataTable.Columns.RemoveAt(5);
-                    dataTable.Columns["InvoiceAmount"].SetOrdinal(3);
-
-                    dataTable.Columns["Fees"].SetOrdinal(4);
-
-                    dataTable.Columns["RemainingAmount"].SetOrdinal(7);
-                    dataTable.Columns["TotalRemaining"].SetOrdinal(8);
-
-                    dataTable.Columns["Overpayment"].SetOrdinal(11);
-                }
-                catch
-                {
-                    //catch the issue
-                }
-
-            }
-            foreach (DataColumn column in dataTable.Columns)
-                column.ColumnName = column.ColumnName.ToUpper();
-            using (XLWorkbook wb = new XLWorkbook())
-            {
-
-
-                wb.Worksheets.Add(dataTable);
-
-                Response.Clear();
-                Response.Buffer = true;
-                Response.Charset = "";
-                string filename = "Invoices" + DateTime.Now.ToString("yyyy-MM-dd hh:mm tt") + ".xlsx";
-                Response.ContentType = "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet";
-                Response.AddHeader("Content-Disposition", "attachment;filename=\"" + filename + "\"");
-                using (MemoryStream MyMemoryStream = new MemoryStream())
-                {
-                    wb.SaveAs(MyMemoryStream);
-                    MyMemoryStream.WriteTo(Response.OutputStream);
-                    Response.Flush();
-                    Response.End();
-                }
-            }
         }
 
         public static string Execute(string invNumber)
@@ -360,7 +307,32 @@ namespace Nordfin
             return newPath;
         }
 
+        protected void grdInvoices_Sorting(object sender, GridViewSortEventArgs e)
+        {
+            string sortExpression = e.SortExpression;
 
+            if (GridViewSortDirection == SortDirection.Ascending)
+            {
+                GridViewSortDirection = SortDirection.Descending;
+                SortGridView(sortExpression, DESCENDING);
+            }
+            else
+            {
+                GridViewSortDirection = SortDirection.Ascending;
+                SortGridView(sortExpression, ASCENDING);
+            }
+        }
+        private void SortGridView(string sortExpression, string direction)
+        {
+           
+            DataTable dt = (DataTable)Session["InvoiceGrid"];
+            DataView dv = new DataView(dt);
+            dv.Sort = sortExpression + direction;
+            grdInvoices.DataSource = dv;
+            grdInvoices.DataBind();
+        }
+
+       
 
     }
 }

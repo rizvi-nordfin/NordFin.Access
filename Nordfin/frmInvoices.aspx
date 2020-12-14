@@ -1,4 +1,5 @@
-﻿<%@ Page Language="C#" MasterPageFile="~/Nordfin.Master" AutoEventWireup="true" Title="NordfinCapital" CodeBehind="frmInvoices.aspx.cs" Inherits="Nordfin.frmInvoices" %>
+﻿<%@ Page Language="C#" MasterPageFile="~/Nordfin.Master" AutoEventWireup="true" Title="NordfinCapital" CodeBehind="frmInvoices.aspx.cs" Inherits="Nordfin.frmInvoices" 
+    UICulture="sv-SE" Culture="sv-SE" %>
 
 <%@ Register Assembly="AjaxControlToolkit" Namespace="AjaxControlToolkit" TagPrefix="ModalWindow" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="NordfinContentHolder" runat="server" style="padding: 5px;">
@@ -26,7 +27,7 @@
                                 <div class="col-md-12 textOrange" style="background: #38445D; padding: 5px;">
                                    Amount
                                     &nbsp; 
-                                    <asp:Label runat="server" CssClass="textWhite" ID="lblSumAmount"></asp:Label>
+                                    <asp:Label runat="server" CssClass="textWhite"  ID="lblSumAmount"></asp:Label>
                                 </div>
                             
                             </div>
@@ -162,45 +163,41 @@
                 </asp:Panel>
             </div>
             <div class="tableFixHead" style="background-color: #2C3850;margin-top: -15px;">
-                <asp:GridView ID="grdInvoices" runat="server" AutoGenerateColumns="False" EmptyDataRowStyle-CssClass="Emptyrow" ViewStateMode="Enabled" Visible="true" Style="color: white; overflow-x: scroll; overflow-y: scroll;" ShowHeaderWhenEmpty="true" CssClass="table table-borderless">
+                <asp:GridView ID="grdInvoices" runat="server" AutoGenerateColumns="False" AllowSorting="true"  OnSorting="grdInvoices_Sorting" EmptyDataRowStyle-CssClass="Emptyrow" ViewStateMode="Enabled" Visible="true" Style="color: white; overflow-x: scroll; overflow-y: scroll;" ShowHeaderWhenEmpty="true" CssClass="table table-borderless">
                     <HeaderStyle BackColor="#475672" CssClass="GVFixedHeader" />
                     <Columns>
-                        <asp:TemplateField ItemStyle-CssClass="itemalign" HeaderStyle-CssClass="itemalign">
+                        <asp:TemplateField ItemStyle-CssClass="itemalign" HeaderText="CUSTOMER" SortExpression="Customernumber" HeaderStyle-CssClass="itemalign">
                             <ItemTemplate>
 
-                                <asp:LinkButton CssClass="linkcss" Text='<%# Bind("Customernumber") %>' ID="gridLinkCustNum" CommandArgument=' <%# Bind("Customernumber") %>' OnClick="gridLinkCustNum_Click" runat="server" />
+                                <asp:LinkButton CssClass="linkcss" Text='<%# Bind("Customernumber") %>' CommandName="Sort" ID="gridLinkCustNum" CommandArgument=' <%# Bind("Customernumber") %>' OnClick="gridLinkCustNum_Click" runat="server" />
                             </ItemTemplate>
-                            <HeaderTemplate>
-                                CUSTOMER
-                            </HeaderTemplate>
+                           
                         </asp:TemplateField>
-                        <asp:TemplateField ItemStyle-CssClass="itemalign" HeaderStyle-CssClass="itemalign" SortExpression="Invoicenumber">
+                        <asp:TemplateField ItemStyle-CssClass="itemalign" HeaderText="INVOICE" SortExpression="Invoicenumber" HeaderStyle-CssClass="itemalign" >
                             <ItemTemplate>
 
                                 <asp:LinkButton CssClass="linkcss" Text='<%# Bind("Invoicenumber") %>' OnClientClick="return LinkClick(this);" overpaymentData='<%# Eval("Overpayment") %>'
                                     remainData='<%# Eval("Remainingamount") %>' invoiceData='<%# Eval("Customernumber") +"|"+ Eval("InvoiceID")%>' ID="gridLink" CommandArgument=' <%# Eval("Customernumber") +"|"+ Eval("InvoiceID")%>' runat="server" />
                             </ItemTemplate>
-                            <HeaderTemplate>
-                                INVOICE
-                            </HeaderTemplate>
+                            
                         </asp:TemplateField>
 
                         <asp:BoundField DataField="CustomerName" HeaderStyle-CssClass="itemalign" ItemStyle-CssClass="itemalign" HeaderText="Name" SortExpression="CustomerName" />
 
                         <asp:BoundField DataField="CurrencyCode" HeaderStyle-CssClass="itemalign" ItemStyle-CssClass="itemalign" HeaderText="CURRENCY" SortExpression="CurrencyCode" />
-                        <asp:BoundField DataField="Invoiceamount"  HeaderStyle-CssClass="itemalign" ItemStyle-CssClass="itemalign" HeaderText="AMOUNT" SortExpression="Invoiceamount" />
+                        <asp:BoundField DataField="Invoiceamount" DataFormatString="{0:#,0.00}" HeaderStyle-CssClass="itemalign" ItemStyle-CssClass="itemalign" HeaderText="AMOUNT" SortExpression="Invoiceamount" />
                         <asp:BoundField DataField="Fees" HeaderStyle-CssClass="itemalign" ItemStyle-CssClass="itemalign" HeaderText="FEES" SortExpression="Fees" />
 
                         <asp:BoundField DataField="Billdate" HeaderStyle-CssClass="itemalign" ItemStyle-CssClass="itemalign tableNoWrap" HeaderText="BILL DATE" SortExpression="Billdate" />
                         <asp:BoundField DataField="Duedate" HeaderStyle-CssClass="itemalign" ItemStyle-CssClass="itemalign tableNoWrap" HeaderText="DUE DATE" SortExpression="Duedate" />
-                         <asp:BoundField DataField="Remainingamount" HeaderStyle-CssClass="itemalign" ItemStyle-CssClass="itemalign" HeaderText="REMAIN" SortExpression="Remainingamount" />
+                         <asp:BoundField DataField="Remainingamount" DataFormatString="{0:#,0.00}" HeaderStyle-CssClass="itemalign" ItemStyle-CssClass="itemalign" HeaderText="REMAIN" SortExpression="Remainingamount" />
 
-                        <asp:BoundField DataField="TotalRemaining" HeaderStyle-CssClass="itemalign" ItemStyle-CssClass="itemalign" HeaderText="TOTAL REMAIN" SortExpression="TotalRemaining" />
+                        <asp:BoundField DataField="TotalRemaining" DataFormatString="{0:#,0.00}" HeaderStyle-CssClass="itemalign" ItemStyle-CssClass="itemalign" HeaderText="TOTAL REMAIN" SortExpression="TotalRemaining" />
 
                         <asp:BoundField DataField="Collectionstatus" HeaderStyle-CssClass="itemalign" ItemStyle-CssClass="itemalign" HeaderText="Collection Status" SortExpression="Collectionstatus" />
 
                         <asp:BoundField DataField="Paymentreference" HeaderStyle-CssClass="itemalign" ItemStyle-CssClass="itemalign" HeaderText="PAY REF" SortExpression="Paymentreference" />
-                        <asp:BoundField DataField="Overpayment" HeaderStyle-CssClass="itemalign" ItemStyle-CssClass="itemalign" HeaderText="OVER PAID" SortExpression="Overpayment" />
+                        <asp:BoundField DataField="Overpayment" DataFormatString="{0:#,0.00}" HeaderStyle-CssClass="itemalign" ItemStyle-CssClass="itemalign" HeaderText="OVER PAID" SortExpression="Overpayment" />
                         <asp:TemplateField ItemStyle-CssClass="itemalign" HeaderStyle-CssClass="itemalign">
                             <ItemTemplate>
 
