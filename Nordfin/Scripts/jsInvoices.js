@@ -48,7 +48,6 @@ function addButton() {
         var foo = document.getElementById("tdExport");
         foo.appendChild(element);
     }
-}
 
 
 function LinkClick(linkValues) {
