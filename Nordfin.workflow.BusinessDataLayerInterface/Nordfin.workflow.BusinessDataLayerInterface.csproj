@@ -46,6 +46,7 @@
     <Compile Include="IClientInformationBusinessDataLayer.cs" />
     <Compile Include="IInvoiceDashboardBusinessDataLayer.cs" />
     <Compile Include="IInvoicesBusinessDataLayer.cs" />
+    <Compile Include="IManualInvoiceBusinessDataLayer.cs" />
     <Compile Include="IPaymentInformationBusinessDataLayer.cs" />
     <Compile Include="IReportsBusinessDataLayer.cs" />
     <Compile Include="ITelsonGroupBusinessDataLayer.cs" />

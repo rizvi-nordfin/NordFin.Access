@@ -37,20 +37,17 @@ function CreateControl() {
 }
 function addButton() {
 
-    var element = document.createElement("input");
-    element.type = 'button';
-    element.value = 'Export';
-    element.name = 'btncheck';
-    element.onclick = function () {
-        document.getElementById("NordfinContentHolder_btnExport").click();
-    };
-    element.classList = 'invoicesDownloadButton button button-table';
-    var foo = document.getElementById("tdExport");
-    if (foo != null && foo != undefined) {
-       
+        var element = document.createElement("input");
+        element.type = 'button';
+        element.value = 'Download';
+        element.name = 'btncheck';
+        element.onclick = function () {
+            document.getElementById("NordfinContentHolder_btnExport").click();
+        };
+        element.classList = 'invoicesDownloadButton button button-table';
+        var foo = document.getElementById("tdExport");
         foo.appendChild(element);
     }
-}
 
 
 function LinkClick(linkValues) {

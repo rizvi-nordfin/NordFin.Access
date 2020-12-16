@@ -73,6 +73,7 @@ table {
     overflow-y: scroll;
     height: 430px;
 }
+
 .table tbody tr th{
     height:30px;
 }
@@ -260,6 +261,25 @@ body ::-webkit-scrollbar-thumb {
     margin-right: auto;
 }
 
+.panelButton {
+    background-color: transparent;
+    border: 1px solid #3DADC5;
+    color: #3DADC5;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    width: 100%;
+    padding-left: 15px;
+    font-size: 10px;
+    height: 90%;
+    line-height: 25px
+}
+
+.actionButtonColumn {
+    padding-left: 5%;
+    padding-right: 0px;
+}
+
 .customerInfoSidebar {
 }
 
@@ -280,7 +300,7 @@ body ::-webkit-scrollbar-thumb {
 
 
 
-@media all and (max-width: 905px) {
+@media all and (max-width: 950px) {
 
     .Popup {
         position: absolute !important;
@@ -294,6 +314,32 @@ body ::-webkit-scrollbar-thumb {
 
     #popupHTML {
         overflow-y: scroll !important;
+    }
+
+    .modal {
+        overflow-x: scroll !important;
+    }
+}
+
+@media all and (max-width:1200px){
+    .panelButton{
+        white-space:normal;
+    }
+}
+
+@media all and (max-width:600px) {
+    .customerTable {
+        bottom:45px !important;
+    }
+}
+
+@media only screen and (max-width:760px) {
+    .modal-content {
+        width:100% !important;
+    }
+
+    .manulInvoiceModal{
+        left:50% !important;
     }
 }
 
@@ -451,4 +497,35 @@ input[type=checkbox] {
     box-shadow: none;
     outline: 0;
     background-clip: border-box;
+}
+
+.modalBackground { /*#2C3850*/
+    width: 900px !important;
+    height: 500px !important;
+    background-color: #323e53 !important;
+    color: #fff !important;
+    left: 25% !important;
+    top: 15% !important;
+    overflow: auto;
+    position: fixed !important;
+}
+
+.modal{
+    width:110% !important;
+}
+
+.manulInvoiceModal {
+    position: absolute;
+    float: left;
+    left: 40%;
+    top: 60%;
+    transform: translate(-50%, -50%);
+}
+
+.customerTable {
+    background-color: #2C3850;
+    flex: 0 0 78%;
+    max-width: 78%;
+    bottom: 30px;
+    height: 600px
 }

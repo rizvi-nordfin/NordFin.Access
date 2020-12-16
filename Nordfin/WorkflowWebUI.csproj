@@ -44,8 +44,8 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="AjaxControlToolkit">
-      <HintPath>..\..\Back up\WebApplication26\WebApplication26\bin\AjaxControlToolkit.dll</HintPath>
+    <Reference Include="AjaxControlToolkit, Version=20.1.0.0, Culture=neutral, PublicKeyToken=28f01b0e84b6d53e, processorArchitecture=MSIL">
+      <HintPath>..\packages\AjaxControlToolkit.20.1.0\lib\net40\AjaxControlToolkit.dll</HintPath>
     </Reference>
     <Reference Include="BouncyCastle.Crypto, Version=1.8.5.0, Culture=neutral, PublicKeyToken=0e99375e54769942">
       <HintPath>..\packages\BouncyCastle.1.8.5\lib\BouncyCastle.Crypto.dll</HintPath>
@@ -218,6 +218,7 @@
     <Content Include="Scripts\font-Awesome.js" />
     <Content Include="Scripts\jquery-1.11.1.min.js" />
     <Content Include="libman.json" />
+    <None Include="Properties\PublishProfiles\FTPProfile.pubxml" />
     <None Include="Scripts\jquery-3.4.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.4.1.js" />
     <Content Include="Scripts\jquery-3.4.1.min.js" />
@@ -242,6 +243,7 @@
     <Content Include="Scripts\jsInvoiceBatches.js" />
     <Content Include="Scripts\jsInvoices.js" />
     <Content Include="Scripts\jsLogin.js" />
+    <Content Include="Scripts\jsManualInvoice.js" />
     <Content Include="Scripts\jsPaymentInformation.js" />
     <Content Include="Scripts\jsReports.js" />
     <Content Include="Scripts\jsTelsonGroup.js" />
@@ -270,6 +272,7 @@
     <Content Include="Styles\jquery.jqChart.css" />
     <Content Include="Styles\Login.css" />
     <Content Include="Styles\LoginInformation.css" />
+    <Content Include="Styles\ManualInvoice.css" />
     <Content Include="Styles\mapsvg.css" />
     <Content Include="Styles\nanoscroller.css" />
     <Content Include="Styles\NordfinMaster.css" />
@@ -278,6 +281,7 @@
     <Content Include="Styles\Reports.css" />
     <Content Include="Styles\TelsonGroup.css" />
     <Content Include="Styles\TrafficDetails.css" />
+    <Content Include="ucManualInvoice.ascx" />
     <Content Include="Web.config" />
     <Content Include="frmPaymentInformation.aspx" />
   </ItemGroup>
@@ -388,6 +392,14 @@
       <DependentUpon>frmPaymentInformation.aspx</DependentUpon>
     </Compile>
     <Compile Include="SignalRConnection.cs" />
+    <Compile Include="ucManualInvoice.ascx.cs">
+      <DependentUpon>ucManualInvoice.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="ucManualInvoice.ascx.designer.cs">
+      <DependentUpon>ucManualInvoice.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="Utilities.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Nordfin.Master" />

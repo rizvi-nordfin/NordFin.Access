@@ -46,6 +46,7 @@
     <Compile Include="ClientInformationBusinessLayer.cs" />
     <Compile Include="InvoiceDashboardBusinessLayer.cs" />
     <Compile Include="InvoicesBusinessLayer.cs" />
+    <Compile Include="ManualInvoiceBusinessLayer.cs" />
     <Compile Include="PaymentInformationBusinessLayer.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ReportsBusinessLayer.cs" />

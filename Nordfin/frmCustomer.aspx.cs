@@ -40,7 +40,6 @@ namespace Nordfin
             {
                 ClearSession();
                 string InvoiceNum = (string)Session["custNum"];
-
                 if (InvoiceNum != null && ClientSession.ClientID != null)
                 {
                     IInvoicesPresentationBusinessLayer objInvoicesLayer = new InvoicesBusinessLayer();
@@ -48,8 +47,6 @@ namespace Nordfin
                     Session["CustomerGrid"] = ds.Tables[0];
                     grdCustomer.DataSource = ds;
                     grdCustomer.DataBind();
-
-
 
                     if (ds.Tables[0].Rows.Count > 0)
                     {
@@ -80,12 +77,13 @@ namespace Nordfin
 
                             if (dtResult.Rows[0].Field<int>("IsActive") > 0)
                             {
-                                pnlReset.Visible = true;
+                                //pnlReset.Visible = true;
+                                ScriptManager.RegisterStartupScript(this, this.GetType(), "showResetPage", "$('#divResetRow').show(); $('#divResetPages').show();", true);
                             }
                             else
                             {
-                                pnlUpdate.Style.Add("height", "90px");
-                                pnlUpdate.Style.Add("padding-top", "20px");
+                                pnlUpdate.Style.Add("height", "70px");
+                                pnlUpdate.Style.Add("padding-top", "10px");
 
 
                             }
@@ -184,7 +182,7 @@ namespace Nordfin
                     }
                     else
                     {
-                        hdnMatch.Value = "false";
+                        //divMatch.Visible = false;
                     }
 
                 }
@@ -194,6 +192,11 @@ namespace Nordfin
                     grdCustomer.DataBind();
                 }
 
+                if(ClientSession.Admin == "0" || ClientSession.Admin == "1")
+                {
+                    ScriptManager.RegisterStartupScript(this, this.GetType(), "showManualInvoice", "$('#divManualInvoiceRow').show(); $('#divManualInvoice').show();", true);
+                }
+                LoadManualInvoiceCustomerData();
 
             }
         }
@@ -227,6 +230,22 @@ namespace Nordfin
             ScriptManager.RegisterStartupScript(this, this.GetType(), "PDFViewerNewTab", "PDFViewer('" + sFileName + "','" + sPDFViewerLink + "','" + Session.SessionID + "','" + bResult + "','" + btn.ClientID + "');", true);
         }
 
+        private void LoadManualInvoiceCustomerData()
+        {
+            var custNum = (TextBox)ucManualInvoice.FindControl("txtCustNum");
+            custNum.Text = lblCustomerNumber.Text;
+            var custName = (TextBox)ucManualInvoice.FindControl("txtCustName");
+            custName.Text = lblName.Text;
+            var custContact = (TextBox)ucManualInvoice.FindControl("txtCustContact");
+            custContact.Text = lblAddress.Text;
+            var custAddress = (TextBox)ucManualInvoice.FindControl("txtCustAddress");
+            custAddress.Text = lblAddress1.Text;
+            var custPostCode = (TextBox)ucManualInvoice.FindControl("txtPostCode");
+            custPostCode.Text = lblPostalCode.Text;
+            var custCity = (TextBox)ucManualInvoice.FindControl("txtCity");
+            custCity.Text = lblCity.Text;
+        }
+
         public void ClearSession()
         {
             if (ClientSession.ClientID.Trim() == "")
@@ -249,6 +268,7 @@ namespace Nordfin
 
             }
         }
+
         public decimal ConvertStringToDecimal(string sDecimal)
         {
             CultureInfo cultures = new CultureInfo("en-US");

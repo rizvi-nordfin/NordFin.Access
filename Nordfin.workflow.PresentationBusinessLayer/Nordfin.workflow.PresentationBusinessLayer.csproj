@@ -45,6 +45,7 @@
     <Compile Include="IBatchPresentationBusinessLayer.cs" />
     <Compile Include="IClientInformationPresentationBusinessLayer.cs" />
     <Compile Include="IInvoiceDashboardPresentationBusinessLayer.cs" />
+    <Compile Include="IManualInvoicePresentationBusinessLayer.cs" />
     <Compile Include="IPaymentInformationPresentationBusinessLayer.cs" />
     <Compile Include="IReportsPresentationBusinessLayer.cs" />
     <Compile Include="ITelsonGroupPresentationBusinessLayer.cs" />

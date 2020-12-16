@@ -278,7 +278,7 @@ a.linkcss {
     grid-template-columns: 6fr 6fr 6fr 8fr 6fr;
     display: grid;
     position: absolute;
-    z-index: 500;
+    z-index: 4;
     width: 90%;
     margin-top: 75px;
     margin-left: -32px;
