@@ -72,10 +72,11 @@ namespace Nordfin
                     lblOverPaid.Text = string.Format("{0:#,0.00}", ds.Tables[0].AsEnumerable().Sum(r => r.Field<decimal>("Overpayment")));
                     lblRemain.Text = string.Format("{0:#,0.00}", ds.Tables[0].AsEnumerable().Sum(r => r.Field<decimal>("Remainingamount")));
                 }
-
+              
 
             }
 
+            ScriptManager.RegisterStartupScript(UpdatePanel1, UpdatePanel1.GetType(), "CreateControl", "CreateControl();", true);
         }
 
 
@@ -245,7 +246,7 @@ namespace Nordfin
                 {
 
                     var ws = wb.Worksheets.Add(dataTable);
-
+                  
                     Response.Clear();
                     Response.Buffer = true;
                     Response.Charset = "";
@@ -321,6 +322,7 @@ namespace Nordfin
                 GridViewSortDirection = SortDirection.Ascending;
                 SortGridView(sortExpression, ASCENDING);
             }
+          
         }
         private void SortGridView(string sortExpression, string direction)
         {
