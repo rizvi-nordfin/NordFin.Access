@@ -1,32 +1,7 @@
 ﻿window.onload = function () {
     $addHandler(document, "keydown", onKeyDown);
 
-
-
-    $("#NordfinContentHolder_grdInvoices tr:first").before("<tr id='trHead' class='trHead' ><th class='labelcolor itemalign trHead'> " + "" + "</th>" + "<th class='itemalign trHead'>" + "" + "</th> " +
-        "<th class='itemalign trHead' >" + "" + "</th> " + "<th class='itemalign trHead'>" + '' + "</th>" + "<th class='itemalign trHead'>" + "" + "</th> " +
-        "<th class='itemalign trHead'>" + "" + "</th> " + "<th class='itemalign trHead'>" + '' + "</th> " + "<th class='itemalign trHead'>" + '' + "</th> " + + "<th class='itemalign trHead'>"
-        + '' + "</th> " + "<th class='itemalign trHead'>" + "" + "</th> " + "<th class='itemalign trHead'>" + "" + "</th> " + "<th id='tdMatch' class='itemalign trHead'>" + '' + "</th> " + "<th id='tdMatch' class='itemalign trHead'>" + '' + "</th> "
-        + "<th id='tdExport' class='itemalign trHead'>" + '' + "</th>" +
-
-        + "<th id='tdCheck' class='itemaligntrHead'>" + '' + "</th> " + "</tr>");
-
-
-    addButton();
-    function addButton() {
-
-        var element = document.createElement("input");
-        element.type = 'button';
-        element.value = 'Export';
-        element.name = 'btncheck';
-        element.onclick = function () {
-            document.getElementById("NordfinContentHolder_btnExport").click();
-        };
-        element.classList = 'invoicesDownloadButton button button-table';
-        var foo = document.getElementById("tdExport");
-        foo.appendChild(element);
-    }
-  
+   
 }
 Array.prototype.contains = function (v) {
     for (var i = 0; i < this.length; i++) {
@@ -44,6 +19,39 @@ Array.prototype.unique = function () {
     }
     return arr;
 }
+
+function CreateControl() {
+   
+     $("#NordfinContentHolder_grdInvoices tr:first").before("<tr id='trHead' class='trHead' ><th class='labelcolor itemalign trHead'> " + "" + "</th>" + "<th class='itemalign trHead'>" + "" + "</th> " +
+        "<th class='itemalign trHead' >" + "" + "</th> " + "<th class='itemalign trHead'>" + '' + "</th>" + "<th class='itemalign trHead'>" + "" + "</th> " +
+        "<th class='itemalign trHead'>" + "" + "</th> " + "<th class='itemalign trHead'>" + '' + "</th> " + "<th class='itemalign trHead'>" + '' + "</th> " + + "<th class='itemalign trHead'>"
+        + '' + "</th> " + "<th class='itemalign trHead'>" + "" + "</th> " + "<th class='itemalign trHead'>" + "" + "</th> " + "<th id='tdMatch' class='itemalign trHead'>" + '' + "</th> " + "<th id='tdMatch' class='itemalign trHead'>" + '' + "</th> "
+        + "<th id='tdExport' class='itemalign trHead'>" + '' + "</th>" +
+
+        + "<th id='tdCheck' class='itemaligntrHead'>" + '' + "</th> " + "</tr>");
+
+
+    addButton();
+   
+
+}
+function addButton() {
+
+    var element = document.createElement("input");
+    element.type = 'button';
+    element.value = 'Export';
+    element.name = 'btncheck';
+    element.onclick = function () {
+        document.getElementById("NordfinContentHolder_btnExport").click();
+    };
+    element.classList = 'invoicesDownloadButton button button-table';
+    var foo = document.getElementById("tdExport");
+    if (foo != null && foo != undefined) {
+       
+        foo.appendChild(element);
+    }
+}
+
 
 function LinkClick(linkValues) {
 
