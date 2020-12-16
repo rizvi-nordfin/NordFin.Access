@@ -1,4 +1,4 @@
-﻿    <%@ Page Language="C#" MasterPageFile="~/Nordfin.Master" AutoEventWireup="true" Title="NordfinCapital" EnableEventValidation="false" CodeBehind="frmCustomer.aspx.cs" Inherits="Nordfin.frmCustomer" %>
+﻿<%@ Page Language="C#" MasterPageFile="~/Nordfin.Master" AutoEventWireup="true" Title="NordfinCapital" EnableEventValidation="false" CodeBehind="frmCustomer.aspx.cs" Inherits="Nordfin.frmCustomer" %>
 
 
 <%@ Register Assembly="AjaxControlToolkit" Namespace="AjaxControlToolkit" TagPrefix="ModalWindow" %>
@@ -13,24 +13,25 @@
     <div class="dashboardContainer">
         <div class="container-fluid">
             <div class="dashboardHeader">
-                <div class="dashboardHeadline">Customer
+                <div class="dashboardHeadline">
+                    Customer
                 </div>
-                <div style="position:absolute;">
-                 <%--<asp:Button Text="Match Credit" id="btnInvoice" class="updateInfoButton export"  OnClientClick="return InvoiceInfo();"  runat="server"  Style="margin-top: -20px; margin-right: 100px;display:none" />--%>
-                 <asp:Button Text="Export" id="btnExport" class="updateInfoButton export" Visible="false"   runat="server" OnClick="btnExport_Click"  Style="margin-top: -25px;margin-right: 18px;width: 75px;" />
+                <div style="position: absolute;">
+                    <%--<asp:Button Text="Match Credit" id="btnInvoice" class="updateInfoButton export"  OnClientClick="return InvoiceInfo();"  runat="server"  Style="margin-top: -20px; margin-right: 100px;display:none" />--%>
+                    <asp:Button Text="Export" ID="btnExport" class="updateInfoButton export" Visible="false" runat="server" OnClick="btnExport_Click" Style="margin-top: -25px; margin-right: 18px; width: 75px;" />
                 </div>
                 <%--<div>OnClientClick="return InvoiceInfo();"--%>
-               
+
                 <%--OnClientClick="return ExportExcel();"--%>
-                  <%--<asp:Button Text="Export Detail" id="btnExportDetail" class="updateInfoButton export" OnClick="btnExportDetail_Click"  runat="server"  Style="margin-top: -25px; margin-right: 10px;"  OnClientClick="return ShowPopup();" OnClick="btnShowPopup_Click" />--%>
-                </div>
-       
- 
+                <%--<asp:Button Text="Export Detail" id="btnExportDetail" class="updateInfoButton export" OnClick="btnExportDetail_Click"  runat="server"  Style="margin-top: -25px; margin-right: 10px;"  OnClientClick="return ShowPopup();" OnClick="btnShowPopup_Click" />--%>
+            </div>
+
+
             <div>
                 <div class="row " style="height: 50px; margin-left: 0px;">
 
 
-                    <div class="col-md-3 divPadding customerInfoSidebar" style="color: #FFFFFF;max-width:22%">
+                    <div class="col-md-3 divPadding customerInfoSidebar" style="color: #FFFFFF; max-width: 22%">
                         <div style="background-color: #3E4B64;">
 
 
@@ -65,14 +66,14 @@
                             </div>
                             <hr class="divHrLine" />
                             <asp:Panel ID="pnlAddress" runat="server">
-                              <div class="divPaddingLeft">
-                                <span class="customerdivHeading"></span>
+                                <div class="divPaddingLeft">
+                                    <span class="customerdivHeading"></span>
 
-                                <asp:Label CssClass="customerdivText" Text="" runat="server" ID="lblAddress1"></asp:Label>
+                                    <asp:Label CssClass="customerdivText" Text="" runat="server" ID="lblAddress1"></asp:Label>
 
-                            </div>
-                            <hr class="divHrLine" />
-                                </asp:Panel>
+                                </div>
+                                <hr class="divHrLine" />
+                            </asp:Panel>
                             <div class="divPaddingLeft">
                                 <span class="customerdivHeading">POSTAL CODE</span>
 
@@ -158,39 +159,39 @@
                             </asp:Panel>
 
                         </div>
-                        <div class="container-fluid" style="padding-left: 10px;background-color: #475672;">
-                        <div class="row">
-                            <div class="col-md-6 actionButtonColumn">
-                                 <asp:Panel runat="server" ID="pnlUpdate" class="updateInfoButtonContainer">
-                            <asp:Button Text="Update info" class="button panelButton form-control" runat="server" ID="btnUpdateInfo" OnClientClick="return UpdateInfo();" />
-                        </asp:Panel>
+                        <div class="container-fluid" style="padding-left: 10px; background-color: #475672;">
+                            <div class="row">
+                                <div class="col-md-6 actionButtonColumn">
+                                    <asp:Panel runat="server" ID="pnlUpdate" class="updateInfoButtonContainer">
+                                        <asp:Button Text="Update info" class="button panelButton form-control" runat="server" ID="btnUpdateInfo" OnClientClick="return UpdateInfo();" />
+                                    </asp:Panel>
+                                </div>
+                                <div class="col-md-6 actionButtonColumn">
+                                    <asp:Panel runat="server" ID="pnlCreditCheck" class="updateInfoButtonContainer">
+                                        <asp:Button Text="Credit Check" class="button panelButton form-control" runat="server" ID="btnCreditCheck" OnClientClick="return CreditCheck();" />
+                                    </asp:Panel>
+                                </div>
                             </div>
-                            <div class="col-md-6 actionButtonColumn">
-                                <asp:Panel runat="server" ID="pnlCreditCheck" class="updateInfoButtonContainer">
-                            <asp:Button Text="Credit Check" class="button panelButton form-control" runat="server" ID="btnCreditCheck" OnClientClick="return CreditCheck();" />
-                        </asp:Panel>
+                            <div class="row" id="divManualInvoiceRow" style="display: none">
+                                <div class="col-md-6 actionButtonColumn" id="divManualInvoice" style="display: none">
+                                    <asp:Panel runat="server" ID="pnlManualInvoice" Visible="true" CssClass="updateInfoButtonContainer">
+                                        <asp:Button CssClass="button panelButton form-control" ID="btnManualInv" Text="Manual Invoice" runat="server" OnClientClick="return showManualInvoice();" Style="padding-left: 8px;"></asp:Button>
+                                    </asp:Panel>
+                                </div>
+                                <div class="col-md-6 actionButtonColumn" id="divMatch" style="display: none">
+                                    <asp:Panel runat="server" ID="pnlMatch" Visible="true" CssClass="updateInfoButtonContainer">
+                                        <asp:Button Text="Match Credit" ID="btnInvoice" class="button panelButton form-control" OnClientClick="return InvoiceInfo();" runat="server" />
+                                    </asp:Panel>
+                                </div>
+                            </div>
+                            <div class="row" id="divResetRow" style="display: none">
+                                <div class="col-lg-6 actionButtonColumn" style="display: none" id="divResetPages">
+                                    <asp:Panel runat="server" ID="pnlReset" Visible="true" CssClass="updateInfoButtonContainer">
+                                        <asp:Button Text="Reset mypages" class="button panelButton form-control" runat="server" OnClientClick="return RestoreMypage();" Style="padding-left: 10px;" />
+                                    </asp:Panel>
+                                </div>
                             </div>
                         </div>
-                       <div class="row" id="divManualInvoiceRow" style="display:none">
-                           <div class="col-md-6 actionButtonColumn" id="divManualInvoice" style="display:none">
-                          <asp:Panel runat="server" ID="pnlManualInvoice" Visible="true" CssClass="updateInfoButtonContainer">
-                            <asp:Button CssClass="button panelButton form-control" id="btnManualInv" Text="Manual Invoice" runat="server" OnClientClick="return showManualInvoice();" Style="padding-left: 8px;"></asp:Button> 
-                           </asp:Panel>
-                              </div>
-                            <div class="col-md-6 actionButtonColumn" id="divMatch" style="display:none">
-                                  <asp:Panel runat="server" ID="pnlMatch" Visible="true" CssClass="updateInfoButtonContainer">
-                            <asp:Button Text="Match Credit" id="btnInvoice" class="button panelButton form-control"  OnClientClick="return InvoiceInfo();"  runat="server" />
-                           </asp:Panel>
-                              </div>
-                        </div>
-                            <div class="row" id="divResetRow" style="display:none">
-                           <div class="col-lg-6 actionButtonColumn" style="display:none" id="divResetPages">
-                            <asp:Panel runat="server" ID="pnlReset" Visible="true" CssClass="updateInfoButtonContainer">
-                            <asp:Button Text="Reset mypages" class="button panelButton form-control" runat="server" OnClientClick="return RestoreMypage();" Style="padding-left: 10px;"/>
-                            </asp:Panel>
-                              </div>
-                        </div>
-                          </div>
                     </div>
 
                     <asp:Button ID="btnOpenModal" runat="server" Style="display: none;" />
@@ -204,11 +205,12 @@
                     </asp:Panel>
 
 
-
+                    
                     <div class="col-md-9 table-responsive customerTable tableMarginTop">
 
-
-                        <asp:GridView ID="grdCustomer" runat="server" EmptyDataRowStyle-CssClass="Emptyrow" AllowSorting="true"  OnSorting="grdCustomer_Sorting" AutoGenerateColumns="False" ViewStateMode="Enabled" Visible="true" Style="color: white; font-size: small;    margin-top: -4px;" ShowHeaderWhenEmpty="true" CssClass="table">
+                          <asp:UpdatePanel runat="server" ID="UpdatePanel1">
+                <ContentTemplate>
+                        <asp:GridView ID="grdCustomer" runat="server" EmptyDataRowStyle-CssClass="Emptyrow" AllowSorting="true" OnSorting="grdCustomer_Sorting" AutoGenerateColumns="False" ViewStateMode="Enabled" Visible="true" Style="color: white; font-size: small; margin-top: -4px;" ShowHeaderWhenEmpty="true" CssClass="table">
                             <HeaderStyle BackColor="#475672" />
                             <Columns>
                                 <asp:TemplateField ItemStyle-CssClass="labelcolor itemalign" HeaderText="INVOICE" SortExpression="Invoicenumber" HeaderStyle-CssClass="itemalign">
@@ -217,7 +219,7 @@
                                         <asp:LinkButton CssClass="linkcss" Text='<%# Bind("Invoicenumber") %>' overpaymentData='<%# Eval("Overpayment") %>'
                                             remainData='<%# Eval("Remainingamount") %>' invoiceData='<%# Eval("Customernumber") +"|"+ Eval("InvoiceID")%>' OnClientClick="return LinkClick(this);" ID="gridLink" OnClick="gridLink_Click" runat="server" />
                                     </ItemTemplate>
-                                   
+
                                 </asp:TemplateField>
 
                                 <asp:BoundField DataField="CurrencyCode" HeaderStyle-CssClass="itemalign" ItemStyle-CssClass="itemalign" HeaderText="CURRENCY" SortExpression="CurrencyCode" />
@@ -229,7 +231,7 @@
                                 <asp:BoundField DataField="Remainingamount" DataFormatString="{0:#,0.00}" HeaderStyle-CssClass="itemalign" ItemStyle-CssClass="itemalign" HeaderText="REMAIN" SortExpression="Remainingamount" />
 
                                 <asp:BoundField DataField="TotalRemaining" DataFormatString="{0:#,0.00}" HeaderStyle-CssClass="itemalign" ItemStyle-CssClass="itemalign" HeaderText="TOTAL REMAIN" SortExpression="TotalRemaining" />
-                                  <asp:BoundField DataField="Collectionstatus" HeaderStyle-CssClass="itemalign" ItemStyle-CssClass="itemalign" HeaderText="Collection Status" SortExpression="Collectionstatus" />
+                                <asp:BoundField DataField="Collectionstatus" HeaderStyle-CssClass="itemalign" ItemStyle-CssClass="itemalign" HeaderText="Collection Status" SortExpression="Collectionstatus" />
 
                                 <asp:BoundField DataField="Paymentreference" HeaderStyle-CssClass="itemalign" ItemStyle-CssClass="itemalign" HeaderText="PAY REF" SortExpression="Paymentreference" />
                                 <asp:BoundField DataField="Overpayment" DataFormatString="{0:#,0.00}" HeaderStyle-CssClass="itemalign" ItemStyle-CssClass="itemalign" HeaderText="OVER PAID" SortExpression="Overpayment" />
@@ -244,7 +246,7 @@
                                     </HeaderTemplate>
                                 </asp:TemplateField>
 
-                               <%-- <asp:TemplateField ItemStyle-CssClass="itemalign" HeaderStyle-CssClass="itemalign">
+                                <%-- <asp:TemplateField ItemStyle-CssClass="itemalign" HeaderStyle-CssClass="itemalign">
                             <ItemTemplate>
 
                                 <asp:Button runat="server" CssClass="invoicesDownloadButton button button-table" ID="btnEmail" download="0" custInvoice=' <%# Eval("Customernumber") %>' combineInvoice='<%# Eval("CombineInvoice") %>'  OnClientClick="return Email(this);" Text="Email" />
@@ -256,13 +258,16 @@
                             </Columns>
                             <EmptyDataTemplate>No Record Available</EmptyDataTemplate>
                         </asp:GridView>
-
+                    
+                    </ContentTemplate>
+            </asp:UpdatePanel>
 
                     </div>
 
-                    <div class="col-md-3" style="max-width:22%">
+
+                    <div class="col-md-3" style="max-width: 22%">
                     </div>
-                    <div class="col-md-9 table-responsive customerNotes" style="flex:0 0 80%;max-width:78%">
+                    <div class="col-md-9 table-responsive customerNotes" style="flex: 0 0 80%; max-width: 78%">
                         <div class="row totalsum" style="display: none;">
 
 
@@ -283,7 +288,8 @@
                             <div>
                                 <asp:Label ID="lblOverPaid" runat="server" />
                             </div>
-                            <div> <asp:Label ID="lblRemain" runat="server" /></div>
+                            <div>
+                                <asp:Label ID="lblRemain" runat="server" /></div>
                             <div></div>
 
 
@@ -329,12 +335,12 @@
         </div>
 
 
-        <div class="modal fade" id="mdlUpdateConfirm"  tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal fade" id="mdlUpdateConfirm" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
             <div class="modal-dialog" role="document">
-                <div class="modal-content" style="background: none; border: none; width: 125%;top:125px;">
+                <div class="modal-content" style="background: none; border: none; width: 125%; top: 125px;">
                     <div class="modal-header dashboardHeadline" style="background-color: #323e53; color: #fff; font-size: 16px;">
                         <h5 class="modal-title" id="exampleModalLabel">INVOICE INFO</h5>
-                        <div  class="modalcloseButton" id="pnlClose" aria-label="Close" style="top: 35px; right: 20px;cursor:pointer;">
+                        <div class="modalcloseButton" id="pnlClose" aria-label="Close" style="top: 35px; right: 20px; cursor: pointer;">
                             ✕
                         </div>
                     </div>
@@ -342,7 +348,7 @@
                         <div>
                             <span id="spnBody" style="color: #A9BFD5;">
 
-                                <asp:GridView ID="grdInvoiceRemaining" runat="server"  EmptyDataRowStyle-CssClass="Emptyrow" AutoGenerateColumns="False" ViewStateMode="Enabled" Visible="true" Style="color: white; font-size: small;" ShowHeaderWhenEmpty="true" CssClass="table">
+                                <asp:GridView ID="grdInvoiceRemaining" runat="server" EmptyDataRowStyle-CssClass="Emptyrow" AutoGenerateColumns="False" ViewStateMode="Enabled" Visible="true" Style="color: white; font-size: small;" ShowHeaderWhenEmpty="true" CssClass="table">
                                     <HeaderStyle BackColor="#475672" />
                                     <Columns>
 
@@ -358,7 +364,7 @@
                                                 Select
                                             </HeaderTemplate>
                                         </asp:TemplateField>--%>
-                                         <asp:BoundField DataField="InvoiceID" HeaderStyle-CssClass="Notesalign GridInvisible" ItemStyle-CssClass="Notesalign GridInvisible"   />
+                                        <asp:BoundField DataField="InvoiceID" HeaderStyle-CssClass="Notesalign GridInvisible" ItemStyle-CssClass="Notesalign GridInvisible" />
                                         <asp:BoundField DataField="InvoiceNumber" HeaderStyle-CssClass="Notesalign" ItemStyle-CssClass="Notesalign" HeaderText="INVOICE" SortExpression="InvoiceNumber" />
                                         <asp:BoundField DataField="CurrencyCode" HeaderStyle-CssClass="itemalign" ItemStyle-CssClass="itemalign" HeaderText="CURRENCY" SortExpression="CurrencyCode" />
                                         <asp:BoundField DataField="Invoiceamount" HeaderStyle-CssClass="itemalign" ItemStyle-CssClass="itemalign" HeaderText="AMOUNT" SortExpression="Invoiceamount" />
@@ -375,256 +381,254 @@
                     </div>
                     <div class="modal-footer" style="background-color: #323E53; padding: 0px;">
 
-                          <asp:Button ID="btnYes" runat="server" CssClass="modalbutton"  OnClientClick="return ShowPopup();" Text="Match" />
+                        <asp:Button ID="btnYes" runat="server" CssClass="modalbutton" OnClientClick="return ShowPopup();" Text="Match" />
                     </div>
                 </div>
             </div>
         </div>
 
 
-            </div>
-        <div class="modal fade" id="mdlUpdateInfo" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                        <div class="modal-dialog" role="document">
-                            <div class="modal-content" style="top: 200px;background: none;border:none;">
-                                <div class="modal-header dashboardHeadline" style="background-color: #323e53; color: #fff;font-size:16px;">
-                                    <h5 class="modal-title modalTextcolor dashboardHeadlineModal" id="updateInfoModalLabel">Email</h5>
-                                     <button type="button" class="modalcloseButton" data-dismiss="modal" aria-label="Close" style="top: 35px;right: 20px;">
-                                        <span aria-hidden="true">✕</span>
-                                    </button>
-                                </div>
-                                <div class="modal-body" style="background-color: #323e53; color: #fff;">
-                                 
-
-                                     <div id="pnlEmail">
-                                        <label>
-                                          
-                                           
-                        <asp:TextBox ID="txtCustEmail" runat="server" autocomplete="off" CssClass="form-control textboxModalColor" onkeyup='checkEmail(this)' ></asp:TextBox>
-                                        </label>
-
-                                        <span id="EmailValid" class="short">
-                                            <span id="spnEmail" class="hide" style="color:#f83030">Enter a valid email</span>
-                                        </span>
-
-                                    </div>
-                                 
-
-                                   
+    </div>
+    <div class="modal fade" id="mdlUpdateInfo" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content" style="top: 200px; background: none; border: none;">
+                <div class="modal-header dashboardHeadline" style="background-color: #323e53; color: #fff; font-size: 16px;">
+                    <h5 class="modal-title modalTextcolor dashboardHeadlineModal" id="updateInfoModalLabel">Email</h5>
+                    <button type="button" class="modalcloseButton" data-dismiss="modal" aria-label="Close" style="top: 35px; right: 20px;">
+                        <span aria-hidden="true">✕</span>
+                    </button>
+                </div>
+                <div class="modal-body" style="background-color: #323e53; color: #fff;">
 
 
-                                </div>
-                                <div class="modal-footer" style="background-color: #323E53; padding: 5px;">
-                                    <%--<asp:Button Text="Send" class="button updateInfoButton form-control" runat="server" ID="btnEmail" OnClick="btnEmail_Click"  Width="128px" />--%>
-                                </div>
+                    <div id="pnlEmail">
+                        <label>
 
-                             
 
-                            </div>
-                        </div>
+                            <asp:TextBox ID="txtCustEmail" runat="server" autocomplete="off" CssClass="form-control textboxModalColor" onkeyup='checkEmail(this)'></asp:TextBox>
+                        </label>
+
+                        <span id="EmailValid" class="short">
+                            <span id="spnEmail" class="hide" style="color: #f83030">Enter a valid email</span>
+                        </span>
+
                     </div>
 
 
 
-        <div class="modal fade" id="mdlDeleteConfirm" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                <div class="modal-dialog" role="document">
-                    <div class="modal-content" style="background: none;border:none;width: 85%;">
-                        <div class="modal-header dashboardHeadline" style="background-color: #323e53; color: #fff;font-size:16px;">
-                            <h5 class="modal-title" id="info">Information</h5>
-                            <button type="button" class="modalcloseButton" data-dismiss="modal" aria-label="Close" style="top: 30px;right: 0px;">
-                                        <span aria-hidden="true">✕</span>
-                                    </button>
-                        </div>
-                        <div class="modal-body" style="background-color: #323e53; color: #fff;">
-                            <div>
-                                <span id="msgText" style="color: #A9BFD5;text-transform: uppercase;font-size:12px;"> Are you sure you want to reset the customers My pages login? </span>
-                            </div>
-                        </div>
 
 
-                           <div class="modal-footer" style="background-color: #323E53;padding:0px;">
-                               <asp:Button runat="server" CssClass="modalbutton" id="btnOk"  Text="Yes" OnClick="btnOk_Click"></asp:Button>
-                            <button type="button" class="modalbutton" id="btnNo" data-dismiss="modal">No</button>
-                            
-                            </div>
-                        
+                </div>
+                <div class="modal-footer" style="background-color: #323E53; padding: 5px;">
+                    <%--<asp:Button Text="Send" class="button updateInfoButton form-control" runat="server" ID="btnEmail" OnClick="btnEmail_Click"  Width="128px" />--%>
+                </div>
+
+
+
+            </div>
+        </div>
+    </div>
+
+
+
+    <div class="modal fade" id="mdlDeleteConfirm" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content" style="background: none; border: none; width: 85%;">
+                <div class="modal-header dashboardHeadline" style="background-color: #323e53; color: #fff; font-size: 16px;">
+                    <h5 class="modal-title" id="info">Information</h5>
+                    <button type="button" class="modalcloseButton" data-dismiss="modal" aria-label="Close" style="top: 30px; right: 0px;">
+                        <span aria-hidden="true">✕</span>
+                    </button>
+                </div>
+                <div class="modal-body" style="background-color: #323e53; color: #fff;">
+                    <div>
+                        <span id="msgText" style="color: #A9BFD5; text-transform: uppercase; font-size: 12px;">Are you sure you want to reset the customers My pages login? </span>
                     </div>
                 </div>
+
+
+                <div class="modal-footer" style="background-color: #323E53; padding: 0px;">
+                    <asp:Button runat="server" CssClass="modalbutton" ID="btnOk" Text="Yes" OnClick="btnOk_Click"></asp:Button>
+                    <button type="button" class="modalbutton" id="btnNo" data-dismiss="modal">No</button>
+
+                </div>
+
             </div>
+        </div>
+    </div>
 
 
 
 
-        <div class="modal fade" id="mdlAccessInfo" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                        <div class="modal-dialog" role="document">
-                            <div class="modal-content" style="top: -50px;
-                                    background: none;
-                                    border: none;">
-                                <div class="modal-header dashboardHeadline" style="background-color: #323e53; color: #fff;font-size:16px;">
-                                    <h5 class="modal-title modalTextcolor dashboardHeadlineModal" id="informModalLabel">UPDATE INFO</h5>
-                                     <button type="button" class="modalcloseButton" data-dismiss="modal" aria-label="Close" style="top: 35px;right: 20px;">
-                                        <span aria-hidden="true">✕</span>
-                                    </button>
-                                </div>
-                                <div class="modal-body" style="background-color: #323e53; color: #fff;">
-                                    <div>
-                                        <label>
-                                             <asp:Label style="color: #A9BFD5;text-transform: uppercase;font-size:12px;" runat="server" ID="spnCustomerName" Text="Customer Name"></asp:Label>
-                                           
-                        <asp:TextBox ID="txtCustomerName" runat="server" autocomplete="off" CssClass="form-control textboxModalColor"></asp:TextBox>
-                                        </label>
+    <div class="modal fade" id="mdlAccessInfo" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content" style="top: -50px; background: none; border: none;">
+                <div class="modal-header dashboardHeadline" style="background-color: #323e53; color: #fff; font-size: 16px;">
+                    <h5 class="modal-title modalTextcolor dashboardHeadlineModal" id="informModalLabel">UPDATE INFO</h5>
+                    <button type="button" class="modalcloseButton" data-dismiss="modal" aria-label="Close" style="top: 35px; right: 20px;">
+                        <span aria-hidden="true">✕</span>
+                    </button>
+                </div>
+                <div class="modal-body" style="background-color: #323e53; color: #fff;">
+                    <div>
+                        <label>
+                            <asp:Label Style="color: #A9BFD5; text-transform: uppercase; font-size: 12px;" runat="server" ID="spnCustomerName" Text="Customer Name"></asp:Label>
 
-                                     
+                            <asp:TextBox ID="txtCustomerName" runat="server" autocomplete="off" CssClass="form-control textboxModalColor"></asp:TextBox>
+                        </label>
 
-                                    </div>
-                                    <div style="margin-top: 12px;">
-                                        <label>
-                                              <asp:Label style="color: #A9BFD5;    text-transform: uppercase;font-size:12px;" ID="spnAddress1" Text="Address1" runat="server"></asp:Label>
-                                          
-                        <asp:TextBox ID="txtAddress1" runat="server" autocomplete="off" CssClass="form-control textboxModalColor" ></asp:TextBox>
-                                        </label>
 
-                                      
-                                    </div>
 
-                                    <div style="margin-top: 12px;">
-                                        <label>
-                                              <asp:Label style="color: #A9BFD5;    text-transform: uppercase;font-size:12px;" runat="server" Text="Address2" ID="spnAddress2"> </asp:Label>
-                                          
-                        <asp:TextBox ID="txtAddress2" runat="server" autocomplete="off" CssClass="form-control textboxModalColor"></asp:TextBox>
-                                        </label>
+                    </div>
+                    <div style="margin-top: 12px;">
+                        <label>
+                            <asp:Label Style="color: #A9BFD5; text-transform: uppercase; font-size: 12px;" ID="spnAddress1" Text="Address1" runat="server"></asp:Label>
 
-                                   
-                                    </div>
+                            <asp:TextBox ID="txtAddress1" runat="server" autocomplete="off" CssClass="form-control textboxModalColor"></asp:TextBox>
+                        </label>
 
-                                      <div style="margin-top: 12px;">
-                                        <label>
-                                              <asp:Label style="color: #A9BFD5;    text-transform: uppercase;font-size:12px;" runat="server" Text="Postal Code" ID="spnPostalCode"> </asp:Label>
-                                          
-                        <asp:TextBox ID="txtPostalCode" runat="server" autocomplete="off" CssClass="form-control textboxModalColor" ></asp:TextBox>
-                                        </label>
 
-                                   
-                                    </div>
-
-                                        <div style="margin-top: 12px;">
-                                        <label>
-                                              <asp:Label style="color: #A9BFD5;    text-transform: uppercase;font-size:12px;" runat="server" ID="spnCity" Text="City"></asp:Label>
-                                          
-                        <asp:TextBox ID="txtCity" runat="server" autocomplete="off" CssClass="form-control textboxModalColor" ></asp:TextBox>
-                                        </label>
-
-                                   
-                                    </div>
-                                        <div style="margin-top: 12px;">
-                                        <label>
-                                              <asp:Label style="color: #A9BFD5;    text-transform: uppercase;font-size:12px;" runat="server" ID="spnCountry" Text="Country"> </asp:Label>
-                                          
-                        <asp:TextBox ID="txtCountry" runat="server" autocomplete="off" CssClass="form-control textboxModalColor" ></asp:TextBox>
-                                        </label>
-
-                                   
-                                    </div>
-                                     <div style="margin-top: 12px;">
-                                        <label>
-                                              <asp:Label style="color: #A9BFD5;    text-transform: uppercase;font-size:12px;" runat="server" ID="spnModalEmail" Text="Email"> </asp:Label>
-                                          
-                        <asp:TextBox ID="txtEmail" runat="server" autocomplete="off" CssClass="form-control textboxModalColor" ></asp:TextBox>
-                                        </label>
-
-                                   
-                                    </div>
-
-                                     <div style="margin-top: 12px;">
-                                        <label>
-                                              <asp:Label style="color: #A9BFD5;    text-transform: uppercase;font-size:12px;" runat="server" ID="spnPhonenumber" Text="Phone Number"> </asp:Label>
-                                          
-                        <asp:TextBox ID="txtPhoneNumber" runat="server" autocomplete="off" CssClass="form-control textboxModalColor" onkeypress="return AllowNumbersPlus(this);"></asp:TextBox>
-                                        </label>
-
-                                   
-                                    </div>
-
-                                </div>
-                                <div class="modal-footer" style="background-color: #323E53; padding: 0px;margin-top:-15px;">
-                                    <asp:Button runat="server" class="modalbutton" ID="btnSubmit" Text="Submit" OnClick="btnSubmit_Click"></asp:Button>
-
-                                </div>
-
-                             
-
-                            </div>
-                        </div>
                     </div>
 
+                    <div style="margin-top: 12px;">
+                        <label>
+                            <asp:Label Style="color: #A9BFD5; text-transform: uppercase; font-size: 12px;" runat="server" Text="Address2" ID="spnAddress2"> </asp:Label>
+
+                            <asp:TextBox ID="txtAddress2" runat="server" autocomplete="off" CssClass="form-control textboxModalColor"></asp:TextBox>
+                        </label>
 
 
-        <div class="modal fade" id="mdlExport" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                <div class="modal-dialog" role="document">
-                    <div class="modal-content" style="top:200px; background: none;border:none;width: 85%;">
-                        <div class="modal-header dashboardHeadline" style="background-color: #323e53; color: #fff;font-size:16px;">
-                            <h5 class="modal-title" id="hdnInfo">Export</h5>
-                            <button type="button" class="modalcloseButton" data-dismiss="modal" aria-label="Close" style="top: 30px;right: 0px;">
-                                        <span aria-hidden="true">✕</span>
-                                    </button>
-                        </div>
-                        <div class="modal-body" style="background-color: #323e53; color: #fff;text-align:center">
-                              <asp:Button Text="Export report" id="btnExportreport" CssClass="modalExportbutton" OnClick="btnExport_Click"  runat="server" style="width:40%;"  />
+                    </div>
 
-                              <asp:Button Text="Export Detail" id="btnExportDetail" CssClass="modalExportbutton" OnClick="btnExportDetail_Click"  runat="server" style="width:40%;"  />
-                           
-                        </div>
+                    <div style="margin-top: 12px;">
+                        <label>
+                            <asp:Label Style="color: #A9BFD5; text-transform: uppercase; font-size: 12px;" runat="server" Text="Postal Code" ID="spnPostalCode"> </asp:Label>
 
-                      
-                        
+                            <asp:TextBox ID="txtPostalCode" runat="server" autocomplete="off" CssClass="form-control textboxModalColor"></asp:TextBox>
+                        </label>
+
+
+                    </div>
+
+                    <div style="margin-top: 12px;">
+                        <label>
+                            <asp:Label Style="color: #A9BFD5; text-transform: uppercase; font-size: 12px;" runat="server" ID="spnCity" Text="City"></asp:Label>
+
+                            <asp:TextBox ID="txtCity" runat="server" autocomplete="off" CssClass="form-control textboxModalColor"></asp:TextBox>
+                        </label>
+
+
+                    </div>
+                    <div style="margin-top: 12px;">
+                        <label>
+                            <asp:Label Style="color: #A9BFD5; text-transform: uppercase; font-size: 12px;" runat="server" ID="spnCountry" Text="Country"> </asp:Label>
+
+                            <asp:TextBox ID="txtCountry" runat="server" autocomplete="off" CssClass="form-control textboxModalColor"></asp:TextBox>
+                        </label>
+
+
+                    </div>
+                    <div style="margin-top: 12px;">
+                        <label>
+                            <asp:Label Style="color: #A9BFD5; text-transform: uppercase; font-size: 12px;" runat="server" ID="spnModalEmail" Text="Email"> </asp:Label>
+
+                            <asp:TextBox ID="txtEmail" runat="server" autocomplete="off" CssClass="form-control textboxModalColor"></asp:TextBox>
+                        </label>
+
+
+                    </div>
+
+                    <div style="margin-top: 12px;">
+                        <label>
+                            <asp:Label Style="color: #A9BFD5; text-transform: uppercase; font-size: 12px;" runat="server" ID="spnPhonenumber" Text="Phone Number"> </asp:Label>
+
+                            <asp:TextBox ID="txtPhoneNumber" runat="server" autocomplete="off" CssClass="form-control textboxModalColor" onkeypress="return AllowNumbersPlus(this);"></asp:TextBox>
+                        </label>
+
+
+                    </div>
+
+                </div>
+                <div class="modal-footer" style="background-color: #323E53; padding: 0px; margin-top: -15px;">
+                    <asp:Button runat="server" class="modalbutton" ID="btnSubmit" Text="Submit" OnClick="btnSubmit_Click"></asp:Button>
+
+                </div>
+
+
+
+            </div>
+        </div>
+    </div>
+
+
+
+    <div class="modal fade" id="mdlExport" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content" style="top: 200px; background: none; border: none; width: 85%;">
+                <div class="modal-header dashboardHeadline" style="background-color: #323e53; color: #fff; font-size: 16px;">
+                    <h5 class="modal-title" id="hdnInfo">Export</h5>
+                    <button type="button" class="modalcloseButton" data-dismiss="modal" aria-label="Close" style="top: 30px; right: 0px;">
+                        <span aria-hidden="true">✕</span>
+                    </button>
+                </div>
+                <div class="modal-body" style="background-color: #323e53; color: #fff; text-align: center">
+                    <asp:Button Text="Export report" ID="btnExportreport" CssClass="modalExportbutton" OnClick="btnExport_Click" runat="server" Style="width: 40%;" />
+
+                    <asp:Button Text="Export Detail" ID="btnExportDetail" CssClass="modalExportbutton" OnClick="btnExportDetail_Click" runat="server" Style="width: 40%;" />
+
+                </div>
+
+
+
+            </div>
+        </div>
+    </div>
+
+
+
+
+
+    <div class="modal fade" id="mdlPopConfirm" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content" style="background: none; border: none; width: 85%; margin-left: 100px;">
+                <div class="modal-header dashboardHeadline" style="background-color: #3a475d; color: #fff; font-size: 16px;">
+                    <h5 class="modal-title" id="hinfo">Information</h5>
+                    <button type="button" class="modalcloseButton" data-dismiss="modal" aria-label="Close" style="top: 30px; right: 0px;">
+                        <span aria-hidden="true">✕</span>
+                    </button>
+                </div>
+                <div class="modal-body" style="background-color: #3a475d; color: #fff;">
+                    <div>
+                        <span id="spntext" style="color: #A9BFD5; text-transform: uppercase; font-size: 12px;">Match credit XX with invoice YY? </span>
                     </div>
                 </div>
+
+                <div class="modal-footer" style="background-color: #3a475d; padding: 0px;">
+                    <asp:Button runat="server" CssClass="modalbutton" ID="btnMatchOk" Text="Ok" OnClientClick="return Match();"></asp:Button>
+                    <button type="button" class="modalbutton" id="btnCancel" data-dismiss="modal">Cancel</button>
+
+                </div>
+
             </div>
+        </div>
+    </div>
 
-
-
-    
-
-        <div class="modal fade" id="mdlPopConfirm" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                <div class="modal-dialog" role="document">
-                    <div class="modal-content" style="background: none;border:none;width: 85%;margin-left:100px;">
-                        <div class="modal-header dashboardHeadline" style="background-color: #3a475d; color: #fff;font-size:16px;">
-                            <h5 class="modal-title" id="hinfo">Information</h5>
-                            <button type="button" class="modalcloseButton" data-dismiss="modal" aria-label="Close" style="top: 30px;right: 0px;">
-                                        <span aria-hidden="true">✕</span>
-                                    </button>
-                        </div>
-                        <div class="modal-body" style="background-color: #3a475d; color: #fff;">
-                            <div>
-                                <span id="spntext" style="color: #A9BFD5;text-transform: uppercase;font-size:12px;"> Match credit XX with invoice YY? </span>
-                            </div>
-                        </div>
-
-                           <div class="modal-footer" style="background-color: #3a475d;padding:0px;">
-                            <asp:Button runat="server" CssClass="modalbutton" id="btnMatchOk"  Text="Ok" OnClientClick="return Match();"></asp:Button>
-                            <button type="button" class="modalbutton" id="btnCancel" data-dismiss="modal">Cancel</button>
-                            
-                            </div>
-                        
-                    </div>
+    <div class="modal manulInvoiceModal" id="mdlManualInvoice" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true" runat="server">
+        <div class="modal-dialog" role="document" style="overflow-y: initial !important;">
+            <div class="modal-content" style="height: 100%; width: 160%; background: none; border: none">
+                <div class="modal-body" style="overflow-y: scroll; background-color: #323e53 !important">
+                    <asp:UpdatePanel runat="server" ID="pnlManualInv" UpdateMode="Conditional">
+                        <ContentTemplate>
+                            <uc1:ucManualInvoice runat="server" ID="ucManualInvoice" />
+                        </ContentTemplate>
+                    </asp:UpdatePanel>
                 </div>
             </div>
+        </div>
+    </div>
+    <asp:HiddenField ID="hdnInvoiceNumber" runat="server" />
+    <asp:HiddenField ID="hdnEmailID" runat="server" />
+    <asp:HiddenField ID="hdnMatch" runat="server" Value="true" />
 
-            <div class="modal manulInvoiceModal" id="mdlManualInvoice" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true" runat="server">
-                <div class="modal-dialog" role="document"  style="overflow-y: initial !important;">
-                    <div class="modal-content" style="height:100%;width:160%;background:none;border:none">
-                        <div class="modal-body" style="overflow-y:scroll;background-color:#323e53 !important">
-                            <asp:UpdatePanel runat="server" ID="pnlManualInv" UpdateMode="Conditional">
-                            <ContentTemplate>
-                                   <uc1:ucManualInvoice runat="server" id="ucManualInvoice"/>
-                           </ContentTemplate>
-                            </asp:UpdatePanel>
-                        </div>
-                    </div>
-                </div>
-            </div>
-         <asp:HiddenField ID="hdnInvoiceNumber" runat="server" />
-             <asp:HiddenField ID="hdnEmailID" runat="server" />
-        <asp:HiddenField ID="hdnMatch" runat="server" Value="true" />
- 
-      <asp:TextBox ID="txtCustomerID" runat="server" autocomplete="off" Visible="false" ></asp:TextBox>
+    <asp:TextBox ID="txtCustomerID" runat="server" autocomplete="off" Visible="false"></asp:TextBox>
 </asp:Content>

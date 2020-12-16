@@ -199,6 +199,8 @@ namespace Nordfin
                 LoadManualInvoiceCustomerData();
 
             }
+
+            ScriptManager.RegisterStartupScript(UpdatePanel1, UpdatePanel1.GetType(), "CreateControl", "CreateControl();", true);
         }
 
         protected void gridLink_Click(object sender, EventArgs e)

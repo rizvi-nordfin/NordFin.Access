@@ -14,6 +14,39 @@ Array.prototype.unique = function () {
     }
     return arr;
 }
+function CreateControl() {
+    $("#NordfinContentHolder_grdCustomer tr:first").before("<tr id='trHead' class='trHead' ><th class='labelcolor itemalign trHead'> " + "" + "</th>" + "<th class='itemalign trHead'>" + "" + "</th> " +
+        "<th class='itemalign trHead' >" + "" + "</th> " + "<th class='itemalign trHead'>" + '' + "</th>" + "<th class='itemalign trHead'>" + "" + "</th> " +
+        "<th class='itemalign trHead'>" + "" + "</th> " + "<th class='itemalign trHead'>" + '' + "</th> " + "<th class='itemalign trHead'>" + '' + "</th> " + + "<th class='itemalign trHead'>"
+        + '' + "</th> " + "<th class='itemalign trHead'>" + "" + "</th> " + "<th class='itemalign trHead'>" + "" + "</th> " + "<th id='tdMatch' class='itemalign trHead'>" + '' + "</th> "
+        + "<th id='tdExport' class='itemalign trHead'>" + '' + "</th>" +
+
+        + "<th id='tdCheck' class='itemaligntrHead'>" + '' + "</th> " + "</tr>");
+
+    $("#NordfinContentHolder_grdCustomer").append(" <tfoot><tr><td class='labelcolor itemalign'> " + "Summary" + "</td>" + "<td class='itemalign'>" + "" + "</td> " +
+        "<td class='itemalign'>" + document.getElementById("NordfinContentHolder_lblSumAmount").textContent + "</td> " + "<td class='itemalign'>" + document.getElementById("NordfinContentHolder_lblFeesAmount").textContent + "</td>" + "<td class='itemalign'>" + "" + "</td> " +
+        "<td class='itemalign'>" + "" + "</td> " + "<td class='itemalign'>" + document.getElementById("NordfinContentHolder_lblRemain").textContent + "</td> " + "<td class='itemalign'>" + document.getElementById("NordfinContentHolder_lblTotalRemain").textContent
+        + "</td> " + + "<td class='itemalign'>" + "" + "</td> " + "<td class='itemalign'>" + "" + "</td> " + "<td class='itemalign'>" + "" + "</td> " + "<td class='itemalign'>" + document.getElementById("NordfinContentHolder_lblOverPaid").textContent + "</td> " + "</tr></tfoot>");
+
+    addButton();
+
+
+}
+
+
+function addButton() {
+
+    var element = document.createElement("input");
+    element.type = 'button';
+    element.value = 'Download';
+    element.name = 'btncheck';
+    element.onclick = function () {
+        document.getElementById("NordfinContentHolder_btnExportreport").click();
+    };
+    element.classList = 'button button-table downloadButton';
+    var foo = document.getElementById("tdExport");
+    foo.appendChild(element);
+} 
 window.onload = function () {
     $addHandler(document, "keydown", onKeyDown);
 
@@ -49,34 +82,10 @@ window.onload = function () {
 
   
 
-    $("#NordfinContentHolder_grdCustomer tr:first").before("<tr id='trHead' class='trHead' ><th class='labelcolor itemalign trHead'> " + "" + "</th>" + "<th class='itemalign trHead'>" + "" + "</th> " +
-        "<th class='itemalign trHead' >" + "" + "</th> " + "<th class='itemalign trHead'>" + '' + "</th>" + "<th class='itemalign trHead'>" + "" + "</th> " +
-        "<th class='itemalign trHead'>" + "" + "</th> " + "<th class='itemalign trHead'>" + '' + "</th> " + "<th class='itemalign trHead'>" + '' + "</th> " + + "<th class='itemalign trHead'>"
-        + '' + "</th> " + "<th class='itemalign trHead'>" + "" + "</th> " + "<th class='itemalign trHead'>" + "" + "</th> " + "<th id='tdMatch' class='itemalign trHead'>" + '' + "</th> "
-        + "<th id='tdExport' class='itemalign trHead'>" + '' + "</th>" +
-
-        + "<th id='tdCheck' class='itemaligntrHead'>" + '' + "</th> " + "</tr>");
+    
 
 
-    $("#NordfinContentHolder_grdCustomer").append(" <tfoot><tr><td class='labelcolor itemalign'> " + "Summary" + "</td>" + "<td class='itemalign'>" + "" + "</td> " +
-        "<td class='itemalign'>" + document.getElementById("NordfinContentHolder_lblSumAmount").textContent + "</td> " + "<td class='itemalign'>" + document.getElementById("NordfinContentHolder_lblFeesAmount").textContent + "</td>" + "<td class='itemalign'>" + "" + "</td> " +
-        "<td class='itemalign'>" + "" + "</td> " + "<td class='itemalign'>" + document.getElementById("NordfinContentHolder_lblRemain").textContent + "</td> " + "<td class='itemalign'>" + document.getElementById("NordfinContentHolder_lblTotalRemain").textContent
-        + "</td> " + + "<td class='itemalign'>" + "" + "</td> " + "<td class='itemalign'>" + "" + "</td> " + "<td class='itemalign'>" + "" + "</td> " + "<td class='itemalign'>" + document.getElementById("NordfinContentHolder_lblOverPaid").textContent + "</td> " + "</tr></tfoot>");
    
-    addButton();
-    function addButton() {
-
-        var element = document.createElement("input");
-        element.type = 'button';
-        element.value = 'Download';
-        element.name = 'btncheck';
-        element.onclick = function () {
-            document.getElementById("NordfinContentHolder_btnExportreport").click();
-        };
-        element.classList = 'button button-table downloadButton';
-        var foo = document.getElementById("tdExport");
-        foo.appendChild(element);
-    } 
     if (this.document.getElementById("NordfinContentHolder_hdnMatch").value == "true") {
         //addInButton();
         $('#divManualInvoiceRow').show(); 
