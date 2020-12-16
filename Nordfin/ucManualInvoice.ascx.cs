@@ -76,7 +76,7 @@ namespace Nordfin
             var invoice = new Invoice
             {
                 InvoiceNumber = invNumber,
-                ConnectionId = invNumber,
+                ConnectionId = "0",
                 BillDate = txtInvDate.Text.Trim(),
                 DueDate = txtDueDate.Text.Trim(),
                 CustomerNumber = txtCustNum.Text.Trim(),
@@ -85,7 +85,7 @@ namespace Nordfin
                 Purchased = "0",
                 FileName = fileName,
                 Delivery = drpInvDelivery.SelectedValue?.Trim(),
-                PaymentReference = Utilities.BuildOcr(lblInvoiceNumber.Text?.Trim(), 9, "9", "Sweden"),
+                PaymentReference = Utilities.BuildOcr(lblInvoiceNumber.Text?.Trim(), (lblInvoiceNumber.Text?.Trim().Length).Value + 3, "9", "Sweden"),
                 CurrencyCode = drpCurrency.Text.Trim(),
                 InvoiceAmount = txtTotalAmount.Text.Trim(),
                 RemainingAmount = txtTotalAmount.Text.Trim(),

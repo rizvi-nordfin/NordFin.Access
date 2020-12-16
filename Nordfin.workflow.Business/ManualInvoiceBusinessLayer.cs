@@ -14,11 +14,6 @@ namespace Nordfin.workflow.BusinessLayer
     {
         IManualInvoiceBusinessDataLayer objManualInvoice = new ManualInvoiceDataAccessLayer();
 
-        public List<ContractInvoice> GetContractInvoices()
-        {
-            return objManualInvoice.GetContractInvoices();
-        }
-
         public IList<CustomerInfo> GetCustomerInfoForClient(int clientID)
         {
             return objManualInvoice.GetCustomerInfoForClient(clientID);

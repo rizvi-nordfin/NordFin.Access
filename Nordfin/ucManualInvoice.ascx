@@ -42,11 +42,11 @@
                 <asp:TextBox ID="txtCustName" runat="server" autocomplete="off" CssClass="form-control controls" Enabled="false"></asp:TextBox>
             </div>
             <div class="col-md-2">
-                <span class="title">Customer Contact</span>
+                <span class="title">Address 1</span>
                 <asp:TextBox ID="txtCustContact" runat="server" autocomplete="off" CssClass="form-control controls" Enabled="false"></asp:TextBox>
             </div>
             <div class="col-md-2">
-                <span class="title">Address</span>
+                <span class="title">Address 2</span>
                 <asp:TextBox ID="txtCustAddress" runat="server" autocomplete="off" CssClass="form-control controls" Enabled="false"></asp:TextBox>
             </div>
           <div class="col-md-2">
@@ -145,7 +145,7 @@
     <div class="container-fluid">
     <div class="row">
         <div class="col-md-2">
-               <asp:Button ID="btnGridDelete"  Text="Delete Row" CssClass="export rowButton" runat="server" Enabled="false" OnClick="DeleteRows" />
+               <asp:Button ID="btnGridDelete"  Text="Delete Row" style="padding-left: 10px;" CssClass="export rowButton" runat="server" Enabled="false" OnClick="DeleteRows" />
            </div>
            <%--<div class="col-md-2">
                <asp:Button ID="btnGridEdit"  Text="Edit Row" CssClass="export" style="width:100%;height:30px"  runat="server" Enabled="false" />
@@ -155,8 +155,9 @@
     <br />
     <div class="container-fluid">
       <div class="row">
-          <asp:GridView ID="grdInvoiceRows" runat="server" ShowFooter="true" AutoGenerateColumns="false" CssClass="invoiceRowTable" ShowHeaderWhenEmpty="True" 
-              EmptyDataRowStyle-HorizontalAlign="Center" EmptyDataRowStyle-VerticalAlign="Middle"  EmptyDataText="No Data Found" OnRowDataBound="grdInvoiceRows_OnRowDataBound" 
+          <div class="col">
+          <asp:GridView ID="grdInvoiceRows" runat="server" ShowFooter="true" AutoGenerateColumns="false" ShowHeaderWhenEmpty="True" 
+              EmptyDataRowStyle-HorizontalAlign="Center" EmptyDataRowStyle-VerticalAlign="Middle" EmptyDataText="No Data Found" OnRowDataBound="grdInvoiceRows_OnRowDataBound" 
               OnSelectedIndexChanged="grdInvoiceRows_SelectedIndexChanged" SelectedRowStyle-BackColor="#475672">
               <Columns>
                   <asp:BoundField DataField="Article" HeaderText="Article" ItemStyle-HorizontalAlign="Center" />
@@ -169,6 +170,7 @@
                   <asp:BoundField DataField="TotalAmount" HeaderText="Row Total" ItemStyle-HorizontalAlign="Center" />
                 </Columns>
           </asp:GridView>
+              </div>
      </div>
     </div>
     <br />
@@ -188,7 +190,7 @@
                 <asp:TextBox ID="txtTotalAmount" runat="server" autocomplete="off" CssClass="form-control controls"></asp:TextBox>
             </div>
           <div class="col-md-2" style="padding-top:26px">
-            <asp:Button ID="btnCreate"  Text="Create Invoice" CssClass="export rowButton" style="float:right"  OnClick="CreateManualInvoice" runat="server" />
+            <asp:Button ID="btnCreate"  Text="Create" CssClass="export rowButton" OnClick="CreateManualInvoice" runat="server" />
           </div>
           </div>
     </div>
@@ -196,7 +198,12 @@
 <%--<asp:LinkButton ID="LinkButton2" runat="server">LinkButton</asp:LinkButton>
             <asp:Button ID="Button1" runat="server" Text="Close" />
 <asp:Panel runat="server" id="successPanel">
-    <div class="modal fade" id="successModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+    
+    </asp:Panel>
+<ajaxToolkit:ModalPopupExtender ID="modalSuccess" runat="server" BackgroundCssClass="modalBackground"
+                                            PopupControlID="successPanel" CancelControlID="Button1" TargetControlID="LinkButton2">
+</ajaxToolkit:ModalPopupExtender>--%>
+<%--<div class="modal fade" id="successModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
                   <div class="modal-dialog modal-dialog-centered" role="document">
                     <div class="modal-content">
                       <div class="modal-header">
@@ -213,8 +220,4 @@
                       </div>
                     </div>
                   </div>
-                </div>
-    </asp:Panel>
-<ajaxToolkit:ModalPopupExtender ID="modalSuccess" runat="server" BackgroundCssClass="modalBackground"
-                                            PopupControlID="successPanel" CancelControlID="Button1" TargetControlID="LinkButton2">
-</ajaxToolkit:ModalPopupExtender>--%>
+                </div>--%>

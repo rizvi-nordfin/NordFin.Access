@@ -77,7 +77,8 @@ namespace Nordfin
 
                             if (dtResult.Rows[0].Field<int>("IsActive") > 0)
                             {
-                                pnlReset.Visible = true;
+                                //pnlReset.Visible = true;
+                                ScriptManager.RegisterStartupScript(this, this.GetType(), "showResetPage", "$('#divResetRow').show(); $('#divResetPages').show();", true);
                             }
                             else
                             {
@@ -181,7 +182,7 @@ namespace Nordfin
                     }
                     else
                     {
-                        pnlMatch.Visible = false;
+                        //divMatch.Visible = false;
                     }
 
                 }
@@ -189,6 +190,11 @@ namespace Nordfin
                 {
                     grdCustomer.DataSource = new List<string>();
                     grdCustomer.DataBind();
+                }
+
+                if(ClientSession.Admin == "0" || ClientSession.Admin == "1")
+                {
+                    ScriptManager.RegisterStartupScript(this, this.GetType(), "showManualInvoice", "$('#divManualInvoiceRow').show(); $('#divManualInvoice').show();", true);
                 }
                 LoadManualInvoiceCustomerData();
 

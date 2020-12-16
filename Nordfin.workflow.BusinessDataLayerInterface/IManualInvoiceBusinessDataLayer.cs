@@ -11,8 +11,6 @@ namespace Nordfin.workflow.BusinessDataLayerInterface
     {
         IList<CustomerInfo> GetCustomerInfoForClient(int clientID);
 
-        List<ContractInvoice> GetContractInvoices();
-
         int GetNumberSeries(string seriesName);
 
         void UpdateNumberSeries(string seriesName, int newSeries);

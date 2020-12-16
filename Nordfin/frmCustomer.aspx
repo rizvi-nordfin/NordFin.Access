@@ -1,4 +1,4 @@
-﻿<%@ Page Language="C#" MasterPageFile="~/Nordfin.Master" AutoEventWireup="true" Title="NordfinCapital" EnableEventValidation="false" CodeBehind="frmCustomer.aspx.cs" Inherits="Nordfin.frmCustomer" %>
+﻿    <%@ Page Language="C#" MasterPageFile="~/Nordfin.Master" AutoEventWireup="true" Title="NordfinCapital" EnableEventValidation="false" CodeBehind="frmCustomer.aspx.cs" Inherits="Nordfin.frmCustomer" %>
 
 
 <%@ Register Assembly="AjaxControlToolkit" Namespace="AjaxControlToolkit" TagPrefix="ModalWindow" %>
@@ -159,33 +159,33 @@
 
                         </div>
                         <div class="container-fluid" style="padding-left: 10px;background-color: #475672;">
-                        <div class="row" style="margin-bottom:-5px">
-                            <div class="col-md-6">
+                        <div class="row">
+                            <div class="col-md-6 actionButtonColumn">
                                  <asp:Panel runat="server" ID="pnlUpdate" class="updateInfoButtonContainer">
                             <asp:Button Text="Update info" class="button panelButton form-control" runat="server" ID="btnUpdateInfo" OnClientClick="return UpdateInfo();" />
                         </asp:Panel>
                             </div>
-                            <div class="col-md-6">
+                            <div class="col-md-6 actionButtonColumn">
                                 <asp:Panel runat="server" ID="pnlCreditCheck" class="updateInfoButtonContainer">
                             <asp:Button Text="Credit Check" class="button panelButton form-control" runat="server" ID="btnCreditCheck" OnClientClick="return CreditCheck();" />
                         </asp:Panel>
                             </div>
                         </div>
-                       <div class="row">
-                           <div class="col-md-6">
+                       <div class="row" id="divManualInvoiceRow" style="display:none">
+                           <div class="col-md-6 actionButtonColumn" id="divManualInvoice" style="display:none">
                           <asp:Panel runat="server" ID="pnlManualInvoice" Visible="true" CssClass="updateInfoButtonContainer">
                             <asp:Button CssClass="button panelButton form-control" id="btnManualInv" Text="Manual Invoice" runat="server" OnClientClick="return showManualInvoice();" Style="padding-left: 8px;"></asp:Button> 
                            </asp:Panel>
                               </div>
-                            <div class="col-md-6">
+                            <div class="col-md-6 actionButtonColumn" id="divMatch" style="display:none">
                                   <asp:Panel runat="server" ID="pnlMatch" Visible="true" CssClass="updateInfoButtonContainer">
                             <asp:Button Text="Match Credit" id="btnInvoice" class="button panelButton form-control"  OnClientClick="return InvoiceInfo();"  runat="server" />
                            </asp:Panel>
                               </div>
                         </div>
-                            <div class="row">
-                           <div class="col-md-6">
-                            <asp:Panel runat="server" ID="pnlReset" Visible="false" CssClass="updateInfoButtonContainer">
+                            <div class="row" id="divResetRow" style="display:none">
+                           <div class="col-lg-6 actionButtonColumn" style="display:none" id="divResetPages">
+                            <asp:Panel runat="server" ID="pnlReset" Visible="true" CssClass="updateInfoButtonContainer">
                             <asp:Button Text="Reset mypages" class="button panelButton form-control" runat="server" OnClientClick="return RestoreMypage();" Style="padding-left: 10px;"/>
                             </asp:Panel>
                               </div>
@@ -609,10 +609,10 @@
                 </div>
             </div>
 
-            <div class="modal" id="mdlManualInvoice" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true" runat="server">
+            <div class="modal manulInvoiceModal" id="mdlManualInvoice" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true" runat="server">
                 <div class="modal-dialog" role="document"  style="overflow-y: initial !important;">
-                    <div class="modal-content" style="height:100vh;width:900px;background-color:#323e53 !important">
-                        <div class="modal-body" style="margin-top:-15px;overflow-y:scroll">
+                    <div class="modal-content" style="height:100%;width:150%;background:none;border:none">
+                        <div class="modal-body" style="overflow-y:scroll;background-color:#323e53 !important">
                             <asp:UpdatePanel runat="server" ID="pnlManualInv" UpdateMode="Conditional">
                             <ContentTemplate>
                                    <uc1:ucManualInvoice runat="server" id="ucManualInvoice"/>

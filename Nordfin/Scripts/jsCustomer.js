@@ -79,7 +79,8 @@ window.onload = function () {
     } 
     if (this.document.getElementById("NordfinContentHolder_hdnMatch").value == "true") {
         //addInButton();
-        $('#NordfinContentHolder_pnlMatch').show();
+        $('#divManualInvoiceRow').show(); 
+        $('#divMatch').show();
         function addInButton() {
             var element = document.createElement("input");
             element.type = 'button';
@@ -322,6 +323,14 @@ function CreditCheck() {
 function showManualInvoice() {
     $(function () {
         $('#NordfinContentHolder_mdlManualInvoice').modal({ backdrop: 'static', keyboard: false }, 'show');
+    });
+    return false;
+};
+
+
+function showManualInvoiceSuccess() {
+    $(function () {
+        $('#NordfinContentHolder_mdlDeleteConfirm').modal({ backdrop: 'static', keyboard: false }, 'show');
     });
     return false;
 };

@@ -24,23 +24,6 @@ namespace Nordfin.workflow.DataAccessLayer
             return customerInfo;
         }
 
-        public List<ContractInvoice> GetContractInvoices()
-        {
-            var contracts = new List<ContractInvoice>();
-
-            using (SqlConnection connection = new SqlConnection(connectionString))
-            {
-                contracts = connection.Query<ContractInvoice>("SELECT * FROM ContractInvoicing").ToList();
-                var contractRows = connection.Query<ContractInvoiceRow>("SELECT * FROM ContractInvoicingRows").ToList();
-                foreach (var item in contracts)
-                {
-                    item.ContractInvoiceRows = contractRows.Where(c => c.ContractNumber == item.ContractNumber).Select(c => c).ToList();
-                }
-            }
-
-            return contracts;
-        }
-
         public int GetNumberSeries(string seriesName)
         {
             int number = 0;

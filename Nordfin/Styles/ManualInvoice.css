@@ -34,13 +34,8 @@
     box-shadow: 0 0 0 0.5px #FFB100;
 }
 
-.invoiceRowTable {
-    width: 845px;
-    margin-left: 15px;
-}
-
-table.invoiceRowTable th,
-table.invoiceRowTable td {
+table th,
+table td {
     border: 1px solid #2c3850;
     text-align: center;
     color: #a9bed8;
