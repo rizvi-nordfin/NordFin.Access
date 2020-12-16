@@ -1,0 +1,609 @@
+﻿.buttonClass {
+    width: 150px;
+    background-color: #232D41;
+    border: 1px solid #232D41;
+    color: #a9bfd5;
+    display: inline-block;
+    height: 50px;
+}
+
+
+
+
+
+.labelFontColor {
+    color: #FFFFFF;
+}
+
+.rowDiv {
+    text-align: left;
+    background-color: #2C3850;
+    padding-top: 30px;
+}
+
+#divInvoiceData {
+    margin-left: -10px;
+    margin-right: -10px;
+}
+
+.divFont {
+    font-size: 18px;
+    color: white;
+    padding: 10px;
+}
+
+.table td, .table th {
+    border-top: 1px solid #485774 !important;
+}
+
+.buttonDefault {
+    width: 150px;
+    background-color: #475672;
+    border: 2px solid #3DADC5;
+    color: white;
+    display: inline-block;
+    height: 50px;
+}
+
+.containerPadding {
+    margin-top: 50px;
+    padding-top: 50px;
+}
+
+.divBorder {
+    border: 2px solid #3DADC5;
+}
+
+.allFontColor {
+    color: #A3A6B4;
+    text-align: center;
+    padding: 5px;
+}
+
+.fontSize {
+    font-size: small;
+}
+
+.overviewFontSize {
+    font-size: 12px;
+    /*overflow-wrap:break-word;*/
+}
+
+.divHeight {
+    min-height: 100px;
+}
+
+.innerDiv {
+    padding: 10px;
+    padding-left: 10px;
+    background-color: #38445D;
+}
+
+.headingDiv {
+    padding: 20px;
+    background-color: #41546E;
+    margin-bottom: 10px !important;
+}
+
+.tableDiv {
+    background-color: #38445D;
+    color: #707070;
+    margin: 0px;
+    margin-top: 2px;
+}
+
+hr {
+    background-color: #475672;
+    border: 1px solid #475672;
+}
+
+@media screen and (min-width: 576px) {
+    .divSpacing {
+        margin-left: 1.333333%;
+    }
+}
+
+@media only screen and (max-width : 1400px) {
+    #divBatchVolumeheader {
+        font-size: 9px;
+    }
+
+    #testDiv {
+        font-size: 9px;
+    }
+
+    #testDiv1 {
+        font-size: 9px;
+    }
+
+    #divOverviewheader {
+        font-size: 9px;
+    }
+
+    /*#myChart {
+        
+        height: 300px !important;
+        width: 250px !important;
+    }
+
+    #myChart1 {
+       
+        height: 300px !important;
+        width: 250px !important;
+    }
+
+  
+    #currentChart {
+       
+        height: 300px !important;
+        width: 250px !important;
+    }*/
+
+
+}
+
+@media only screen and (min-width : 1400px) {
+
+    #divBatchVolumeheader {
+        font-size: 12px;
+    }
+
+    #testDiv {
+        font-size: 12px;
+    }
+
+    #testDiv1 {
+        font-size: 12px;
+    }
+
+    #divOverviewheader {
+        font-size: 12px;
+    }
+}
+
+
+
+.col, .col-1, .col-10, .col-11, .col-12, .col-2, .col-3, .col-4, .col-5, .col-6, .col-7, .col-8, .col-9, .col-auto, .col-lg, .col-lg-1, .col-lg-10, .col-lg-11, .col-lg-12, .col-lg-2, .col-lg-3, .col-lg-4, .col-lg-5, .col-lg-6, .col-lg-7, .col-lg-8, .col-lg-9, .col-lg-auto, .col-md, .col-md-1, .col-md-10, .col-md-11, .col-md-12, .col-md-2, .col-md-3, .col-md-4, .col-md-5, .col-md-6, .col-md-7, .col-md-8, .col-md-9, .col-md-auto, .col-sm, .col-sm-1, .col-sm-10, .col-sm-11, .col-sm-12, .col-sm-2, .col-sm-3, .col-sm-4, .col-sm-5, .col-sm-6, .col-sm-7, .col-sm-8, .col-sm-9, .col-sm-auto, .col-xl, .col-xl-1, .col-xl-10, .col-xl-11, .col-xl-12, .col-xl-2, .col-xl-3, .col-xl-4, .col-xl-5, .col-xl-6, .col-xl-7, .col-xl-8, .col-xl-9, .col-xl-auto {
+    padding-right: 10px !important;
+    padding-left: 10px !important;
+    margin-bottom: 5px;
+}
+
+.search {
+    line-height: 1.4 !important;
+    display: grid;
+    grid-template-columns: 2fr 4fr 4fr;
+    align-items: flex-start;
+}
+
+
+
+    .search > *:first-child {
+        align-self: center;
+    }
+
+.revenue {
+    display: flex;
+    flex-flow: column nowrap;
+    align-items: flex-start;
+}
+
+.rowlineHeight {
+    line-height: 3.5;
+}
+
+.columnHeader {
+    font-size: 13px;
+    font-weight: bold;
+    color: #A3A6B4;
+}
+
+.overview {
+    display: grid;
+    grid-template-columns: 1.5fr 1.5fr 2fr 1fr;
+}
+
+.batch-volume {
+    display: grid;
+    grid-template-columns: 1.5fr 1.5fr 2fr 2fr;
+}
+
+.overviewHeading {
+    display: grid;
+    grid-template-columns: 5fr;
+    justify-content: center;
+    align-items: center;
+    margin-top: -1px;
+    background-color: #41546E;
+    font-weight: bolder;
+}
+
+.spanOverview {
+    color: #FFFFFF;
+    font-size: 18px;
+    font-weight: normal;
+    text-align: center;
+}
+
+
+.revenuelabelHeader {
+    font-size: 10px;
+    color: white;
+}
+
+.revenuelabelBody {
+    font-size: 35px;
+    color: #56D9FE;
+}
+
+
+.palette-Yellow-800.bg {
+    background-color: #F9A825 !important;
+}
+
+span.dashHead {
+    top: 7px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    width: auto;
+    color: white;
+    margin: 2px 0 0 0;
+    cursor: default;
+    text-align: center;
+}
+
+.box-tools span {
+    width: 30px;
+    height: 20px;
+    display: inline-block;
+    line-height: 28px;
+    text-align: center;
+    border-radius: 50%;
+    color: #D5DAE6;
+    cursor: pointer;
+}
+
+.dashRes {
+    font-weight: bold;
+    font-size: 42px;
+    color: #FFFFFF;
+}
+
+
+
+.dashboardCollectionBoxButtons {
+    width: 100%;
+    text-align: right;
+}
+
+
+    .dashboardCollectionBoxButtons button {
+        width: 80px;
+        height: 40px;
+        line-height: 40px;
+        margin-left: 5px;
+        margin-top: 10px;
+        margin-bottom: 10px;
+        padding-left: 0;
+        padding-right: 0;
+        color: #fff;
+        background: #475672;
+    }
+
+        .dashboardCollectionBoxButtons button:focus {
+            border: 1px solid #3DADC5;
+            background-color: #3DADC5;
+            color: #fff;
+            box-shadow: none;
+        }
+
+.dashboardDataSwitch {
+    text-align: center;
+    margin-top: -45px;
+}
+
+
+    .dashboardDataSwitch button {
+        text-transform: uppercase;
+        border-radius: 0;
+        letter-spacing: 1.5px;
+        height: 60px;
+        width: 200px;
+        font-size: 12px;
+        margin-left: 10px;
+        margin-right: 10px;
+    }
+
+
+        .dashboardDataSwitch button:focus {
+            background-color: #475672;
+            border: 2px solid #3DADC5;
+            color: white;
+            outline: 0;
+            box-shadow: none;
+        }
+
+        .dashboardDataSwitch button:hover {
+            background-color: #3DADC5;
+            color: #fff;
+        }
+
+
+.dashboardTable {
+    /* margin-top: 8px; */
+    background: #38445d;
+    height: 296px;
+    overflow-y: auto;
+}
+
+    .dashboardTable::-webkit-scrollbar {
+        width: 4px;
+        height: 4px;
+    }
+
+    .dashboardTable::-webkit-scrollbar-track {
+        -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3);
+    }
+
+    .dashboardTable::-webkit-scrollbar-thumb {
+        background-color: darkgrey;
+        outline: 1px solid slategrey;
+    }
+
+    .dashboardTable table {
+        color: #fff;
+        width: 100%;
+        font-size: 12px;
+        /* min-height: 295px; */
+        border-collapse: separate;
+        border-spacing: 0 0;
+        text-align: right;
+        /* We default these tables to right-align because most of the content is numbers */
+    }
+
+    .dashboardTable tr td {
+        border-bottom: 2px solid #465473;
+    }
+
+    .dashboardTable tr {
+        height: 42px;
+        /* Fixed height, since we can’t add padding and need the bottom borders to be even */
+    }
+
+    .dashboardTable th:first-child, .dashboardTable td:first-child {
+        padding-left: 10px;
+        text-transform: uppercase;
+        letter-spacing: 0.5px;
+    }
+
+    .dashboardTable th:last-child, .dashboardTable td:last-child {
+        padding-right: 10px;
+    }
+
+
+
+.dashboardTableHeader {
+    background: #3e4a66;
+    color: #9b9eaf;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    font-size: 11px;
+    height: 32px;
+}
+
+    .dashboardTableHeader:hover {
+        background: #3e4a66;
+        color: #9b9eaf;
+    }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+.dashboardAmountBoxes {
+}
+
+
+
+    .dashboardAmountBoxes img {
+        margin-right: 10px;
+        max-height: 60px;
+    }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+.dashboardOverViewBox {
+    position: relative;
+    height: 370px;
+}
+
+
+
+.dashboardDailyProdContainer {
+    position: relative;
+    height: 100%;
+}
+
+.dashboardDailyProdBox {
+    background-color: #3e4a66;
+    width: 48%;
+    height: 143px;
+    float: left;
+    margin-bottom: 2.5%;
+    text-align: center;
+    padding: 12px 0;
+}
+
+    .dashboardDailyProdBox:nth-child(even) {
+        margin-right: 2%;
+    }
+
+    .dashboardDailyProdBox:nth-child(odd) {
+        margin-left: 2%;
+    }
+
+.dashboardDailyProdBoxHeadline {
+    color: #fff;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    font-size: 13px;
+}
+
+
+
+/* .dashboardDailyProdBoxInvoices span { color: #467D73; }
+.dashboardDailyProdBoxPayments span { color: #487340; }
+.dashboardDailyProdBoxReminder span { color: #8864a0; }
+.dashboardDailyProdBoxDC       span { color: #905458; } */
+
+
+
+
+.chart-container {
+    background-color: #38445D;
+    margin-left: 5px;
+    margin-right: 5px;
+    height: 214px;
+    width: 100%;
+}
+
+#currentChart, #myChart {
+    max-width: 100%;
+}
+
+
+
+
+/* Other Stuff */
+
+
+
+
+.dashResAmount {
+    font-size: 14px;
+    color: #FFFFFF;
+    font-weight: bold;
+}
+
+.dashboardDailyProdBoxHeight {
+    height: 100px;
+}
+
+.dashboardDailyProdBoxHeadlineAmount {
+    background-color: #38445D;
+    height: 31px;
+    padding: 5px;
+}
+
+.dashboardCustTable {
+    /* margin-top: 8px; */
+    height: 296px;
+    overflow-y: auto;
+    margin-right: -7px;
+}
+
+.dashboardPieChart {
+    height: 305px
+}
+
+.dashboardBarChart {
+    height: 296px
+}
+
+
+Inline style {
+    height: auto !important;
+}
+
+.piechart-container {
+    background-color: #38445D;
+    margin-left: 50px;
+    margin-top: -5px;
+}
+
+
+
+.dashboardHeadlineModal {
+    font-size: 16px;
+    color: #fff;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+
+
+
+
+.modalcloseButton {
+    background-color: transparent;
+    border: none;
+    color: #ffffff;
+    display: block;
+    width: 30px;
+    height: 30px;
+    line-height: 27px;
+    font-size: 16px;
+    position: absolute;
+    top: 1px;
+    right: 2px;
+    padding: 0;
+    z-index: 100;
+}
+
+.modalbutton:hover {
+    background-color: #3DADC5;
+    color: #fff;
+}
+
+@media all and (max-width: 600px) {
+
+    .buttonClass {
+        width: 130px !important;
+    }
+
+    .buttonDefault {
+        width: 130px !important;
+    }
+
+    .btnExportRight {
+        margin-right: -3px;
+    }
+
+    .pnlMarginTop {
+        margin-top: 50px;
+    }
+
+    .export {
+        margin-right: 13px !important;
+    }
+}

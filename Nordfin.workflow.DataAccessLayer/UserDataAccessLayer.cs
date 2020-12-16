@@ -38,7 +38,7 @@ namespace Nordfin.workflow.DataAccessLayer
         }
 
 
-        IList<ClientList> IUserBusinessDataLayer.GetClientList(int Admin, int ClientID, string UserID, out string BatchValues)
+        IList<ClientList> IUserBusinessDataLayer.GetClientList(int Admin, int ClientID, string UserID, out string BatchValues, out int Contracts)
         {
             IList<ClientList> objClientList = new List<ClientList>();
 
@@ -47,6 +47,7 @@ namespace Nordfin.workflow.DataAccessLayer
             DatabaseName.AddInParameter(DBBaseCommand, "@ClientID", System.Data.DbType.Int32, ClientID);
             DatabaseName.AddInParameter(DBBaseCommand, "@userID", System.Data.DbType.String, UserID);
             DatabaseName.AddOutParameter(DBBaseCommand, "@BatchesValue", DbType.String, 50);
+          //  DatabaseName.AddOutParameter(DBBaseCommand, "@Contracts", DbType.Int32, 50);
             DataSet ds = DatabaseName.ExecuteDataSet(DBBaseCommand);
 
             objClientList = ds.Tables[0].AsEnumerable().Select(dataRow => new ClientList
@@ -58,6 +59,7 @@ namespace Nordfin.workflow.DataAccessLayer
             }).ToList();
 
             BatchValues = Convert.ToString(DatabaseName.GetParameterValue(DBBaseCommand, "@BatchesValue"));
+            Contracts = 0;// Convert.ToInt32(DatabaseName.GetParameterValue(DBBaseCommand, "@Contracts"));
             return objClientList;
         }
 

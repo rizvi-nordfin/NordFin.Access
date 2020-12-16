@@ -72,6 +72,8 @@
     <Compile Include="PaymentInformationDTO.cs" />
     <Compile Include="Payments.cs" />
     <Compile Include="Payout.cs" />
+    <Compile Include="TelsonChart.cs" />
+    <Compile Include="TelsonGroup.cs" />
     <Compile Include="Transaction.cs" />
     <Compile Include="UserChartData.cs" />
     <Compile Include="Users.cs" />

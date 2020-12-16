@@ -23,7 +23,8 @@ namespace Nordfin
                 lblUserName.Text = ClientSession.LabelUser;
                 IUserPresentationBusinessLayer objUserLayer = new UserBusinessLayer();
                 string BatchValues = "";
-                IList<ClientList> objClientLsit = objUserLayer.GetClientList(Convert.ToInt32(ClientSession.Admin), Convert.ToInt32(ClientSession.ClientID), ClientSession.UserID, out BatchValues);
+                int Contracts = 0;
+                IList<ClientList> objClientLsit = objUserLayer.GetClientList(Convert.ToInt32(ClientSession.Admin), Convert.ToInt32(ClientSession.ClientID), ClientSession.UserID, out BatchValues,out Contracts);
 
                 grdClientName.DataSource = objClientLsit;
 
@@ -50,6 +51,13 @@ namespace Nordfin
                     pnlTrafficDetails.Visible = false;
                     pnlNotification.Visible = false;
 
+                    
+
+                }
+                else
+                {
+                    if (Contracts == 0)
+                        pnlTeleson.Visible = false;
                 }
 
                 hdnClientID.Value = ClientSession.ClientID;

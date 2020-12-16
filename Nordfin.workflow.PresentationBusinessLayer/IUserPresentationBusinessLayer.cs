@@ -7,8 +7,7 @@ namespace Nordfin.workflow.PresentationBusinessLayer
     {
         Users GetUser(string UserName, string Password);
 
-        IList<ClientList> GetClientList(int Admin, int ClientID, string UserID, out string BatchValues);
-
+        IList<ClientList> GetClientList(int Admin, int ClientID, string UserID, out string BatchValues, out int Contracts);
         void UpdateClientID(string UserName, string ClientID);
 
         int InsertLoginUserInformation(LoginUserInformation loginUserInformation);

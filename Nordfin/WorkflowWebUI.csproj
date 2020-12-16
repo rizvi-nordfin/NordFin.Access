@@ -57,6 +57,9 @@
     <Reference Include="DocumentFormat.OpenXml, Version=2.7.2.0, Culture=neutral, PublicKeyToken=8fb06cb64d019a17, processorArchitecture=MSIL">
       <HintPath>..\packages\DocumentFormat.OpenXml.2.7.2\lib\net46\DocumentFormat.OpenXml.dll</HintPath>
     </Reference>
+    <Reference Include="EPPlus, Version=5.4.2.0, Culture=neutral, PublicKeyToken=ea159fdaa78159a1, processorArchitecture=MSIL">
+      <HintPath>..\packages\EPPlus.5.4.2\lib\net45\EPPlus.dll</HintPath>
+    </Reference>
     <Reference Include="ExcelNumberFormat, Version=1.0.10.0, Culture=neutral, PublicKeyToken=23c6f5d73be07eca, processorArchitecture=MSIL">
       <HintPath>..\packages\ExcelNumberFormat.1.0.10\lib\net20\ExcelNumberFormat.dll</HintPath>
     </Reference>
@@ -94,8 +97,16 @@
     <Reference Include="Owin, Version=1.0.0.0, Culture=neutral, PublicKeyToken=f0ebd12fd5e55cc5, processorArchitecture=MSIL">
       <HintPath>..\packages\Owin.1.0\lib\net40\Owin.dll</HintPath>
     </Reference>
+    <Reference Include="PresentationCore" />
+    <Reference Include="PresentationFramework" />
+    <Reference Include="QRCoder, Version=1.4.1.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\QRCoder.1.4.1\lib\net40\QRCoder.dll</HintPath>
+    </Reference>
     <Reference Include="Renci.SshNet, Version=2016.1.0.0, Culture=neutral, PublicKeyToken=1cee9f8bde3db106, processorArchitecture=MSIL">
       <HintPath>..\packages\SSH.NET.2016.1.0\lib\net40\Renci.SshNet.dll</HintPath>
+    </Reference>
+    <Reference Include="System.ComponentModel.Annotations, Version=4.2.1.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.ComponentModel.Annotations.5.0.0\lib\net461\System.ComponentModel.Annotations.dll</HintPath>
     </Reference>
     <Reference Include="System.Data.Common, Version=4.1.1.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
       <HintPath>..\packages\System.Data.Common.4.3.0\lib\net451\System.Data.Common.dll</HintPath>
@@ -111,6 +122,8 @@
       <HintPath>..\packages\System.IO.Packaging.4.0.0\lib\net46\System.IO.Packaging.dll</HintPath>
     </Reference>
     <Reference Include="System.Net.Http" />
+    <Reference Include="System.Security" />
+    <Reference Include="System.Threading.Tasks" />
     <Reference Include="System.Web.DynamicData" />
     <Reference Include="System.Web.Entity" />
     <Reference Include="System.Web.ApplicationServices" />
@@ -147,6 +160,7 @@
     <Content Include="frmInvoices.aspx" />
     <Content Include="frmLogin.aspx" />
     <Content Include="frmReports.aspx" />
+    <Content Include="frmTeleson.aspx" />
     <Content Include="frmTrafficDetails.aspx" />
     <Content Include="frmUserLoginInformation.aspx" />
     <Content Include="Global.asax" />
@@ -203,6 +217,7 @@
     <Content Include="Scripts\bootstrap.min.js" />
     <Content Include="Scripts\font-Awesome.js" />
     <Content Include="Scripts\jquery-1.11.1.min.js" />
+    <Content Include="libman.json" />
     <None Include="Scripts\jquery-3.4.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.4.1.js" />
     <Content Include="Scripts\jquery-3.4.1.min.js" />
@@ -229,6 +244,7 @@
     <Content Include="Scripts\jsLogin.js" />
     <Content Include="Scripts\jsPaymentInformation.js" />
     <Content Include="Scripts\jsReports.js" />
+    <Content Include="Scripts\jsTelsonGroup.js" />
     <Content Include="Scripts\jsTrafficDetails.js" />
     <Content Include="Scripts\mapsvg.js" />
     <Content Include="Scripts\mapsvg_old.js" />
@@ -260,6 +276,7 @@
     <Content Include="Styles\normalize.css" />
     <Content Include="Styles\PaymentInformation.css" />
     <Content Include="Styles\Reports.css" />
+    <Content Include="Styles\TelsonGroup.css" />
     <Content Include="Styles\TrafficDetails.css" />
     <Content Include="Web.config" />
     <Content Include="frmPaymentInformation.aspx" />
@@ -328,6 +345,13 @@
     </Compile>
     <Compile Include="frmReports.aspx.designer.cs">
       <DependentUpon>frmReports.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="frmTeleson.aspx.cs">
+      <DependentUpon>frmTeleson.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="frmTeleson.aspx.designer.cs">
+      <DependentUpon>frmTeleson.aspx</DependentUpon>
     </Compile>
     <Compile Include="frmTrafficDetails.aspx.cs">
       <DependentUpon>frmTrafficDetails.aspx</DependentUpon>
@@ -400,8 +424,9 @@
       <Name>Nordfin.workflow.PresentationBusinessLayer</Name>
     </ProjectReference>
   </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
-    <Folder Include="Documents\" />
+    <WCFMetadata Include="Connected Services\" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

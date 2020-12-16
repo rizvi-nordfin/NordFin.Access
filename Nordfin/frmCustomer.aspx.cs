@@ -385,6 +385,7 @@ namespace Nordfin
 
 
                 var ws = wb.Worksheets.Add(dataTable);
+                ws.Unprotect();
                 ws.Column(1).Delete();
                 ws.Column(1).Delete();
                 ws.Column(13).Delete();

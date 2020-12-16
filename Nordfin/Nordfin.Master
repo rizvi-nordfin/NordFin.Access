@@ -245,6 +245,10 @@
                         <a href="frmTrafficDetails.aspx">Traffic Details</a>
                     </asp:Panel>
 
+                    <asp:Panel ID="pnlTeleson" runat="server">
+                        <a href="/frmTeleson.aspx">Contracts</a>
+                    </asp:Panel>
+
                 </div>
             </div>
 

@@ -48,6 +48,7 @@
     <Compile Include="IInvoicesBusinessDataLayer.cs" />
     <Compile Include="IPaymentInformationBusinessDataLayer.cs" />
     <Compile Include="IReportsBusinessDataLayer.cs" />
+    <Compile Include="ITelsonGroupBusinessDataLayer.cs" />
     <Compile Include="IUserBusinessDataLayer.cs" />
     <Compile Include="IUserLoginInformationBusinessDataLayer.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
