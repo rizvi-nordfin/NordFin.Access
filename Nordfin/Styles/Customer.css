@@ -327,6 +327,12 @@ body ::-webkit-scrollbar-thumb {
     }
 }
 
+@media all and (max-width:600px) {
+    .customerTable {
+        bottom:45px !important;
+    }
+}
+
 @media only screen and (max-width:760px) {
     .modal-content {
         width:100% !important;
@@ -514,4 +520,12 @@ input[type=checkbox] {
     left: 40%;
     top: 60%;
     transform: translate(-50%, -50%);
+}
+
+.customerTable {
+    background-color: #2C3850;
+    flex: 0 0 78%;
+    max-width: 78%;
+    bottom: 30px;
+    height: 600px
 }

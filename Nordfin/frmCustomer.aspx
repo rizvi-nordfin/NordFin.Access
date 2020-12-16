@@ -205,7 +205,7 @@
 
 
 
-                    <div class="col-md-9 table-responsive customerTable tableMarginTop" style="background-color: #2C3850;flex:0 0 80%;max-width:78%;bottom:30px">
+                    <div class="col-md-9 table-responsive customerTable tableMarginTop">
 
 
                         <asp:GridView ID="grdCustomer" runat="server" EmptyDataRowStyle-CssClass="Emptyrow" AllowSorting="true"  OnSorting="grdCustomer_Sorting" AutoGenerateColumns="False" ViewStateMode="Enabled" Visible="true" Style="color: white; font-size: small;    margin-top: -4px;" ShowHeaderWhenEmpty="true" CssClass="table">
