@@ -50,6 +50,7 @@
     <Compile Include="PaymentInformationBusinessLayer.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ReportsBusinessLayer.cs" />
+    <Compile Include="TelesonGroupBusinessLayer.cs" />
     <Compile Include="UserBusinessLayer.cs" />
     <Compile Include="UserLoginInformationBusinessLayer.cs" />
   </ItemGroup>

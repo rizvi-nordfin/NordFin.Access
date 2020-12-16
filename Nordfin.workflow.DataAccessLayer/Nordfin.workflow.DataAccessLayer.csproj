@@ -62,6 +62,7 @@
     <Compile Include="ManualInvoiceDataAccessLayer.cs" />
     <Compile Include="PaymentInformationDataAccessLayer.cs" />
     <Compile Include="ReportsDataAccessLayer.cs" />
+    <Compile Include="TelesonGroupDataAccessLayer.cs" />
     <Compile Include="UserDataAccessLayer.cs" />
     <Compile Include="DBBase.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

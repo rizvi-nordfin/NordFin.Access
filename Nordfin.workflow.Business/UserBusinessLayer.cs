@@ -14,9 +14,9 @@ namespace Nordfin.workflow.Business
             return objuser.GetUser(UserName, Password);
         }
 
-        IList<ClientList> IUserPresentationBusinessLayer.GetClientList(int Admin, int ClientID, string UserID, out string BatchValues)
+        IList<ClientList> IUserPresentationBusinessLayer.GetClientList(int Admin, int ClientID, string UserID, out string BatchValues, out int Contracts)
         {
-            return objuser.GetClientList(Admin, ClientID, UserID, out BatchValues);
+            return objuser.GetClientList(Admin, ClientID, UserID, out BatchValues,out Contracts);
         }
         void IUserPresentationBusinessLayer.UpdateClientID(string UserName, string ClientID)
         {
