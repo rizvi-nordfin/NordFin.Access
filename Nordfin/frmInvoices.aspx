@@ -1,4 +1,4 @@
-﻿<%@ Page Language="C#" MasterPageFile="~/Nordfin.Master" AutoEventWireup="true" Title="NordfinCapital" CodeBehind="frmInvoices.aspx.cs" Inherits="Nordfin.frmInvoices" 
+﻿<%@ Page Language="C#" MasterPageFile="~/Nordfin.Master" AutoEventWireup="true" Title="NordfinCapital" CodeBehind="frmInvoices.aspx.cs" Inherits="Nordfin.frmInvoices"
     UICulture="sv-SE" Culture="sv-SE" %>
 
 <%@ Register Assembly="AjaxControlToolkit" Namespace="AjaxControlToolkit" TagPrefix="ModalWindow" %>
@@ -14,94 +14,50 @@
         <div class="container-fluid">
 
             <div class="row dashboardHeader">
-                <div class="col-md-3 dashboardHeadline">Invoices: Overview</div>
-              
+                <div class="col-lg-3 dashboardHeadline">Invoices: Overview   
+                    <asp:Button ID="btnExport" Text="Export" CssClass="export" Style="width: 75px;display:none;" OnClick="btnExport_Click" runat="server" /></div>
 
-                <div class="col-lg-9 dashboardSummary divVisible" style="/* margin-right: 0px; */
-    font-size: 14px;position:fixed">
-                    <div class="row" style="margin-right: -38px; /* float: right; */">
+               
 
-                        <div class="col-md-2">
+         
 
-                            <div class="row summarycolor">
-                                <div class="col-md-12 textOrange" style="background: #38445D; padding: 5px;">
-                                   Amount
+                 <div class="col-lg-9">
+
+                 <div class="summaryInvoices">
+
+                     <div  class="summaryHeading"> 
+                         <div class="textOrange" style="background: #38445D; ">
+                                    Amount
                                     &nbsp; 
-                                    <asp:Label runat="server" CssClass="textWhite"  ID="lblSumAmount"></asp:Label>
-                                </div>
-                            
-                            </div>
-
-                        </div>
-
-                        <div class="col-md-2">
-
-                            <div class="row summarycolor" >
-                                 <div class="col-md-12 textOrange" style="background: #38445D; padding: 5px;">
+                                    <asp:Label runat="server" CssClass="textWhite" ID="lblSumAmount"></asp:Label>
+                                </div></div>
+                        <div  class="summaryHeading" > 
+                             <div class="textOrange" style="background: #38445D;">
                                     FEES
                                       &nbsp;&nbsp;
-                                    <asp:Label runat="server"  CssClass="textWhite"  ID="lblFeesAmount"></asp:Label>
-                                </div>
-                               
-                            </div>
-
-                        </div>
-
-                         <div class="col-md-2">
-
-                            <div class="row summarycolor" >
-
-                                 <div class="col-md-12 textOrange" style="background: #38445D; padding: 5px;">
+                                    <asp:Label runat="server" CssClass="textWhite" ID="lblFeesAmount"></asp:Label>
+                                </div></div>
+                        <div  class="summaryHeading"> 
+                              <div class="textOrange" style="background: #38445D;">
                                     REMAIN
                                       &nbsp;&nbsp;
-                                    <asp:Label ID="lblRemain" CssClass="textWhite"  runat="server" />
-                                </div>
-
-                            </div>
-
-                        </div>
-                        <div class="col-md-3">
-
-                            <div class="row summarycolor" >
-
-                                 <div class="col-md-12 textOrange" style="background: #38445D; padding: 5px;">
+                                    <asp:Label ID="lblRemain" CssClass="textWhite" runat="server" />
+                                </div></div>
+                         <div  class="summaryHeading"> 
+                              <div class="textOrange" style="background: #38445D;">
                                     TOTAL REMAIN
                                       &nbsp;&nbsp;
                                     <asp:Label ID="lblTotalRemain" CssClass="textWhite" runat="server" />
-                                </div>
-
-                            </div>
-
-                        </div>
-
-                        <div class="col-md-2">
-                             <div class="row summarycolor" style="margin-right: 7px;" >
-
-                                 <div class="col-md-12 textOrange" style="background: #38445D; padding: 5px;">
-                                   OVERPAID
+                                </div></div>
+                        <div class="summaryHeading"> 
+                              <div class="textOrange" style="background: #38445D;">
+                                    OVERPAID
                                       &nbsp;&nbsp;
-                                   <asp:Label ID="lblOverPaid"  CssClass="textWhite" runat="server" />
-                                </div>
+                                   <asp:Label ID="lblOverPaid" CssClass="textWhite" runat="server" />
+                                </div></div>
 
-                            </div>
-
-                          
-                        </div>
-                        <div class="col-md-1" style="margin-top: 2px;">
-                            
-                                
-                                 <asp:Button ID="btnExport"  Text="Download" CssClass="export" style="width:75px;padding-left: 6px; padding-right: 6px;border-radius:0px"  OnClick="btnExport_Click" runat="server" />
-                                
-
-                          
-                        </div>
-                     
-
-
-                    </div>
-
-                </div>
-
+                </div>  
+                     </div>
 
                 <%-- <div class="col-lg-8     dashboardSummary">
                     <div class="row">
@@ -162,8 +118,11 @@
                     <asp:Button ID="closeButton" runat="server" Style="display: none;" />
                 </asp:Panel>
             </div>
-            <div class="tableFixHead" style="background-color: #2C3850;margin-top: -15px;">
-                <asp:GridView ID="grdInvoices" runat="server" AutoGenerateColumns="False" AllowSorting="true"  OnSorting="grdInvoices_Sorting" EmptyDataRowStyle-CssClass="Emptyrow" ViewStateMode="Enabled" Visible="true" Style="color: white; overflow-x: scroll; overflow-y: scroll;" ShowHeaderWhenEmpty="true" CssClass="table table-borderless">
+            <div class="tableFixHead tableMarginBg" >
+                <asp:GridView ID="grdInvoices" runat="server" AutoGenerateColumns="False" AllowSorting="true" OnSorting="grdInvoices_Sorting" EmptyDataRowStyle-CssClass="Emptyrow" ViewStateMode="Enabled" Visible="true" Style="                        color: white;
+                        overflow-x: scroll;
+                        overflow-y: scroll;
+                " ShowHeaderWhenEmpty="true" CssClass="table table-borderless">
                     <HeaderStyle BackColor="#475672" CssClass="GVFixedHeader" />
                     <Columns>
                         <asp:TemplateField ItemStyle-CssClass="itemalign" HeaderText="CUSTOMER" SortExpression="Customernumber" HeaderStyle-CssClass="itemalign">
@@ -171,15 +130,15 @@
 
                                 <asp:LinkButton CssClass="linkcss" Text='<%# Bind("Customernumber") %>' CommandName="Sort" ID="gridLinkCustNum" CommandArgument=' <%# Bind("Customernumber") %>' OnClick="gridLinkCustNum_Click" runat="server" />
                             </ItemTemplate>
-                           
+
                         </asp:TemplateField>
-                        <asp:TemplateField ItemStyle-CssClass="itemalign" HeaderText="INVOICE" SortExpression="Invoicenumber" HeaderStyle-CssClass="itemalign" >
+                        <asp:TemplateField ItemStyle-CssClass="itemalign" HeaderText="INVOICE" SortExpression="Invoicenumber" HeaderStyle-CssClass="itemalign">
                             <ItemTemplate>
 
                                 <asp:LinkButton CssClass="linkcss" Text='<%# Bind("Invoicenumber") %>' OnClientClick="return LinkClick(this);" overpaymentData='<%# Eval("Overpayment") %>'
                                     remainData='<%# Eval("Remainingamount") %>' invoiceData='<%# Eval("Customernumber") +"|"+ Eval("InvoiceID")%>' ID="gridLink" CommandArgument=' <%# Eval("Customernumber") +"|"+ Eval("InvoiceID")%>' runat="server" />
                             </ItemTemplate>
-                            
+
                         </asp:TemplateField>
 
                         <asp:BoundField DataField="CustomerName" HeaderStyle-CssClass="itemalign" ItemStyle-CssClass="itemalign" HeaderText="Name" SortExpression="CustomerName" />
@@ -190,7 +149,7 @@
 
                         <asp:BoundField DataField="Billdate" HeaderStyle-CssClass="itemalign" ItemStyle-CssClass="itemalign tableNoWrap" HeaderText="BILL DATE" SortExpression="Billdate" />
                         <asp:BoundField DataField="Duedate" HeaderStyle-CssClass="itemalign" ItemStyle-CssClass="itemalign tableNoWrap" HeaderText="DUE DATE" SortExpression="Duedate" />
-                         <asp:BoundField DataField="Remainingamount" DataFormatString="{0:#,0.00}" HeaderStyle-CssClass="itemalign" ItemStyle-CssClass="itemalign" HeaderText="REMAIN" SortExpression="Remainingamount" />
+                        <asp:BoundField DataField="Remainingamount" DataFormatString="{0:#,0.00}" HeaderStyle-CssClass="itemalign" ItemStyle-CssClass="itemalign" HeaderText="REMAIN" SortExpression="Remainingamount" />
 
                         <asp:BoundField DataField="TotalRemaining" DataFormatString="{0:#,0.00}" HeaderStyle-CssClass="itemalign" ItemStyle-CssClass="itemalign" HeaderText="TOTAL REMAIN" SortExpression="TotalRemaining" />
 
@@ -267,10 +226,7 @@
             <asp:HiddenField ID="hdnArchiveLink" runat="server" />
             <asp:HiddenField ID="hdnInvoiceNumber" runat="server" />
             <asp:HiddenField ID="hdnEmailID" runat="server" />
-            <a id="pdfViewer" href="" runat="server" target="_blank">
-                
-
-            </a>
+            <a id="pdfViewer" href="" runat="server" target="_blank"></a>
         </div>
 
     </div>
