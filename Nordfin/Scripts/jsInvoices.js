@@ -17,7 +17,7 @@
 
         var element = document.createElement("input");
         element.type = 'button';
-        element.value = 'Export';
+        element.value = 'Download';
         element.name = 'btncheck';
         element.onclick = function () {
             document.getElementById("NordfinContentHolder_btnExport").click();

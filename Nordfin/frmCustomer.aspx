@@ -611,7 +611,7 @@
 
             <div class="modal manulInvoiceModal" id="mdlManualInvoice" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true" runat="server">
                 <div class="modal-dialog" role="document"  style="overflow-y: initial !important;">
-                    <div class="modal-content" style="height:100%;width:150%;background:none;border:none">
+                    <div class="modal-content" style="height:100%;width:160%;background:none;border:none">
                         <div class="modal-body" style="overflow-y:scroll;background-color:#323e53 !important">
                             <asp:UpdatePanel runat="server" ID="pnlManualInv" UpdateMode="Conditional">
                             <ContentTemplate>
