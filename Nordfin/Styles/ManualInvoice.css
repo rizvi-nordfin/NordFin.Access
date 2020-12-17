@@ -34,14 +34,33 @@
     box-shadow: 0 0 0 0.5px #FFB100;
 }
 
-table th,
-table td {
-    border: 1px solid #2c3850;
-    text-align: center;
-    color: #a9bed8;
-    font-size: 14px !important;
-    font-weight:normal;
+.invoiceRow {
+    text-transform: uppercase;
+    font-size: 13px;
 }
+
+.Emptyrow td {
+    border: none;
+}
+
+table.invoiceRow {
+    border-collapse: collapse;
+}
+
+    table.invoiceRow th {
+        padding: .25rem;
+        vertical-align: middle;
+        background-color: #475672 !important;
+        border-top: 1px solid #485774 !important;
+        color: #A9BFD5;
+        font-weight: 400;
+    }
+
+    table.invoiceRow td {
+        vertical-align: top;
+        border-top: 1px solid #485774 !important;
+        color: white;
+    }
 
 input[type="submit"]:disabled {
     background: #475672;
