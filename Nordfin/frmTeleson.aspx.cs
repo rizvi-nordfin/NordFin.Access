@@ -27,7 +27,8 @@ namespace Nordfin
             var telsonGroupData = objTelsonData.GetTelsonGroupData(ClientSession.ClientID);
             string jsonResult = new JavaScriptSerializer().Serialize(telsonGroupData.Item1);
             string jsonChart = new JavaScriptSerializer().Serialize(telsonGroupData.Item2);
-            string sResultList = "{\"TelsonList\" :" + jsonResult + "," + "\"TelsonChart\" :" + jsonChart + "}";
+            string jsonClientName = new JavaScriptSerializer().Serialize(ClientSession.ClientName);
+            string sResultList = "{\"TelsonList\" :" + jsonResult + "," + "\"TelsonChart\" :" + jsonChart + ","  +"\"ClientName\" :" + jsonClientName + "}";
           
             return sResultList;
 

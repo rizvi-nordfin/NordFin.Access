@@ -11,6 +11,7 @@ namespace Nordfin.workflow.Entity
         public string ColumnName { get; set; }
         public string RowValue { get; set; }
         public string SpecialCharc { get; set; }
+        public int StaticValue { get; set; }
 
     }
 }

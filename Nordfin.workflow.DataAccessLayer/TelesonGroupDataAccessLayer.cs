@@ -14,7 +14,7 @@ namespace Nordfin.workflow.DataAccessLayer
     {
         Tuple<IList<TelsonGroup>, IList<TelsonChart>> ITelsonGroupBusinessDataLayer.GetTelsonGroupData(string ClientID)
         {
-            DBInitialize("usp_test");
+            DBInitialize("usp_getContractsDashboard");
 
             DatabaseName.AddInParameter(DBBaseCommand, "@clientID", System.Data.DbType.Int32, Convert.ToInt32(ClientID));
 
@@ -28,6 +28,7 @@ namespace Nordfin.workflow.DataAccessLayer
 
                 telsonData = ds.Tables[0].AsEnumerable().Select(dataRow => new TelsonGroup
                 {
+                    StaticValue= dataRow.Field<int>("StaticValue"),
                     ColumnName = dataRow.Field<string>("TelsonColumn"),
                     SpecialCharc= dataRow.Field<string>("symbol"),
                     RowValue = (dataRow.Field<int>("NumberCast") == 1) ?
@@ -36,40 +37,17 @@ namespace Nordfin.workflow.DataAccessLayer
             }
 
 
-            //if (ds.Tables[1].Rows.Count > 0)
-            //{
-            //    telsonChart = ds.Tables[1].AsEnumerable().Select(dataRow => new TelsonChart
-            //    {
-            //        Column = dataRow.Field<string>("columnValue"),
-            //        Amount =Convert.ToString(dataRow.Field<int>("totalAmount")),
-            //        Number = Convert.ToString(dataRow.Field<int>("invoiceNumber"))
-            //    }).ToList();
+            if (ds.Tables[1].Rows.Count > 0)
+            {
+                telsonChart = ds.Tables[1].AsEnumerable().Select(dataRow => new TelsonChart
+                {
+                    Column = dataRow.Field<string>("columnValue"),
+                    Amount = Convert.ToString(dataRow.Field<decimal>("ContractAmount")),
+                    Number = Convert.ToString(dataRow.Field<int>("ContractNumber"))
+                }).ToList();
 
 
-            //}
-
-            DateTime date = DateTime.Now;
-            DateTime newDate = date.AddMonths(-12);
-
-
-            telsonChart.Add(new TelsonChart { Column = "2019/12", Number = "0", Amount = "0" });
-            telsonChart.Add(new TelsonChart { Column = "2020/01", Number = "0", Amount = "0" });
-            telsonChart.Add(new TelsonChart { Column = "2020/02", Number = "0", Amount = "0" });
-            telsonChart.Add(new TelsonChart { Column = "2020/03", Number = "0", Amount = "0" });
-            telsonChart.Add(new TelsonChart { Column = "2020/04", Number = "0", Amount = "0" });
-            telsonChart.Add(new TelsonChart { Column = "2020/05", Number = "0", Amount = "0" });
-            telsonChart.Add(new TelsonChart { Column = "2020/06", Number = "0", Amount = "0" });
-            telsonChart.Add(new TelsonChart { Column = "2020/07", Number = "0", Amount = "0" });
-            telsonChart.Add(new TelsonChart { Column = "2020/08", Number = "0", Amount = "0" });
-            telsonChart.Add(new TelsonChart { Column = "2020/09", Number = "0", Amount = "0" });
-            telsonChart.Add(new TelsonChart { Column = "2020/10", Number = "130", Amount = "547862" });
-            telsonChart.Add(new TelsonChart { Column = "2020/11", Number = "136 ", Amount = "278937" });
-
-
-
-
-
-
+            }
 
 
 

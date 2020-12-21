@@ -21,7 +21,7 @@ app.controller("myCtrl", function ($scope, $http) {
         $scope.telsonData = telsonData.TelsonList;
 
 
-
+        $scope.ClientName = telsonData.ClientName;
         const telsonList = telsonData.TelsonChart;
         var data1 = [];
         var data2 = [];

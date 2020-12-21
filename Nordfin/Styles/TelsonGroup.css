@@ -9,7 +9,10 @@
 
 
 
-
+.divInnerPadding
+{
+    padding:20px !important;
+}
 
 .labelFontColor {
     color: #FFFFFF;

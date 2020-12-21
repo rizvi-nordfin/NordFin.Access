@@ -12,7 +12,7 @@
     <script src="Scripts/jquery-1.11.1.min.js"></script>
     <style>
       .revenuelabelBody{
-          font-size:30px;
+          font-size:25px;
           line-height:2em;
       }
         .revenuelabelHeader {
@@ -47,7 +47,7 @@
 
 
                             <div class="divPaddingLeft" style="background-color: #475672">
-                                <span class="customerdivHeading">Teleson Clients</span>
+                                <span class="customerdivHeading">{{ClientName}}</span>
 
                                 <asp:Label CssClass="customerdivText"  runat="server" ID="lblFirstName"></asp:Label>
 
@@ -110,7 +110,7 @@
 
                         <div class="col-md-4 divPadding customerInfoSidebar" style="color: #FFFFFF;">
 
-                               <div class="row innerDiv col-md-12" style="margin:0px;margin-top:5px">
+                               <div class="row innerDiv col-md-12 divInnerPadding" style="margin:0px;margin-top:5px">
                                <div class="col-md-6" data-ng-repeat="telson in telsonData|limitTo:2:7">
 
                                     <div class="revenue">
@@ -154,8 +154,8 @@
                                                 <td class="tableLeftAlign" style="color: #A9BFD5;">
                                                     <span id="NordfinContentHolder_lblSentout">{{telson.ColumnName}}</span></td>
                                                 <td>
-                                                    <span id="NordfinContentHolder_lblSentoutNumber"></span></td>
-                                            
+                                                    <span >{{telson.StaticValue}}{{telson.SpecialCharc}}</span>
+                                            </td>
                                                 <td>
                                                     <span id="NordfinContentHolder_lblSentoutPercent">{{telson.RowValue}}{{telson.SpecialCharc}}</span></td>
                                             </tr>
