@@ -155,19 +155,20 @@
     <br />
     <div class="container-fluid">
       <div class="row">
-          <div class="col">
+          <div class="col table-responsive">
           <asp:GridView ID="grdInvoiceRows" runat="server" ShowFooter="true" AutoGenerateColumns="false" ShowHeaderWhenEmpty="True" 
-              EmptyDataRowStyle-HorizontalAlign="Center" EmptyDataRowStyle-VerticalAlign="Middle" EmptyDataText="No Data Found" OnRowDataBound="grdInvoiceRows_OnRowDataBound" 
-              OnSelectedIndexChanged="grdInvoiceRows_SelectedIndexChanged" SelectedRowStyle-BackColor="#475672">
+              EmptyDataRowStyle-HorizontalAlign="Center" EmptyDataRowStyle-VerticalAlign="Middle" EmptyDataText="No Data Found" 
+              OnRowDataBound="grdInvoiceRows_OnRowDataBound" OnSelectedIndexChanged="grdInvoiceRows_SelectedIndexChanged" 
+              SelectedRowStyle-BackColor="#475672" CssClass="invoiceRow" EmptyDataRowStyle-CssClass="Emptyrow" GridLines="None">
               <Columns>
-                  <asp:BoundField DataField="Article" HeaderText="Article" ItemStyle-HorizontalAlign="Center" />
-                  <asp:BoundField DataField="Description" HeaderText="Description" ItemStyle-HorizontalAlign="Center" />
-                  <asp:BoundField DataField="Unit" HeaderText="Unit" ItemStyle-HorizontalAlign="Center" />
-                  <asp:BoundField DataField="Quantity" HeaderText="Quantity" ItemStyle-HorizontalAlign="Center" />
-                  <asp:BoundField DataField="InvoiceAmount" HeaderText="Item Price" ItemStyle-HorizontalAlign="Center" />
-                  <asp:BoundField DataField="VATPercent" HeaderText="VAT %" ItemStyle-HorizontalAlign="Center" />
-                  <asp:BoundField DataField="VATAmount" HeaderText="VAT Amount" ItemStyle-HorizontalAlign="Center" />
-                  <asp:BoundField DataField="TotalAmount" HeaderText="Row Total" ItemStyle-HorizontalAlign="Center" />
+                  <asp:BoundField DataField="Article" HeaderStyle-CssClass="itemalign" ItemStyle-CssClass="itemalign" HeaderText="Article" ItemStyle-HorizontalAlign="Center" />
+                  <asp:BoundField DataField="Description" HeaderStyle-CssClass="itemalign" ItemStyle-CssClass="itemalign" HeaderText="Description" ItemStyle-HorizontalAlign="Center" />
+                  <asp:BoundField DataField="Unit" HeaderStyle-CssClass="itemalign" ItemStyle-CssClass="itemalign" HeaderText="Unit" ItemStyle-HorizontalAlign="Center" />
+                  <asp:BoundField DataField="Quantity" HeaderStyle-CssClass="itemalign" ItemStyle-CssClass="itemalign" HeaderText="Quantity" ItemStyle-HorizontalAlign="Center" />
+                  <asp:BoundField DataField="InvoiceAmount" HeaderStyle-CssClass="itemalign" ItemStyle-CssClass="itemalign" HeaderText="Item Price" ItemStyle-HorizontalAlign="Center" />
+                  <asp:BoundField DataField="VATPercent" HeaderStyle-CssClass="itemalign" ItemStyle-CssClass="itemalign" HeaderText="VAT %" ItemStyle-HorizontalAlign="Center" />
+                  <asp:BoundField DataField="VATAmount" HeaderStyle-CssClass="itemalign" ItemStyle-CssClass="itemalign" HeaderText="VAT Amount" ItemStyle-HorizontalAlign="Center" />
+                  <asp:BoundField DataField="TotalAmount" HeaderStyle-CssClass="itemalign" ItemStyle-CssClass="itemalign" HeaderText="Row Total" ItemStyle-HorizontalAlign="Center" />
                 </Columns>
           </asp:GridView>
               </div>
