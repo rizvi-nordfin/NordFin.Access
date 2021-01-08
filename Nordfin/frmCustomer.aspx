@@ -28,7 +28,7 @@
 
 
             <div>
-                <div class="row " style="height: 50px; margin-left: 0px;">
+                <div class="row " style="height: 50px; margin-left: 0px;margin-top:20px">
 
 
                     <div class="col-md-3 divPadding customerInfoSidebar" style="color: #FFFFFF; max-width: 22%">
@@ -210,7 +210,9 @@
 
                           <asp:UpdatePanel runat="server" ID="UpdatePanel1">
                 <ContentTemplate>
-                        <asp:GridView ID="grdCustomer" runat="server" EmptyDataRowStyle-CssClass="Emptyrow" AllowSorting="true" OnSorting="grdCustomer_Sorting" AutoGenerateColumns="False" ViewStateMode="Enabled" Visible="true" Style="color: white; font-size: small; margin-top: -4px;" ShowHeaderWhenEmpty="true" CssClass="table">
+                        <asp:GridView ID="grdCustomer" runat="server" EmptyDataRowStyle-CssClass="Emptyrow" AllowSorting="true" OnSorting="grdCustomer_Sorting" AutoGenerateColumns="False" ViewStateMode="Enabled" Visible="true" 
+                            Style="color: white; font-size: small; margin-top: -4px;" ShowHeaderWhenEmpty="true" CssClass="table" OnRowDataBound="grdCustomer_OnRowDataBound" SelectedRowStyle-BackColor="#475672" 
+                            OnSelectedIndexChanged="grdCustomer_OnSelectedIndexChanged">
                             <HeaderStyle BackColor="#475672" />
                             <Columns>
                                 <asp:TemplateField ItemStyle-CssClass="labelcolor itemalign" HeaderText="INVOICE" SortExpression="Invoicenumber" HeaderStyle-CssClass="itemalign">

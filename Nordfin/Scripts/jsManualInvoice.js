@@ -5,7 +5,6 @@
 
 function ShowPopup() {
     $(function () {
-        alert($('#txtCustName').val());
         $('#Dialog').modal({ backdrop: 'static', keyboard: false }, 'show');
     });
     return false;

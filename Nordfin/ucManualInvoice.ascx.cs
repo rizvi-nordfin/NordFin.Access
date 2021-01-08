@@ -157,12 +157,12 @@ namespace Nordfin
             }
         }
 
-        protected void grdInvoiceRows_OnRowDataBound(object sender, System.Web.UI.WebControls.GridViewRowEventArgs e)
+        protected void grdInvoiceRows_OnRowDataBound(object sender, GridViewRowEventArgs e)
         {
             if (e.Row.RowType == DataControlRowType.DataRow)
             {
                 e.Row.Attributes["onclick"] = Page.ClientScript.GetPostBackClientHyperlink(grdInvoiceRows, "Select$" + e.Row.RowIndex);
-                e.Row.Attributes["ondblclick"] = Page.ClientScript.GetPostBackClientHyperlink(grdInvoiceRows, "Edit$" + e.Row.RowIndex);
+                //e.Row.Attributes["ondblclick"] = Page.ClientScript.GetPostBackClientHyperlink(grdInvoiceRows, "Edit$" + e.Row.RowIndex);
                 e.Row.ToolTip = "Select the row to Delete";
             }
         }

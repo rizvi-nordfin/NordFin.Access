@@ -22,10 +22,16 @@
 <div>
     <div class="container-fluid">
       <div class="row mt-3">
-          <div class="col-md-5">
+          <div class="col-md-4">
               <span class="header">Manual Invoice</span>
             </div>
-          <div class="col-md-7">          
+          <div class="col-md-4">
+                <div class="custom-control custom-switch" style="padding-top:8px">
+                  <input type="checkbox" class="custom-control-input" id="swtchCreditInvoice">
+                  <label class="custom-control-label header" for="swtchCreditInvoice" style="font-size:15px !important">Credit Invoice</label>
+                </div>
+          </div>
+          <div class="col-md-4">          
               <asp:Button ID="btnManualInvClose"  Text="✕" CssClass="modalcloseButton" style="float:right" OnClick="ClosePopup" runat="server" />
             </div>
       </div>
@@ -84,7 +90,7 @@
             <div class="col-md-2">
                 <span class="title">Delivery Mode</span>
                 <asp:DropDownList ID="drpInvDelivery" runat="server" CssClass="form-control dropdown controls" Height="">
-                    <asp:ListItem>Papper</asp:ListItem>
+                    <asp:ListItem>Paper</asp:ListItem>
                     <asp:ListItem>E-Mail</asp:ListItem>
                 </asp:DropDownList>
           </div>
@@ -156,10 +162,8 @@
     <div class="container-fluid">
       <div class="row">
           <div class="col table-responsive">
-          <asp:GridView ID="grdInvoiceRows" runat="server" ShowFooter="true" AutoGenerateColumns="false" ShowHeaderWhenEmpty="True" 
-              EmptyDataRowStyle-HorizontalAlign="Center" EmptyDataRowStyle-VerticalAlign="Middle" EmptyDataText="No Data Found" 
-              OnRowDataBound="grdInvoiceRows_OnRowDataBound" OnSelectedIndexChanged="grdInvoiceRows_SelectedIndexChanged" 
-              SelectedRowStyle-BackColor="#475672" CssClass="invoiceRow" EmptyDataRowStyle-CssClass="Emptyrow" GridLines="None">
+          <asp:GridView ID="grdInvoiceRows" runat="server" ShowFooter="true" AutoGenerateColumns="false" ShowHeaderWhenEmpty="True" EmptyDataRowStyle-HorizontalAlign="Center" EmptyDataRowStyle-VerticalAlign="Middle" EmptyDataText="No Data Found" 
+              OnRowDataBound="grdInvoiceRows_OnRowDataBound" OnSelectedIndexChanged="grdInvoiceRows_SelectedIndexChanged" SelectedRowStyle-BackColor="#475672" CssClass="invoiceRow" EmptyDataRowStyle-CssClass="Emptyrow" GridLines="None">
               <Columns>
                   <asp:BoundField DataField="Article" HeaderStyle-CssClass="itemalign" ItemStyle-CssClass="itemalign" HeaderText="Article" ItemStyle-HorizontalAlign="Center" />
                   <asp:BoundField DataField="Description" HeaderStyle-CssClass="itemalign" ItemStyle-CssClass="itemalign" HeaderText="Description" ItemStyle-HorizontalAlign="Center" />
@@ -196,6 +200,11 @@
           </div>
     </div>
  </div>
+<asp:HiddenField ID="hdnInvoiceAmount" runat="server" />
+<asp:HiddenField ID="hdnBillDate" runat="server" />
+<asp:HiddenField ID="hdnDueDate" runat="server" />
+<asp:HiddenField ID="hdnRemainingAmount" runat="server" />
+<asp:HiddenField ID="hdnTotalAmount" runat="server" />
 <%--<asp:LinkButton ID="LinkButton2" runat="server">LinkButton</asp:LinkButton>
             <asp:Button ID="Button1" runat="server" Text="Close" />
 <asp:Panel runat="server" id="successPanel">

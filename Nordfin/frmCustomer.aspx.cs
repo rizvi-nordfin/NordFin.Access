@@ -192,7 +192,7 @@ namespace Nordfin
                     grdCustomer.DataBind();
                 }
 
-                if(ClientSession.Admin == "0" || ClientSession.Admin == "1")
+                if (ClientSession.Admin == "0" || ClientSession.Admin == "1")
                 {
                     ScriptManager.RegisterStartupScript(this, this.GetType(), "showManualInvoice", "$('#divManualInvoiceRow').show(); $('#divManualInvoice').show();", true);
                 }
@@ -580,7 +580,7 @@ namespace Nordfin
             return newPath;
         }
 
-       
+
 
         protected void grdCustomer_Sorting(object sender, GridViewSortEventArgs e)
         {
@@ -597,6 +597,36 @@ namespace Nordfin
                 SortGridView(sortExpression, ASCENDING);
             }
         }
+
+        protected void grdCustomer_OnRowDataBound(object sender, GridViewRowEventArgs e)
+        {
+            if (e.Row.RowType == DataControlRowType.DataRow)
+            {
+                e.Row.Attributes["onclick"] = Page.ClientScript.GetPostBackClientHyperlink(grdCustomer, "Select$" + e.Row.RowIndex);
+                //e.Row.Attributes["ondblclick"] = Page.ClientScript.GetPostBackClientHyperlink(grdCustomer, "ManualInvoice" + e.Row.RowIndex);
+                e.Row.ToolTip = "Select the row and click Manual Invoice to create Credit Invoice";
+            }
+        }
+
+        protected void grdCustomer_OnSelectedIndexChanged(object sender, EventArgs e)
+        {
+            var selectedRow = grdCustomer.SelectedRow;
+            var gridData = (DataTable)Session["CustomerGrid"];
+            var selectedRowData = gridData.AsEnumerable().ElementAt(selectedRow.RowIndex);
+            var hdnInvoiceAmount = (HiddenField)ucManualInvoice.FindControl("hdnInvoiceAmount");
+            hdnInvoiceAmount.Value = selectedRowData.ItemArray[5].ToString();
+            var hdnBillDate = (HiddenField)ucManualInvoice.FindControl("hdnBillDate");
+            hdnBillDate.Value = selectedRowData.ItemArray[7].ToString();
+            var hdnDueDate = (HiddenField)ucManualInvoice.FindControl("hdnDueDate");
+            hdnDueDate.Value = selectedRowData.ItemArray[8].ToString();
+            var hdnRemainingAmount = (HiddenField)ucManualInvoice.FindControl("hdnRemainingAmount");
+            hdnRemainingAmount.Value = selectedRowData.ItemArray[6].ToString();
+            var hdnTotalAmount = (HiddenField)ucManualInvoice.FindControl("hdnTotalAmount");
+            hdnTotalAmount.Value = selectedRowData.ItemArray[11].ToString();
+            //var hdnBillDate = 
+
+        }
+
 
         private void SortGridView(string sortExpression, string direction)
         {
