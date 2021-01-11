@@ -50,8 +50,8 @@ namespace Nordfin
                     pnlTraffic.Visible = false;
                     pnlTrafficDetails.Visible = false;
                     pnlNotification.Visible = false;
+                    pnlTeleson.Visible = false;
 
-                    
 
                 }
                 else

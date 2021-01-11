@@ -6,6 +6,7 @@ using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Dynamic;
+using System.Drawing;
 using System.Globalization;
 using System.IO;
 using System.Linq;
@@ -41,6 +42,7 @@ namespace Nordfin
             {
                 ClearSession();
                 string InvoiceNum = (string)Session["custNum"];
+                hdnAdmin.Value = ClientSession.Admin;
                 if (InvoiceNum != null && ClientSession.ClientID != null)
                 {
                     IInvoicesPresentationBusinessLayer objInvoicesLayer = new InvoicesBusinessLayer();
@@ -451,6 +453,10 @@ namespace Nordfin
                 ws.Column(13).Delete();
                 ws.Column(14).Delete();
                 ws.Column(13).Delete();
+
+                
+
+
                 Response.Clear();
                 Response.Buffer = true;
                 Response.Charset = "";
@@ -562,10 +568,24 @@ namespace Nordfin
 
             using (XLWorkbook wb = new XLWorkbook())
             {
+                var ws = wb.Worksheets.Add(dataSet.Tables[0]);
+                ws.Tables.FirstOrDefault().ShowAutoFilter = false;
+                ws.Tables.FirstOrDefault().Theme = XLTableTheme.TableStyleLight16;
+                wb.Worksheet(1).Columns().AdjustToContents();
+                DataTable dataTable = dataSet.Tables[0];
+                for (int i = 0; i < dataTable.Rows.Count; i++)
+                {
+                    string str = "A" + (i + 2).ToString() + ":" + "M" + (i + 2).ToString();
+                    if (dataTable.Rows[i].ItemArray[0].ToString().ToUpper() == "INVOICES")
+                    {
+                        ws.Range(str).Style.Fill.BackgroundColor= XLColor.FromHtml("#3399FF");
+                    }
+                    else
+                    {
+                        ws.Range(str).Style.Fill.BackgroundColor = XLColor.FromHtml("#CCCCFF");
+                    }
 
-
-                wb.Worksheets.Add(dataSet.Tables[0]);
-
+                }
                 Response.Clear();
                 Response.Buffer = true;
                 Response.Charset = "";

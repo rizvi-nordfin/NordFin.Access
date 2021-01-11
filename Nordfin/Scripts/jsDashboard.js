@@ -1265,6 +1265,9 @@ app.controller("myCtrl", function ($scope, $http) {
                         name: 'Amount',
                         type: 'linear',
                         location: 'left',
+                        labels: {
+                            stringFormat: ','
+                        }
                         //minimum: 0,
                         //maximum: 50000,
                         //interval: 5000,

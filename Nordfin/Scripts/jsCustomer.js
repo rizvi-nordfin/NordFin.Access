@@ -35,13 +35,16 @@ function CreateControl() {
 
 
 function addButton() {
-
+    
     var element = document.createElement("input");
     element.type = 'button';
     element.value = 'Download';
     element.name = 'btncheck';
     element.onclick = function () {
-        document.getElementById("NordfinContentHolder_btnExportreport").click();
+        if (document.getElementById("NordfinContentHolder_hdnAdmin").value == "0" || document.getElementById("NordfinContentHolder_hdnAdmin").value == "1")
+            document.getElementById("NordfinContentHolder_btnExportreport").OnClientClick = ExportExcel();
+        else
+            document.getElementById("NordfinContentHolder_btnExportreport").click();
     };
     element.classList = 'button button-table downloadButton';
     var foo = document.getElementById("tdExport");
