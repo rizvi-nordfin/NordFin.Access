@@ -14,7 +14,7 @@ app.controller("myCtrl", function ($scope, $http) {
             "X-Requested-With": "XMLHttpRequest"
         }
     }).then(function (response) {
-        debugger;
+       
         const resData = response.data.d;
         const telsonData = JSON.parse(resData);
 
@@ -56,7 +56,9 @@ app.controller("myCtrl", function ($scope, $http) {
 
             options: {
                 responsive: true,
-                maintainAspectRatio: false
+                maintainAspectRatio: false,
+           
+
             },
             legend: {
                 display: false,
@@ -67,32 +69,23 @@ app.controller("myCtrl", function ($scope, $http) {
                 {
                     name: 'Amount',
                     type: 'linear',
-                    location: 'left'
-                    //minimum: 0,
-                    //maximum: 750000,
-                    //interval: 20000,
+                    location: 'left',
+                    labels: {
+                        stringFormat: ','
+                    }
+                   
 
                 },
                 {
                     name: 'Number',
                     type: 'linear',
                     location: 'right'
-                    //minimum: 0,
-                    //maximum: MaxValue,
-                    //interval: 50,
+                  
                 }
-                //,
-                //},
-                //{
-
-                //    location: 'bottom',
-
-                //    labels: {
-                //        angle:-45
-                //    }
-                //}
+              
             ],
-
+           
+           
             series: [
                 {
                     type: 'column',
@@ -100,13 +93,6 @@ app.controller("myCtrl", function ($scope, $http) {
                     fillStyle: '#3e527c',
                     axisY: 'Number',
                     data: data1,
-
-
-                    //pointWidth: 0.8,
-                    //markers: {
-                    //    size: 10, type: 'circle',
-                    //    strokeStyle: 'black', lineWidth: 1
-                    //},
 
                 },
 
@@ -116,11 +102,7 @@ app.controller("myCtrl", function ($scope, $http) {
                     fillStyle: '#232d41',
                     axisY: 'Amount',
                     data: data2,
-                    //pointWidth: 0.8,
-                    //markers: {
-                    //    size: 10, type: 'circle',
-                    //    strokeStyle: 'black', lineWidth: 1
-                    //},
+                 
                 },
                 {
                     type: 'line',
@@ -129,6 +111,7 @@ app.controller("myCtrl", function ($scope, $http) {
                     fillStyle: '#FFB100',
                     lineWidth: 1,
                     data: data2,
+                   
 
                 },
 

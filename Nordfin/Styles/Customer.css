@@ -328,8 +328,17 @@ body ::-webkit-scrollbar-thumb {
 }
 
 @media all and (max-width:600px) {
+
     .customerTable {
-        bottom:45px !important;
+        bottom: 45px !important;
+    }
+
+    .customerWidth22 {
+        max-width: 100%;
+    }
+    .customerWidth78 {
+        max-width: 100%;
+        flex: 0 0 100%;
     }
 }
 
@@ -524,8 +533,30 @@ input[type=checkbox] {
 
 .customerTable {
     background-color: #2C3850;
-    flex: 0 0 78%;
-    max-width: 78%;
     bottom: 30px;
     height: 600px
 }
+
+.modalExportbutton:hover {
+    background-color: #3DADC5;
+    color: #fff;
+}
+
+.dashboardHeadline {
+    margin-top: 10px;
+}
+
+
+
+.customerWidth22 {
+    max-width: 22%
+}
+
+
+
+.customerWidth78 {
+    flex: 0 0 78%;
+    max-width: 78%;
+}
+
+ 

@@ -10,7 +10,7 @@
 
      <link href="Styles/mapsvg.css" rel="stylesheet" />
     <link href="Styles/nanoscroller.css" rel="stylesheet" />
-    <script src="Scripts/jquery.jqChart.min.js"></script>
+    <script src="Scripts/jquery.jqChart.min.js?version=<%=ConfigurationManager.AppSettings["VersionConfiguration"].ToString()%> "></script>
     <link href="Styles/jquery.jqChart.css" rel="stylesheet" />
     <script src="Scripts/jquery.mousewheel.min.js"></script>
     <script src="Scripts/jquery.nanoscroller.min.js"></script>

@@ -28,10 +28,10 @@
 
 
             <div>
-                <div class="row " style="height: 50px; margin-left: 0px;">
+                <div class="row " style="height: 50px; margin-left: 0px;margin-top:20px">
 
 
-                    <div class="col-md-3 divPadding customerInfoSidebar" style="color: #FFFFFF; max-width: 22%">
+                    <div class="col-md-3 divPadding customerWidth22" style="color: #FFFFFF;">
                         <div style="background-color: #3E4B64;">
 
 
@@ -106,6 +106,13 @@
                                 <span class="customerdivHeading">PHONE</span>
 
                                 <asp:Label CssClass="customerdivText" Text="" runat="server" ID="lblPhone"></asp:Label>
+
+                            </asp:Panel>
+                             <hr class="divHrLine" />
+                            <asp:Panel runat="server" CssClass="divPaddingLeft" ID="divCreditCheck">
+                                <span class="customerdivHeading">Credit Check</span>
+
+                                <asp:Label CssClass="customerdivText" Text="" runat="server" ID="Label1"></asp:Label>
 
                             </asp:Panel>
                             <asp:Panel runat="server" Visible="false" ID="pnlInsuredClient">
@@ -206,7 +213,7 @@
 
 
                     
-                    <div class="col-md-9 table-responsive customerTable tableMarginTop">
+                   <div class="col-md-9 table-responsive customerTable tableMarginTop customerWidth78">
 
                           <asp:UpdatePanel runat="server" ID="UpdatePanel1">
                 <ContentTemplate>
@@ -265,9 +272,9 @@
                     </div>
 
 
-                    <div class="col-md-3" style="max-width: 22%">
+                   <div class="col-md-3 customerWidth22">
                     </div>
-                    <div class="col-md-9 table-responsive customerNotes" style="flex: 0 0 80%; max-width: 78%">
+                    <div class="col-md-9 table-responsive customerNotes customerWidth78">
                         <div class="row totalsum" style="display: none;">
 
 
@@ -629,6 +636,6 @@
     <asp:HiddenField ID="hdnInvoiceNumber" runat="server" />
     <asp:HiddenField ID="hdnEmailID" runat="server" />
     <asp:HiddenField ID="hdnMatch" runat="server" Value="true" />
-
+     <asp:HiddenField ID="hdnAdmin" runat="server" Value="true" />
     <asp:TextBox ID="txtCustomerID" runat="server" autocomplete="off" Visible="false"></asp:TextBox>
 </asp:Content>

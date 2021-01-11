@@ -610,3 +610,24 @@ Inline style {
         margin-right: 13px !important;
     }
 }
+@media all and (max-width: 1800px) {
+    .divWidth {
+       width:104.5%;
+    }
+}
+@media screen and (max-width: 2500px) and (min-width: 1800px) {
+
+    .divWidth {
+        width: 103.5%;
+    }
+}
+@media screen and (max-width: 10000px) and (min-width: 2500px) {
+
+    .divWidth {
+        width: 102.5%;
+    }
+}
+
+    .dashboardTable tr {
+        height: 37px !important;
+    }
