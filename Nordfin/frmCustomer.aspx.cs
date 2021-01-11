@@ -5,6 +5,7 @@ using Nordfin.workflow.PresentationBusinessLayer;
 using System;
 using System.Collections.Generic;
 using System.Data;
+using System.Dynamic;
 using System.Globalization;
 using System.IO;
 using System.Linq;
@@ -196,10 +197,16 @@ namespace Nordfin
                 {
                     ScriptManager.RegisterStartupScript(this, this.GetType(), "showManualInvoice", "$('#divManualInvoiceRow').show(); $('#divManualInvoice').show();", true);
                 }
-                LoadManualInvoiceCustomerData();
 
             }
-
+            else
+            {
+                //string parameter = Request["__EVENTARGUMENT"];
+                //if(!string.IsNullOrWhiteSpace(parameter) && parameter.Contains("Select"))
+                //{
+                    
+                //}
+            }
             ScriptManager.RegisterStartupScript(UpdatePanel1, UpdatePanel1.GetType(), "CreateControl", "CreateControl();", true);
         }
 
@@ -232,20 +239,51 @@ namespace Nordfin
             ScriptManager.RegisterStartupScript(this, this.GetType(), "PDFViewerNewTab", "PDFViewer('" + sFileName + "','" + sPDFViewerLink + "','" + Session.SessionID + "','" + bResult + "','" + btn.ClientID + "');", true);
         }
 
-        private void LoadManualInvoiceCustomerData()
+        private dynamic LoadManualInvoiceData()
         {
-            var custNum = (TextBox)ucManualInvoice.FindControl("txtCustNum");
-            custNum.Text = lblCustomerNumber.Text;
-            var custName = (TextBox)ucManualInvoice.FindControl("txtCustName");
-            custName.Text = lblName.Text;
-            var custContact = (TextBox)ucManualInvoice.FindControl("txtCustContact");
-            custContact.Text = lblAddress.Text;
-            var custAddress = (TextBox)ucManualInvoice.FindControl("txtCustAddress");
-            custAddress.Text = lblAddress1.Text;
-            var custPostCode = (TextBox)ucManualInvoice.FindControl("txtPostCode");
-            custPostCode.Text = lblPostalCode.Text;
-            var custCity = (TextBox)ucManualInvoice.FindControl("txtCity");
-            custCity.Text = lblCity.Text;
+            //var custNum = (TextBox)ucManualInvoice.FindControl("txtCustNum");
+            //custNum.Text = lblCustomerNumber.Text;
+            //var custName = (TextBox)ucManualInvoice.FindControl("txtCustName");
+            //custName.Text = lblName.Text;
+            //var custContact = (TextBox)ucManualInvoice.FindControl("txtCustContact");
+            //custContact.Text = lblAddress.Text;
+            //var custAddress = (TextBox)ucManualInvoice.FindControl("txtCustAddress");
+            //custAddress.Text = lblAddress1.Text;
+            //var custPostCode = (TextBox)ucManualInvoice.FindControl("txtPostCode");
+            //custPostCode.Text = lblPostalCode.Text;
+            //var custCity = (TextBox)ucManualInvoice.FindControl("txtCity");
+            //custCity.Text = lblCity.Text;
+
+            //var selectedRow = grdCustomer.SelectedRow;
+            //var gridData = (DataTable)Session["CustomerGrid"];
+            //var selectedRowData = gridData.AsEnumerable().ElementAt(selectedRow.RowIndex);
+            //var hdnInvoiceAmount = (HiddenField)ucManualInvoice.FindControl("hdnInvoiceAmount");
+            //hdnInvoiceAmount.Value = selectedRowData.ItemArray[5].ToString();
+            //var hdnBillDate = (HiddenField)ucManualInvoice.FindControl("hdnBillDate");
+            //hdnBillDate.Value = selectedRowData.ItemArray[7].ToString();
+            //var hdnDueDate = (HiddenField)ucManualInvoice.FindControl("hdnDueDate");
+            //hdnDueDate.Value = selectedRowData.ItemArray[8].ToString();
+            //var hdnRemainingAmount = (HiddenField)ucManualInvoice.FindControl("hdnRemainingAmount");
+            //hdnRemainingAmount.Value = selectedRowData.ItemArray[6].ToString();
+            //var hdnTotalAmount = (HiddenField)ucManualInvoice.FindControl("hdnTotalAmount");
+            //hdnTotalAmount.Value = selectedRowData.ItemArray[11].ToString();
+
+            dynamic dynObject = new ExpandoObject();
+            var selectedRow = grdCustomer.SelectedRow;
+            var gridData = (DataTable)Session["CustomerGrid"];
+            var selectedRowData = gridData.AsEnumerable().ElementAt(selectedRow.RowIndex);
+            dynObject.custNum = lblCustomerNumber.Text;
+            dynObject.custName = lblName.Text;
+            dynObject.custContact = lblAddress.Text;
+            dynObject.custAddress = lblAddress1.Text;
+            dynObject.custPostCode = lblPostalCode.Text;
+            dynObject.custCity = lblCity.Text;
+            dynObject.invoiceAmount = selectedRowData.ItemArray[5].ToString();
+            dynObject.billDate = selectedRowData.ItemArray[7].ToString();
+            dynObject.dueDate = selectedRowData.ItemArray[8].ToString();
+            dynObject.remainingAmount = selectedRowData.ItemArray[6].ToString();
+            dynObject.totalAmount = selectedRowData.ItemArray[11].ToString();
+            return dynObject;
         }
 
         public void ClearSession()
@@ -603,28 +641,16 @@ namespace Nordfin
             if (e.Row.RowType == DataControlRowType.DataRow)
             {
                 e.Row.Attributes["onclick"] = Page.ClientScript.GetPostBackClientHyperlink(grdCustomer, "Select$" + e.Row.RowIndex);
-                //e.Row.Attributes["ondblclick"] = Page.ClientScript.GetPostBackClientHyperlink(grdCustomer, "ManualInvoice" + e.Row.RowIndex);
+                //e.Row.Attributes["ondblclick"] = Page.ClientScript.GetPostBackClientHyperlink(grdCustomer, "Manual" + e.Row.RowIndex);
                 e.Row.ToolTip = "Select the row and click Manual Invoice to create Credit Invoice";
             }
         }
 
         protected void grdCustomer_OnSelectedIndexChanged(object sender, EventArgs e)
         {
-            var selectedRow = grdCustomer.SelectedRow;
-            var gridData = (DataTable)Session["CustomerGrid"];
-            var selectedRowData = gridData.AsEnumerable().ElementAt(selectedRow.RowIndex);
-            var hdnInvoiceAmount = (HiddenField)ucManualInvoice.FindControl("hdnInvoiceAmount");
-            hdnInvoiceAmount.Value = selectedRowData.ItemArray[5].ToString();
-            var hdnBillDate = (HiddenField)ucManualInvoice.FindControl("hdnBillDate");
-            hdnBillDate.Value = selectedRowData.ItemArray[7].ToString();
-            var hdnDueDate = (HiddenField)ucManualInvoice.FindControl("hdnDueDate");
-            hdnDueDate.Value = selectedRowData.ItemArray[8].ToString();
-            var hdnRemainingAmount = (HiddenField)ucManualInvoice.FindControl("hdnRemainingAmount");
-            hdnRemainingAmount.Value = selectedRowData.ItemArray[6].ToString();
-            var hdnTotalAmount = (HiddenField)ucManualInvoice.FindControl("hdnTotalAmount");
-            hdnTotalAmount.Value = selectedRowData.ItemArray[11].ToString();
-            //var hdnBillDate = 
-
+            dynamic obj = LoadManualInvoiceData();
+            string sJSON = Newtonsoft.Json.JsonConvert.SerializeObject(obj);
+            ScriptManager.RegisterStartupScript(this, GetType(), "OpenManualInvoice", "showManualInvoice(" + sJSON + ");", true);
         }
 
 
@@ -639,6 +665,19 @@ namespace Nordfin
 
             grdCustomer.DataSource = dv;
             grdCustomer.DataBind();
+        }
+
+        protected override void Render(HtmlTextWriter writer)
+        {
+            foreach (GridViewRow r in grdCustomer.Rows)
+            {
+                if (r.RowType == DataControlRowType.DataRow)
+                {
+                    Page.ClientScript.RegisterForEventValidation(grdCustomer.UniqueID, "Select$" + r.RowIndex);
+                }
+            }
+
+            base.Render(writer);
         }
     }
 }

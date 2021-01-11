@@ -35,3 +35,11 @@ function ValidateAmount(txt, evt) {
     return true;
 }
 
+function creditInvoiceChanged() {
+    if ($('#swtchCreditInvoice').val()) {
+        var invAmount = $('#NordfinContentHolder_ucManualInvoice_hdnInvoiceAmount').val();
+        $('#txtInvAmount').val(invAmount);
+        SetTotalAmount();
+    }
+}
+

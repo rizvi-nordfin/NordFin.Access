@@ -329,8 +329,20 @@ function CreditCheck() {
     return false;
 }
 
-function showManualInvoice() {
+function showManualInvoice(data) {
     $(function () {
+        $('#NordfinContentHolder_ucManualInvoice_txtCustNum').val(data.custNum);
+        $('#NordfinContentHolder_ucManualInvoice_txtCustName').val(data.custName);
+        $('#NordfinContentHolder_ucManualInvoice_txtCustContact').val(data.custContact);
+        $('#NordfinContentHolder_ucManualInvoice_txtCustAddress').val(data.custAddress);
+        $('#NordfinContentHolder_ucManualInvoice_txtCustPostCode').val(data.custPostCode);
+        $('#NordfinContentHolder_ucManualInvoice_txtCustCity').val(data.custCity);
+        $('#NordfinContentHolder_ucManualInvoice_hdnInvoiceAmount').val(data.invoiceAmount);
+        $('#NordfinContentHolder_ucManualInvoice_hdnBillDate').val(data.billDate);
+        $('#NordfinContentHolder_ucManualInvoice_hdnDueDate').val(data.dueDate);
+        $('#NordfinContentHolder_ucManualInvoice_hdnRemainingAmount').val(data.remainingAmount);
+        $('#NordfinContentHolder_ucManualInvoice_hdnTotalAmount').val(data.totalAmount);
+
         $('#NordfinContentHolder_mdlManualInvoice').modal({ backdrop: 'static', keyboard: false }, 'show');
     });
     return false;

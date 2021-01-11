@@ -98,8 +98,8 @@ namespace Nordfin
                 CustomerName = txtCustName.Text.Trim(),
                 CustomerAddress = txtCustContact.Text.Trim(),
                 CustomerAddress2 = txtCustAddress.Text.Trim(),
-                CustomerCity = txtCity.Text.Trim(),
-                CustomerPostalCode = txtPostCode.Text.Trim(),
+                CustomerCity = txtCustCity.Text.Trim(),
+                CustomerPostalCode = txtCustPostCode.Text.Trim(),
                 CustomerType = "PRV",
                 ClientId = ClientSession.ClientID
             };
@@ -170,6 +170,19 @@ namespace Nordfin
         protected void grdInvoiceRows_SelectedIndexChanged(object sender, EventArgs e)
         {
             
+        }
+
+        protected override void Render(HtmlTextWriter writer)
+        {
+            foreach (GridViewRow r in grdInvoiceRows.Rows)
+            {
+                if (r.RowType == DataControlRowType.DataRow)
+                {
+                    Page.ClientScript.RegisterForEventValidation(grdInvoiceRows.UniqueID, "Select$" + r.RowIndex);
+                }
+            }
+
+            base.Render(writer);
         }
 
         protected void DeleteRows(object sender, EventArgs e)

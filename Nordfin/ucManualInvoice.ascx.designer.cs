@@ -60,22 +60,22 @@ namespace Nordfin
         protected global::System.Web.UI.WebControls.TextBox txtCustAddress;
 
         /// <summary>
-        /// txtPostCode control.
+        /// txtCustPostCode control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtPostCode;
+        protected global::System.Web.UI.WebControls.TextBox txtCustPostCode;
 
         /// <summary>
-        /// txtCity control.
+        /// txtCustCity control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtCity;
+        protected global::System.Web.UI.WebControls.TextBox txtCustCity;
 
         /// <summary>
         /// lblInvoiceNumber control.

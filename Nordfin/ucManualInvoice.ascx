@@ -25,13 +25,13 @@
           <div class="col-md-4">
               <span class="header">Manual Invoice</span>
             </div>
-          <div class="col-md-4">
-                <div class="custom-control custom-switch" style="padding-top:8px">
-                  <input type="checkbox" class="custom-control-input" id="swtchCreditInvoice">
+          <div class="col-md-7">
+                <div class="custom-control custom-switch" style="padding-top:8px;float:right">
+                  <input type="checkbox" class="custom-control-input" id="swtchCreditInvoice" onchange="creditInvoiceChanged();">
                   <label class="custom-control-label header" for="swtchCreditInvoice" style="font-size:15px !important">Credit Invoice</label>
                 </div>
           </div>
-          <div class="col-md-4">          
+          <div class="col-md-1">          
               <asp:Button ID="btnManualInvClose"  Text="✕" CssClass="modalcloseButton" style="float:right" OnClick="ClosePopup" runat="server" />
             </div>
       </div>
@@ -57,11 +57,11 @@
             </div>
           <div class="col-md-2">
                 <span class="title">Post Code</span>
-                <asp:TextBox Text="" runat="server" ID="txtPostCode" CssClass="form-control controls" Enabled="false"></asp:TextBox>
+                <asp:TextBox Text="" runat="server" ID="txtCustPostCode" CssClass="form-control controls" Enabled="false"></asp:TextBox>
             </div>
           <div class="col-md-2">
                 <span class="title">City</span>
-                <asp:TextBox Text="" runat="server" ID="txtCity" CssClass="form-control controls" Enabled="false"></asp:TextBox>
+                <asp:TextBox Text="" runat="server" ID="txtCustCity" CssClass="form-control controls" Enabled="false"></asp:TextBox>
             </div>
       </div>
       </div>
