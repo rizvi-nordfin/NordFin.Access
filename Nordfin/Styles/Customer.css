@@ -60,6 +60,10 @@
     border: none;
 }
 
+.dashboardHeadline{
+    margin-top:10px;
+}
+
 .headerFont {
     font-size: x-small;
 }
@@ -280,12 +284,14 @@ body ::-webkit-scrollbar-thumb {
     padding-right: 0px;
 }
 
-.customerInfoSidebar {
+.customerWidth22 {
+    max-width: 22%
 }
 
-
-
-
+.customerWidth78 {
+    flex: 0 0 78%;
+    max-width: 78%;
+}
 
 .dashboardHeader {
     height: 50px;
@@ -330,7 +336,7 @@ body ::-webkit-scrollbar-thumb {
 @media all and (max-width:600px) {
 
     .customerTable {
-        bottom: 45px !important;
+        bottom: 0px !important;
     }
 
     .customerWidth22 {
@@ -540,23 +546,6 @@ input[type=checkbox] {
 .modalExportbutton:hover {
     background-color: #3DADC5;
     color: #fff;
-}
-
-.dashboardHeadline {
-    margin-top: 10px;
-}
-
-
-
-.customerWidth22 {
-    max-width: 22%
-}
-
-
-
-.customerWidth78 {
-    flex: 0 0 78%;
-    max-width: 78%;
 }
 
  
