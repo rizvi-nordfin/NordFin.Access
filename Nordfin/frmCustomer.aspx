@@ -108,13 +108,7 @@
                                 <asp:Label CssClass="customerdivText" Text="" runat="server" ID="lblPhone"></asp:Label>
 
                             </asp:Panel>
-                             <hr class="divHrLine" />
-                            <asp:Panel runat="server" CssClass="divPaddingLeft" ID="divCreditCheck">
-                                <span class="customerdivHeading">Credit Check</span>
-
-                                <asp:Label CssClass="customerdivText" Text="" runat="server" ID="Label1"></asp:Label>
-
-                            </asp:Panel>
+                            
                             <asp:Panel runat="server" Visible="false" ID="pnlInsuredClient">
                                 <hr class="divHrLine" />
                                 <div class="divPaddingLeft divcollapse" id="divCollapse" data-toggle="collapse" data-target="#demo" style="cursor: pointer;">
