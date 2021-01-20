@@ -43,5 +43,21 @@ namespace Nordfin.workflow.DataAccessLayer
 
             }
         }
+
+        public bool ImportManualInvoice(string standardXml)
+        {
+            try
+            {
+                DBInitialize("usp_InsertCustomerInvoiceXmlData");
+
+                DatabaseName.AddInParameter(DBBaseCommand, "@xmlCustomerInvoices", DbType.String, standardXml);
+                int result = DatabaseName.ExecuteNonQuery(DBBaseCommand);
+                return result > 0;
+            }
+            catch
+            {
+                return false;
+            }
+        }
     }
 }

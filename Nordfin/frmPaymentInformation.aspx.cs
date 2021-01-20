@@ -28,7 +28,8 @@ namespace Nordfin
                 string InvoiceNum = "";
                 hdnFileName.Value = Request.QueryString["FileName"];
                 hdnClientName.Value = Request.QueryString["ClientName"];
-
+                hdnCustomerData.Value = Request.QueryString["Customer"];
+                hdnInvoiceAmount.Value = sRemainAmount.Trim();
 
 
                 if (InvoiceData.Split('|').Length > 1)
@@ -204,7 +205,7 @@ namespace Nordfin
             string sPDFViewerLink = "";
             bool bResult = false;
             string ResultFile = "";
-            string subfolder = ClientName.Substring(ClientName.LastIndexOf("/") + 1) + Execute(sFileName.Split('_')[1].Trim());
+            string subfolder = ClientName.Substring(ClientName.LastIndexOf("/") + 1) + Utilities.Execute(sFileName.Split('_')[1].Trim());
             if (sFileName != "")
                 bResult = fileProcess.FileDownload(ClientName, subfolder, sFileName, out ResultFile);
             if (!bResult)
@@ -295,6 +296,12 @@ namespace Nordfin
                 HttpContext.Current.Response.Redirect("frmLogin.aspx");
 
             }
+        }
+
+
+        protected void ManualInvoice_Click(object sender, EventArgs e)
+        {
+           
         }
     }
 }

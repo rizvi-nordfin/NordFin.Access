@@ -197,17 +197,9 @@ namespace Nordfin
 
                 if (ClientSession.Admin == "0" || ClientSession.Admin == "1")
                 {
-                    ScriptManager.RegisterStartupScript(this, this.GetType(), "showManualInvoice", "$('#divManualInvoiceRow').show(); $('#divManualInvoice').show();", true);
+                    ScriptManager.RegisterStartupScript(this, this.GetType(), "showManualInvoiceButton", "$('#divManualInvoiceRow').show(); $('#divManualInvoice').show();", true);
                 }
 
-            }
-            else
-            {
-                //string parameter = Request["__EVENTARGUMENT"];
-                //if(!string.IsNullOrWhiteSpace(parameter) && parameter.Contains("Select"))
-                //{
-                    
-                //}
             }
             ScriptManager.RegisterStartupScript(UpdatePanel1, UpdatePanel1.GetType(), "CreateControl", "CreateControl();", true);
         }
@@ -220,7 +212,7 @@ namespace Nordfin
 
         protected void btnPDFDownload_Click(object sender, EventArgs e)
         {
-            string subFolderName = hdnClientName.Value.Substring(hdnClientName.Value.LastIndexOf("/") + 1) + Execute(((Button)sender).CommandArgument.Trim());
+            string subFolderName = hdnClientName.Value.Substring(hdnClientName.Value.LastIndexOf("/") + 1) + Utilities.Execute(((Button)sender).CommandArgument.Trim());
             FTPFileProcess fileProcess = new FTPFileProcess();
             string sFileExt = System.Configuration.ConfigurationManager.AppSettings["FileExtension"].ToString();
             string sFileName = hdnFileName.Value + "_" + ((Button)sender).CommandArgument.Trim() + "_" + "inv" + "." + sFileExt;
@@ -243,48 +235,18 @@ namespace Nordfin
 
         private dynamic LoadManualInvoiceData()
         {
-            //var custNum = (TextBox)ucManualInvoice.FindControl("txtCustNum");
-            //custNum.Text = lblCustomerNumber.Text;
-            //var custName = (TextBox)ucManualInvoice.FindControl("txtCustName");
-            //custName.Text = lblName.Text;
-            //var custContact = (TextBox)ucManualInvoice.FindControl("txtCustContact");
-            //custContact.Text = lblAddress.Text;
-            //var custAddress = (TextBox)ucManualInvoice.FindControl("txtCustAddress");
-            //custAddress.Text = lblAddress1.Text;
-            //var custPostCode = (TextBox)ucManualInvoice.FindControl("txtPostCode");
-            //custPostCode.Text = lblPostalCode.Text;
-            //var custCity = (TextBox)ucManualInvoice.FindControl("txtCity");
-            //custCity.Text = lblCity.Text;
-
-            //var selectedRow = grdCustomer.SelectedRow;
-            //var gridData = (DataTable)Session["CustomerGrid"];
-            //var selectedRowData = gridData.AsEnumerable().ElementAt(selectedRow.RowIndex);
-            //var hdnInvoiceAmount = (HiddenField)ucManualInvoice.FindControl("hdnInvoiceAmount");
-            //hdnInvoiceAmount.Value = selectedRowData.ItemArray[5].ToString();
-            //var hdnBillDate = (HiddenField)ucManualInvoice.FindControl("hdnBillDate");
-            //hdnBillDate.Value = selectedRowData.ItemArray[7].ToString();
-            //var hdnDueDate = (HiddenField)ucManualInvoice.FindControl("hdnDueDate");
-            //hdnDueDate.Value = selectedRowData.ItemArray[8].ToString();
-            //var hdnRemainingAmount = (HiddenField)ucManualInvoice.FindControl("hdnRemainingAmount");
-            //hdnRemainingAmount.Value = selectedRowData.ItemArray[6].ToString();
-            //var hdnTotalAmount = (HiddenField)ucManualInvoice.FindControl("hdnTotalAmount");
-            //hdnTotalAmount.Value = selectedRowData.ItemArray[11].ToString();
-
             dynamic dynObject = new ExpandoObject();
             var selectedRow = grdCustomer.SelectedRow;
-            var gridData = (DataTable)Session["CustomerGrid"];
-            var selectedRowData = gridData.AsEnumerable().ElementAt(selectedRow.RowIndex);
-            dynObject.custNum = lblCustomerNumber.Text;
-            dynObject.custName = lblName.Text;
-            dynObject.custContact = lblAddress.Text;
-            dynObject.custAddress = lblAddress1.Text;
-            dynObject.custPostCode = lblPostalCode.Text;
-            dynObject.custCity = lblCity.Text;
-            dynObject.invoiceAmount = selectedRowData.ItemArray[5].ToString();
-            dynObject.billDate = selectedRowData.ItemArray[7].ToString();
-            dynObject.dueDate = selectedRowData.ItemArray[8].ToString();
-            dynObject.remainingAmount = selectedRowData.ItemArray[6].ToString();
-            dynObject.totalAmount = selectedRowData.ItemArray[11].ToString();
+            if (selectedRow != null)
+            {
+                var gridData = (DataTable)Session["CustomerGrid"];
+                var selectedRowData = gridData.AsEnumerable().ElementAt(selectedRow.RowIndex);
+                dynObject.invoiceAmount = selectedRowData.ItemArray[5].ToString();
+                dynObject.billDate = selectedRowData.ItemArray[7].ToString();
+                dynObject.dueDate = selectedRowData.ItemArray[8].ToString();
+                dynObject.remainingAmount = selectedRowData.ItemArray[6].ToString();
+                dynObject.totalAmount = selectedRowData.ItemArray[11].ToString();
+            }
             return dynObject;
         }
 
@@ -661,18 +623,9 @@ namespace Nordfin
             if (e.Row.RowType == DataControlRowType.DataRow)
             {
                 e.Row.Attributes["onclick"] = Page.ClientScript.GetPostBackClientHyperlink(grdCustomer, "Select$" + e.Row.RowIndex);
-                //e.Row.Attributes["ondblclick"] = Page.ClientScript.GetPostBackClientHyperlink(grdCustomer, "Manual" + e.Row.RowIndex);
-                e.Row.ToolTip = "Select the row and click Manual Invoice to create Credit Invoice";
+                e.Row.ToolTip = "click to create Credit Invoice";
             }
         }
-
-        protected void grdCustomer_OnSelectedIndexChanged(object sender, EventArgs e)
-        {
-            dynamic obj = LoadManualInvoiceData();
-            string sJSON = Newtonsoft.Json.JsonConvert.SerializeObject(obj);
-            ScriptManager.RegisterStartupScript(this, GetType(), "OpenManualInvoice", "showManualInvoice(" + sJSON + ");", true);
-        }
-
 
         private void SortGridView(string sortExpression, string direction)
         {

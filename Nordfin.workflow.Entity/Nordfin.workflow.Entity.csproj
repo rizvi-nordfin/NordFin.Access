@@ -92,7 +92,7 @@
     <Compile Include="Users.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="UserEmail.cs" />
-    <Compile Include="Utf8StringWriter.cs" />
+    <Compile Include="UtfStringWriter.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="..\.editorconfig">

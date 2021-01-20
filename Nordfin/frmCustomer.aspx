@@ -8,7 +8,9 @@
     <link href="Styles/ManualInvoice.css" rel="stylesheet" />
     <script src="Scripts/jsManualInvoice.js"></script>
     <script src="Scripts/jsCustomer.js?version=<%=ConfigurationManager.AppSettings["VersionConfiguration"].ToString() %>"></script>
-
+    <link rel="stylesheet" href="Styles/jquery-ui-NordFin.css" />
+      <script src="//code.jquery.com/jquery-1.10.2.js"></script>
+    <script src="//code.jquery.com/ui/1.11.1/jquery-ui.js"></script>  
 
     <div class="dashboardContainer">
         <div class="container-fluid">
@@ -181,7 +183,7 @@
                             </div>
                             <div class="row" id="divManualInvoiceRow" style="display: none">
                                 <div class="col-md-6 actionButtonColumn" id="divManualInvoice" style="display: none">
-                                    <asp:Panel runat="server" ID="pnlManualInvoice" Visible="true" CssClass="updateInfoButtonContainer">
+                                    <asp:Panel runat="server" ID="pnlManualInvoice" Visible="true" class="updateInfoButtonContainer">
                                         <asp:Button CssClass="button panelButton form-control" ID="btnManualInv" Text="Manual Invoice" runat="server" OnClientClick="return showManualInvoice();" Style="padding-left: 8px;"></asp:Button>
                                     </asp:Panel>
                                 </div>
@@ -201,25 +203,12 @@
                         </div>
                     </div>
 
-                    <asp:Button ID="btnOpenModal" runat="server" Style="display: none;" />
-                    <ModalWindow:ModalPopupExtender ID="mp1" runat="server" PopupControlID="pnlModal" BehaviorID="MPE" TargetControlID="btnOpenModal"
-                        CancelControlID="closeButton">
-                    </ModalWindow:ModalPopupExtender>
-                    <asp:Panel ID="pnlModal" runat="server" CssClass="Popup" align="center" Style="display: none; overflow-x: hidden; overflow-y: hidden;">
-                        <iframe id="iframeModal" style="height: 90%; width: 95%; overflow-x: hidden; overflow-y: hidden;" runat="server"></iframe>
-
-                        <asp:Button ID="closeButton" runat="server" Style="display: none;" />
-                    </asp:Panel>
-
-
-                    
                    <div class="col-md-9 table-responsive customerTable tableMarginTop customerWidth78">
 
                           <asp:UpdatePanel runat="server" ID="UpdatePanel1">
                 <ContentTemplate>
                         <asp:GridView ID="grdCustomer" runat="server" EmptyDataRowStyle-CssClass="Emptyrow" AllowSorting="true" OnSorting="grdCustomer_Sorting" AutoGenerateColumns="False" ViewStateMode="Enabled" Visible="true" 
-                            Style="color: white; font-size: small; margin-top: -4px;" ShowHeaderWhenEmpty="true" CssClass="table" OnRowDataBound="grdCustomer_OnRowDataBound" SelectedRowStyle-BackColor="#475672" 
-                            OnSelectedIndexChanged="grdCustomer_OnSelectedIndexChanged">
+                            Style="color: white; font-size: small; margin-top: -4px;" ShowHeaderWhenEmpty="true" CssClass="table" OnRowDataBound="grdCustomer_OnRowDataBound" SelectedRowStyle-BackColor="#475672">
                             <HeaderStyle BackColor="#475672" />
                             <Columns>
                                 <asp:TemplateField ItemStyle-CssClass="labelcolor itemalign" HeaderText="INVOICE" SortExpression="Invoicenumber" HeaderStyle-CssClass="itemalign">
@@ -635,6 +624,13 @@
             </div>
         </div>
     </div>
+
+    <asp:Button ID="btnOpenModal" runat="server" Style="display: none;" />
+    <ModalWindow:ModalPopupExtender ID="mp1" runat="server" PopupControlID="pnlModal" BehaviorID="MPE" TargetControlID="btnOpenModal" CancelControlID="closeButton"></ModalWindow:ModalPopupExtender>
+    <asp:Panel ID="pnlModal" runat="server" CssClass="Popup" align="center" Style="display: none; overflow-x: hidden; overflow-y: hidden;">
+        <iframe id="iframeModal" style="height: 90%; width: 95%; overflow-x: hidden; overflow-y: hidden;" runat="server"></iframe>
+        <asp:Button ID="closeButton" runat="server" Style="display: none;" />
+    </asp:Panel>
     <asp:HiddenField ID="hdnInvoiceNumber" runat="server" />
     <asp:HiddenField ID="hdnEmailID" runat="server" />
     <asp:HiddenField ID="hdnMatch" runat="server" Value="true" />

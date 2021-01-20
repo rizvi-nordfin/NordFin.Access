@@ -320,7 +320,7 @@ namespace Nordfin
         public FtpStatusCode UploadStandardXml(string standardFile, string fileName)
         {
             var bytes = Encoding.UTF8.GetBytes(standardFile);
-            string uri = FTPAzureDomain + fileName;
+            string uri = FTPAzureDomain + "Archive/" + fileName;
             FtpWebRequest request = (FtpWebRequest)WebRequest.Create(uri);
             request.Method = WebRequestMethods.Ftp.UploadFile;
             request.Credentials = new NetworkCredential(FTPManualInvoiceUserName, FTPManualInvoicePassword);
@@ -329,12 +329,47 @@ namespace Nordfin
             request.KeepAlive = true;
             request.EnableSsl = true;
             ServicePointManager.ServerCertificateValidationCallback = (s, certificate, chain, sslPolicyErrors) => true;
-            var requestStream = request.GetRequestStream();
-            requestStream.Write(bytes, 0, bytes.Length);
-            requestStream.Close();
-            using (FtpWebResponse response = (FtpWebResponse)request.GetResponse())
+            try
             {
-                return response.StatusCode;
+                var requestStream = request.GetRequestStream();
+                requestStream.Write(bytes, 0, bytes.Length);
+                requestStream.Close();
+                using (FtpWebResponse response = (FtpWebResponse)request.GetResponse())
+                {
+                    return response.StatusCode;
+                }
+            }
+            catch (Exception ex)
+            {
+                return FtpStatusCode.FileActionAborted;
+            }
+        }
+
+        public FtpStatusCode UploadInvoicePdf(string base64Pdf, string folderName, string subFolderName, string fileName)
+        {
+            var bytes = Convert.FromBase64String(base64Pdf);
+            string uri = FTPAzureDomain + folderName + "/" + subFolderName + "/" + fileName;
+            FtpWebRequest request = (FtpWebRequest)WebRequest.Create(uri);
+            request.Method = WebRequestMethods.Ftp.UploadFile;
+            request.Credentials = new NetworkCredential(FTPAzureUserName, FTPAzurePassword);
+            request.UseBinary = true;
+            request.UsePassive = true;
+            request.KeepAlive = true;
+            request.EnableSsl = true;
+            ServicePointManager.ServerCertificateValidationCallback = (s, certificate, chain, sslPolicyErrors) => true;
+            try
+            {
+                var requestStream = request.GetRequestStream();
+                requestStream.Write(bytes, 0, bytes.Length);
+                requestStream.Close();
+                using (FtpWebResponse response = (FtpWebResponse)request.GetResponse())
+                {
+                    return response.StatusCode;
+                }
+            }
+            catch (Exception ex)
+            {
+                return FtpStatusCode.FileActionAborted;
             }
         }
 

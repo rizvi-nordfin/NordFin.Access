@@ -28,5 +28,10 @@ namespace Nordfin.workflow.BusinessLayer
         {
             objManualInvoice.UpdateNumberSeries(seriesName, newSeries);
         }
+
+        public bool ImportManualInvoice(string standardXml)
+        {
+            return objManualInvoice.ImportManualInvoice(standardXml);
+        }
     }
 }

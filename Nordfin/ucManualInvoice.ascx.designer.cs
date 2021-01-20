@@ -15,6 +15,15 @@ namespace Nordfin
     {
 
         /// <summary>
+        /// spnTitle control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl spnTitle;
+
+        /// <summary>
         /// btnManualInvClose control.
         /// </summary>
         /// <remarks>
@@ -159,13 +168,13 @@ namespace Nordfin
         protected global::System.Web.UI.WebControls.TextBox txtQuantity;
 
         /// <summary>
-        /// txtInvAmount control.
+        /// txtAmount control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtInvAmount;
+        protected global::System.Web.UI.WebControls.TextBox txtAmount;
 
         /// <summary>
         /// drpVat control.
@@ -177,6 +186,15 @@ namespace Nordfin
         protected global::System.Web.UI.WebControls.DropDownList drpVat;
 
         /// <summary>
+        /// txtInvAmount control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox txtInvAmount;
+
+        /// <summary>
         /// txtVat control.
         /// </summary>
         /// <remarks>
@@ -186,13 +204,13 @@ namespace Nordfin
         protected global::System.Web.UI.WebControls.TextBox txtVat;
 
         /// <summary>
-        /// txtAmount control.
+        /// txtRowTotal control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtAmount;
+        protected global::System.Web.UI.WebControls.TextBox txtRowTotal;
 
         /// <summary>
         /// btnAddRow control.
@@ -258,48 +276,39 @@ namespace Nordfin
         protected global::System.Web.UI.WebControls.Button btnCreate;
 
         /// <summary>
-        /// hdnInvoiceAmount control.
+        /// btnImport control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.HiddenField hdnInvoiceAmount;
+        protected global::System.Web.UI.WebControls.Button btnImport;
 
         /// <summary>
-        /// hdnBillDate control.
+        /// hdnInvoiceNumber control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.HiddenField hdnBillDate;
+        protected global::System.Web.UI.WebControls.HiddenField hdnInvoiceNumber;
 
         /// <summary>
-        /// hdnDueDate control.
+        /// hdnFileName control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.HiddenField hdnDueDate;
+        protected global::System.Web.UI.WebControls.HiddenField hdnFileName;
 
         /// <summary>
-        /// hdnRemainingAmount control.
+        /// hdnTitle control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.HiddenField hdnRemainingAmount;
-
-        /// <summary>
-        /// hdnTotalAmount control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.HiddenField hdnTotalAmount;
+        protected global::System.Web.UI.WebControls.HiddenField hdnTitle;
     }
 }

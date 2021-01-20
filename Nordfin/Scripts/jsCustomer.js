@@ -1,4 +1,5 @@
-﻿Array.prototype.contains = function (v) {
+﻿var $ = jQuery.noConflict();
+Array.prototype.contains = function (v) {
     for (var i = 0; i < this.length; i++) {
         if (this[i] === v) return true;
     }
@@ -128,12 +129,20 @@ function LinkClick(linkValues) {
 
     const sClientName = document.getElementById("NordfinContentHolder_hdnClientName").value;
 
+    var customerData = {
+        CustomerNumber: $('#NordfinContentHolder_lblCustomerNumber').text(),
+        CustomerName: $('#NordfinContentHolder_lblName').text(),
+        CustomerAddress: $('#NordfinContentHolder_lblAddress').text(),
+        CustomerAddress1: $('#NordfinContentHolder_lblAddress1').text(),
+        CustomerPostalCode: $('#NordfinContentHolder_lblPostalCode').text(),
+        CustomerCity: $('#NordfinContentHolder_lblCity').text(),
+    }
 
-
-
+    var customerJson = JSON.stringify(customerData);
+    customerJson = encodeURIComponent(customerJson);
     document.getElementById("NordfinContentHolder_btnOpenModal").click();
 
-    document.getElementById("NordfinContentHolder_iframeModal").src = "frmPaymentInformation.aspx?InvoiceData=" + paramValues + "&Remain=" + remainAmt + "&OverPaid=" + overpaidAmt + "&FileName=" + sFileName + "&ClientName=" + sClientName + " ";
+    document.getElementById("NordfinContentHolder_iframeModal").src = "frmPaymentInformation.aspx?InvoiceData=" + paramValues + "&Remain=" + remainAmt + "&OverPaid=" + overpaidAmt + "&FileName=" + sFileName + "&ClientName=" + sClientName + "&Customer=" + customerJson + " ";
 
 
 
@@ -332,22 +341,16 @@ function CreditCheck() {
     return false;
 }
 
-function showManualInvoice(data) {
-    $(function () {
-        $('#NordfinContentHolder_ucManualInvoice_txtCustNum').val(data.custNum);
-        $('#NordfinContentHolder_ucManualInvoice_txtCustName').val(data.custName);
-        $('#NordfinContentHolder_ucManualInvoice_txtCustContact').val(data.custContact);
-        $('#NordfinContentHolder_ucManualInvoice_txtCustAddress').val(data.custAddress);
-        $('#NordfinContentHolder_ucManualInvoice_txtCustPostCode').val(data.custPostCode);
-        $('#NordfinContentHolder_ucManualInvoice_txtCustCity').val(data.custCity);
-        $('#NordfinContentHolder_ucManualInvoice_hdnInvoiceAmount').val(data.invoiceAmount);
-        $('#NordfinContentHolder_ucManualInvoice_hdnBillDate').val(data.billDate);
-        $('#NordfinContentHolder_ucManualInvoice_hdnDueDate').val(data.dueDate);
-        $('#NordfinContentHolder_ucManualInvoice_hdnRemainingAmount').val(data.remainingAmount);
-        $('#NordfinContentHolder_ucManualInvoice_hdnTotalAmount').val(data.totalAmount);
-
-        $('#NordfinContentHolder_mdlManualInvoice').modal({ backdrop: 'static', keyboard: false }, 'show');
-    });
+function showManualInvoice() {
+    $('#NordfinContentHolder_ucManualInvoice_txtCustNum').val($('#NordfinContentHolder_lblCustomerNumber').text());
+    $('#NordfinContentHolder_ucManualInvoice_txtCustName').val($('#NordfinContentHolder_lblName').text());
+    $('#NordfinContentHolder_ucManualInvoice_txtCustContact').val($('#NordfinContentHolder_lblAddress').text());
+    $('#NordfinContentHolder_ucManualInvoice_txtCustAddress').val($('#NordfinContentHolder_lblAddress1').text());
+    $('#NordfinContentHolder_ucManualInvoice_txtCustPostCode').val($('#NordfinContentHolder_lblPostalCode').text());
+    $('#NordfinContentHolder_ucManualInvoice_txtCustCity').val($('#NordfinContentHolder_lblCity').text());
+    $('#NordfinContentHolder_ucManualInvoice_hdnTitle').val("Manual Invoice");
+    $('#NordfinContentHolder_ucManualInvoice_spnTitle').text("Manual Invoice");
+    $('#NordfinContentHolder_mdlManualInvoice').modal({ backdrop: 'static', keyboard: false }, 'show');
     return false;
 };
 

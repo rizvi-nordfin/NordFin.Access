@@ -24,6 +24,15 @@ namespace Nordfin
         protected global::System.Web.UI.HtmlControls.HtmlForm form1;
 
         /// <summary>
+        /// ScriptManager1 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.ScriptManager ScriptManager1;
+
+        /// <summary>
         /// lblInvoiceNum control.
         /// </summary>
         /// <remarks>
@@ -438,6 +447,33 @@ namespace Nordfin
         protected global::System.Web.UI.WebControls.TextBox txtAccount;
 
         /// <summary>
+        /// mdlManualInvoice control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl mdlManualInvoice;
+
+        /// <summary>
+        /// pnlManualInv control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.UpdatePanel pnlManualInv;
+
+        /// <summary>
+        /// ucManualInvoice control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::Nordfin.ucManualInvoice ucManualInvoice;
+
+        /// <summary>
         /// hdnDueDate control.
         /// </summary>
         /// <remarks>
@@ -499,6 +535,24 @@ namespace Nordfin
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.HiddenField hdnFileName;
+
+        /// <summary>
+        /// hdnCustomerData control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.HiddenField hdnCustomerData;
+
+        /// <summary>
+        /// hdnInvoiceAmount control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.HiddenField hdnInvoiceAmount;
 
         /// <summary>
         /// pdfViewer control.

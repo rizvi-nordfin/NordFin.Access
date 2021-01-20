@@ -1,22 +1,24 @@
 ﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="frmPaymentInformation.aspx.cs" Inherits="Nordfin.frmPaymentInformation" %>
-
+<%@ Register Src="~/ucManualInvoice.ascx" TagPrefix="uc1" TagName="ucManualInvoice" %>
 <!DOCTYPE html>
 
 <html xmlns="http://www.w3.org/1999/xhtml" style="font-size:small;overflow-y:hidden;" id="popupHTML">
 <head runat="server">
     <title></title>
-     
     <link href="Styles/bootstrap.min.css" rel="stylesheet" />
     <link href="Styles/NordfinMaster.css?version=<%=ConfigurationManager.AppSettings["VersionConfiguration"].ToString() %>" rel="stylesheet" />
     <script src="Scripts/jquery-3.3.1.slim.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
     <script src="Scripts/popper.min.js"></script>
     <script src="Scripts/bootstrap.min.js"></script>
     <script src="Scripts/angular.min.js"></script>
     <script src="Scripts/jsPaymentInformation.js?version=<%=ConfigurationManager.AppSettings["VersionConfiguration"].ToString() %>"></script>
     <link rel="stylesheet" href="Styles/jquery-ui-NordFin.css" />
-
-   <script src="//code.jquery.com/jquery-1.10.2.js"></script>
+    <link href="Styles/ManualInvoice.css" rel="stylesheet" />
+    <script src="Scripts/jsManualInvoice.js"></script>
+    <script src="//code.jquery.com/jquery-1.10.2.js"></script>
     <script src="//code.jquery.com/ui/1.11.1/jquery-ui.js"></script>
+    <script src="Scripts/font-Awesome.js"></script>
     <link href="Styles/PaymentInformation.css?version=<%=ConfigurationManager.AppSettings["VersionConfiguration"].ToString() %>" rel="stylesheet" />
 
     <style>
@@ -32,11 +34,13 @@
     <form id="form1" runat="server">
         <div data-ng-app="myApp" id="AngularDiv" data-ng-controller="myCtrl" class="paymentInfoModal">
 
-
+        <asp:ScriptManager ID="ScriptManager1" runat="server">
+        </asp:ScriptManager>
 
         <div class="paymentInfoModalHeader">
           <asp:Label runat="server" ID="lblInvoiceNum" Style="color: #FFB100; text-align: left; font-size: medium;"></asp:Label>
           <div class="paymentInfoButtons">
+            <button class="button paymentInfoButton" onclick="return showManualInvoice();" style="width:auto !important">Credit Invoice</button>
             <button class="button paymentInfoButton" data-ng-click="notesUpdate($event)" runat="server">Update</button>
             <asp:Button Text="Download" class="button paymentInfoButton" id="btnDownload" data-ng-click="btnDownload($event)"  runat="server"></asp:Button>
           </div>
@@ -545,16 +549,29 @@
                 </div>
             </div>
 
-            <asp:HiddenField ID="hdnDueDate" runat="server"/>
-            <asp:HiddenField ID="hdnCollectionStopUntil" runat="server"/>
-               <asp:HiddenField ID="hdnCollectionStop" runat="server"/>
+            <div class="modal manulInvoiceModal" id="mdlManualInvoice" style="top: 50% !important" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true" runat="server">
+                <div class="modal-dialog" role="document" style="overflow-y: initial !important;">
+                    <div class="modal-content" style="height: 100%; width: 170%; background: none; border: none">
+                        <div class="modal-body" style="background-color: #323e53 !important;">
+                            <asp:UpdatePanel runat="server" ID="pnlManualInv" UpdateMode="Conditional">
+                                <ContentTemplate>
+                                    <uc1:ucManualInvoice runat="server" ID="ucManualInvoice" />
+                                </ContentTemplate>
+                            </asp:UpdatePanel>
+                        </div>
+                    </div>
+                </div>
+            </div>
 
-             <asp:HiddenField ID="hdnPaymentCheck" runat="server"/>
-            <asp:HiddenField ID="hdnPurchased" runat="server"/>
-
-
-              <asp:HiddenField ID="hdnClientName" runat="server" />
-    <asp:HiddenField ID="hdnFileName" runat="server" />
+            <asp:HiddenField ID="hdnDueDate" runat="server" />
+            <asp:HiddenField ID="hdnCollectionStopUntil" runat="server" />
+            <asp:HiddenField ID="hdnCollectionStop" runat="server" />
+            <asp:HiddenField ID="hdnPaymentCheck" runat="server" />
+            <asp:HiddenField ID="hdnPurchased" runat="server" />
+            <asp:HiddenField ID="hdnClientName" runat="server" />
+            <asp:HiddenField ID="hdnFileName" runat="server" />
+            <asp:HiddenField ID="hdnCustomerData" runat="server" />
+            <asp:HiddenField ID="hdnInvoiceAmount" runat="server" />
   
     <a id="pdfViewer" href="" runat="server" target="_blank"></a>
 
