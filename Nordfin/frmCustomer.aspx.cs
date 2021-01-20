@@ -537,14 +537,14 @@ namespace Nordfin
                 DataTable dataTable = dataSet.Tables[0];
                 for (int i = 0; i < dataTable.Rows.Count; i++)
                 {
-                    string str = "A" + (i + 2).ToString() + ":" + "M" + (i + 2).ToString();
+                    string str = "A" + (i + 2).ToString() + ":" + "O" + (i + 2).ToString();
                     if (dataTable.Rows[i].ItemArray[0].ToString().ToUpper() == "INVOICES")
                     {
-                        ws.Range(str).Style.Fill.BackgroundColor= XLColor.FromHtml("#3399FF");
+                        ws.Range(str).Style.Fill.BackgroundColor= XLColor.FromHtml("#CCCCFF");
                     }
                     else
                     {
-                        ws.Range(str).Style.Fill.BackgroundColor = XLColor.FromHtml("#CCCCFF");
+                        ws.Range(str).Style.Fill.BackgroundColor = XLColor.FromHtml("#FFFFFF");
                     }
 
                 }

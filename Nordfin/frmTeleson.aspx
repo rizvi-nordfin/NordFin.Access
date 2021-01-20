@@ -124,7 +124,7 @@
 
                                 </div>
 
-                             <div class="row innerDiv col-md-12" style="margin:0px;margin-top:10px;">
+                             <div class="row innerDiv col-md-12 divInnerPadding" style="margin:0px;margin-top:10px;">
                                <div class="col-md-6" data-ng-repeat="telson in telsonData|limitTo:2:10">
 
                                     <div class="revenue">
@@ -203,17 +203,29 @@
                                        
                                         <tbody>
                                            
-                                            
+                                            <tr style="color:#A9BFD5">
+                                                <td></td>
+                                                <td>ACTUAL</td>
+                                                <td>REF.</td>
+                                                <td>DIFF.</td>
+                                                </tr>
                                            
                                             <tr data-ng-repeat="telson in telsonData|limitTo:5:15">
                                                 <td class="tableLeftAlign" style="color: #A9BFD5;">
                                                     <span id="NordfinContentHolder_lblSentout">{{telson.ColumnName}}</span></td>
                                                 <td>
+                                                    <div data-ng-if="telson.NumberCast!=2"><span >{{telson.PaymentValue}}{{telson.SpecialCharc}}</span></div>
+                                                    <div data-ng-if="telson.NumberCast==2"><span >N/A</span></div>
+                                                    
+                                            </td>
+                                                <td>
                                                     <span >{{telson.StaticValue}}{{telson.SpecialCharc}}</span>
                                             </td>
                                                 
                                                 <td>
-                                                    <span id="NordfinContentHolder_lblSentoutPercent">{{telson.RowValue}}{{telson.SpecialCharc}}</span></td>
+                                                      <div data-ng-if="telson.NumberCast!=2"><span >{{telson.RowValue}}{{telson.SpecialCharc}}</span></div>
+                                                    <div data-ng-if="telson.NumberCast==2"><span >N/A</span></div>
+                                                   
                                             </tr>
                                            
                                            

@@ -13,5 +13,8 @@ namespace Nordfin.workflow.Entity
         public string SpecialCharc { get; set; }
         public int StaticValue { get; set; }
 
+        public string PaymentValue { get; set; }
+        public int NumberCast { get; set; }
+
     }
 }
