@@ -112,6 +112,16 @@ input[type="submit"]:disabled {
     }
 }
 
+@media only screen and (max-width:1300px) {
+    .modal-content {
+        width: 150% !important;
+    }
+
+    .manulInvoiceModal {
+        left: 30% !important;
+    }
+}
+
 .pdfViewerIframe {
     height: 630px;
     width: 690px;

@@ -131,11 +131,11 @@ function LinkClick(linkValues) {
 
     var customerData = {
         CustomerNumber: $('#NordfinContentHolder_lblCustomerNumber').text(),
-        CustomerName: $('#NordfinContentHolder_lblName').text(),
-        CustomerAddress: $('#NordfinContentHolder_lblAddress').text(),
-        CustomerAddress1: $('#NordfinContentHolder_lblAddress1').text(),
-        CustomerPostalCode: $('#NordfinContentHolder_lblPostalCode').text(),
-        CustomerCity: $('#NordfinContentHolder_lblCity').text(),
+        Name: $('#NordfinContentHolder_lblName').text(),
+        Address1: $('#NordfinContentHolder_lblAddress').text(),
+        Address2: $('#NordfinContentHolder_lblAddress1').text(),
+        PostalCode: $('#NordfinContentHolder_lblPostalCode').text(),
+        City: $('#NordfinContentHolder_lblCity').text(),
     }
 
     var customerJson = JSON.stringify(customerData);

@@ -185,13 +185,15 @@ jQuery(document).ready(function () {
 
 function showManualInvoice() {
     var customerJson = jq13('#hdnCustomerData').val();
-    var customerData = jq13.parseJSON(customerJson);
-    jq13('#ucManualInvoice_txtCustNum').val(customerData.CustomerNumber);
-    jq13('#ucManualInvoice_txtCustName').val(customerData.CustomerName);
-    jq13('#ucManualInvoice_txtCustContact').val(customerData.CustomerAddress);
-    jq13('#ucManualInvoice_txtCustAddress').val(customerData.CustomerAddress1);
-    jq13('#ucManualInvoice_txtCustPostCode').val(customerData.CustomerPostalCode);
-    jq13('#ucManualInvoice_txtCustCity').val(customerData.CustomerCity);
+    if (customerJson != "" || customerJson != null) {
+        var customerData = jq13.parseJSON(customerJson);
+        jq13('#ucManualInvoice_txtCustNum').val(customerData.CustomerNumber);
+        jq13('#ucManualInvoice_txtCustName').val(customerData.Name);
+        jq13('#ucManualInvoice_txtCustContact').val(customerData.Address1);
+        jq13('#ucManualInvoice_txtCustAddress').val(customerData.Address2);
+        jq13('#ucManualInvoice_txtCustPostCode').val(customerData.PostalCode);
+        jq13('#ucManualInvoice_txtCustCity').val(customerData.City);
+    }
     jq13('#ucManualInvoice_txtRowTotal').val(-jq13('#hdnInvoiceAmount').val());
     jq13('#ucManualInvoice_hdnTitle').val("Credit Invoice");
     jq13('#ucManualInvoice_spnTitle').text("Credit Invoice");

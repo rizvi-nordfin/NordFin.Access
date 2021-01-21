@@ -70,7 +70,9 @@ function LinkClick(linkValues) {
 
     const sClientName = document.getElementById("NordfinContentHolder_hdnClientName").value;
 
-    document.getElementById("NordfinContentHolder_iframeModal").src = "frmPaymentInformation.aspx?InvoiceData=" + paramValues + "&Remain=" + remainAmt + "&OverPaid=" + overpaidAmt + "&FileName=" + sFileName + "&ClientName=" + sClientName +  " ";
+    var customerJson = "";
+
+    document.getElementById("NordfinContentHolder_iframeModal").src = "frmPaymentInformation.aspx?InvoiceData=" + paramValues + "&Remain=" + remainAmt + "&OverPaid=" + overpaidAmt + "&FileName=" + sFileName + "&ClientName=" + sClientName + "&Customer=" + customerJson + " ";
 
  
     $(window).scrollTop(0);
