@@ -145,9 +145,48 @@
 
                             </div>
                                  </div>
-                              <div class="innerDiv" style="display:flex; margin-top: 10px;flex-direction:row;justify-content:center;align-items:center;height:31%">
-                            <div class="row col-md-12" >
-                                <div class="col-md-6" data-ng-repeat="telson in telsonData|limitTo:2:13">
+                              <div class="col-md-12" style="margin-left: -6px;margin-top: 10px;">
+                           
+
+
+                                    <div  style="margin-left: -6px;">
+                                 <div style="background-color: #475672;margin-top: 5px;width: 103.3%;">
+                                    <table>
+                                           <tbody>
+                                         <tr style="text-align:center;font-size: small;color: #A9BFD5;font-weight:400 !important;height: 37px;margin-top: 10px;" >
+
+                                                 
+                                                <td colspan="3">CREDIT SCORING</td>
+                                            </tr>
+                                               <tbody>
+                                    </table>
+                                </div>
+                                <div class="dashboardTable" style="height: 139px;width: 103.3%;">
+                                    <table>
+                                        
+                                        <tbody>
+                                          
+                                            <tr data-ng-repeat="telson in telsonData|limitTo:3:12">
+                                                <td class="tableLeftAlign" style="color: #A9BFD5;">
+                                                    <span >{{telson.ColumnName}}</span></td>
+                                               
+                                                <td>
+                                                    <span >{{telson.StaticValue}}</span>
+                                                   </td>
+
+                                                  <td>
+                                                       <span >{{telson.RowValue}} {{telson.SpecialCharc}}</span>
+                                                    </td>
+                                            </tr>
+                                           
+                                           
+
+                                           
+                                        </tbody>
+                                    </table>
+                                    </div>
+                                </div>
+                              <%--  <div class="col-md-6" data-ng-repeat="telson in telsonData|limitTo:2:13">
 
                                     <div class="revenue">
 
@@ -160,9 +199,9 @@
 
                                     </div>
 
-                                </div>
+                                </div>--%>
 
-                            </div>
+                          
                                   </div>
                         </div>
 
@@ -300,43 +339,7 @@
 
                         <%--   <div class="col-md-3">
                       
-                            <div  style="margin-left: -6px;">
-                                 <div style="background-color: #475672;margin-top: 5px;">
-                                    <table>
-                                           <tbody>
-                                         <tr style="text-align:center;font-size: small;color: #A9BFD5;font-weight:400 !important;height: 37px;margin-top: 10px;" >
-
-                                                 
-                                                <td colspan="3">CREDIT SCORING</td>
-                                            </tr>
-                                               <tbody>
-                                    </table>
-                                </div>
-                                <div class="dashboardTable">
-                                    <table>
-                                        
-                                        <tbody>
-                                          
-                                            <tr data-ng-repeat="telson in telsonData|limitTo:3:12">
-                                                <td class="tableLeftAlign" style="color: #A9BFD5;">
-                                                    <span >{{telson.ColumnName}}</span></td>
-                                               
-                                                <td>
-                                                    <span >{{telson.StaticValue}}</span>
-                                                   </td>
-
-                                                  <td>
-                                                       <span >{{telson.RowValue}} {{telson.SpecialCharc}}</span>
-                                                    </td>
-                                            </tr>
-                                           
-                                           
-
-                                           
-                                        </tbody>
-                                    </table>
-                                    </div>
-                                </div>
+                        
 
                         </div>--%>
                        <%--  <div class="col-md-4">
