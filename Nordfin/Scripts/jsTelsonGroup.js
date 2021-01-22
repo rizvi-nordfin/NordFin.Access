@@ -35,9 +35,13 @@ app.controller("myCtrl", function ($scope, $http) {
                 MaxValue = Total;
 
         }
-      
+        document.getElementById("divTelson").style.display = "";
+        document.getElementById("divPayment").style.display = "";
+        document.getElementById("divChart").style.background = "#38445d";
+        
      
         $scope.DrawGraph(data1, data2, MaxValue)
+       
 
     }, function (error) {
 

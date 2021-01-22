@@ -16,5 +16,7 @@ namespace Nordfin.workflow.Entity
         public string PaymentValue { get; set; }
         public int NumberCast { get; set; }
 
+        public string ColorCode { get; set; }
+
     }
 }

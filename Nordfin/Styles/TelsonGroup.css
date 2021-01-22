@@ -11,7 +11,7 @@
 
 .divInnerPadding
 {
-    padding:23.5px !important;
+    padding:5px !important;
 }
 
 .labelFontColor {
@@ -631,3 +631,10 @@ Inline style {
     .dashboardTable tr {
         height: 37px !important;
     }
+
+
+@media (min-width: 768px) {
+    .col-md-8 {
+        max-width: 65.866667%;
+    }
+}
