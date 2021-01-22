@@ -34,7 +34,8 @@ namespace Nordfin.workflow.DataAccessLayer
                     RowValue = (dataRow.Field<int>("NumberCast") == 1) ?
                     String.Format(CultureInfo.GetCultureInfo("sv-SE"), "{0:#,0.00}", dataRow.Field<decimal>("TelsonData")) : Convert.ToString(Convert.ToInt32(dataRow.Field<decimal>("TelsonData"))),
                     PaymentValue  = String.Format(CultureInfo.GetCultureInfo("sv-SE"), "{0:#,0.00}", dataRow.Field<decimal>("PaymentValue")),
-                    NumberCast= dataRow.Field<int>("NumberCast")
+                    NumberCast= dataRow.Field<int>("NumberCast"),
+                    ColorCode= dataRow.Field<string>("ColorCode")
                 }).ToList();
             }
 
