@@ -159,15 +159,15 @@ a.linkcss {
     width:75px;
 }
 
-@media all and (max-width: 905px) {
+@media all and (max-width: 1300px) {
     .Popup {
      position: absolute !important;
      margin-left: 0 !important;
-     height: 100% !important;
+     /*height: 100% !important;*/
      width: 100% !important;
      left: 0 !important;
      top: 5% !important;
-     overflow: scroll !important;
+     /*overflow: scroll !important;*/
    }
    #popupHTML {overflow-y: scroll !important;}
    

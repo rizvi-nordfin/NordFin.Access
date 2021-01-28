@@ -14,8 +14,8 @@
     <script src="Scripts/angular.min.js"></script>
     <script src="Scripts/jsPaymentInformation.js?version=<%=ConfigurationManager.AppSettings["VersionConfiguration"].ToString() %>"></script>
     <link rel="stylesheet" href="Styles/jquery-ui-NordFin.css" />
-    <link href="Styles/ManualInvoice.css" rel="stylesheet" />
-    <script src="Scripts/jsManualInvoice.js"></script>
+    <link href="Styles/ManualInvoice.css?version=<%=ConfigurationManager.AppSettings["VersionConfiguration"].ToString() %>"" rel="stylesheet" />
+    <script src="Scripts/jsManualInvoice.js?version=<%=ConfigurationManager.AppSettings["VersionConfiguration"].ToString() %>""></script>
     <script src="//code.jquery.com/jquery-1.10.2.js"></script>
     <script src="//code.jquery.com/ui/1.11.1/jquery-ui.js"></script>
     <script src="Scripts/font-Awesome.js"></script>

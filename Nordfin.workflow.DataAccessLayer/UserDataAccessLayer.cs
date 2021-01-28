@@ -52,10 +52,9 @@ namespace Nordfin.workflow.DataAccessLayer
 
             objClientList = ds.Tables[0].AsEnumerable().Select(dataRow => new ClientList
             {
-                ClientName = dataRow.Field<string>("ClientName")
-               ,
+                ClientName = dataRow.Field<string>("ClientName"),
                 ClientID = dataRow.Field<int>("ClientID"),
-
+                ClientLand = dataRow.Field<string>("ClientLand"),
             }).ToList();
 
             BatchValues = Convert.ToString(DatabaseName.GetParameterValue(DBBaseCommand, "@BatchesValue"));

@@ -6,5 +6,7 @@ namespace Nordfin.workflow.Entity
 
         public int ClientID { get; set; }
         public string ClientName { get; set; }
+
+        public string ClientLand { get; set; }
     }
 }

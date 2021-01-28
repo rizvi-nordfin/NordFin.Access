@@ -47,21 +47,21 @@
     <Reference Include="AjaxControlToolkit, Version=20.1.0.0, Culture=neutral, PublicKeyToken=28f01b0e84b6d53e, processorArchitecture=MSIL">
       <HintPath>..\packages\AjaxControlToolkit.20.1.0\lib\net40\AjaxControlToolkit.dll</HintPath>
     </Reference>
-    <Reference Include="BouncyCastle.Crypto, Version=1.8.9.0, Culture=neutral, PublicKeyToken=0e99375e54769942">
-      <HintPath>..\packages\BouncyCastle.1.8.9\lib\BouncyCastle.Crypto.dll</HintPath>
+    <Reference Include="BouncyCastle.Crypto, Version=1.8.9.0, Culture=neutral, PublicKeyToken=0e99375e54769942, processorArchitecture=MSIL">
+      <HintPath>..\packages\ManualPDFLayout.1.0.1\lib\net472\BouncyCastle.Crypto.dll</HintPath>
     </Reference>
     <Reference Include="ClosedXML, Version=0.95.2.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\ClosedXML.0.95.2\lib\net46\ClosedXML.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="Common.Logging, Version=3.4.1.0, Culture=neutral, PublicKeyToken=af08829b84f0328e, processorArchitecture=MSIL">
-      <HintPath>..\packages\ManualPDFLayout.1.0.0\lib\net472\Common.Logging.dll</HintPath>
+      <HintPath>..\packages\ManualPDFLayout.1.0.1\lib\net472\Common.Logging.dll</HintPath>
     </Reference>
     <Reference Include="Common.Logging.Core, Version=3.4.1.0, Culture=neutral, PublicKeyToken=af08829b84f0328e, processorArchitecture=MSIL">
-      <HintPath>..\packages\ManualPDFLayout.1.0.0\lib\net472\Common.Logging.Core.dll</HintPath>
+      <HintPath>..\packages\ManualPDFLayout.1.0.1\lib\net472\Common.Logging.Core.dll</HintPath>
     </Reference>
     <Reference Include="Dapper, Version=2.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\ManualPDFLayout.1.0.0\lib\net472\Dapper.dll</HintPath>
+      <HintPath>..\packages\ManualPDFLayout.1.0.1\lib\net472\Dapper.dll</HintPath>
     </Reference>
     <Reference Include="DocumentFormat.OpenXml, Version=2.7.2.0, Culture=neutral, PublicKeyToken=8fb06cb64d019a17, processorArchitecture=MSIL">
       <HintPath>..\packages\DocumentFormat.OpenXml.2.7.2\lib\net46\DocumentFormat.OpenXml.dll</HintPath>
@@ -79,34 +79,34 @@
       <HintPath>..\packages\Ftp.dll.2.0.19002.942\lib\net45\Ftp.dll</HintPath>
     </Reference>
     <Reference Include="itext.barcodes, Version=7.1.14.0, Culture=neutral, PublicKeyToken=8354ae6d2174ddca, processorArchitecture=MSIL">
-      <HintPath>..\packages\ManualPDFLayout.1.0.0\lib\net472\itext.barcodes.dll</HintPath>
+      <HintPath>..\packages\ManualPDFLayout.1.0.1\lib\net472\itext.barcodes.dll</HintPath>
     </Reference>
     <Reference Include="itext.forms, Version=7.1.14.0, Culture=neutral, PublicKeyToken=8354ae6d2174ddca, processorArchitecture=MSIL">
-      <HintPath>..\packages\ManualPDFLayout.1.0.0\lib\net472\itext.forms.dll</HintPath>
+      <HintPath>..\packages\ManualPDFLayout.1.0.1\lib\net472\itext.forms.dll</HintPath>
     </Reference>
     <Reference Include="itext.io, Version=7.1.14.0, Culture=neutral, PublicKeyToken=8354ae6d2174ddca, processorArchitecture=MSIL">
-      <HintPath>..\packages\ManualPDFLayout.1.0.0\lib\net472\itext.io.dll</HintPath>
+      <HintPath>..\packages\ManualPDFLayout.1.0.1\lib\net472\itext.io.dll</HintPath>
     </Reference>
     <Reference Include="itext.kernel, Version=7.1.14.0, Culture=neutral, PublicKeyToken=8354ae6d2174ddca, processorArchitecture=MSIL">
-      <HintPath>..\packages\ManualPDFLayout.1.0.0\lib\net472\itext.kernel.dll</HintPath>
+      <HintPath>..\packages\ManualPDFLayout.1.0.1\lib\net472\itext.kernel.dll</HintPath>
     </Reference>
     <Reference Include="itext.layout, Version=7.1.14.0, Culture=neutral, PublicKeyToken=8354ae6d2174ddca, processorArchitecture=MSIL">
-      <HintPath>..\packages\ManualPDFLayout.1.0.0\lib\net472\itext.layout.dll</HintPath>
+      <HintPath>..\packages\ManualPDFLayout.1.0.1\lib\net472\itext.layout.dll</HintPath>
     </Reference>
     <Reference Include="itext.pdfa, Version=7.1.14.0, Culture=neutral, PublicKeyToken=8354ae6d2174ddca, processorArchitecture=MSIL">
-      <HintPath>..\packages\ManualPDFLayout.1.0.0\lib\net472\itext.pdfa.dll</HintPath>
+      <HintPath>..\packages\ManualPDFLayout.1.0.1\lib\net472\itext.pdfa.dll</HintPath>
     </Reference>
     <Reference Include="itext.sign, Version=7.1.14.0, Culture=neutral, PublicKeyToken=8354ae6d2174ddca, processorArchitecture=MSIL">
-      <HintPath>..\packages\ManualPDFLayout.1.0.0\lib\net472\itext.sign.dll</HintPath>
+      <HintPath>..\packages\ManualPDFLayout.1.0.1\lib\net472\itext.sign.dll</HintPath>
     </Reference>
     <Reference Include="itext.styledxmlparser, Version=7.1.14.0, Culture=neutral, PublicKeyToken=8354ae6d2174ddca, processorArchitecture=MSIL">
-      <HintPath>..\packages\ManualPDFLayout.1.0.0\lib\net472\itext.styledxmlparser.dll</HintPath>
+      <HintPath>..\packages\ManualPDFLayout.1.0.1\lib\net472\itext.styledxmlparser.dll</HintPath>
     </Reference>
     <Reference Include="itext.svg, Version=7.1.14.0, Culture=neutral, PublicKeyToken=8354ae6d2174ddca, processorArchitecture=MSIL">
-      <HintPath>..\packages\ManualPDFLayout.1.0.0\lib\net472\itext.svg.dll</HintPath>
+      <HintPath>..\packages\ManualPDFLayout.1.0.1\lib\net472\itext.svg.dll</HintPath>
     </Reference>
     <Reference Include="ManualInvoiceLayout, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\ManualPDFLayout.1.0.0\lib\net472\ManualInvoiceLayout.dll</HintPath>
+      <HintPath>..\packages\ManualPDFLayout.1.0.1\lib\net472\ManualInvoiceLayout.dll</HintPath>
     </Reference>
     <Reference Include="MaxMind.GeoIP, Version=2.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\MaxMind.GeoIP.2.1.17\lib\net35\MaxMind.GeoIP.dll</HintPath>
@@ -131,7 +131,7 @@
       <HintPath>..\packages\Microsoft.Web.Infrastructure.1.0.0.0\lib\net40\Microsoft.Web.Infrastructure.dll</HintPath>
     </Reference>
     <Reference Include="Newtonsoft.Json, Version=12.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
-      <HintPath>..\packages\ManualPDFLayout.1.0.0\lib\net472\Newtonsoft.Json.dll</HintPath>
+      <HintPath>..\packages\ManualPDFLayout.1.0.1\lib\net472\Newtonsoft.Json.dll</HintPath>
     </Reference>
     <Reference Include="Owin, Version=1.0.0.0, Culture=neutral, PublicKeyToken=f0ebd12fd5e55cc5, processorArchitecture=MSIL">
       <HintPath>..\packages\Owin.1.0\lib\net40\Owin.dll</HintPath>
@@ -147,13 +147,16 @@
     <Reference Include="System.ComponentModel.Annotations, Version=4.2.1.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
       <HintPath>..\packages\System.ComponentModel.Annotations.5.0.0\lib\net461\System.ComponentModel.Annotations.dll</HintPath>
     </Reference>
+    <Reference Include="System.Configuration.ConfigurationManager, Version=5.0.0.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>..\packages\ManualPDFLayout.1.0.1\lib\net472\System.Configuration.ConfigurationManager.dll</HintPath>
+    </Reference>
     <Reference Include="System.Data.Common, Version=4.1.1.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
       <HintPath>..\packages\System.Data.Common.4.3.0\lib\net451\System.Data.Common.dll</HintPath>
       <Private>True</Private>
       <Private>True</Private>
     </Reference>
     <Reference Include="System.Data.SqlClient, Version=4.6.1.2, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
-      <HintPath>..\packages\ManualPDFLayout.1.0.0\lib\net472\System.Data.SqlClient.dll</HintPath>
+      <HintPath>..\packages\ManualPDFLayout.1.0.1\lib\net472\System.Data.SqlClient.dll</HintPath>
     </Reference>
     <Reference Include="System.IO.Compression" />
     <Reference Include="System.IO.FileSystem.Primitives, Version=4.0.1.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
@@ -167,13 +170,13 @@
     <Reference Include="System.Net.Http" />
     <Reference Include="System.Security" />
     <Reference Include="System.Security.AccessControl, Version=5.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
-      <HintPath>..\packages\ManualPDFLayout.1.0.0\lib\net472\System.Security.AccessControl.dll</HintPath>
+      <HintPath>..\packages\ManualPDFLayout.1.0.1\lib\net472\System.Security.AccessControl.dll</HintPath>
     </Reference>
     <Reference Include="System.Security.Permissions, Version=5.0.0.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
-      <HintPath>..\packages\ManualPDFLayout.1.0.0\lib\net472\System.Security.Permissions.dll</HintPath>
+      <HintPath>..\packages\ManualPDFLayout.1.0.1\lib\net472\System.Security.Permissions.dll</HintPath>
     </Reference>
     <Reference Include="System.Security.Principal.Windows, Version=5.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
-      <HintPath>..\packages\ManualPDFLayout.1.0.0\lib\net472\System.Security.Principal.Windows.dll</HintPath>
+      <HintPath>..\packages\ManualPDFLayout.1.0.1\lib\net472\System.Security.Principal.Windows.dll</HintPath>
     </Reference>
     <Reference Include="System.Threading.Tasks" />
     <Reference Include="System.Web.DynamicData" />
@@ -196,11 +199,14 @@
       <HintPath>..\packages\Tamir.SharpSSH.1.1.1.13\lib\Tamir.SharpSSH.dll</HintPath>
     </Reference>
     <Reference Include="WindowsBase" />
+    <Reference Include="WinSCPnet, Version=1.7.2.10905, Culture=neutral, PublicKeyToken=2271ec4a3c56d0bf, processorArchitecture=MSIL">
+      <HintPath>..\packages\ManualPDFLayout.1.0.1\lib\net472\WinSCPnet.dll</HintPath>
+    </Reference>
     <Reference Include="zxing, Version=0.16.6.0, Culture=neutral, PublicKeyToken=4e88037ac681fe60, processorArchitecture=MSIL">
-      <HintPath>..\packages\ManualPDFLayout.1.0.0\lib\net472\zxing.dll</HintPath>
+      <HintPath>..\packages\ManualPDFLayout.1.0.1\lib\net472\zxing.dll</HintPath>
     </Reference>
     <Reference Include="zxing.presentation, Version=0.16.6.0, Culture=neutral, PublicKeyToken=4e88037ac681fe60, processorArchitecture=MSIL">
-      <HintPath>..\packages\ManualPDFLayout.1.0.0\lib\net472\zxing.presentation.dll</HintPath>
+      <HintPath>..\packages\ManualPDFLayout.1.0.1\lib\net472\zxing.presentation.dll</HintPath>
     </Reference>
   </ItemGroup>
   <ItemGroup>

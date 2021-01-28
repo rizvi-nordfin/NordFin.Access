@@ -29,6 +29,20 @@ namespace Nordfin
             if (!IsPostBack)
             {
                 lblInvoiceNumber.Text = businessLayerObj.GetNumberSeries("Telson").ToString();
+                var listItems = new List<ListItem>();
+                if(ClientSession.ClientLand == "FI")
+                {
+                    listItems.Add(new ListItem("24%", "24"));
+                }
+                if (ClientSession.ClientLand == "SE")
+                {
+                    listItems.Add(new ListItem("25%", "25"));
+                }
+                listItems.Add(new ListItem("0%", "0"));
+                drpVat.DataSource = listItems;
+                drpVat.DataValueField = "Value";
+                drpVat.DataTextField = "Text";
+                drpVat.DataBind();
                 InitializeGrid();
             }
             else
@@ -181,7 +195,7 @@ namespace Nordfin
             }
             catch
             {
-                ShowErrorDialog("Error while importing the invoice. Try Again!");
+                ShowErrorDialog("Error while creating invoice PDF. Try Again!");
                 return;
             }
         }
@@ -193,7 +207,7 @@ namespace Nordfin
             fileName = hdnFileName.Value;
             try
             {
-                var pdfUploaded = true;//UploadInvoicePdfToFtp();
+                var pdfUploaded = true;// UploadInvoicePdfToFtp();
                 if (!pdfUploaded)
                 {
                     ShowErrorDialog("Error while uploading invoice PDF. Try Again!");
@@ -352,7 +366,7 @@ namespace Nordfin
 
         private void ShowErrorDialog(string errorMessage)
         {
-            ScriptManager.RegisterStartupScript(Page, Page.GetType(), "Pop", "showErrorModal(" + errorMessage + ");", true);
+            ScriptManager.RegisterStartupScript(Page, Page.GetType(), "Pop", "showErrorModal('" + errorMessage + "');", true);
         }
 
         private bool UploadInvoicePdfToFtp()

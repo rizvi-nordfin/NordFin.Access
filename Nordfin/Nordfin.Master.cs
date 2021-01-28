@@ -24,17 +24,23 @@ namespace Nordfin
                 IUserPresentationBusinessLayer objUserLayer = new UserBusinessLayer();
                 string BatchValues = "";
                 int Contracts = 0;
-                IList<ClientList> objClientLsit = objUserLayer.GetClientList(Convert.ToInt32(ClientSession.Admin), Convert.ToInt32(ClientSession.ClientID), ClientSession.UserID, out BatchValues,out Contracts);
-
-                grdClientName.DataSource = objClientLsit;
+                IList<ClientList> objClientList = objUserLayer.GetClientList(Convert.ToInt32(ClientSession.Admin), Convert.ToInt32(ClientSession.ClientID), ClientSession.UserID, out BatchValues,out Contracts);
+                var newClientList = (from l in objClientList
+                                     select new ClientList
+                                     {
+                                         ClientName = l.ClientName,
+                                         ClientID = l.ClientID
+                                     }).ToList();
+                grdClientName.DataSource = newClientList;
 
                 grdClientName.DataBind();
 
-                if (objClientLsit.Count > 0 && objClientLsit.Any(a => a.ClientID == Convert.ToInt32(ClientSession.ClientID)))
+                if (objClientList.Count > 0 && objClientList.Any(a => a.ClientID == Convert.ToInt32(ClientSession.ClientID)))
                 {
-                    txtClientName.Text = objClientLsit.Where(a => a.ClientID == Convert.ToInt32(ClientSession.ClientID)).ToList()[0].ClientName;
+                    txtClientName.Text = objClientList.Where(a => a.ClientID == Convert.ToInt32(ClientSession.ClientID)).ToList()[0].ClientName;
                     txtClientName.Attributes.Add("ClientID", ClientSession.ClientID);
                     ClientSession.ClientName = txtClientName.Text;
+                    ClientSession.ClientLand = objClientList.Where(a => a.ClientID == Convert.ToInt32(ClientSession.ClientID)).ToList()[0].ClientLand;
                 }
                 if (BatchValues.ToUpper() == "FALSE")
                 {

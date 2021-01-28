@@ -5,6 +5,8 @@
         let today = new Date().toISOString().slice(0, 10);
         let thirtyDays = new Date();
         thirtyDays.setDate(new Date().getDate() + 30);
+        $("#<%= txtInvDate.ClientID %>").datepicker({ dateFormat: 'yy-mm-dd' });
+        $("#<%= txtDueDate.ClientID %>").datepicker({ dateFormat: 'yy-mm-dd' });
         $("#<%= txtInvDate.ClientID %>").val(today);
         $("#<%= txtDueDate.ClientID %>").val(thirtyDays.toISOString().slice(0, 10));
         $("#<%= txtQuantity.ClientID %>").val(1);
@@ -17,7 +19,7 @@
         var price = itemPrice.length != 0 ? parseFloat(itemPrice) : 0.0;
         var invoiceAmount = quantity.length == 0 ? price : price * parseInt(quantity);
         var vatPercent = percent.length != 0 ? parseInt(percent) : 0;
-        var vatAmount = (invoiceAmount * vatPercent) / 100;
+        var vatAmount = vatPercent == 0 ? 0 : (invoiceAmount * vatPercent) / 100;
         var total = vatAmount + invoiceAmount;
         $("#<%= txtInvAmount.ClientID %>").val(invoiceAmount);
         $("#<%= txtVat.ClientID %>").val(vatAmount);
@@ -30,7 +32,7 @@
         var quantity = $("#<%= txtQuantity.ClientID %>").val();
         var rowTotal = (totalAmount.length != 0 ? parseFloat(totalAmount) : 0.0);
         var vatPercent = (percent.length != 0 ? parseInt(percent) : 0);
-        var vatAmount = (rowTotal * vatPercent) / 100;
+        var vatAmount = vatPercent == 0 ? 0 : (rowTotal * vatPercent) / 100;
         var invoiceAmount = rowTotal - vatAmount;
         var itemPrice = quantity.length == 0 ? invoiceAmount : invoiceAmount / parseInt(quantity);
         $("#<%= txtInvAmount.ClientID %>").val(invoiceAmount);
@@ -141,8 +143,6 @@
             <div class="col-md-2">
                 <span class="title">VAT %</span>
                 <asp:DropDownList ID="drpVat" runat="server" CssClass="form-control dropdown controls" Height="" AutoPostBack="true" onchange="SetTotalAmount(); return false;">
-                    <asp:ListItem>25</asp:ListItem>
-                    <asp:ListItem>24</asp:ListItem>
                 </asp:DropDownList>
             </div>
             <div class="col-md-2">

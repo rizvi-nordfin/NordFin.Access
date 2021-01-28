@@ -5,8 +5,8 @@
 <%@ Register Src="~/ucManualInvoice.ascx" TagPrefix="uc1" TagName="ucManualInvoice" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="NordfinContentHolder" runat="server" style="background-color: #232D41;">
     <link href="Styles/Customer.css?version=<%=ConfigurationManager.AppSettings["VersionConfiguration"].ToString() %>" rel="stylesheet" />
-    <link href="Styles/ManualInvoice.css" rel="stylesheet" />
-    <script src="Scripts/jsManualInvoice.js"></script>
+    <link href="Styles/ManualInvoice.css?version=<%=ConfigurationManager.AppSettings["VersionConfiguration"].ToString() %>"" rel="stylesheet" />
+    <script src="Scripts/jsManualInvoice.js?version=<%=ConfigurationManager.AppSettings["VersionConfiguration"].ToString() %>""></script>
     <script src="Scripts/jsCustomer.js?version=<%=ConfigurationManager.AppSettings["VersionConfiguration"].ToString() %>"></script>
     <link rel="stylesheet" href="Styles/jquery-ui-NordFin.css" />
       <script src="//code.jquery.com/jquery-1.10.2.js"></script>
