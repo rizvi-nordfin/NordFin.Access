@@ -215,23 +215,23 @@ namespace Nordfin
             fileName = hdnFileName.Value;
             try
             {
-                var pdfUploaded = true;// UploadInvoicePdfToFtp();
+                var pdfUploaded = UploadInvoicePdfToFtp();
                 if (!pdfUploaded)
                 {
                     ShowErrorDialog("Error while uploading invoice PDF. Try Again!");
                     return;
                 }
 
-                bool imported = true;//businessLayerObj.ImportManualInvoice(standardFile);
+                bool imported = businessLayerObj.ImportManualInvoice(standardFile);
                 int.TryParse(invoiceNumber, out int oldSeries);
-                //businessLayerObj.UpdateNumberSeries("Telson", oldSeries + 1);
+                businessLayerObj.UpdateNumberSeries("Telson", oldSeries + 1);
                 if (!imported)
                 {
                     ShowErrorDialog("Error while importing the invoice. Try Again!");
                     return;
                 }
 
-                var ftpStatus = FtpStatusCode.ClosingData;// new FTPFileProcess().UploadStandardXml(standardFile, fileName);
+                var ftpStatus = new FTPFileProcess().UploadStandardXml(standardFile, fileName);
                 if (ftpStatus != FtpStatusCode.ClosingData)
                 {
                     ShowErrorDialog("Error while uploading invoice XML. Try Again!");
@@ -253,7 +253,6 @@ namespace Nordfin
             if (e.Row.RowType == DataControlRowType.DataRow)
             {
                 e.Row.Attributes["onclick"] = Page.ClientScript.GetPostBackClientHyperlink(grdInvoiceRows, "Select$" + e.Row.RowIndex);
-                //e.Row.Attributes["ondblclick"] = Page.ClientScript.GetPostBackClientHyperlink(grdInvoiceRows, "Edit$" + e.Row.RowIndex);
                 e.Row.ToolTip = "Select the row to Delete";
             }
         }
@@ -383,7 +382,7 @@ namespace Nordfin
             var hdnFileName = (HiddenField)Parent.FindControl("hdnFileName");
             string subFolderName = hdnClientName.Value.Substring(hdnClientName.Value.LastIndexOf("/") + 1) + Utilities.Execute(hdnInvoiceNumber.Value);
             string sFileExt = ConfigurationManager.AppSettings["FileExtension"].ToString();
-            string sFileName = hdnFileName.Value.IndexOf('_') == -1 ? hdnFileName.Value : hdnFileName.Value.Substring(0, hdnFileName.Value.IndexOf('_')) + "_" + hdnInvoiceNumber.Value + "_" + "inv" + "." + sFileExt;
+            string sFileName = (hdnFileName.Value.IndexOf('_') == -1 ? hdnFileName.Value : hdnFileName.Value.Substring(0, hdnFileName.Value.IndexOf('_'))) + "_" + hdnInvoiceNumber.Value + "_" + "inv" + "." + sFileExt;
             string base64Pdf = ViewState["base64Pdf"]?.ToString();
             var bResult = new FTPFileProcess().UploadInvoicePdf(base64Pdf, hdnClientName.Value, subFolderName, sFileName);
             return bResult == FtpStatusCode.ClosingData;
