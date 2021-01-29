@@ -98,8 +98,6 @@
             <div class="col-md-2">
                 <span class="title">Currency</span>
                 <asp:DropDownList ID="drpCurrency" runat="server" CssClass="form-control dropdown controls" Height="">
-                    <asp:ListItem>SEK</asp:ListItem>
-                    <asp:ListItem>EUR</asp:ListItem>
                 </asp:DropDownList>
             </div>
             <div class="col-md-2">

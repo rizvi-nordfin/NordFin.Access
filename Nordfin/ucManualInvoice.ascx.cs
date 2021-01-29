@@ -29,20 +29,28 @@ namespace Nordfin
             if (!IsPostBack)
             {
                 lblInvoiceNumber.Text = businessLayerObj.GetNumberSeries("Telson").ToString();
-                var listItems = new List<ListItem>();
-                if(ClientSession.ClientLand == "FI")
+                var vatlistItems = new List<ListItem>();
+                var currencylistItems = new List<ListItem>();
+                if (ClientSession.ClientLand == "FI")
                 {
-                    listItems.Add(new ListItem("24%", "24"));
+                    vatlistItems.Add(new ListItem("24%", "24"));
+                    currencylistItems.Add(new ListItem("EUR", "EUR"));
                 }
                 if (ClientSession.ClientLand == "SE")
                 {
-                    listItems.Add(new ListItem("25%", "25"));
+                    vatlistItems.Add(new ListItem("25%", "25"));
+                    currencylistItems.Add(new ListItem("SEK", "SEK"));
                 }
-                listItems.Add(new ListItem("0%", "0"));
-                drpVat.DataSource = listItems;
+                vatlistItems.Add(new ListItem("0%", "0"));
+                drpVat.DataSource = vatlistItems;
                 drpVat.DataValueField = "Value";
                 drpVat.DataTextField = "Text";
                 drpVat.DataBind();
+
+                drpCurrency.DataSource = currencylistItems;
+                drpCurrency.DataValueField = "Value";
+                drpCurrency.DataTextField = "Text";
+                drpCurrency.DataBind();
                 InitializeGrid();
             }
             else
