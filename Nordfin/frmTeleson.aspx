@@ -109,7 +109,7 @@
                         <div class="col-md-4 divPadding customerInfoSidebar" style="color: #FFFFFF;">
                             <div class="innerDiv" style="display:flex; margin-top: 5px;flex-direction:row;justify-content:center;align-items:center;height:32%">
                             <div class="row col-md-12" >
-                                <div class="col-md-6" data-ng-repeat="telson in telsonData|limitTo:2:8">
+                                <div class="col-md-6" data-ng-repeat="telson in telsonData|limitTo:3:8">
 
                                     <div class="revenue">
 
@@ -128,7 +128,7 @@
 </div>
                              <div class="innerDiv" style="display:flex; margin-top: 10px;flex-direction:row;justify-content:center;align-items:center;height:32%">
                             <div class="row col-md-12" >
-                                <div class="col-md-6" data-ng-repeat="telson in telsonData|limitTo:2:10">
+                                <div class="col-md-6" data-ng-repeat="telson in telsonData|limitTo:2:11">
 
                                     <div class="revenue">
 
@@ -166,7 +166,7 @@
                                         
                                         <tbody>
                                           
-                                            <tr data-ng-repeat="telson in telsonData|limitTo:3:12">
+                                            <tr data-ng-repeat="telson in telsonData|limitTo:3:13">
                                                 <td class="tableLeftAlign" style="color: #A9BFD5;">
                                                     <span >{{telson.ColumnName}}</span></td>
                                                
@@ -207,7 +207,7 @@
 
 
                         <div class="col-md-2" >
-                            <div class="col-md-12 container" data-ng-repeat="telson in telsonData|limitTo:1:15" 
+                            <div class="col-md-12 container" data-ng-repeat="telson in telsonData|limitTo:1:16" 
                                 style="margin-top: 5px; height: 98.5%; background-color: #38445D;display:flex;
                           align-items:center;justify-content: center; flex-direction: column;margin-left: -6px;">
 
@@ -226,7 +226,7 @@
 
                         <div class="col-md-2">
                             <div style="margin-left: -13px; margin-top: 5px; ">
-                                <div data-ng-repeat="telson in telsonData|limitTo:1:16">
+                                <div data-ng-repeat="telson in telsonData|limitTo:1:17">
                                     <div class="col-md-12" data-ng-style="telson.ColorCode != '' && {'background-color':'{{telson.ColorCode}}'} || {'background-color': '#38445D'}"
                                         
                                         style="height: 321px; display:flex;align-items:center;flex-direction:column;justify-content:center">
@@ -239,7 +239,7 @@
                                         <asp:Label ID="Label7" class="revenuelabelBody" style="font-size:16px;" Text="{{telson.PaymentValue}}" runat="server" />
                                     </div>
                                 </div>
-                                <div data-ng-repeat="telson in telsonData|limitTo:1:17">
+                                <div data-ng-repeat="telson in telsonData|limitTo:1:18">
                                     <div class="col-md-12" data-ng-style="telson.ColorCode != '' && {'background-color':'{{telson.ColorCode}}'} || {'background-color': '#38445D'}"
                                         style="height: 203px; display:flex;align-items:center;flex-direction:column;justify-content:center">
                                          <asp:Label Text="{{telson.ColumnName}}" style="font-size:18px;" class="revenuelabelHeader" runat="server" />
@@ -258,7 +258,7 @@
                       
 
                         <div class="col-md-2">
-                                <div data-ng-repeat="telson in telsonData|limitTo:5:18" >
+                                <div data-ng-repeat="telson in telsonData|limitTo:5:19" >
                                     <div data-ng-style="telson.ColorCode != '' && {'background-color':'{{telson.ColorCode}}'} || {'background-color': '#38445D'}" 
                                         style="margin-left: -18px; margin-top: 5px; ">
                                 <div class="col-md-12 container"  style="text-align: center;">
@@ -288,7 +288,7 @@
 
                       
                             <div class="col-md-2">
-                                <div data-ng-repeat="telson in telsonData|limitTo:4:23">
+                                <div data-ng-repeat="telson in telsonData|limitTo:4:24">
                             <div data-ng-if="telson.ColumnName!='None'"  data-ng-style="telson.ColorCode != '' && {'background-color':'{{telson.ColorCode}}'} || {'background-color': '#38445D'}"
                                 style="margin-left: -18px; margin-top: 5px; ">
                                 <div class="col-md-12 container"  style="text-align: center;">
