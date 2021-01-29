@@ -1,5 +1,6 @@
 ﻿using Newtonsoft.Json;
 using Nordfin.workflow.Business;
+using Nordfin.workflow.BusinessLayer;
 using Nordfin.workflow.Entity;
 using Nordfin.workflow.PresentationBusinessLayer;
 using System;
@@ -28,7 +29,7 @@ namespace Nordfin
                 string InvoiceNum = "";
                 hdnFileName.Value = Request.QueryString["FileName"];
                 hdnClientName.Value = Request.QueryString["ClientName"];
-
+                hdnInvoiceAmount.Value = sRemainAmount.Trim().Replace(',', '.');
 
 
                 if (InvoiceData.Split('|').Length > 1)
@@ -38,7 +39,22 @@ namespace Nordfin
                     InvoiceNum = InvoiceData.Split('|')[2];
                 }
                 else
+                {
                     InvoiceNum = InvoiceData;
+                }
+
+                if (string.IsNullOrWhiteSpace(Request.QueryString["Customer"]))
+                {
+                    IManualInvoicePresentationBusinessLayer objManualInvoices = new ManualInvoiceBusinessLayer();
+                    var clientId = int.Parse(ClientSession.ClientID);
+                    var customerInfo = objManualInvoices.GetCustomerInfoForClient(Session["custNum"]?.ToString(), clientId);
+                    hdnCustomerData.Value = JsonConvert.SerializeObject(customerInfo);
+                }
+                else
+                {
+                    hdnCustomerData.Value = Request.QueryString["Customer"];
+                }
+                
                 Session["InvoiceNum"] = InvoiceNum;
                 lblInvoiceNum.Text = InvoiceNum;
                 IPaymentInformationPresentationBusinessLayer objPresentationInfoLayer = new PaymentInformationBusinessLayer();
@@ -204,7 +220,7 @@ namespace Nordfin
             string sPDFViewerLink = "";
             bool bResult = false;
             string ResultFile = "";
-            string subfolder = ClientName.Substring(ClientName.LastIndexOf("/") + 1) + Execute(sFileName.Split('_')[1].Trim());
+            string subfolder = ClientName.Substring(ClientName.LastIndexOf("/") + 1) + Utilities.Execute(sFileName.Split('_')[1].Trim());
             if (sFileName != "")
                 bResult = fileProcess.FileDownload(ClientName, subfolder, sFileName, out ResultFile);
             if (!bResult)
@@ -295,6 +311,12 @@ namespace Nordfin
                 HttpContext.Current.Response.Redirect("frmLogin.aspx");
 
             }
+        }
+
+
+        protected void ManualInvoice_Click(object sender, EventArgs e)
+        {
+           
         }
     }
 }

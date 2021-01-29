@@ -2,11 +2,6 @@
 using Nordfin.workflow.DataAccessLayer;
 using Nordfin.workflow.Entity;
 using Nordfin.workflow.PresentationBusinessLayer;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Nordfin.workflow.BusinessLayer
 {
@@ -14,9 +9,9 @@ namespace Nordfin.workflow.BusinessLayer
     {
         IManualInvoiceBusinessDataLayer objManualInvoice = new ManualInvoiceDataAccessLayer();
 
-        public IList<CustomerInfo> GetCustomerInfoForClient(int clientID)
+        public CustomerInfo GetCustomerInfoForClient(string customerNumber, int clientID)
         {
-            return objManualInvoice.GetCustomerInfoForClient(clientID);
+            return objManualInvoice.GetCustomerInfoForClient(customerNumber, clientID);
         }
 
         public int GetNumberSeries(string seriesName)
@@ -27,6 +22,11 @@ namespace Nordfin.workflow.BusinessLayer
         public void UpdateNumberSeries(string seriesName, int newSeries)
         {
             objManualInvoice.UpdateNumberSeries(seriesName, newSeries);
+        }
+
+        public bool ImportManualInvoice(string standardXml)
+        {
+            return objManualInvoice.ImportManualInvoice(standardXml);
         }
     }
 }

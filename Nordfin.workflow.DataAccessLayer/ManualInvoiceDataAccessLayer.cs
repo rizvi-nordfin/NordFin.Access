@@ -13,12 +13,13 @@ namespace Nordfin.workflow.DataAccessLayer
     {
         private string connectionString = ConfigurationManager.ConnectionStrings["NordfinConnec"].ToString();
 
-        IList<CustomerInfo> IManualInvoiceBusinessDataLayer.GetCustomerInfoForClient(int clientId)
+        CustomerInfo IManualInvoiceBusinessDataLayer.GetCustomerInfoForClient(string customerNumber, int clientId)
         {   
-            var customerInfo = new List<CustomerInfo>();
+            var customerInfo = new CustomerInfo();
             using (SqlConnection db = new SqlConnection(connectionString))
             {
-                customerInfo = db.Query<CustomerInfo>("SELECT Customername AS [Name],Customeradress AS Address1, Customeradress2 AS Address2, CustomerPostalCode AS PostalCode, CustomerCity AS City, Customernumber AS CustomerNumber, Customerid AS CustomerId FROM Customers WHERE ClientID = @ClientId", new { ClientId = clientId }).ToList();
+                customerInfo = db.Query<CustomerInfo>("SELECT Customername AS [Name],Customeradress AS Address1, Customeradress2 AS Address2, CustomerPostalCode AS PostalCode, CustomerCity AS City, Customernumber AS CustomerNumber, " +
+                                                       "Customerid AS CustomerId FROM Customers WHERE ClientID = @ClientId AND Customernumber = @customerNumber", new { clientId, customerNumber }).FirstOrDefault();
             };
            
             return customerInfo;
@@ -41,6 +42,22 @@ namespace Nordfin.workflow.DataAccessLayer
             {
                 connection.Execute("UPDATE NumberSeries SET Number = @NewNumber WHERE Series LIKE @SeriesName", new { NewNumber = newSeries, SeriesName = "%" + seriesName + "%" });
 
+            }
+        }
+
+        public bool ImportManualInvoice(string standardXml)
+        {
+            try
+            {
+                DBInitialize("usp_InsertCustomerInvoiceXmlData");
+
+                DatabaseName.AddInParameter(DBBaseCommand, "@xmlCustomerInvoices", DbType.String, standardXml);
+                int result = DatabaseName.ExecuteNonQuery(DBBaseCommand);
+                return result > 0;
+            }
+            catch
+            {
+                return false;
             }
         }
     }

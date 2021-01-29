@@ -5,6 +5,7 @@ using Nordfin.workflow.PresentationBusinessLayer;
 using System;
 using System.Collections.Generic;
 using System.Data;
+using System.Dynamic;
 using System.Drawing;
 using System.Globalization;
 using System.IO;
@@ -194,14 +195,12 @@ namespace Nordfin
                     grdCustomer.DataBind();
                 }
 
-                if(ClientSession.Admin == "0" || ClientSession.Admin == "1")
+                if (ClientSession.Admin == "0" || ClientSession.Admin == "1")
                 {
-                    ScriptManager.RegisterStartupScript(this, this.GetType(), "showManualInvoice", "$('#divManualInvoiceRow').show(); $('#divManualInvoice').show();", true);
+                    ScriptManager.RegisterStartupScript(this, this.GetType(), "showManualInvoiceButton", "$('#divManualInvoiceRow').show(); $('#divManualInvoice').show();", true);
                 }
-                LoadManualInvoiceCustomerData();
 
             }
-
             ScriptManager.RegisterStartupScript(UpdatePanel1, UpdatePanel1.GetType(), "CreateControl", "CreateControl();", true);
         }
 
@@ -213,7 +212,7 @@ namespace Nordfin
 
         protected void btnPDFDownload_Click(object sender, EventArgs e)
         {
-            string subFolderName = hdnClientName.Value.Substring(hdnClientName.Value.LastIndexOf("/") + 1) + Execute(((Button)sender).CommandArgument.Trim());
+            string subFolderName = hdnClientName.Value.Substring(hdnClientName.Value.LastIndexOf("/") + 1) + Utilities.Execute(((Button)sender).CommandArgument.Trim());
             FTPFileProcess fileProcess = new FTPFileProcess();
             string sFileExt = System.Configuration.ConfigurationManager.AppSettings["FileExtension"].ToString();
             string sFileName = hdnFileName.Value + "_" + ((Button)sender).CommandArgument.Trim() + "_" + "inv" + "." + sFileExt;
@@ -234,20 +233,21 @@ namespace Nordfin
             ScriptManager.RegisterStartupScript(this, this.GetType(), "PDFViewerNewTab", "PDFViewer('" + sFileName + "','" + sPDFViewerLink + "','" + Session.SessionID + "','" + bResult + "','" + btn.ClientID + "');", true);
         }
 
-        private void LoadManualInvoiceCustomerData()
+        private dynamic LoadManualInvoiceData()
         {
-            var custNum = (TextBox)ucManualInvoice.FindControl("txtCustNum");
-            custNum.Text = lblCustomerNumber.Text;
-            var custName = (TextBox)ucManualInvoice.FindControl("txtCustName");
-            custName.Text = lblName.Text;
-            var custContact = (TextBox)ucManualInvoice.FindControl("txtCustContact");
-            custContact.Text = lblAddress.Text;
-            var custAddress = (TextBox)ucManualInvoice.FindControl("txtCustAddress");
-            custAddress.Text = lblAddress1.Text;
-            var custPostCode = (TextBox)ucManualInvoice.FindControl("txtPostCode");
-            custPostCode.Text = lblPostalCode.Text;
-            var custCity = (TextBox)ucManualInvoice.FindControl("txtCity");
-            custCity.Text = lblCity.Text;
+            dynamic dynObject = new ExpandoObject();
+            var selectedRow = grdCustomer.SelectedRow;
+            if (selectedRow != null)
+            {
+                var gridData = (DataTable)Session["CustomerGrid"];
+                var selectedRowData = gridData.AsEnumerable().ElementAt(selectedRow.RowIndex);
+                dynObject.invoiceAmount = selectedRowData.ItemArray[5].ToString();
+                dynObject.billDate = selectedRowData.ItemArray[7].ToString();
+                dynObject.dueDate = selectedRowData.ItemArray[8].ToString();
+                dynObject.remainingAmount = selectedRowData.ItemArray[6].ToString();
+                dynObject.totalAmount = selectedRowData.ItemArray[11].ToString();
+            }
+            return dynObject;
         }
 
         public void ClearSession()
@@ -600,7 +600,7 @@ namespace Nordfin
             return newPath;
         }
 
-       
+
 
         protected void grdCustomer_Sorting(object sender, GridViewSortEventArgs e)
         {
@@ -618,6 +618,15 @@ namespace Nordfin
             }
         }
 
+        protected void grdCustomer_OnRowDataBound(object sender, GridViewRowEventArgs e)
+        {
+            if (e.Row.RowType == DataControlRowType.DataRow)
+            {
+                e.Row.Attributes["onclick"] = Page.ClientScript.GetPostBackClientHyperlink(grdCustomer, "Select$" + e.Row.RowIndex);
+                e.Row.ToolTip = "click to create Credit Invoice";
+            }
+        }
+
         private void SortGridView(string sortExpression, string direction)
         {
 
@@ -629,6 +638,19 @@ namespace Nordfin
 
             grdCustomer.DataSource = dv;
             grdCustomer.DataBind();
+        }
+
+        protected override void Render(HtmlTextWriter writer)
+        {
+            foreach (GridViewRow r in grdCustomer.Rows)
+            {
+                if (r.RowType == DataControlRowType.DataRow)
+                {
+                    Page.ClientScript.RegisterForEventValidation(grdCustomer.UniqueID, "Select$" + r.RowIndex);
+                }
+            }
+
+            base.Render(writer);
         }
     }
 }

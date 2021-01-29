@@ -27,9 +27,12 @@
         public string Quantity { get; set; }
 
         [XmlElement(Order = 6)]
-        public string VatPercent { get; set; }
+        public string Unit { get; set; }
 
         [XmlElement(Order = 7)]
+        public string VatPercent { get; set; }
+
+        [XmlElement(Order = 8)]
         public string VatAmount
         {
             get
@@ -43,7 +46,7 @@
             }
         }
 
-        [XmlElement(Order = 8)]
+        [XmlElement(Order = 9)]
         public string Price
         {
             get
@@ -57,7 +60,7 @@
             }
         }
 
-        [XmlElement(Order = 9)]
+        [XmlElement(Order = 10)]
         public string Total
         {
             get

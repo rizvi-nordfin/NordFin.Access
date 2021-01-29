@@ -18,6 +18,7 @@ namespace Nordfin
         private const string labeluser = "ClientLabelUser";
 
         private const string clientName = "ClientClientName";
+        private const string clientLand = "ClientClientLand";
         private const string notesCount = "ClientNotesCount";
 
         #endregion
@@ -136,7 +137,18 @@ namespace Nordfin
             }
         }
 
+        public static string ClientLand
+        {
+            get
+            {
+                return (string)HttpContext.Current.Session[clientLand] ?? string.Empty;
+            }
 
+            set
+            {
+                HttpContext.Current.Session[clientLand] = value;
+            }
+        }
     }
 }
 

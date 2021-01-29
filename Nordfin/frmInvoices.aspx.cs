@@ -100,7 +100,7 @@ namespace Nordfin
 
         protected void btnPDFDownload_Click(object sender, EventArgs e)
         {
-            string subFolderName = hdnClientName.Value.Substring(hdnClientName.Value.LastIndexOf("/") + 1) + Execute(((Button)sender).CommandArgument.Trim().Replace("INV-", ""));
+            string subFolderName = hdnClientName.Value.Substring(hdnClientName.Value.LastIndexOf("/") + 1) + Utilities.Execute(((Button)sender).CommandArgument.Trim().Replace("INV-", ""));
             FTPFileProcess fileProcess = new FTPFileProcess();
             string sFileExt = System.Configuration.ConfigurationManager.AppSettings["FileExtension"].ToString();
             string sFileName = hdnFileName.Value + "_" + ((Button)sender).CommandArgument.Trim() + "_" + "inv" + "." + sFileExt;

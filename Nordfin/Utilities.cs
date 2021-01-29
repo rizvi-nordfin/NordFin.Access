@@ -149,5 +149,39 @@ namespace Nordfin
 
             return check;
         }
+
+        public static string Execute(string invNumber)
+        {
+            var r = Regex.Replace(invNumber, "[^0-9]", "");
+
+            var n = int.TryParse(r, out var x) ? x : 0;
+
+            // n is invoice number which is int or only numbers
+
+            /* if invoice number is more than 9 digits it will keep only 9 digits from the right and remove the rest but 
+             it will not change invoice number in the file name */
+
+            if (r.Length > 9)
+                n = int.TryParse(r.Remove(0, r.Length - 9), out var m) ? m : 0;
+            const int i = 1000000000;
+            const int n2 = 100000;
+            var newPath = "";
+            var index = 0;
+            var n1 = 0;
+            var n3 = n2;
+
+            while (index < i)
+            {
+                index++;
+                if (n > n1 && n <= n3)
+                {
+                    newPath = n1 + "_" + n3;
+                    break;
+                }
+                n1 += n2;
+                n3 += n2;
+            }
+            return newPath;
+        }
     }
 }
