@@ -40,7 +40,7 @@
         <div class="paymentInfoModalHeader">
           <asp:Label runat="server" ID="lblInvoiceNum" Style="color: #FFB100; text-align: left; font-size: medium;"></asp:Label>
           <div class="paymentInfoButtons">
-            <button class="button paymentInfoButton" onclick="return showManualInvoice();" style="width:auto !important">Credit Invoice</button>
+            <button class="button paymentInfoButton" onclick="return showManualInvoice();" style="width:auto !important;display:none" id="btnCreditInvoice">Credit Invoice</button>
             <button class="button paymentInfoButton" data-ng-click="notesUpdate($event)" runat="server">Update</button>
             <asp:Button Text="Download" class="button paymentInfoButton" id="btnDownload" data-ng-click="btnDownload($event)"  runat="server"></asp:Button>
           </div>
