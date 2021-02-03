@@ -49,7 +49,7 @@
 
 .tableFixHead {
     overflow-y: auto;
-    height: 600px;
+   
 }
 
 .trHead th {
@@ -371,8 +371,9 @@ a.linkcss {
     .summaryInvoices {
         grid-template-columns: 6fr 6fr;
         width: 110%;
-        margin-top: -24px;
+        margin-top: 15px;
         margin-left: -8px;
+        position: static;
     }
 
     .textOrange {
@@ -380,7 +381,7 @@ a.linkcss {
     }
 
     .tableMarginBg {
-        margin-top: 110px !important;
+        margin-top: 160px !important;
     }
 }
 
