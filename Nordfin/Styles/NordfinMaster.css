@@ -1593,11 +1593,12 @@ hr {
     }
 
 
-@media screen and (orientation:landscape) {
+@media screen and (max-width: 600px) and (orientation:landscape ) {
     .sideMenu {
-        overflow-y:scroll;
-        height:85vh;
+        overflow-y: scroll;
+        height: 85vh;
     }
+
     .listControl, .sideMenuStatistics {
         top: 185px;
     }
