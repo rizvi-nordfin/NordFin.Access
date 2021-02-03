@@ -1593,7 +1593,8 @@ hr {
     }
 
 
-@media screen and (max-width: 600px) and (orientation:landscape ) {
+
+@media (pointer:none), (pointer:coarse) and (orientation:landscape ) {
     .sideMenu {
         overflow-y: scroll;
         height: 85vh;
