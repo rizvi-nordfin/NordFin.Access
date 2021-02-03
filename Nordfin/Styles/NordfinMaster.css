@@ -1591,3 +1591,14 @@ hr {
         background-color: #3DADC5;
         color: #fff;
     }
+
+
+@media screen and (orientation:landscape) {
+    .sideMenu {
+        overflow-y:scroll;
+        height:85vh;
+    }
+    .listControl, .sideMenuStatistics {
+        top: 185px;
+    }
+}
