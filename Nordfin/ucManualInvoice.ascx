@@ -1,5 +1,9 @@
 ﻿<%@ Control Language="C#" AutoEventWireup="true" CodeBehind="ucManualInvoice.ascx.cs" Inherits="Nordfin.ucManualInvoice" %>
 
+<link rel="stylesheet" href="Styles/jquery-ui-NordFin.css" />
+      <script src="//code.jquery.com/jquery-1.10.2.js"></script>
+    <script src="//code.jquery.com/ui/1.11.1/jquery-ui.js"></script>  
+
 <script>
     $(document).ready(function () {
         let today = new Date().toISOString().slice(0, 10);
@@ -225,13 +229,13 @@
                 <br />
                 <div class="container-fluid">
                     <div class="row">
-                        <div class="col-md-8" style="padding-top: 15px">
+                        <div class="col-md-8 pdfMessageAlign">
                             <p class="pdfMessage">Please check the invoice before importing.</p>
                         </div>
-                        <div class="col-md-2" style="padding-top: 15px">
+                        <div class="col-md-2 pdfMessageAlign">
                             <asp:Button ID="btnImport" Text="Import" CssClass="export rowButton" OnClick="ImportManualInvoice" OnClientClick="closePDFViewer();" runat="server" />
                         </div>
-                        <div class="col-md-2" style="padding-top: 15px">
+                        <div class="col-md-2 pdfMessageAlign">
                             <button type="button" class="export rowButton" onclick="closePDFViewer();">Cancel</button>
                         </div>
                     </div>

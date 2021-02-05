@@ -104,7 +104,7 @@ namespace Nordfin
                     grdNotes.DataBind();
                 }
 
-                if (ClientSession.Admin == "0" || ClientSession.Admin == "1")
+                if (ClientSession.AllowManualInvoice)
                 {
                     ScriptManager.RegisterStartupScript(this, this.GetType(), "showManualInvoiceButton", "$('#btnCreditInvoice').show();", true);
                 }

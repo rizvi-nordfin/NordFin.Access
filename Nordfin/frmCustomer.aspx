@@ -8,9 +8,9 @@
     <link href="Styles/ManualInvoice.css?version=<%=ConfigurationManager.AppSettings["VersionConfiguration"].ToString() %>"" rel="stylesheet" />
     <script src="Scripts/jsManualInvoice.js?version=<%=ConfigurationManager.AppSettings["VersionConfiguration"].ToString() %>""></script>
     <script src="Scripts/jsCustomer.js?version=<%=ConfigurationManager.AppSettings["VersionConfiguration"].ToString() %>"></script>
-    <link rel="stylesheet" href="Styles/jquery-ui-NordFin.css" />
+    <%--<link rel="stylesheet" href="Styles/jquery-ui-NordFin.css" />
       <script src="//code.jquery.com/jquery-1.10.2.js"></script>
-    <script src="//code.jquery.com/ui/1.11.1/jquery-ui.js"></script>  
+    <script src="//code.jquery.com/ui/1.11.1/jquery-ui.js"></script>  --%>
 
     <div class="dashboardContainer">
         <div class="container-fluid">
@@ -459,7 +459,7 @@
 
     <div class="modal fade" id="mdlAccessInfo" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog" role="document">
-            <div class="modal-content" style="top: -50px; background: none; border: none;">
+            <div class="modal-content" style="top: -10px; background: none; border: none;">
                 <div class="modal-header dashboardHeadline" style="background-color: #323e53; color: #fff; font-size: 16px;">
                     <h5 class="modal-title modalTextcolor dashboardHeadlineModal" id="informModalLabel">UPDATE INFO</h5>
                     <button type="button" class="modalcloseButton" data-dismiss="modal" aria-label="Close" style="top: 35px; right: 20px;">

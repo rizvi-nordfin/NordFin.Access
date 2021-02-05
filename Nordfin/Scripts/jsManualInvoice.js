@@ -2,6 +2,9 @@
 function showPDFViewer(base64Pdf) {
     var src = 'data:application/pdf;base64,' + base64Pdf;
     jq10('#iInvoicePdf').attr('src', src)
+    if ($(window).width() < 800) {
+        jq10('#pdfViewer').css('top', '200px');
+    }
     jq10('#pdfViewer').modal({ backdrop: 'static', keyboard: false }, 'show');
     setupModalDialog();
     return false;
@@ -23,6 +26,10 @@ function showErrorModal(errorMessage) {
     var parent = $('#mdlManualInvoice').parent();
     if (parent.length != 0 && parent.attr('id').includes('AngularDiv')) {
         jq10('#mdlError').css('left', '200px');
+    }
+    if ($(window).width() < 800) {
+        jq10('#mdlError').css('left', '-50px');
+        jq10('#mdlSuccess').css('left', '-50px');
     }
     jq10('#mdlError').modal({ backdrop: 'static', keyboard: false }, 'show');
     return false;
