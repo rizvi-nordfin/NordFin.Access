@@ -138,9 +138,9 @@ input[type="submit"]:disabled {
     }
 }
 
-@media only screen and (max-width:800px) and (min-width:400px) {
+@media only screen and (max-width:900px) and (min-width:400px) {
     .modal-content {
-        width: 110% !important;
+        width: 100% !important;
     }
 
     .manulInvoiceModal {

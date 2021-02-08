@@ -273,6 +273,8 @@ function PanelClick() {
         $('#mdlUpdateConfirm').modal('toggle');
         location.reload();
     });
+
+    window.location.href = "frmDashboard.aspx";
 }
 
 function ShowPopup() {
