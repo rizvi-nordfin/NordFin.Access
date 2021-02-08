@@ -246,7 +246,7 @@
                     </asp:Panel>
 
                     <asp:Panel ID="pnlTeleson" runat="server">
-                        <a href="/frmTeleson.aspx">Contracts</a>
+                        <a href="/frmRisk.aspx">Risk</a>
                     </asp:Panel>
 
                 </div>
