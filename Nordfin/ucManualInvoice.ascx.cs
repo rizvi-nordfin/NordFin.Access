@@ -214,7 +214,7 @@ namespace Nordfin
             fileName = hdnFileName.Value;
             try
             {
-                var pdfUploaded = true;//UploadInvoicePdfToFtp();
+                var pdfUploaded = UploadInvoicePdfToFtp();
                 if (!pdfUploaded)
                 {
                     ShowErrorDialog("Error while uploading invoice PDF. Try Again!");
