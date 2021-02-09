@@ -416,8 +416,8 @@ namespace Nordfin
                 ws.Column(14).Delete();
                 ws.Column(13).Delete();
 
-                
 
+                
 
                 Response.Clear();
                 Response.Buffer = true;
@@ -531,7 +531,7 @@ namespace Nordfin
             using (XLWorkbook wb = new XLWorkbook())
             {
                 var ws = wb.Worksheets.Add(dataSet.Tables[0]);
-                ws.Tables.FirstOrDefault().ShowAutoFilter = false;
+                ws.Tables.FirstOrDefault().ShowAutoFilter = true;
                 ws.Tables.FirstOrDefault().Theme = XLTableTheme.TableStyleLight16;
                 wb.Worksheet(1).Columns().AdjustToContents();
                 DataTable dataTable = dataSet.Tables[0];
