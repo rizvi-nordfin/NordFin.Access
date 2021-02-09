@@ -8,5 +8,7 @@ namespace Nordfin.workflow.Entity
         public string ClientName { get; set; }
 
         public string ClientLand { get; set; }
+
+        public bool AllowManualInvoice { get; set; }
     }
 }

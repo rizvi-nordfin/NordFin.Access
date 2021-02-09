@@ -23,7 +23,6 @@ namespace Nordfin
         private string fileName = string.Empty;
         private string invoiceNumber = string.Empty;
 
-
         protected void Page_Load(object sender, EventArgs e)
         {
             if (!IsPostBack)
@@ -120,29 +119,29 @@ namespace Nordfin
                 {
                     InvoiceNumber = invoiceNumber,
                     ConnectionId = "0",
-                    BillDate = txtInvDate.Text.Trim(),
-                    DueDate = txtDueDate.Text.Trim(),
-                    CustomerNumber = txtCustNum.Text.Trim(),
-                    OrderNumber = txtCustNum.Text.Trim(),
+                    BillDate = !string.IsNullOrEmpty(txtInvDate.Text?.Trim()) ? txtInvDate.Text?.Trim() : DateTime.Today.ToString("yyyy-MM-dd"),
+                    DueDate = !string.IsNullOrEmpty(txtDueDate.Text?.Trim()) ? txtDueDate.Text?.Trim() : DateTime.Today.AddDays(30).ToString("yyyy-MM-dd"),
+                    CustomerNumber = txtCustNum.Text?.Trim(),
+                    OrderNumber = txtCustNum.Text?.Trim(),
                     ClientID = ClientSession.ClientID,
                     Purchased = "0",
                     FileName = fileName,
                     Delivery = drpInvDelivery.SelectedValue?.Trim(),
                     PaymentReference = Utilities.BuildOcr(lblInvoiceNumber.Text?.Trim(), (lblInvoiceNumber.Text?.Trim().Length).Value + 3, "9", "Sweden"),
-                    CurrencyCode = drpCurrency.Text.Trim(),
-                    InvoiceAmount = txtTotalAmount.Text.Trim(),
-                    RemainingAmount = txtTotalAmount.Text.Trim(),
-                    InvoiceVATAmount = txtTotalVat.Text.Trim()
+                    CurrencyCode = drpCurrency.Text?.Trim(),
+                    InvoiceAmount = txtTotalAmount.Text?.Trim(),
+                    RemainingAmount = txtTotalAmount.Text?.Trim(),
+                    InvoiceVATAmount = txtTotalVat.Text?.Trim()
                 };
 
                 var customer = new Customer
                 {
-                    CustomerNumber = txtCustNum.Text.Trim(),
-                    CustomerName = txtCustName.Text.Trim(),
-                    CustomerAddress = txtCustContact.Text.Trim(),
-                    CustomerAddress2 = txtCustAddress.Text.Trim(),
-                    CustomerCity = txtCustCity.Text.Trim(),
-                    CustomerPostalCode = txtCustPostCode.Text.Trim(),
+                    CustomerNumber = txtCustNum.Text?.Trim(),
+                    CustomerName = txtCustName.Text?.Trim(),
+                    CustomerAddress = txtCustContact.Text?.Trim(),
+                    CustomerAddress2 = txtCustAddress.Text?.Trim(),
+                    CustomerCity = txtCustCity.Text?.Trim(),
+                    CustomerPostalCode = txtCustPostCode.Text?.Trim(),
                     CustomerType = "PRV",
                     ClientId = ClientSession.ClientID,
                 };
@@ -159,7 +158,7 @@ namespace Nordfin
                         Id = id,
                         Number = item["Article"].ToString(),
                         Description = item["Description"].ToString(),
-                        Period = firstDayOfMonth.ToString("yyyy-MM-dd") + " - " + lastDayOfMonth.ToString("yyyy-MM-dd"),
+                        Period = "",//firstDayOfMonth.ToString("yyyy-MM-dd") + " - " + lastDayOfMonth.ToString("yyyy-MM-dd"),
                         Unit = item["Unit"].ToString(),
                         Quantity = item["Quantity"].ToString(),
                         Total = item["TotalAmount"].ToString(),
@@ -201,7 +200,7 @@ namespace Nordfin
                 ViewState["base64Pdf"] = base64Pdf;
                 ScriptManager.RegisterStartupScript(Page, Page.GetType(), "Pop", "showPDFViewer('" + base64Pdf + "');", true);
             }
-            catch
+            catch(Exception ex)
             {
                 ShowErrorDialog("Error while creating invoice PDF. Try Again!");
                 return;
@@ -307,8 +306,6 @@ namespace Nordfin
         private void ResetControls()
         {
             txtInvAmount.Text = string.Empty;
-            txtInvDate.Text = string.Empty;
-            txtDueDate.Text = string.Empty;
             txtDescription.Text = string.Empty;
             txtUnit.Text = string.Empty;
             txtQuantity.Text = "1";

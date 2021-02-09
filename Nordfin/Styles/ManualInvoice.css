@@ -48,7 +48,7 @@
     box-shadow: 0 0 0 1px #2C3850;
     top: 250px;
     background: none;
-    width: 85%;
+    width: 85% !important;
     left: 50px;
 }
 
@@ -101,20 +101,66 @@ input[type="submit"]:disabled {
     }
 }
 
-@media only screen and (max-width:760px) {
+@media only screen and (max-width:400px) {
+    .manulInvoiceModal {
+        left: 45% !important;
+        width: 100% !important;
+        overflow: auto !important;
+    }
+
+    .modal-content {
+        width: 100% !important;
+    }
+
+    .pdfMessageAlign .rowButton {
+        height: 30px;
+        width: 30% !important;
+    }
+
+    .pdfViewer {
+        width: 300px !important;
+    }
+
+    .pdfViewerModal {
+        width: 360px;
+    }
+
+    .pdfViewerIframe {
+        width: 350px !important;
+    }
+
+    .pdfMessage {
+        font-size: 10px !important;
+    }
+
+    .pdfMessageAlign{
+        padding-top:0px !important;
+    }
+}
+
+@media only screen and (max-width:900px) and (min-width:400px) {
     .modal-content {
         width: 100% !important;
     }
 
     .manulInvoiceModal {
-        left: 50% !important;
+        left: 50%;
+        overflow: auto !important;
+    }
+
+    .pdfMessage {
+        font-size: 10px !important;
+    }
+
+    .pdfMessageAlign {
+        padding-top: 0px !important;
     }
 }
 
-@media only screen and (max-width:1300px) {
+@media only screen and (max-width:1300px) and (min-width:900px) {
     .manulInvoiceModal {
-        left: 30% !important;
-        width: 155% !important;
+        left: 30%;
+        width: 155%;
     }
 }
 
@@ -148,5 +194,9 @@ input[type="submit"]:disabled {
     text-align: center;
     /*font-size: small;*/
     border: none;
+}
+
+.pdfMessageAlign {
+    padding-top: 15px
 }
 

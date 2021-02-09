@@ -948,6 +948,8 @@ transition: .1s;
 }
 
 .dropdownMenuAccounts table  tr td:first-child, .dropdownMenuAccounts table  tr th:first-child { display: none; }
+.dropdownMenuAccounts table  tr td:nth-child(3), .dropdownMenuAccounts table  tr th:nth-child(3) { display: none; }
+.dropdownMenuAccounts table  tr td:nth-child(4), .dropdownMenuAccounts table  tr th:nth-child(4) { display: none; }
 .dropdownMenuAccounts table th { display: none; }
 
 .dropdownMenuAccounts table tr:nth-child(2) {
@@ -1188,7 +1190,6 @@ transition: .1s;
   .Popup {
     position: absolute !important;
     margin-left: 0 !important;
-    height: 100% !important;
     width: 100% !important;
     left: 0 !important;
     top: 5% !important;

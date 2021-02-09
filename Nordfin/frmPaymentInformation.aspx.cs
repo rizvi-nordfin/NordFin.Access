@@ -10,7 +10,7 @@ using System.Text.RegularExpressions;
 using System.Web;
 using System.Web.Script.Serialization;
 using System.Web.Services;
-
+using System.Web.UI;
 
 namespace Nordfin
 {
@@ -104,9 +104,10 @@ namespace Nordfin
                     grdNotes.DataBind();
                 }
 
-
-
-
+                if (ClientSession.AllowManualInvoice)
+                {
+                    ScriptManager.RegisterStartupScript(this, this.GetType(), "showManualInvoiceButton", "$('#btnCreditInvoice').show();", true);
+                }
             }
 
         }
