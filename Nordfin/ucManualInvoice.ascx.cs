@@ -179,11 +179,7 @@ namespace Nordfin
                         InvoiceRows = invoiceRows
                     }
                 };
-                var client = new Client
-                {
-                    ClientId = ClientSession.ClientID,
-                    ClientName = ClientSession.ClientName
-                };
+                var client = businessLayerObj.GetClientPrintDetail(Convert.ToInt32(ClientSession.ClientID));
 
                 invoiceFile.Client = client;
                 invoiceFile.Invoices.Add(inv);
@@ -195,11 +191,12 @@ namespace Nordfin
                 var plainTextBytes = Encoding.UTF8.GetBytes(standardFile);
                 var base64Xml = Convert.ToBase64String(plainTextBytes);
                 string connString = ConfigurationManager.ConnectionStrings["NordfinConnec"].ToString();
-                var x = new ManualInvoiceLayout.Input.Xml(connString);
+                var x = new ManualInvoiceLayout.Input.Xml("TestingProd", null, null);
                 var base64Pdf = x.ReadFile(base64Xml);
                 ViewState["base64Pdf"] = base64Pdf;
                 ScriptManager.RegisterStartupScript(Page, Page.GetType(), "Pop", "showPDFViewer('" + base64Pdf + "');", true);
             }
+
             catch(Exception ex)
             {
                 ShowErrorDialog("Error while creating invoice PDF. Try Again!");

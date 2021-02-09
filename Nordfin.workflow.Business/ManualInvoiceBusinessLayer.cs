@@ -28,5 +28,10 @@ namespace Nordfin.workflow.BusinessLayer
         {
             return objManualInvoice.ImportManualInvoice(standardXml);
         }
+
+        public Client GetClientPrintDetail(int clientId)
+        {
+            return objManualInvoice.GetClientPrintDetail(clientId);
+        }
     }
 }

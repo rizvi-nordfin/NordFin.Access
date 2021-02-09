@@ -60,5 +60,21 @@ namespace Nordfin.workflow.DataAccessLayer
                 return false;
             }
         }
+
+        public Client GetClientPrintDetail(int clientId)
+        {
+            Client client;
+            using (SqlConnection connection = new SqlConnection(connectionString))
+            {
+                client = connection.Query<Client>(
+                                            "SELECT CL.ClientId,ClientCurrency,ClientReference,SpvName AS LedgerName,CP.* FROM ClientList CL " +
+                                            "INNER JOIN ClientPrintLayout CP ON CL.ClientId = CP.ClientId " +
+                                            "LEFT JOIN Spv S ON S.id = CL.SpvId " +
+                                            "WHERE CL.ClientId = @ClientId AND Active = 1",
+                                            new { ClientId = clientId }).FirstOrDefault();
+            }
+
+            return client;
+        }
     }
 }

@@ -11,5 +11,7 @@ namespace Nordfin.workflow.BusinessDataLayerInterface
         void UpdateNumberSeries(string seriesName, int newSeries);
 
         bool ImportManualInvoice(string standardXml);
+
+        Client GetClientPrintDetail(int clientId);
     }
 }
