@@ -679,3 +679,11 @@ Inline style {
     max-width: 3000px !important;
     height: 385px;
 }
+
+.sideMenuButtonStatistics {
+    background-color: rgb(44, 56, 80);
+}
+
+    .sideMenuButtonStatistics img.sideMenuIcon {
+        filter: brightness(0) saturate(100%) invert(78%) sepia(49%) saturate(3809%) hue-rotate(359deg) brightness(101%) contrast(106%);
+    }
