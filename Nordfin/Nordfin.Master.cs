@@ -65,7 +65,11 @@ namespace Nordfin
                 else
                 {
                     if (Contracts == 0)
+                    {
                         pnlTeleson.Visible = false;
+                        pnlContractsMenuButton.Visible = false;
+                    }
+                       
                 }
 
                 hdnClientID.Value = ClientSession.ClientID;
