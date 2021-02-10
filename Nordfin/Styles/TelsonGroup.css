@@ -673,3 +673,9 @@ Inline style {
 .visibleDiv {
     visibility: hidden;
 }
+
+
+.jquiChart {
+    max-width: 3000px !important;
+    height: 385px;
+}
