@@ -218,6 +218,20 @@
                         </div>
                     </div>
                 </asp:Panel>
+
+                 <asp:Panel ID="pnlContractsMenuButton" runat="server">
+                    <div class="sideMenuButton sideContractMenuButtonStatistics">
+                        <div id="tdContracts" runat="server">
+                            <%-- <button  runat="server" id="btnStatistics"  onclick="return StatisticsClick()" > --%>
+                            <button runat="server" id="btnContracts">
+                                <img class="sideMenuIcon imgContracts" src="Images/Contracts.svg" id="imgContracts" runat="server" alt="Batches" />
+                            </button>
+
+
+
+                        </div>
+                    </div>
+                </asp:Panel>
                 <!-- <div class="sideMenuButton">
                 <button  runat="server" id="Button">
                   <i class="fas fa-cog"></i>
@@ -248,6 +262,21 @@
                     <asp:Panel ID="pnlTeleson" runat="server">
                         <a href="/frmRisk.aspx">Risk</a>
                     </asp:Panel>
+
+                </div>
+            </div>
+
+
+              <div>
+            
+                <div class="sideContractMenuStatistics hidden">
+                    <asp:Panel ID="Panel1" runat="server">
+                        <a href="frmContracts.aspx">Dashboard</a>
+                    </asp:Panel>
+                    <asp:Panel ID="Panel2" runat="server">
+                        <a >Contracts</a>
+                    </asp:Panel>
+                   
 
                 </div>
             </div>

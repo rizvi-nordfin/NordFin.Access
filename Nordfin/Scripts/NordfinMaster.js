@@ -16,9 +16,28 @@ $(document).ready(function () {
     });
 
 
-    $('.sideMenuButtonStatistics button').click(function (e) {
-      
+    $('.sideContractMenuButtonStatistics button').click(function (e) {
+        debugger;
         e.preventDefault();
+       
+        $('.sideMenuStatistics').addClass('hidden');
+        
+        $('.sideContractMenuStatistics').toggleClass('hidden');
+        $('.sideContractMenuButtonStatistics').toggleClass('activated');
+        if (!$('.sideContractMenuButtonStatistics').hasClass('activated')) {
+            $('.imgContracts').attr('src', 'Images/Contracts.svg');
+        }
+        else {
+            $('.imgContracts').attr('src', 'Images/Contracts_Orange.svg');
+        }
+    });
+
+    $('.sideMenuButtonStatistics button').click(function (e) {
+        debugger;
+        e.preventDefault();
+       
+        $('.sideContractMenuStatistics').addClass('hidden');
+       
         $('.sideMenuStatistics').toggleClass('hidden');
         $('.sideMenuButtonStatistics').toggleClass('activated');
         if (!$('.sideMenuButtonStatistics').hasClass('activated')) {

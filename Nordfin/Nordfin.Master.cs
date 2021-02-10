@@ -48,6 +48,7 @@ namespace Nordfin
                     pnlsideMenuButton.Visible = false;
                     btnStatistics.Visible = false;
                     imgStatistics.Visible = false;
+                    pnlContractsMenuButton.Visible = false;
                 }
 
                 if (ClientSession.Admin != "0" && ClientSession.Admin != "1")

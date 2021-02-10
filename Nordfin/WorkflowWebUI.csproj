@@ -248,12 +248,14 @@
     <Content Include="frmLogin.aspx" />
     <Content Include="frmReports.aspx" />
     <Content Include="frmRisk.aspx" />
-    <Content Include="frmTeleson.aspx" />
+    <Content Include="frmContracts.aspx" />
     <Content Include="frmTrafficDetails.aspx" />
     <Content Include="frmUserLoginInformation.aspx" />
     <Content Include="Global.asax" />
     <Content Include="Images\AgedList.png" />
     <Content Include="Images\Batches.png" />
+    <Content Include="Images\Contracts_Orange.svg" />
+    <Content Include="Images\Contracts.svg" />
     <Content Include="Images\Customer.png" />
     <Content Include="Images\favicon - Copy.png" />
     <Content Include="Images\favicon.png" />
@@ -390,6 +392,7 @@
     <Content Include="Styles\normalize.css" />
     <Content Include="Styles\PaymentInformation.css" />
     <Content Include="Styles\Reports.css" />
+    <Content Include="Styles\Contracts.css" />
     <Content Include="Styles\TelsonGroup.css" />
     <Content Include="Styles\TrafficDetails.css" />
     <Content Include="ucManualInvoice.ascx" />
@@ -468,12 +471,12 @@
     <Compile Include="frmRisk.aspx.designer.cs">
       <DependentUpon>frmRisk.aspx</DependentUpon>
     </Compile>
-    <Compile Include="frmTeleson.aspx.cs">
-      <DependentUpon>frmTeleson.aspx</DependentUpon>
+    <Compile Include="frmContracts.aspx.cs">
+      <DependentUpon>frmContracts.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="frmTeleson.aspx.designer.cs">
-      <DependentUpon>frmTeleson.aspx</DependentUpon>
+    <Compile Include="frmContracts.aspx.designer.cs">
+      <DependentUpon>frmContracts.aspx</DependentUpon>
     </Compile>
     <Compile Include="frmTrafficDetails.aspx.cs">
       <DependentUpon>frmTrafficDetails.aspx</DependentUpon>

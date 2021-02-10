@@ -1,11 +1,11 @@
-﻿<%@ Page Language="C#" AutoEventWireup="true" MasterPageFile="~/Nordfin.Master" CodeBehind="frmRisk.aspx.cs" Inherits="Nordfin.frmRisk" %>
+﻿<%@ Page Language="C#" AutoEventWireup="true" MasterPageFile="~/Nordfin.Master" CodeBehind="frmContracts.aspx.cs" Inherits="Nordfin.frmTeleson" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="NordfinContentHolder" runat="server">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.4.0/Chart.min.js"></script>
     <script src="Scripts/jsTelsonGroup.js?version=<%=ConfigurationManager.AppSettings["VersionConfiguration"].ToString() %>"></script>
     <%--<link href="Styles/LoginInformation.css?version=<%=ConfigurationManager.AppSettings["VersionConfiguration"].ToString() %>" rel="stylesheet" />--%>
     <link href="Styles/AccountSettings.css?version=<%=ConfigurationManager.AppSettings["VersionConfiguration"].ToString() %>" rel="stylesheet" />
-    <link href="Styles/TelsonGroup.css?version=<%=ConfigurationManager.AppSettings["VersionConfiguration"].ToString() %>" rel="stylesheet" />
+    <link href="Styles/Contracts.css?version=<%=ConfigurationManager.AppSettings["VersionConfiguration"].ToString() %>" rel="stylesheet" />
     <script src="Scripts/jquery.jqChart.min.js?version=<%=ConfigurationManager.AppSettings["VersionConfiguration"].ToString()%> "></script>
     <link href="Styles/jquery.jqChart.css" rel="stylesheet" />
     <%--//2c3e64--%>
@@ -34,7 +34,7 @@
     <div class="dashboardContainer">
         <div class="container-fluid">
             <div class="dashboardHeader">
-                <div class="dashboardHeadline" style="margin-left: 9px;">Dashboard</div>
+                <div class="dashboardHeadline" style=" margin-left: 9px;">Dashboard</div>
                 <div data-ng-app="myApp" data-ng-controller="myCtrl">
 
                     <div class="row " style="margin-left: 0px;">
@@ -49,8 +49,8 @@
                                   <hr class="divHrLine" />
                             </div>
 
-                           <div class="row innerDiv col-md-12 m-0" >
-                               <div class="col-md-6" data-ng-repeat="telson in telsonData|limitTo:6">
+                           <div class="row innerDiv col-md-12 m-0">
+                               <div class="col-md-6" data-ng-repeat="telson in telsonData|limitTo:5">
 
                                     <div class="revenue">
 
@@ -65,8 +65,8 @@
 
                                 </div>
 
-                              <div class="row innerDiv col-md-12 mt-2 m-0" >
-                               <div class="col-md-6" data-ng-repeat="telson in telsonData|limitTo:8:6">
+                              <div class="row innerDiv col-md-12 mt-2 m-0"  >
+                               <div class="col-md-6" data-ng-repeat="telson in telsonData|limitTo:3:6">
 
                                     <div class="revenue">
 
@@ -78,24 +78,22 @@
                                     </div>
                                   
                                </div>
-
-                                </div>
-
-                             <div class="row innerDiv col-md-12 mt-2 m-0" style="padding:2px;" >
-                               <div class="col-md-6" data-ng-repeat="telson in telsonData|limitTo:6:14">
+                                   <div class="col-md-6" data-ng-repeat="telson in telsonData|limitTo:1:16">
 
                                     <div class="revenue">
 
                                         <div>
                                             <asp:Label Text="{{telson.ColumnName}}" class="revenuelabelHeader" runat="server" /></div>
                                         <div>
-                                            <asp:Label ID="Label2" class="revenuelabelBody" Text="{{telson.RowValue}}{{telson.SpecialCharc}}" runat="server" /></div>
+                                            <asp:Label ID="Label4" class="revenuelabelBody" Text="{{telson.RowValue}}{{telson.SpecialCharc}}" runat="server" /></div>
 
                                     </div>
                                   
                                </div>
 
                                 </div>
+
+                        
 
                              <div class="row col-md-12 mt-2" style="margin-left:-9px"  >
                                  <div class="w-100">
@@ -110,7 +108,7 @@
                                                <tbody>
                                     </table>
                                 </div>
-                                <div class="dashboardTable" style="   width: 103.5%;">
+                                <div class="dashboardTable" style="width: 103.5%;">
                                     <table>
                                         
                                         <tbody>
@@ -136,6 +134,12 @@
                                     </div>
                               
                                      </div>
+                                </div>
+
+
+                                <div class="row innerDiv col-md-12 m-0 mt-2" style="height: 38.7%;">
+                              
+
                                 </div>
                         </div>
 

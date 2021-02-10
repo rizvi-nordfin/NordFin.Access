@@ -5,7 +5,7 @@ var app = angular.module("myApp", []);
 app.controller("myCtrl", function ($scope, $http) {
 
     $http({
-        url: "frmTeleson.aspx/GetTelsonData",
+        url: "frmContracts.aspx/GetTelsonData",
         dataType: 'json',
         method: 'POST',
         data: '{}',
