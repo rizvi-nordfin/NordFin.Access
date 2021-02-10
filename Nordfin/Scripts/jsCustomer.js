@@ -226,7 +226,7 @@ function InvoiceInfo() {
     PanelUnClick();
     $('#mdlUpdateConfirm').modal({ backdrop: 'static', keyboard: false }, 'show');
     Gridview();
-    PanelClick();
+    PanelClick(false);
     return false;
 }
 
@@ -263,7 +263,7 @@ function PanelUnClick() {
 
 }
 
-function PanelClick() {
+function PanelClick(redirect) {
 
     $('#pnlClose').click(function () {
 
@@ -271,7 +271,9 @@ function PanelClick() {
         location.reload();
     });
 
-    window.location.href = "frmDashboard.aspx";
+    if (redirect === undefined) {
+        window.location.href = "frmDashboard.aspx";
+    }
 }
 
 function ShowPopup() {
