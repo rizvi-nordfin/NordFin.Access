@@ -269,7 +269,7 @@
 
               <div>
             
-                <div class="sideContractMenuStatistics hidden">
+                <asp:panel ID="pnlSideMenuContracts" runat="server" CssClass="sideContractMenuStatistics hidden">
                     <asp:Panel ID="Panel1" runat="server">
                         <a href="frmContracts.aspx">Dashboard</a>
                     </asp:Panel>
@@ -278,7 +278,7 @@
                     </asp:Panel>
                    
 
-                </div>
+                </asp:panel>
             </div>
 
 
