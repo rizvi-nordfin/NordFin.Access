@@ -95,20 +95,17 @@
 
                         
 
-                             <div class="row col-md-12 mt-2" style="margin-left:-9px"  >
-                                 <div class="w-100">
-                                 <div style="background-color: #475672;    width: 103.5%;">
-                                    <table>
-                                           <tbody>
-                                         <tr style="text-align:center;font-size: small;color: #A9BFD5;font-weight:400 !important;height: 37px;margin-top: 10px;" >
-
-                                                 
-                                                <td colspan="3">CREDIT SCORING</td>
-                                            </tr>
-                                               <tbody>
-                                    </table>
+                             <div class="row col-md-12 mt-2 m-0" style="margin-left:-9px;background-color: #475672;text-align:center;height:35px; "  >
+                                 
+                                   <div  class="container mt-1" style="color: #A9BFD5;font-weight:400 !important;">
+                                       Credit Scoring
+                              </div>
+                                
+                              
+                                     
                                 </div>
-                                <div class="dashboardTable" style="width: 103.5%;">
+
+                            <div class="dashboardTable" >
                                     <table>
                                         
                                         <tbody>
@@ -125,17 +122,9 @@
                                                        <span >{{telson.RowValue}} {{telson.SpecialCharc}}</span>
                                                     </td>
                                             </tr>
-                                           
-                                           
-
-                                           
                                         </tbody>
                                     </table>
-                                    </div>
-                              
-                                     </div>
                                 </div>
-
 
                                 <div class="row innerDiv col-md-12 m-0 mt-2" style="height: 38.7%;">
                               
