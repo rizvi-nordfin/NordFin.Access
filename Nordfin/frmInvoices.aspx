@@ -27,33 +27,50 @@
 
                      <div  class="summaryHeading"> 
                          <div class="textOrange" style="background: #38445D; ">
+                             
+                             <div style="float:left;display:inline;">
                                     Amount
-                                    &nbsp; 
+                                 </div>
+                                   <div style="display:inline;">
                                     <asp:Label runat="server" CssClass="textWhite" ID="lblSumAmount"></asp:Label>
+                                       </div>
+                                
                                 </div></div>
                         <div  class="summaryHeading" > 
                              <div class="textOrange" style="background: #38445D;">
-                                    FEES
-                                      &nbsp;&nbsp;
+                                 <div style="float:left;display:inline;">
+                                    FEES 
+                                    </div>
+                                 <div style="display:inline;">
                                     <asp:Label runat="server" CssClass="textWhite" ID="lblFeesAmount"></asp:Label>
+                                     </div>
                                 </div></div>
                         <div  class="summaryHeading"> 
                               <div class="textOrange" style="background: #38445D;">
-                                    REMAIN
-                                      &nbsp;&nbsp;
+                                  <div style="float:left;display:inline;">
+                                    REMAIN 
+                                    </div>
+                                  <div style="display:inline;">
                                     <asp:Label ID="lblRemain" CssClass="textWhite" runat="server" />
+                                      </div>
                                 </div></div>
                          <div  class="summaryHeading"> 
                               <div class="textOrange" style="background: #38445D;">
+                                  <div style="float:left;display:inline;">
                                     TOTAL REMAIN
-                                      &nbsp;&nbsp;
+                                      </div>
+                                  <div style="display:inline;">
                                     <asp:Label ID="lblTotalRemain" CssClass="textWhite" runat="server" />
+                                      </div>
                                 </div></div>
                         <div class="summaryHeading"> 
                               <div class="textOrange" style="background: #38445D;">
-                                    OVERPAID
-                                      &nbsp;&nbsp;
+                                  <div style="float:left;display:inline;">
+                                    OVERPAID 
+                                      </div>
+                                  <div style="display:inline;">
                                    <asp:Label ID="lblOverPaid" CssClass="textWhite" runat="server" />
+                                      </div>
                                 </div></div>
 
                 </div>  
