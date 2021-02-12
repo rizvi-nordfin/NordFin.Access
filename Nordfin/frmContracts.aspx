@@ -38,7 +38,7 @@
                 <div data-ng-app="myApp" data-ng-controller="myCtrl">
 
                     <div class="row " style="margin-left: 0px;">
-                        <div class="col-lg-4 col-md-12 divPadding customerInfoSidebar" style="color: #FFFFFF; display: none;" id="divTelson">
+                        <div class="col-lg-4 col-md-12 divPadding customerInfoSidebar" style="color: #FFFFFF; display: none;height: 964px;" id="divTelson">
 
 
                               <div class="divPaddingLeft" style="background-color: #475672">
@@ -126,7 +126,7 @@
                                     </table>
                                 </div>
 
-                                <div class="row innerDiv col-md-12 m-0 mt-2" style="height: 38.7%;">
+                                <div class="row innerDiv col-md-12 m-0 mt-2" style="height: 381px;">
                               
 
                                 </div>
@@ -172,7 +172,7 @@
 
                                         <asp:Label ID="Label3" class="revenuelabelBody" Text="{{telson.RowValue}}{{telson.SpecialCharc}}" runat="server" />
                                     </div>
-                                    <div class="col-md-12 widthPaid " style="background: #3e4c6a; margin-top: -15px;text-align:center">
+                                    <div class="col-md-12 widthPaid " style="background: #3e4c6a; margin-top: -15px;text-align:center;height: 33px;">
 
                                         <asp:Label ID="Label7" class="revenuelabelBody" style="font-size:16px;" Text="{{telson.PaymentValue}}" runat="server" />
                                     </div>
@@ -186,7 +186,7 @@
 
                                     </div>
 
-                                    <div class="col-md-12 widthPaid " style="background: #3e4c6a; margin-top: -15px;text-align:center">
+                                    <div class="col-md-12 widthPaid " style="background: #3e4c6a; margin-top: -15px;text-align:center;height: 33px;">
                                          <asp:Label ID="Label9" class="revenuelabelBody" style="font-size:16px;" Text="{{telson.PaymentValue}}" runat="server" />
                                     </div>
                                 </div>
@@ -200,7 +200,7 @@
                                  <div data-ng-repeat="telson in telsonData|limitTo:5:26" >
                                     <div data-ng-style="telson.ColorCode != '' && {'background-color':'{{telson.ColorCode}}'} || {'background-color': '#38445D'}" 
                                         style="margin-left: -18px;">
-                                <div class="col-md-12 container"  style="text-align: center;">
+                                <div class="col-md-12 container"  style="text-align: center;height:72px;">
 
                                     <div>
 
@@ -215,7 +215,7 @@
 
                                 </div>
 
-                                  <div class="col-md-12" style="background:#3e4c6a;text-align:center ">
+                                  <div class="col-md-12" style="background:#3e4c6a;text-align:center;height:33px; ">
                                        <asp:Label ID="Label10" class="revenuelabelBody" style="font-size:16px;" Text="{{telson.PaymentValue}}" runat="server" />
                                 </div>
 
@@ -229,7 +229,7 @@
                                           <div data-ng-repeat="telson in telsonData|limitTo:4:31">
                             <div data-ng-if="telson.ColumnName!='None'"  data-ng-style="telson.ColorCode != '' && {'background-color':'{{telson.ColorCode}}'} || {'background-color': '#38445D'}"
                                 style="margin-left: -18px; ">
-                                <div class="col-md-12 container"  style="text-align: center;">
+                                <div class="col-md-12 container"  style="text-align: center;height:72px;">
 
                                     <div>
 
@@ -244,14 +244,14 @@
 
                                 </div>
 
-                                  <div class="col-md-12" style="background:#3e4c6a;text-align:center">
+                                  <div class="col-md-12" style="background:#3e4c6a;text-align:center;height:33px;">
  <asp:Label ID="Label12" class="revenuelabelBody" style="font-size:16px;" Text="{{telson.PaymentValue}}" runat="server" />
                                 </div>
                             </div>
 
                                         <div data-ng-if="telson.ColumnName=='None'"   
                                             style="margin-left: -4px; background-color: #2C3850;" class="visibleDiv">
-                                <div class="col-md-12 container"  style="text-align: center;">
+                                <div class="col-md-12 container"  style="text-align: center;height:72px;">
 
                                     <div>
 
@@ -266,7 +266,7 @@
 
                                 </div>
 
-                                  <div class="col-md-12" style="background:#3e4c6a; text-align:center">
+                                  <div class="col-md-12" style="background:#3e4c6a; text-align:center;height:33px;">
                                          <asp:Label ID="Label11" class="revenuelabelBody" style="font-size:16px;" Text="{{telson.PaymentValue}}" runat="server" />
                                 </div>
                             </div>
