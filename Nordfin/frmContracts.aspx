@@ -41,7 +41,7 @@
                         <div class="col-lg-4 col-md-12 divPadding customerInfoSidebar" style="color: #FFFFFF; display: none;height: 964px;" id="divTelson">
 
 
-                              <div class="divPaddingLeft" style="background-color: #475672">
+                              <div class="divPaddingLeft" style="background-color: #475672;height:30px;">
                                 <span class="customerdivHeading">{{ClientName}}</span>
 
                                 <asp:Label CssClass="customerdivText"  runat="server" ID="lblFirstName"></asp:Label>
@@ -49,7 +49,7 @@
                                   <hr class="divHrLine" />
                             </div>
 
-                           <div class="row innerDiv col-md-12 m-0">
+                           <div class="row innerDiv col-md-12 mt-2 m-0" style="height:220px;">
                                <div class="col-md-6" data-ng-repeat="telson in telsonData|limitTo:5">
 
                                     <div class="revenue">
@@ -65,7 +65,7 @@
 
                                 </div>
 
-                              <div class="row innerDiv col-md-12 mt-2 m-0"  >
+                              <div class="row innerDiv col-md-12 mt-2 m-0" style="height:200px;" >
                                <div class="col-md-6" data-ng-repeat="telson in telsonData|limitTo:3:6">
 
                                     <div class="revenue">
@@ -105,7 +105,7 @@
                                      
                                 </div>
 
-                            <div class="dashboardTable" >
+                            <div class="dashboardTable" style="height:115px;" >
                                     <table>
                                         
                                         <tbody>
@@ -126,7 +126,7 @@
                                     </table>
                                 </div>
 
-                                <div class="row innerDiv col-md-12 m-0 mt-2" style="height: 381px;">
+                                <div class="row innerDiv col-md-12 m-0 mt-2" style="height: 328px;">
                               
 
                                 </div>
