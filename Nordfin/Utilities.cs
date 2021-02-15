@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Nordfin.workflow.Entity;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text.RegularExpressions;
@@ -182,6 +183,35 @@ namespace Nordfin
                 n3 += n2;
             }
             return newPath;
+        }
+
+        public static Column ConstructColumn(string value, string index)
+        {
+            return new Column
+            {
+                Index = index?.Trim(),
+                Col = value?.Trim(),
+            };
+        }
+
+        public static Row ConstructRow(string type = null)
+        {
+            return new Row
+            {
+                Type = type?.Trim(),
+            };
+        }
+
+        public static Row ConstructHeaderRow(dynamic headerElements)
+        {
+            int index = 1;
+            Row headerRow = ConstructRow("Header");
+            foreach (var header in headerElements)
+            {
+                headerRow.Col.Add(ConstructColumn(header, (index++).ToString()));
+            }
+
+            return headerRow;
         }
     }
 }

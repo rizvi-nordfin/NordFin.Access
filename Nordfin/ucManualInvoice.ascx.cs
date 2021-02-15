@@ -174,9 +174,10 @@ namespace Nordfin
                 {
                     Invoice = invoice,
                     Customer = customer,
+                    InvoiceRows = invoiceRows,
                     Print = new Print
                     {
-                        InvoiceRows = invoiceRows
+                        
                     }
                 };
                 var client = businessLayerObj.GetClientPrintDetail(Convert.ToInt32(ClientSession.ClientID));

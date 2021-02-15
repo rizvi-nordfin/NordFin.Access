@@ -15,5 +15,8 @@
 
         [XmlElement(IsNullable = true, Order = 0, ElementName = "Row")]
         public List<Row> Rows { get; set; }
+
+        [XmlAttribute]
+        public int Columns { get; set; }
     }
 }
