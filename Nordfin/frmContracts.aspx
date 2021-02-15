@@ -38,10 +38,10 @@
                 <div data-ng-app="myApp" data-ng-controller="myCtrl">
 
                     <div class="row " style="margin-left: 0px;">
-                        <div class="col-lg-4 col-md-12 divPadding customerInfoSidebar" style="color: #FFFFFF; display: none;height: 964px;" id="divTelson">
+                        <div class="col-lg-4 col-md-12 divPadding customerInfoSidebar heightMain" style="color: #FFFFFF; display: none;" id="divTelson">
 
 
-                              <div class="divPaddingLeft" style="background-color: #475672;height:30px;">
+                              <div class="divPaddingLeft heightHeadingDiv" style="background-color: #475672;">
                                 <span class="customerdivHeading">{{ClientName}}</span>
 
                                 <asp:Label CssClass="customerdivText"  runat="server" ID="lblFirstName"></asp:Label>
@@ -49,7 +49,7 @@
                                   <hr class="divHrLine" />
                             </div>
 
-                           <div class="row innerDiv col-md-12 mt-2 m-0" style="height:220px;">
+                           <div class="row innerDiv col-md-12 mt-2 m-0 heightCustomer">
                                <div class="col-md-6" data-ng-repeat="telson in telsonData|limitTo:5">
 
                                     <div class="revenue">
@@ -65,7 +65,7 @@
 
                                 </div>
 
-                              <div class="row innerDiv col-md-12 mt-2 m-0" style="height:200px;" >
+                              <div class="row innerDiv col-md-12 mt-2 m-0 heigthContract"  >
                                <div class="col-md-6" data-ng-repeat="telson in telsonData|limitTo:3:6">
 
                                     <div class="revenue">
@@ -95,7 +95,7 @@
 
                         
 
-                             <div class="row col-md-12 mt-2 m-0" style="margin-left:-9px;background-color: #475672;text-align:center;height:35px; "  >
+                             <div class="row col-md-12 mt-2 m-0 heightCreditScoring" style="margin-left:-9px;background-color: #475672;text-align:center; "  >
                                  
                                    <div  class="container mt-1" style="color: #A9BFD5;font-weight:400 !important;">
                                        Credit Scoring
@@ -105,7 +105,7 @@
                                      
                                 </div>
 
-                            <div class="dashboardTable" style="height:115px;" >
+                            <div class="dashboardTable heightCreditTable" >
                                     <table>
                                         
                                         <tbody>
@@ -126,7 +126,7 @@
                                     </table>
                                 </div>
 
-                                <div class="row innerDiv col-md-12 m-0 mt-2" style="height: 328px;">
+                                <div class="row innerDiv col-md-12 m-0 mt-2 HeightEmpty" >
                               
 
                                 </div>

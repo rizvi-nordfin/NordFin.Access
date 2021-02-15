@@ -1,9 +1,11 @@
 ﻿.sideContractMenuButtonStatistics {
     background-color: rgb(44, 56, 80);
 }
-.sideContractMenuButtonStatistics img.sideMenuIcon {
-    filter: brightness(0) saturate(100%) invert(78%) sepia(49%) saturate(3809%) hue-rotate(359deg) brightness(101%) contrast(106%);
-}
+
+    .sideContractMenuButtonStatistics img.sideMenuIcon {
+        filter: brightness(0) saturate(100%) invert(78%) sepia(49%) saturate(3809%) hue-rotate(359deg) brightness(101%) contrast(106%);
+    }
+
 .buttonClass {
     width: 150px;
     background-color: #232D41;
@@ -15,9 +17,8 @@
 
 
 
-.divInnerPadding
-{
-    padding:5px !important;
+.divInnerPadding {
+    padding: 5px !important;
 }
 
 .labelFontColor {
@@ -83,7 +84,6 @@
 }
 
 .innerDiv {
-  
     padding-left: 10px;
     background-color: #38445D;
 }
@@ -615,10 +615,11 @@ Inline style {
     .export {
         margin-right: 13px !important;
     }
-    .heightDiv
-    {
-        height:auto !important;
+
+    .heightDiv {
+        height: auto !important;
     }
+
     .heightPaid {
         height: auto !important;
     }
@@ -626,28 +627,72 @@ Inline style {
     .heightUnpaid {
         height: auto !important;
     }
+
     .widthPaid {
         width: 105%;
     }
-    .visibleDiv{
-        display:none;
+
+    .visibleDiv {
+        display: none;
     }
-    .marginleft{
-        margin-left:14px;
+
+    .marginleft {
+        margin-left: 14px;
     }
-   
+
+    .jquiChart {
+        width: 300px;
+        height: 385px;
+    }
+
+    #jqChart1 {
+        background: rgb(56, 68, 93) !important;
+    }
+
+    .heightHeadingDiv {
+        height: auto !important;
+        height: auto !important;
+    }
+
+    .heightCustomer {
+        height: auto !important;
+    }
+
+    .heigthContract {
+        height: auto !important;
+    }
+
+    .heightCreditScoring {
+        height: auto !important;
+    }
+
+    .heightCreditTable {
+        height: auto !important;
+    }
+
+    .HeightEmpty {
+        height: auto !important;
+        display: none;
+    }
+
+    .heightMain {
+        height: auto !important;
+    }
 }
+
 @media all and (max-width: 1800px) {
     .divWidth {
-       width:104.5%;
+        width: 104.5%;
     }
 }
+
 @media screen and (max-width: 2500px) and (min-width: 1800px) {
 
     .divWidth {
         width: 103.5%;
     }
 }
+
 @media screen and (max-width: 10000px) and (min-width: 2500px) {
 
     .divWidth {
@@ -655,9 +700,9 @@ Inline style {
     }
 }
 
-    .dashboardTable tr {
-        height: 37px !important;
-    }
+.dashboardTable tr {
+    height: 37px !important;
+}
 
 
 @media (min-width: 768px) {
@@ -670,12 +715,15 @@ Inline style {
 .heightDiv {
     height: 570.5px;
 }
+
 .heightPaid {
     height: 318px;
 }
+
 .heightUnpaid {
     height: 201px;
 }
+
 .visibleDiv {
     visibility: hidden;
 }
@@ -683,4 +731,32 @@ Inline style {
 .jquiChart {
     max-width: 3000px !important;
     height: 385px;
+}
+
+.heightHeadingDiv {
+    height: 30px;
+}
+
+.heightCustomer {
+    height: 220px;
+}
+
+.heigthContract {
+    height: 200px;
+}
+
+.heightCreditScoring {
+    height: 35px;
+}
+
+.heightCreditTable {
+    height: 115px;
+}
+
+.HeightEmpty {
+    height: 332px;
+}
+
+.heightMain {
+    height: 964px;
 }

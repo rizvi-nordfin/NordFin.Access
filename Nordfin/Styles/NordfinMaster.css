@@ -1435,8 +1435,13 @@ transition: .1s;
     top: 374px;
     padding: 10px 10px;
   }
-  
-  
+
+    .sideContractMenuStatistics {
+        width: auto;
+        left: 60px;
+        top: 433px !important;
+        padding: 10px 10px;
+    }
   .featureNotAvailable {height: auto; max-width: 90%;}
   
   .invoicesDownloadAsButton {float: left !important; height: 30px !important; padding-left: 10px !important; width: 130px !important; margin-top: 8px;}
