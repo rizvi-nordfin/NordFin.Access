@@ -70,6 +70,7 @@ namespace Nordfin
             {
                 tempTable.Columns.Add("Article");
                 tempTable.Columns.Add("Description");
+                tempTable.Columns.Add("Period");
                 tempTable.Columns.Add("Unit");
                 tempTable.Columns.Add("Quantity");
                 tempTable.Columns.Add("ItemPrice");
@@ -81,6 +82,7 @@ namespace Nordfin
             var tempRow = tempTable.NewRow();
             tempRow["Article"] = txtArticle.Text?.Trim();
             tempRow["Description"] = txtDescription.Text?.Trim();
+            tempRow["Period"] = txtPeriod.Text?.Trim();
             tempRow["Unit"] = txtUnit.Text?.Trim();
             tempRow["Quantity"] = txtQuantity.Text?.Trim();
             tempRow["ItemPrice"] = txtAmount.Text?.Trim();
@@ -158,7 +160,7 @@ namespace Nordfin
                         Id = id,
                         Number = item["Article"].ToString(),
                         Description = item["Description"].ToString(),
-                        Period = "",//firstDayOfMonth.ToString("yyyy-MM-dd") + " - " + lastDayOfMonth.ToString("yyyy-MM-dd"),
+                        Period = item["Period"].ToString(),
                         Unit = item["Unit"].ToString(),
                         Quantity = item["Quantity"].ToString(),
                         Total = item["TotalAmount"].ToString(),
@@ -310,6 +312,7 @@ namespace Nordfin
             txtUnit.Text = string.Empty;
             txtQuantity.Text = "1";
             txtArticle.Text = string.Empty;
+            txtPeriod.Text = string.Empty;
             txtVat.Text = string.Empty;
             txtAmount.Text = string.Empty;
             txtTotalVat.Text = string.Empty;
