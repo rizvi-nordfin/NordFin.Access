@@ -128,14 +128,18 @@
                 <span class="title">Description</span>
                 <asp:TextBox ID="txtDescription" runat="server" autocomplete="off" CssClass="form-control controls"></asp:TextBox>
             </div>
-            <div class="col-md-3">
-                <span class="title">Unit</span>
-                <asp:TextBox ID="txtUnit" runat="server" autocomplete="off" CssClass="form-control controls"></asp:TextBox>
+            <div class="col-md-2">
+                <span class="title">Period</span>
+                <asp:TextBox ID="txtPeriod" runat="server" autocomplete="off" CssClass="form-control controls"></asp:TextBox>
             </div>
-            <div class="col-md-3">
+            <div class="col-md-2">
                 <span class="title">Quantity</span>
                 <asp:TextBox ID="txtQuantity" runat="server" autocomplete="off" CssClass="form-control controls" TextMode="Number" onblur="SetTotalAmount(); return false;"></asp:TextBox>
             </div>
+            <div class="col-md-2">
+                <span class="title">Unit</span>
+                <asp:TextBox ID="txtUnit" runat="server" autocomplete="off" CssClass="form-control controls"></asp:TextBox>
+            </div> 
         </div>
         <div class="row">
             <div class="col-md-2">
@@ -186,6 +190,7 @@
                     <Columns>
                         <asp:BoundField DataField="Article" HeaderStyle-CssClass="itemalign" ItemStyle-CssClass="itemalign" HeaderText="Article" ItemStyle-HorizontalAlign="Center" />
                         <asp:BoundField DataField="Description" HeaderStyle-CssClass="itemalign" ItemStyle-CssClass="itemalign" HeaderText="Description" ItemStyle-HorizontalAlign="Center" />
+                        <asp:BoundField DataField="Period" HeaderStyle-CssClass="itemalign" ItemStyle-CssClass="itemalign" HeaderText="Period" ItemStyle-HorizontalAlign="Center" />
                         <asp:BoundField DataField="Unit" HeaderStyle-CssClass="itemalign" ItemStyle-CssClass="itemalign" HeaderText="Unit" ItemStyle-HorizontalAlign="Center" />
                         <asp:BoundField DataField="Quantity" HeaderStyle-CssClass="itemalign" ItemStyle-CssClass="itemalign" HeaderText="Qty" ItemStyle-HorizontalAlign="Center" />
                         <asp:BoundField DataField="ItemPrice" HeaderStyle-CssClass="itemalign" ItemStyle-CssClass="itemalign" HeaderText="Item Price" ItemStyle-HorizontalAlign="Center" />
