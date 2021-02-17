@@ -672,7 +672,7 @@ Inline style {
 
     .HeightEmpty {
         height: auto !important;
-        display: none;
+       
     }
 
     .heightMain {
@@ -754,9 +754,22 @@ Inline style {
 }
 
 .HeightEmpty {
-    height: 332px;
+    height: 332px !important;
+    overflow:hidden;
 }
 
 .heightMain {
     height: 964px;
+}
+
+.dashboardTableHeader {
+    background: #3e4a66;
+    color: #9b9eaf;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    font-size: 11px;
+    height: 32px;
+}
+th {
+    background:#3e4a66 !important;
 }

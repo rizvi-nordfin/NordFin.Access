@@ -274,7 +274,7 @@
                         <a href="frmContracts.aspx">Dashboard</a>
                     </asp:Panel>
                     <asp:Panel ID="Panel2" runat="server">
-                        <a >Contracts</a>
+                        <a href="frmContractOverview.aspx">Contracts</a>
                     </asp:Panel>
                    
 

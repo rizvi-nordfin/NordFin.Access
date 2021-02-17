@@ -109,7 +109,7 @@
                                     <table>
                                         
                                         <tbody>
-                                          
+                                           
                                             <tr data-ng-repeat="telson in telsonData|limitTo:3:20">
                                                 <td class="tableLeftAlign" style="color: #A9BFD5;">
                                                     <span >{{telson.ColumnName}}</span></td>
@@ -126,10 +126,33 @@
                                     </table>
                                 </div>
 
-                                <div class="row innerDiv col-md-12 m-0 mt-2 HeightEmpty" >
-                              
+                            <div class="dashboardTable heightCreditTable m-0 mt-2 HeightEmpty">
+                                <table>
 
-                                </div>
+                                    <tbody>
+                                        <tr class="dashboardTableHeader"  style="background:#3e4a66 !important">
+                                              
+                                                <th class="tableLeftAlign">Name</th>
+                                                <th>Mortage</th>
+                                                <th>CreditScore</th>
+                                            </tr>
+                                        <tr data-ng-repeat="Contracts in ContractsList">
+                                            <td class="tableLeftAlign" style="color: #A9BFD5;">
+                                                <span>{{Contracts.Name}}</span></td>
+
+                                            <td>
+                                                <span>{{Contracts.Mortage}}</span>
+                                            </td>
+
+                                            <td>
+                                                <span>{{Contracts.CreditScore}}</span>
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+
+                               
                         </div>
 
 

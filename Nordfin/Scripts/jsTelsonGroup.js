@@ -41,7 +41,7 @@ app.controller("myCtrl", function ($scope, $http) {
         
      
         $scope.DrawGraph(data1, data2, MaxValue)
-       
+        $scope.ContractsList = telsonData.Contracts;
 
     }, function (error) {
 
@@ -50,9 +50,10 @@ app.controller("myCtrl", function ($scope, $http) {
 
     $scope.DrawGraph = function (data1, data2, MaxValue) {
 
-     
+        debugger;
         jq13('#jqChart1').jqChart({
             title: { text: ' ' },
+           
             animation: { duration: 1 },
             shadows: {
                 enabled: false
@@ -65,7 +66,8 @@ app.controller("myCtrl", function ($scope, $http) {
 
             },
             legend: {
-                display: false,
+                display: true,
+                location: 'top'
 
             },
 
