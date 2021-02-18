@@ -50,7 +50,7 @@
                             </div>
 
                            <div class="row innerDiv col-md-12 mt-2 m-0 heightCustomer">
-                               <div class="col-md-6" data-ng-repeat="telson in telsonData|limitTo:5">
+                               <div class="col-md-6" data-ng-repeat="telson in telsonData|limitTo:4">
 
                                     <div class="revenue">
 

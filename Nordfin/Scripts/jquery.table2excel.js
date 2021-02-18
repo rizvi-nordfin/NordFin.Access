@@ -48,7 +48,7 @@
                     if (i >= 2) {
                         var rows = $(o);
                         rows.each(function (index, Value) {
-                            debugger;
+                          
                             $(Value).children().each(function (tdIndex, tdValue) {
 
                                 try {
@@ -62,7 +62,7 @@
                                         $(tdValue).text($(tdValue).text());
                                 }
                                 catch (err) {
-                                    debugger;
+                                  
                                     $(tdValue).text($(tdValue).text());
                                 }
                             });
@@ -79,7 +79,7 @@
         },
 
         tableToExcel: function (table, name) {
-            debugger;
+      
             var e = this, fullTemplate = "", i, link, a;
 
             e.uri = "data:application/vnd.ms-excel;base64,";
@@ -160,7 +160,7 @@
                     if (i >= 2) {
                         var rows = $(o);
                         rows.each(function (index, Value) {
-                            debugger;
+                           
                             $(Value).children().each(function (tdIndex, tdValue) {
 
                                 try {
@@ -175,7 +175,7 @@
                                         $(tdValue).text($(tdValue).text());
                                 }
                                 catch (err) {
-                                    debugger;
+                                  
                                     $(tdValue).text($(tdValue).text());
                                 }
                             });

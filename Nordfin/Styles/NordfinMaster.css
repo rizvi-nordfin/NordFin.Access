@@ -1438,9 +1438,9 @@ transition: .1s;
 
     .sideContractMenuStatistics {
         width: auto;
-        left: 60px;
+        left: 60px !important;
         top: 433px !important;
-        padding: 10px 10px;
+        padding: 10px 10px !important   ;
     }
   .featureNotAvailable {height: auto; max-width: 90%;}
   
@@ -1618,7 +1618,7 @@ hr {
     width: auto;
     height: auto;
     left: 85px;
-    top: 635px;
+    top: 660px;
     z-index: 50;
     background-color: #2c3850;
     color: #ffffff;

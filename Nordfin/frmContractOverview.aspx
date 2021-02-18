@@ -79,16 +79,22 @@
                             <HeaderStyle BackColor="#475672" CssClass="GVFixedHeader" />
                             <Columns>
                                 
+                                 <asp:TemplateField ItemStyle-CssClass="itemalign" HeaderText="CUSTOMER" SortExpression="CustomerNumber" HeaderStyle-CssClass="itemalign">
+                                    <ItemTemplate>
 
-                                <asp:BoundField DataField="CustomerNumber" HeaderStyle-CssClass="itemalign" ItemStyle-CssClass="itemalign" HeaderText="CustomerNumber" SortExpression="CustomerNumber" />
+                                        <asp:LinkButton CssClass="linkcss" Text='<%# Bind("CustomerNumber") %>' CommandName="Sort" ID="gridLinkCustNum" CommandArgument=' <%# Bind("CustomerNumber") %>' OnClick="gridLinkCustNum_Click" runat="server" />
+                                    </ItemTemplate>
 
-                                <asp:BoundField DataField="Name" HeaderStyle-CssClass="itemalign" ItemStyle-CssClass="itemalign" HeaderText="Name" SortExpression="Name" />
+                                </asp:TemplateField>
+                             
 
-                                  <asp:BoundField DataField="OrgNumber" HeaderStyle-CssClass="itemalign" ItemStyle-CssClass="itemalign" HeaderText="OrgNumber" SortExpression="OrgNumber" />
-                                <asp:BoundField DataField="Mortage" DataFormatString="{0:#,0.00}" HeaderStyle-CssClass="itemalign" ItemStyle-CssClass="itemalign" HeaderText="Mortage" SortExpression="Mortage" />
-                                <asp:BoundField DataField="Monthleft" HeaderStyle-CssClass="itemalign" ItemStyle-CssClass="itemalign" HeaderText="Month left" SortExpression="Monthleft" />
+                                <asp:BoundField DataField="Name" HeaderStyle-CssClass="itemalign leftalign" ItemStyle-CssClass="itemalign leftalign" HeaderText="Name" SortExpression="Name" />
 
-                                <asp:BoundField DataField="CreditScore" HeaderStyle-CssClass="itemalign" ItemStyle-CssClass="itemalign tableNoWrap" HeaderText="CreditScore" SortExpression="CreditScore" />
+                                  <asp:BoundField DataField="OrgNumber" HeaderStyle-CssClass="itemalign" ItemStyle-CssClass="itemalign" HeaderText="Reg. Number" SortExpression="OrgNumber" />
+                                <asp:BoundField DataField="Mortage" DataFormatString="{0:#,0.00}" HeaderStyle-CssClass="itemalign" ItemStyle-CssClass="itemalign" HeaderText="Contract Value" SortExpression="Mortage" />
+                                <asp:BoundField DataField="Monthleft" HeaderStyle-CssClass="itemalign" ItemStyle-CssClass="itemalign" HeaderText="Months left" SortExpression="Monthleft" />
+
+                                <asp:BoundField DataField="CreditScore" HeaderStyle-CssClass="itemalign" ItemStyle-CssClass="itemalign tableNoWrap" HeaderText="Credit" SortExpression="CreditScore" />
                                 
 
                              

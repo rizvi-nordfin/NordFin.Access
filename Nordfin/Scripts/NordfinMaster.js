@@ -17,7 +17,7 @@ $(document).ready(function () {
 
 
     $('.sideContractMenuButtonStatistics button').click(function (e) {
-        debugger;
+     
         e.preventDefault();
        
         $('.sideMenuStatistics').addClass('hidden');
@@ -33,7 +33,7 @@ $(document).ready(function () {
     });
 
     $('.sideMenuButtonStatistics button').click(function (e) {
-        debugger;
+    
         e.preventDefault();
        
         $('.sideContractMenuStatistics').addClass('hidden');
@@ -112,7 +112,7 @@ $(document).ready(function () {
     });
 
     $('.featureNotAvailableTrigger').click(function (e) {
-        debugger;
+      
         e.preventDefault;
         e.stopImmediatePropagation();
         $('.featureNotAvailableBG').toggleClass('hidden');

@@ -50,7 +50,7 @@ app.controller("myCtrl", function ($scope, $http) {
 
     $scope.DrawGraph = function (data1, data2, MaxValue) {
 
-        debugger;
+       
         jq13('#jqChart1').jqChart({
             title: { text: ' ' },
            

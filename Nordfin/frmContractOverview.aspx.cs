@@ -65,5 +65,13 @@ namespace Nordfin
             grdContract.DataSource = dv;
             grdContract.DataBind();
         }
+
+        protected void gridLinkCustNum_Click(object sender, EventArgs e)
+        {
+            Session["custNum"] = ((LinkButton)sender).Text.Trim();
+            Response.Redirect("frmCustomer.aspx");
+        }
+
+        
     }
 }
