@@ -109,8 +109,9 @@ namespace Nordfin
 
         }
 
-        public bool FileDownload(string FolderName, string subfolder, string FileName, out string ResultFileName)
+        public bool FileDownload(string FolderName, string subfolder, string FileName, out string ResultFileName, bool bAzure = false)
         {
+            bool bFileExsits = false;
             FtpWebRequest request = (FtpWebRequest)WebRequest.Create(FTPAzureDomain + FolderName + "/" + subfolder + "/" + FileName);
             request.Method = WebRequestMethods.Ftp.DownloadFile;
             request.Credentials = new NetworkCredential(FTPAzureUserName, FTPAzurePassword);
@@ -125,6 +126,7 @@ namespace Nordfin
                     using (MemoryStream stream = new MemoryStream())
                     {
                         objresponse.GetResponseStream().CopyTo(stream);
+                        bFileExsits = true;
                         string sDirectory = "~/Documents/" + HttpContext.Current.Session.SessionID;
                         if (!Directory.Exists(HttpContext.Current.Server.MapPath(sDirectory)))
                         {
@@ -140,9 +142,14 @@ namespace Nordfin
             }
             catch (Exception ex)
             {
-                bool bfalse = FileArchiveDownload(FolderName, FileName, out string sResultFileName);
-                ResultFileName = sResultFileName;
-                return bfalse;
+                if (!bAzure && !bFileExsits)
+                {
+                    bool bfalse = FileArchiveDownload(FolderName, FileName, out string sResultFileName);
+                    ResultFileName = sResultFileName;
+                    return bfalse;
+                }
+                ResultFileName = "";
+                return false;
             }
         }
 

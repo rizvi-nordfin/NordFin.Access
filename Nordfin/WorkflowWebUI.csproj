@@ -47,9 +47,8 @@
     <Reference Include="AjaxControlToolkit, Version=20.1.0.0, Culture=neutral, PublicKeyToken=28f01b0e84b6d53e, processorArchitecture=MSIL">
       <HintPath>..\packages\AjaxControlToolkit.20.1.0\lib\net40\AjaxControlToolkit.dll</HintPath>
     </Reference>
-    <Reference Include="BouncyCastle.Crypto, Version=1.8.9.0, Culture=neutral, PublicKeyToken=0e99375e54769942, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>lib\BouncyCastle.Crypto.dll</HintPath>
+    <Reference Include="BouncyCastle.Crypto, Version=1.8.8.0, Culture=neutral, PublicKeyToken=0e99375e54769942, processorArchitecture=MSIL">
+      <HintPath>..\packages\Portable.BouncyCastle.1.8.8\lib\net40\BouncyCastle.Crypto.dll</HintPath>
     </Reference>
     <Reference Include="ClosedXML, Version=0.95.2.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\ClosedXML.0.95.2\lib\net46\ClosedXML.dll</HintPath>
@@ -144,6 +143,9 @@
     <Reference Include="Microsoft.Web.Infrastructure, Version=1.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <HintPath>..\packages\Microsoft.Web.Infrastructure.1.0.0.0\lib\net40\Microsoft.Web.Infrastructure.dll</HintPath>
     </Reference>
+    <Reference Include="MimeKit, Version=2.10.0.0, Culture=neutral, PublicKeyToken=bede1c8a46c66814, processorArchitecture=MSIL">
+      <HintPath>..\packages\MimeKit.2.10.1\lib\net47\MimeKit.dll</HintPath>
+    </Reference>
     <Reference Include="Newtonsoft.Json, Version=12.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>lib\Newtonsoft.Json.dll</HintPath>
@@ -158,6 +160,9 @@
     </Reference>
     <Reference Include="Renci.SshNet, Version=2016.1.0.0, Culture=neutral, PublicKeyToken=1cee9f8bde3db106, processorArchitecture=MSIL">
       <HintPath>..\packages\SSH.NET.2016.1.0\lib\net40\Renci.SshNet.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Buffers, Version=4.0.3.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Buffers.4.5.1\lib\net461\System.Buffers.dll</HintPath>
     </Reference>
     <Reference Include="System.ComponentModel.Annotations, Version=4.2.1.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
       <HintPath>..\packages\System.ComponentModel.Annotations.5.0.0\lib\net461\System.ComponentModel.Annotations.dll</HintPath>
@@ -176,6 +181,7 @@
       <HintPath>lib\System.Data.SqlClient.dll</HintPath>
     </Reference>
     <Reference Include="System.IO.Compression" />
+    <Reference Include="System.IO.Compression.FileSystem" />
     <Reference Include="System.IO.FileSystem.Primitives, Version=4.0.1.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
       <HintPath>..\packages\System.IO.FileSystem.Primitives.4.0.1\lib\net46\System.IO.FileSystem.Primitives.dll</HintPath>
       <Private>True</Private>
@@ -241,11 +247,13 @@
     <Content Include="frmAccountSettings.aspx" />
     <Content Include="frmBatches.aspx" />
     <Content Include="frmClientInformation.aspx" />
+    <Content Include="frmContractOverview.aspx" />
     <Content Include="frmCustomer.aspx" />
     <Content Include="frmDashboard.aspx" />
     <Content Include="frmInvoiceBatches.aspx" />
     <Content Include="frmInvoices.aspx" />
     <Content Include="frmLogin.aspx" />
+    <Content Include="frmPdfMultiDownload.aspx" />
     <Content Include="frmReports.aspx" />
     <Content Include="frmRisk.aspx" />
     <Content Include="frmContracts.aspx" />
@@ -331,6 +339,9 @@
     <Content Include="Scripts\font-Awesome.js" />
     <Content Include="Scripts\jquery-1.11.1.min.js" />
     <Content Include="libman.json" />
+    <Content Include="Files\GNP Energy Finland Oy_2714890_inv.pdf" />
+    <Content Include="Files\GNP Energy Finland Oy_DC2714890_inv.pdf" />
+    <Content Include="Files\GNP Energy Finland Oy_Rem2714890_inv.pdf" />
     <None Include="Properties\PublishProfiles\FTPProfileProd.pubxml" />
     <None Include="Properties\PublishProfiles\FTPProfileTest.pubxml" />
     <None Include="Scripts\jquery-3.4.1.intellisense.js" />
@@ -377,6 +388,7 @@
     <Content Include="Styles\fontawesome.min.css" />
     <Content Include="Scripts\jquery-1.10.2.js" />
     <Content Include="Styles\InvoiceBatches.css" />
+    <Content Include="Styles\ContractsOverview.css" />
     <Content Include="Styles\Invoices.css" />
     <Content Include="Scripts\jquery-jvectormap-2.0.5.min.js" />
     <Content Include="Styles\jquery-jvectormap-2.0.5.css" />
@@ -423,6 +435,13 @@
     <Compile Include="frmClientInformation.aspx.designer.cs">
       <DependentUpon>frmClientInformation.aspx</DependentUpon>
     </Compile>
+    <Compile Include="frmContractOverview.aspx.cs">
+      <DependentUpon>frmContractOverview.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="frmContractOverview.aspx.designer.cs">
+      <DependentUpon>frmContractOverview.aspx</DependentUpon>
+    </Compile>
     <Compile Include="frmCustomer.aspx.cs">
       <DependentUpon>frmCustomer.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -457,6 +476,13 @@
     </Compile>
     <Compile Include="frmLogin.aspx.designer.cs">
       <DependentUpon>frmLogin.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="frmPdfMultiDownload.aspx.cs">
+      <DependentUpon>frmPdfMultiDownload.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="frmPdfMultiDownload.aspx.designer.cs">
+      <DependentUpon>frmPdfMultiDownload.aspx</DependentUpon>
     </Compile>
     <Compile Include="frmReports.aspx.cs">
       <DependentUpon>frmReports.aspx</DependentUpon>

@@ -89,19 +89,32 @@ function onKeyDown(e) {
 }
 
 
-function PDFViewer(sFileName, sPDFViewerLink, sSessionId, bResult, buttonID) {
+function PDFViewer(sFileName, sPDFViewerLink, sSessionId, bResult, buttonID, collectionStatus) {
   
-    if (bResult == "False")
-        document.getElementById("NordfinContentHolder_pdfViewer").href = sPDFViewerLink;
-    else
-        document.getElementById("NordfinContentHolder_pdfViewer").href = "Documents/" + sSessionId + "/" + sFileName;//"Documents/" + sFileName;
-    document.getElementById("NordfinContentHolder_pdfViewer").click();
-    document.getElementById("NordfinContentHolder_pdfViewer").href = "";
-
+    const pathData = JSON.parse(sFileName);
+    $(".modal-backdrop").remove();
+    ExportClick(2, collectionStatus);
+    PDFDownloadMultiClick(pathData)
+    $("#PnlDownloadMsg").css("display", "block");
    
-    
-    
+    $("#spnDownloadMsg").text("Downloaded Successfully!");
+   
+   
 }
+
+
+function PDFDownloadMultiClick(pathData) {
+   
+    if (pathData[0].FileName != "")
+        document.getElementById("pdfInvoices").contentWindow.document.location.href = "frmPdfMultiDownload.aspx?FileName=" + pathData[0].FileName;
+    if (pathData[1].FileName != "")
+        document.getElementById("pdfDC").contentWindow.document.location.href = "frmPdfMultiDownload.aspx?FileName=" + pathData[1].FileName;
+    if (pathData[2].FileName != "")
+        document.getElementById("pdfRemind").contentWindow.document.location.href = "frmPdfMultiDownload.aspx?FileName=" + pathData[2].FileName;
+   
+
+}
+
 function EmailIDEnable() {
     
     var splitArray = [];
@@ -112,69 +125,94 @@ function EmailIDEnable() {
         document.getElementById("NordfinContentHolder_grdInvoices_btnEmail_" + emailID[i]).setAttribute("download", "1");
     }
 }
-function PDFDownloadClick(buttonValues) {
-    const sInvoiceNumer = document.getElementById(buttonValues.id).getAttribute("combineInvoice");
 
-    $.ajax({
-        type: "POST",
-        url: "frmInvoices.aspx/PDFDownload",
-        data: JSON.stringify({ hdnValue: document.getElementById("NordfinContentHolder_hdnFileName").value, InvoiceNum: sInvoiceNumer, hdnArchieveLink: document.getElementById("NordfinContentHolder_hdnArchiveLink").value, hdnClientName: document.getElementById("NordfinContentHolder_hdnClientName").value }),
-          
-        contentType: "application/json; charset=utf-8",
-        dataType: "json",
-        success: function (response) {
-            
-            sFileName = response.d.split('~')[0];
-            sPDFViewerLink = response.d.split('~')[1];
-            if (sFileName == "")
-                document.getElementById("NordfinContentHolder_pdfViewer").href = sPDFViewerLink;
-            else
-                document.getElementById("NordfinContentHolder_pdfViewer").href = "Documents/" + sFileName;
-            document.getElementById("NordfinContentHolder_pdfViewer").click();
-            document.getElementById("NordfinContentHolder_pdfViewer").href = "";
-        },
-        error: function OnError(xhr) {
-         
-        }
-    });
+
+function ExportClick(IsEmail, downloadList,bSent) {
    
-    
-    return false;
+    $(".modal-backdrop").remove();
+    $(".modal-backdrop").remove();
+    if (IsEmail == 1) {
+        $('#mdlUpdateInfo').modal({ backdrop: 'static', keyboard: false }, 'show');
+        $('#mdlExport').modal('hide');
+        if (bSent != undefined && bSent != null) {
+            $("#PnlMsg").css("display", "block");
+            if (bSent) {
+                $("#spnMsg").text("Mail Sent Successfully!");
+            }
+            else {
+                $("#spnMsg").text("Something went wrong please contact nordfin!");
+            }
+            
+        }
+       
+    }
+    else {
+        let bModal = false;
+        let pdfArchive = "";
+        if (downloadList != undefined && downloadList != null && downloadList!="") {
+           
+            const downloadData = JSON.parse(downloadList);
+            for (var i = 0; i < downloadData.length; i++) {
+
+                if (downloadData[i].InvoiceName == "") {
+                  
+                }
+                else if (downloadData[i].InvoiceName.toUpperCase() == "DC")
+                    $("#NordfinContentHolder_pnlDC").css("visibility", downloadData[i].Status);
+                else if (downloadData[i].InvoiceName.toUpperCase() == "REM")
+                    $("#NordfinContentHolder_pnlRemind").css("visibility", downloadData[i].Status);
+            }
+            
+ 
+            if (IsEmail != 2) {
+                $('#NordfinContentHolder_chkRemind').attr('checked', true);
+                $('#NordfinContentHolder_chkDC').attr('checked', true);
+            }
+            bModal = downloadData.find(function (item, i) {
+                if (item.Status != "hidden") {
+
+                    return true;
+                }
+                else {
+                    pdfArchive = downloadData[i].PDFArchive
+                }
+            });
+        }
+       
+       
+        if (bModal)
+            $('#mdlExport').modal({ backdrop: 'static', keyboard: false }, 'show');
+        else
+            PDFViewerArchive(pdfArchive);
+    }
+   
+   
 }
 
 
-//function Email(button) {
-//    debugger;
-//    var custNumber = button.getAttribute("custInvoice");
-//    document.getElementById("NordfinContentHolder_txtCustEmail").value = "";
 
-
-//    var isDownload = button.getAttribute("download");
+function ProgressBarDisplay() {
+    $("#Pnlprogress").css("display", "block");
     
-//        $.ajax({
-//            type: "POST",
-//            url: "frmInvoices.aspx/GetCustEmail",
-//            data: '{custNumber:' + custNumber + '}',
+}
 
-//            contentType: "application/json; charset=utf-8",
-//            dataType: "json",
-//            success: function (response) {
-//                debugger;
-
-//                const invoiceNum = button.getAttribute("combineInvoice");
-
-//                document.getElementById("NordfinContentHolder_hdnInvoiceNumber").value = invoiceNum;
-//                document.getElementById("NordfinContentHolder_txtCustEmail").value = response.d;
-
-//                $('#mdlUpdateInfo').modal({ backdrop: 'static', keyboard: false }, 'show');
+function PDFViewerArchive(sPDFViewerLink) {
+    document.getElementById("NordfinContentHolder_pdfViewer").href = sPDFViewerLink;
+    document.getElementById("NordfinContentHolder_pdfViewer").click();
+    document.getElementById("NordfinContentHolder_pdfViewer").href = "";
+}
 
 
+function PdfDownloadClick() {
+    PdfDownloadMsgNone();
+    $("#PnlDownloadprogress").css("display", "block");
+}
+function PdfDownloadMsgNone() {
+    $("#PnlDownloadMsg").css("display", "none");
+    $("#spnDownloadMsg").text("");
+}
 
-//            },
-//            error: function OnError(xhr) {
 
-//            }
-//        });
-    
-//    return false;
-//}
+function ProcessingModal() {
+    $('.featureNotAvailablePnlBG').toggleClass('hidden');
+}
