@@ -8,9 +8,7 @@
     <link href="Styles/ManualInvoice.css?version=<%=ConfigurationManager.AppSettings["VersionConfiguration"].ToString() %>"" rel="stylesheet" />
     <script src="Scripts/jsManualInvoice.js?version=<%=ConfigurationManager.AppSettings["VersionConfiguration"].ToString() %>""></script>
     <script src="Scripts/jsCustomer.js?version=<%=ConfigurationManager.AppSettings["VersionConfiguration"].ToString() %>"></script>
-    <%--<link rel="stylesheet" href="Styles/jquery-ui-NordFin.css" />
-      <script src="//code.jquery.com/jquery-1.10.2.js"></script>
-    <script src="//code.jquery.com/ui/1.11.1/jquery-ui.js"></script>  --%>
+    
 
     <div class="dashboardContainer">
         <div class="container-fluid">
@@ -19,13 +17,10 @@
                     Customer
                 </div>
                 <div style="position: absolute;">
-                    <%--<asp:Button Text="Match Credit" id="btnInvoice" class="updateInfoButton export"  OnClientClick="return InvoiceInfo();"  runat="server"  Style="margin-top: -20px; margin-right: 100px;display:none" />--%>
+                  
                     <asp:Button Text="Export" ID="btnExport" class="updateInfoButton export" Visible="false" runat="server" OnClick="btnExport_Click" Style="margin-top: -25px; margin-right: 18px; width: 75px;" />
                 </div>
-                <%--<div>OnClientClick="return InvoiceInfo();"--%>
 
-                <%--OnClientClick="return ExportExcel();"--%>
-                <%--<asp:Button Text="Export Detail" id="btnExportDetail" class="updateInfoButton export" OnClick="btnExportDetail_Click"  runat="server"  Style="margin-top: -25px; margin-right: 10px;"  OnClientClick="return ShowPopup();" OnClick="btnShowPopup_Click" />--%>
             </div>
 
 
@@ -238,15 +233,6 @@
                                     </HeaderTemplate>
                                 </asp:TemplateField>
 
-                                <%-- <asp:TemplateField ItemStyle-CssClass="itemalign" HeaderStyle-CssClass="itemalign">
-                            <ItemTemplate>
-
-                                <asp:Button runat="server" CssClass="invoicesDownloadButton button button-table" ID="btnEmail" download="0" custInvoice=' <%# Eval("Customernumber") %>' combineInvoice='<%# Eval("CombineInvoice") %>'  OnClientClick="return Email(this);" Text="Email" />
-                            </ItemTemplate>
-                            <HeaderTemplate>
-                                MAIL
-                            </HeaderTemplate>
-                        </asp:TemplateField>--%>
                             </Columns>
                             <EmptyDataTemplate>No Record Available</EmptyDataTemplate>
                         </asp:GridView>

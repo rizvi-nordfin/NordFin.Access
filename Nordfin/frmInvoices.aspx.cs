@@ -10,6 +10,7 @@ using System.Globalization;
 using System.IO;
 
 using System.Linq;
+using System.Net;
 using System.Net.Mail;
 using System.Text.RegularExpressions;
 using System.Web;
@@ -188,7 +189,7 @@ namespace Nordfin
             bool bDC = false;
             bool bRemind = false;
             bool bInvoices = false;
-
+            string collectionStatus = btnEmail.Attributes["collectionStatus"];
         fileDownload:
             if (!chkInvoices.Checked && !bInvoices)
             {
@@ -210,17 +211,20 @@ namespace Nordfin
 
 
         fileDC:
-            if (chkDC.Checked && !bDC)
+            if (collectionStatus != "")
             {
-                bDC = true;
-                sCollectionStatus = "DC";
-                goto fileDownload;
-            }
-            else if (chkRemind.Checked && !bRemind)
-            {
-                bRemind = true;
-                sCollectionStatus = "Rem";
-                goto fileDownload;
+                if (collectionStatus.ToUpper() == "DC" && chkDC.Checked && !bDC)
+                {
+                    bDC = true;
+                    sCollectionStatus = "DC";
+                    goto fileDownload;
+                }
+                else if ((collectionStatus.ToUpper() == "DC" || collectionStatus.ToUpper() == "REMIND") && chkRemind.Checked && !bRemind)
+                {
+                    bRemind = true;
+                    sCollectionStatus = "Rem";
+                    goto fileDownload;
+                }
             }
 
             string jsonPathList = new JavaScriptSerializer().Serialize(filePathList);
@@ -261,10 +265,12 @@ namespace Nordfin
                 string sEmail = System.Configuration.ConfigurationManager.AppSettings["Email"].ToString();
                 string sEmailPassword = System.Configuration.ConfigurationManager.AppSettings["EmailPassword"].ToString();
                 string sEmailPort = System.Configuration.ConfigurationManager.AppSettings["EmailPort"].ToString();
-                
 
-                using (SmtpClient SmtpServer = new SmtpClient("send.one.com"))
+                string collectionStatus = btnEmail.Attributes["collectionStatus"];
+                using (SmtpClient SmtpServer = new SmtpClient("in-v3.mailjet.com",587))
                 {
+                    SmtpServer.Credentials = new NetworkCredential("1867ce5eecca8ce8ab72cda1fefe8d47", "3e70a81b01b2926189dd8875294b3c13");
+                   
                     using (System.Net.Mail.MailMessage mail = new System.Net.Mail.MailMessage())
                     {
                         string sBody = "";
@@ -302,22 +308,26 @@ namespace Nordfin
                         }
 
                     emailDC:
-                        if (chkDC.Checked && !bDC)
+                        if (collectionStatus != "")
                         {
-                            bDC = true;
-                            sCollectionStatus = "DC";
-                            goto emailDownload;
-                        }
-                        else if (chkRemind.Checked && !bRemind)
-                        {
-                            bRemind = true;
-                            sCollectionStatus = "Rem";
-                            goto emailDownload;
+                            if (collectionStatus.ToUpper() == "DC" && chkDC.Checked && !bDC)
+                            {
+                                bDC = true;
+                                sCollectionStatus = "DC";
+                                goto emailDownload;
+                            }
+                            else if ((collectionStatus.ToUpper() == "DC" || collectionStatus.ToUpper() == "REMIND") && chkRemind.Checked && !bRemind)
+                            {
+                                bRemind = true;
+                                sCollectionStatus = "Rem";
+                                goto emailDownload;
+                            }
                         }
 
-                        SmtpServer.Port = Convert.ToInt32(sEmailPort);
+                        
 
-                        SmtpServer.Credentials = new System.Net.NetworkCredential(sEmail, sEmailPassword);
+                        
+                        
 
                         SmtpServer.EnableSsl = true;
 
