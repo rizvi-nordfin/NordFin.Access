@@ -241,6 +241,7 @@
     <Content Include="frmAccountSettings.aspx" />
     <Content Include="frmBatches.aspx" />
     <Content Include="frmClientInformation.aspx" />
+    <Content Include="frmContractOverview.aspx" />
     <Content Include="frmCustomer.aspx" />
     <Content Include="frmDashboard.aspx" />
     <Content Include="frmInvoiceBatches.aspx" />
@@ -370,6 +371,7 @@
     <Content Include="Styles\Batches.css" />
     <Content Include="Styles\bootstrap.min.css" />
     <Content Include="Styles\AccountSettings.css" />
+    <Content Include="Styles\ContractsOverview.css" />
     <Content Include="Styles\Customer.css" />
     <Content Include="Styles\Dashboard.css" />
     <Content Include="Styles\datepicker.css" />
@@ -422,6 +424,13 @@
     </Compile>
     <Compile Include="frmClientInformation.aspx.designer.cs">
       <DependentUpon>frmClientInformation.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="frmContractOverview.aspx.cs">
+      <DependentUpon>frmContractOverview.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="frmContractOverview.aspx.designer.cs">
+      <DependentUpon>frmContractOverview.aspx</DependentUpon>
     </Compile>
     <Compile Include="frmCustomer.aspx.cs">
       <DependentUpon>frmCustomer.aspx</DependentUpon>
