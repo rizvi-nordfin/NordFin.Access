@@ -172,6 +172,10 @@
 
                                 <asp:BoundField DataField="Collectionstatus" HeaderStyle-CssClass="itemalign" ItemStyle-CssClass="itemalign" HeaderText="Collection Status" SortExpression="Collectionstatus" />
 
+                                  <asp:BoundField DataField="Credited" HeaderStyle-CssClass="itemalign" ItemStyle-CssClass="itemalign" HeaderText="Credited" SortExpression="Credited" />
+                                <asp:BoundField DataField="ClosedCredit" HeaderStyle-CssClass="itemalign" ItemStyle-CssClass="itemalign" HeaderText="Closed with credit" SortExpression="ClosedCredit" />
+
+
                                 <asp:BoundField DataField="Paymentreference" HeaderStyle-CssClass="itemalign" ItemStyle-CssClass="itemalign" HeaderText="PAY REF" SortExpression="Paymentreference" />
                                 <asp:BoundField DataField="Overpayment" DataFormatString="{0:#,0.00}" HeaderStyle-CssClass="itemalign" ItemStyle-CssClass="itemalign" HeaderText="OVER PAID" SortExpression="Overpayment" />
                                 <asp:TemplateField ItemStyle-CssClass="itemalign" HeaderStyle-CssClass="itemalign">
