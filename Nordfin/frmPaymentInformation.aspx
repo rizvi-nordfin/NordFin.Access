@@ -580,7 +580,7 @@
             </div>
         </div>
     </div>
-            <asp:UpdatePanel runat="server" ID="pnlDownload" UpdateMode="Conditional">
+            <asp:UpdatePanel runat="server" ID="pnlDownload">
                 <ContentTemplate>
 
                     <div class="modal" id="mdlExport" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -599,16 +599,16 @@
 
 
                                     <div class="col-md-12 form-inline">
-                                        <div style="float: left; width: 65%">
+                                          <div style="float: left; width: 65%">
                                             <asp:Panel runat="server" ID="pnlInvoices">
                                                 <asp:CheckBox ID="chkInvoices" AutoPostBack="false" Checked="true" Style="margin-top: 5px;" CssClass="checkbox"
                                                     runat="server" Text="Invoice"></asp:CheckBox>
                                             </asp:Panel>
-                                            <asp:Panel runat="server" ID="pnlRemind" Style="visibility: hidden">
+                                            <asp:Panel runat="server" ID="pnlRemind" >
                                                 <asp:CheckBox ID="chkRemind" AutoPostBack="false" Checked="true" Style="margin-top: 5px;" CssClass="checkbox"
                                                     runat="server" Text="Reminder"></asp:CheckBox>
                                             </asp:Panel>
-                                            <asp:Panel runat="server" ID="pnlDC" Style="visibility: hidden">
+                                            <asp:Panel runat="server" ID="pnlDC">
                                                 <asp:CheckBox ID="chkDC" AutoPostBack="false" Checked="true" Style="margin-top: 5px;" CssClass="checkbox"
                                                     runat="server" Text="Debt Collection Letter"></asp:CheckBox>
                                             </asp:Panel>
@@ -725,13 +725,14 @@
                             </div>
                         </div>
                     </div>
+                     <div style="display: none;">
+                        <iframe id="pdfInvoices" runat="server"></iframe>
+                        <iframe id="pdfDC" runat="server"></iframe>
+                        <iframe id="pdfRemind" runat="server"></iframe>
+                    </div>
                 </ContentTemplate>
             </asp:UpdatePanel>
-                  <div style="display: none;">
-                        <iframe id="pdfInvoices"></iframe>
-                        <iframe id="pdfDC"></iframe>
-                        <iframe id="pdfRemind"></iframe>
-                    </div>
+                 
             <asp:HiddenField ID="hdnDueDate" runat="server" />
             <asp:HiddenField ID="hdnCollectionStopUntil" runat="server" />
             <asp:HiddenField ID="hdnCollectionStop" runat="server" />

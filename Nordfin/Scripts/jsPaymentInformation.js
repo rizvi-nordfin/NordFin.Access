@@ -228,8 +228,7 @@ function PDFViewer(sFileName, collectionStatus) {
 }
 
 
-function ExportClick(IsEmail, downloadList, bSent) {
-    jq13('#mdlExport').modal({ backdrop: 'static', keyboard: false }, 'show');
+function ExportClick(IsEmail, pdfArchive, bSent) {
     jq13(".modal-backdrop").remove();
     jq13(".modal-backdrop").remove();
     if (IsEmail == 1) {
@@ -248,40 +247,8 @@ function ExportClick(IsEmail, downloadList, bSent) {
 
     }
     else {
-        let bModal = false;
-        let pdfArchive = "";
-        if (downloadList != undefined && downloadList != null && downloadList != "") {
 
-            const downloadData = JSON.parse(downloadList);
-            for (var i = 0; i < downloadData.length; i++) {
-
-                if (downloadData[i].InvoiceName == "") {
-
-                }
-                else if (downloadData[i].InvoiceName.toUpperCase() == "DC")
-                    jq13("#pnlDC").css("visibility", downloadData[i].Status);
-                else if (downloadData[i].InvoiceName.toUpperCase() == "REM")
-                    jq13("#pnlRemind").css("visibility", downloadData[i].Status);
-            }
-
-
-            if (IsEmail != 2) {
-                jq13('#chkRemind').attr('checked', true);
-                jq13('#chkDC').attr('checked', true);
-            }
-            bModal = downloadData.find(function (item, i) {
-                if (item.Status != "hidden") {
-
-                    return true;
-                }
-                else {
-                    pdfArchive = downloadData[i].PDFArchive
-                }
-            });
-        }
-
-
-        if (bModal)
+        if (pdfArchive == undefined || pdfArchive == "")
             jq13('#mdlExport').modal({ backdrop: 'static', keyboard: false }, 'show');
         else
             PDFViewerArchive(pdfArchive);

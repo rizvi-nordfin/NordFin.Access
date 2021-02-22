@@ -97,7 +97,7 @@
                     <asp:Button ID="closeButton" runat="server" Style="display: none;" />
                 </asp:Panel>
             </div>
-            <asp:UpdatePanel runat="server" ID="UpdatePanel1" UpdateMode="Always">
+            <asp:UpdatePanel runat="server" ID="UpdatePanel1" >
                 <ContentTemplate>
                     <div class="tableFixHead tableMarginBg">
                         <asp:GridView ID="grdInvoices" runat="server" AutoGenerateColumns="False" AllowSorting="true" OnSorting="grdInvoices_Sorting" EmptyDataRowStyle-CssClass="Emptyrow" ViewStateMode="Enabled" Visible="true" Style="color: white; overflow-x: scroll; overflow-y: scroll;"
@@ -317,9 +317,9 @@
                     </div>
 
                     <div style="display: none;">
-                        <iframe id="pdfInvoices"></iframe>
-                        <iframe id="pdfDC"></iframe>
-                        <iframe id="pdfRemind"></iframe>
+                        <iframe id="pdfInvoices" runat="server"></iframe>
+                        <iframe id="pdfDC" runat="server"></iframe>
+                        <iframe id="pdfRemind" runat="server"></iframe>
                     </div>
                 </ContentTemplate>
             </asp:UpdatePanel>

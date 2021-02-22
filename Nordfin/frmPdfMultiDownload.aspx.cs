@@ -11,11 +11,14 @@ namespace Nordfin
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-            string fileName = Request.QueryString["FileName"];
-            Response.ContentType = "application/pdf";
-            Response.AppendHeader("Content-Disposition", "attachment;filename=" + fileName);
-            Response.TransmitFile(Server.MapPath("~/Documents/"+Session.SessionID+"/" + fileName));
-            Response.End();
+            if (!IsPostBack)
+            {
+                string fileName = Request.QueryString["FileName"];
+                Response.ContentType = "application/pdf";
+                Response.AppendHeader("Content-Disposition", "attachment;filename=" + fileName);
+                Response.TransmitFile(Server.MapPath("~/Documents/" + Session.SessionID + "/" + fileName));
+                Response.End();
+            }
         }
     }
 }

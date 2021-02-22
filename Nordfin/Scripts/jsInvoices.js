@@ -97,7 +97,7 @@ function PDFViewer(sFileName, sPDFViewerLink, sSessionId, bResult, buttonID, col
     const pathData = JSON.parse(sFileName);
     $(".modal-backdrop").remove();
     ExportClick(2, collectionStatus);
-    PDFDownloadMultiClick(pathData)
+   
     $("#PnlDownloadMsg").css("display", "block");
    
     $("#spnDownloadMsg").text("Downloaded Successfully!");
@@ -106,17 +106,7 @@ function PDFViewer(sFileName, sPDFViewerLink, sSessionId, bResult, buttonID, col
 }
 
 
-function PDFDownloadMultiClick(pathData) {
-   
-    if (pathData[0].FileName != "")
-        document.getElementById("pdfInvoices").contentWindow.document.location.href = "frmPdfMultiDownload.aspx?FileName=" + pathData[0].FileName;
-    if (pathData[1].FileName != "")
-        document.getElementById("pdfDC").contentWindow.document.location.href = "frmPdfMultiDownload.aspx?FileName=" + pathData[1].FileName;
-    if (pathData[2].FileName != "")
-        document.getElementById("pdfRemind").contentWindow.document.location.href = "frmPdfMultiDownload.aspx?FileName=" + pathData[2].FileName;
-   
 
-}
 
 function EmailIDEnable() {
     
@@ -130,8 +120,7 @@ function EmailIDEnable() {
 }
 
 
-function ExportClick(IsEmail, downloadList,bSent) {
-   
+function ExportClick(IsEmail, pdfArchive, bSent) {
     $(".modal-backdrop").remove();
     $(".modal-backdrop").remove();
     if (IsEmail == 1) {
@@ -150,40 +139,8 @@ function ExportClick(IsEmail, downloadList,bSent) {
        
     }
     else {
-        let bModal = false;
-        let pdfArchive = "";
-        if (downloadList != undefined && downloadList != null && downloadList!="") {
-           
-            const downloadData = JSON.parse(downloadList);
-            for (var i = 0; i < downloadData.length; i++) {
 
-                if (downloadData[i].InvoiceName == "") {
-                  
-                }
-                else if (downloadData[i].InvoiceName.toUpperCase() == "DC")
-                    $("#NordfinContentHolder_pnlDC").css("visibility", downloadData[i].Status);
-                else if (downloadData[i].InvoiceName.toUpperCase() == "REM")
-                    $("#NordfinContentHolder_pnlRemind").css("visibility", downloadData[i].Status);
-            }
-            
- 
-            if (IsEmail != 2) {
-                $('#NordfinContentHolder_chkRemind').attr('checked', true);
-                $('#NordfinContentHolder_chkDC').attr('checked', true);
-            }
-            bModal = downloadData.find(function (item, i) {
-                if (item.Status != "hidden") {
-
-                    return true;
-                }
-                else {
-                    pdfArchive = downloadData[i].PDFArchive
-                }
-            });
-        }
-       
-       
-        if (bModal)
+        if (pdfArchive == undefined || pdfArchive == "")
             $('#mdlExport').modal({ backdrop: 'static', keyboard: false }, 'show');
         else
             PDFViewerArchive(pdfArchive);
