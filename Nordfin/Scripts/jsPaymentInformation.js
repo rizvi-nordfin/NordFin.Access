@@ -1,5 +1,6 @@
 ﻿
 var jq13 = jQuery.noConflict();
+debugger;
 jQuery(document).ready(function () {
     
     $(function () {
@@ -181,7 +182,126 @@ jQuery(document).ready(function () {
 
 
 
+
+ 
+
+
 });
+
+
+function ProcessingModal() {
+    jq13('.featureNotAvailablePnlBG').toggleClass('hidden');
+}
+
+function ProgressBarDisplay() {
+    jq13("#Pnlprogress").css("display", "block");
+
+}
+
+function PDFViewerArchive(sPDFViewerLink) {
+    document.getElementById("NordfinContentHolder_pdfViewer").href = sPDFViewerLink;
+    document.getElementById("NordfinContentHolder_pdfViewer").click();
+    document.getElementById("NordfinContentHolder_pdfViewer").href = "";
+}
+
+
+function PdfDownloadClick() {
+    PdfDownloadMsgNone();
+    jq13("#PnlDownloadprogress").css("display", "block");
+}
+function PdfDownloadMsgNone() {
+    jq13("#PnlDownloadMsg").css("display", "none");
+    jq13("#spnDownloadMsg").text("");
+}
+
+function PDFViewer(sFileName, collectionStatus) {
+
+    const pathData = JSON.parse(sFileName);
+    jq13(".modal-backdrop").remove();
+    ExportClick(2, collectionStatus);
+    PDFDownloadMultiClick(pathData)
+    jq13("#PnlDownloadMsg").css("display", "block");
+
+    jq13("#spnDownloadMsg").text("Downloaded Successfully!");
+
+
+}
+
+
+function ExportClick(IsEmail, downloadList, bSent) {
+    jq13('#mdlExport').modal({ backdrop: 'static', keyboard: false }, 'show');
+    jq13(".modal-backdrop").remove();
+    jq13(".modal-backdrop").remove();
+    if (IsEmail == 1) {
+        jq13('#mdlUpdateInfo').modal({ backdrop: 'static', keyboard: false }, 'show');
+        jq13('#mdlExport').modal('hide');
+        if (bSent != undefined && bSent != null) {
+            jq13("#PnlMsg").css("display", "block");
+            if (bSent) {
+                jq13("#spnMsg").text("Mail Sent Successfully!");
+            }
+            else {
+                jq13("#spnMsg").text("Something went wrong please contact nordfin!");
+            }
+
+        }
+
+    }
+    else {
+        let bModal = false;
+        let pdfArchive = "";
+        if (downloadList != undefined && downloadList != null && downloadList != "") {
+
+            const downloadData = JSON.parse(downloadList);
+            for (var i = 0; i < downloadData.length; i++) {
+
+                if (downloadData[i].InvoiceName == "") {
+
+                }
+                else if (downloadData[i].InvoiceName.toUpperCase() == "DC")
+                    jq13("#pnlDC").css("visibility", downloadData[i].Status);
+                else if (downloadData[i].InvoiceName.toUpperCase() == "REM")
+                    jq13("#pnlRemind").css("visibility", downloadData[i].Status);
+            }
+
+
+            if (IsEmail != 2) {
+                jq13('#chkRemind').attr('checked', true);
+                jq13('#chkDC').attr('checked', true);
+            }
+            bModal = downloadData.find(function (item, i) {
+                if (item.Status != "hidden") {
+
+                    return true;
+                }
+                else {
+                    pdfArchive = downloadData[i].PDFArchive
+                }
+            });
+        }
+
+
+        if (bModal)
+            jq13('#mdlExport').modal({ backdrop: 'static', keyboard: false }, 'show');
+        else
+            PDFViewerArchive(pdfArchive);
+    }
+
+
+}
+
+
+function PDFDownloadMultiClick(pathData) {
+
+    if (pathData[0].FileName != "")
+        document.getElementById("pdfInvoices").contentWindow.document.location.href = "frmPdfMultiDownload.aspx?FileName=" + pathData[0].FileName;
+    if (pathData.length == 2 && pathData[1].FileName != "")
+        document.getElementById("pdfDC").contentWindow.document.location.href = "frmPdfMultiDownload.aspx?FileName=" + pathData[1].FileName;
+    if (pathData.length == 3 && pathData[2].FileName != "")
+        document.getElementById("pdfRemind").contentWindow.document.location.href = "frmPdfMultiDownload.aspx?FileName=" + pathData[2].FileName;
+
+
+}
 
 function showManualInvoice() {
     var customerJson = jq13('#hdnCustomerData').val();
@@ -630,7 +750,3 @@ app.controller("myCtrl", function ($scope, $http) {
 
 
 
-function PDFViewer(sFileName, sPDFViewerLink, sSessionId, bResult) {
-
-    
-}

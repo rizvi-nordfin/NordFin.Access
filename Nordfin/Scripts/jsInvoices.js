@@ -62,17 +62,20 @@ function LinkClick(linkValues) {
 
     const overpaidAmt = document.getElementById(linkValues.id).getAttribute("overpaymentData").replace(/\s/g, '');
     const remainAmt = document.getElementById(linkValues.id).getAttribute("remainData").replace(/\s/g, '');
+    const collectionStatus = document.getElementById(linkValues.id).getAttribute("collectionStatus").replace(/\s/g, '');
+    const combineInvoice = document.getElementById(linkValues.id).getAttribute("combineInvoice").replace(/\s/g, '');
+    const custInvoice = document.getElementById(linkValues.id).getAttribute("custInvoice").replace(/\s/g, '');
     
     document.getElementById("NordfinContentHolder_btnOpenModal").click();
 
 
-    const sFileName = document.getElementById("NordfinContentHolder_hdnFileName").value + "_" + linkValues.text + "_" + "inv" + ".";
+    const sFileName = document.getElementById("NordfinContentHolder_hdnFileName").value;//+ "_" + linkValues.text + "_" + "inv" + ".";
 
     const sClientName = document.getElementById("NordfinContentHolder_hdnClientName").value;
 
     var customerJson = "";
 
-    document.getElementById("NordfinContentHolder_iframeModal").src = "frmPaymentInformation.aspx?InvoiceData=" + paramValues + "&Remain=" + remainAmt + "&OverPaid=" + overpaidAmt + "&FileName=" + sFileName + "&ClientName=" + sClientName + "&Customer=" + customerJson + " ";
+    document.getElementById("NordfinContentHolder_iframeModal").src = "frmPaymentInformation.aspx?InvoiceData=" + paramValues + "&CombineInvoice=" + combineInvoice + "&CustomerNumber=" + custInvoice + "&CollectionStatus=" + collectionStatus +  "&Remain=" + remainAmt + "&OverPaid=" + overpaidAmt + "&FileName=" + sFileName + "&ClientName=" + sClientName + "&Customer=" + customerJson + " ";
 
  
     $(window).scrollTop(0);
@@ -90,7 +93,7 @@ function onKeyDown(e) {
 
 
 function PDFViewer(sFileName, sPDFViewerLink, sSessionId, bResult, buttonID, collectionStatus) {
-  
+   
     const pathData = JSON.parse(sFileName);
     $(".modal-backdrop").remove();
     ExportClick(2, collectionStatus);

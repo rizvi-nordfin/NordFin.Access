@@ -115,6 +115,7 @@
                                     <ItemTemplate>
 
                                         <asp:LinkButton CssClass="linkcss" Text='<%# Bind("Invoicenumber") %>' OnClientClick="return LinkClick(this);" overpaymentData='<%# Eval("Overpayment") %>'
+                                            collectionStatus=' <%# Eval("Collectionstatus") %>'   combineInvoice='<%# Eval("CombineInvoice") %>'  custInvoice=' <%# Eval("Customernumber") %>'
                                             remainData='<%# Eval("Remainingamount") %>' invoiceData='<%# Eval("Customernumber") +"|"+ Eval("InvoiceID")%>' ID="gridLink" CommandArgument=' <%# Eval("Customernumber") +"|"+ Eval("InvoiceID")%>' runat="server" />
                                     </ItemTemplate>
 
@@ -265,11 +266,11 @@
                                                 <asp:CheckBox ID="chkInvoices" AutoPostBack="false" Checked="true" Style="margin-top: 5px;" CssClass="checkbox"
                                                     runat="server" Text="Invoice"></asp:CheckBox>
                                             </asp:Panel>
-                                            <asp:Panel runat="server" ID="pnlRemind" Style="visibility: hidden">
+                                            <asp:Panel runat="server" ID="pnlRemind" >
                                                 <asp:CheckBox ID="chkRemind" AutoPostBack="false" Checked="true" Style="margin-top: 5px;" CssClass="checkbox"
                                                     runat="server" Text="Reminder"></asp:CheckBox>
                                             </asp:Panel>
-                                            <asp:Panel runat="server" ID="pnlDC" Style="visibility: hidden">
+                                            <asp:Panel runat="server" ID="pnlDC">
                                                 <asp:CheckBox ID="chkDC" AutoPostBack="false" Checked="true" Style="margin-top: 5px;" CssClass="checkbox"
                                                     runat="server" Text="Debt Collection Letter"></asp:CheckBox>
                                             </asp:Panel>

@@ -113,7 +113,7 @@ namespace Nordfin
             ScriptManager.RegisterStartupScript(this, this.GetType(), "ExportClick", "ExportClick(0,'" + jsonInvoiceList + "');", true);
         }
 
-
+     
         private List<InvoiceDownload> InvoiceDownload(string InvoiceNumber,string collectionStatus)
         {
             if (Session["InvoiceDownloadList"] != null)
@@ -167,15 +167,6 @@ namespace Nordfin
                 }
                
             }
-
-            //if (btnEmail.Attributes["collectionStatus"].ToUpper() == "DC" && sCollectionStatus != "DC")
-            //{
-            //    if (sCollectionStatus == "Rem")
-            //        sCollectionStatus = "DC";
-            //    else
-            //        sCollectionStatus = "Rem";
-            //    goto fileDownload;
-            //}
             return invoiceDownloads;
         }
 
@@ -238,8 +229,8 @@ namespace Nordfin
             IInvoicesPresentationBusinessLayer objInvoicesLayer = new InvoicesBusinessLayer();
             string scustEmail = objInvoicesLayer.GetCustInvoiceEmailID(ClientSession.ClientID, btnEmail.Attributes["custInvoice"].ToString());
             txtCustEmail.Text = scustEmail;
-            txtEmailHeader.Text = ClientSession.ClientName + ",Invoice" + " " + btnEmail.Attributes["combineInvoice"];
-            txtEmailBody.Text = "Hi," + "\n" + "Your invoice has been attached" + "\n" + "Best Regards," + "\n" + ClientSession.ClientName;
+            txtEmailHeader.Text = ClientSession.ClientName + "; Invoice" + " " + btnEmail.Attributes["combineInvoice"];
+            txtEmailBody.Text = "Hei, Hi, Hej, Hallo!" + "\n\n" + "Your invoice copy has been attached" + "\n\n"+ "Have a great day :-)" +"\n\n"  + "Best Regards," + "\n" + ClientSession.ClientName;
             ScriptManager.RegisterStartupScript(this, this.GetType(), "ExportClick", "ExportClick(1);", true);
         }
    
