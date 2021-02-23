@@ -402,7 +402,11 @@
                             </div>
                         </div>
                     </div>
-                    
+                       <div style="display: none;">
+                        <iframe id="pdfInvoices" runat="server"></iframe>
+                        <iframe id="pdfDC" runat="server"></iframe>
+                        <iframe id="pdfRemind" runat="server"></iframe>
+                    </div>
                     </ContentTemplate>
             </asp:UpdatePanel>
 
@@ -740,11 +744,7 @@
 
    
     
-                    <div style="display: none;">
-                        <iframe id="pdfInvoices" runat="server"></iframe>
-                        <iframe id="pdfDC" runat="server"></iframe>
-                        <iframe id="pdfRemind" runat="server"></iframe>
-                    </div>
+                 
     <asp:HiddenField ID="hdnInvoiceNumber" runat="server" />
     <asp:HiddenField ID="hdnEmailID" runat="server" />
     <asp:HiddenField ID="hdnMatch" runat="server" Value="true" />

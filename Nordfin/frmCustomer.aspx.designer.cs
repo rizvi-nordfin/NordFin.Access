@@ -393,6 +393,33 @@ namespace Nordfin
         protected global::System.Web.UI.WebControls.Button btnSend;
 
         /// <summary>
+        /// pdfInvoices control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlIframe pdfInvoices;
+
+        /// <summary>
+        /// pdfDC control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlIframe pdfDC;
+
+        /// <summary>
+        /// pdfRemind control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlIframe pdfRemind;
+
+        /// <summary>
         /// btnOpenModal control.
         /// </summary>
         /// <remarks>
@@ -760,33 +787,6 @@ namespace Nordfin
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::Nordfin.ucManualInvoice ucManualInvoice;
-
-        /// <summary>
-        /// pdfInvoices control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlIframe pdfInvoices;
-
-        /// <summary>
-        /// pdfDC control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlIframe pdfDC;
-
-        /// <summary>
-        /// pdfRemind control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlIframe pdfRemind;
 
         /// <summary>
         /// hdnInvoiceNumber control.
