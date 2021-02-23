@@ -48,6 +48,7 @@ namespace Nordfin
                     pnlsideMenuButton.Visible = false;
                     btnStatistics.Visible = false;
                     imgStatistics.Visible = false;
+                    pnlContractsMenuButton.Visible = false;
                 }
 
                 if (ClientSession.Admin != "0" && ClientSession.Admin != "1")
@@ -58,13 +59,19 @@ namespace Nordfin
                     pnlTrafficDetails.Visible = false;
                     pnlNotification.Visible = false;
                     pnlTeleson.Visible = false;
-
+                    pnlSideMenuContracts.Style.Add("top", "551px !important");
 
                 }
                 else
                 {
+
                     if (Contracts == 0)
+                    {
                         pnlTeleson.Visible = false;
+                        pnlContractsMenuButton.Visible = false;
+                    }
+                  
+                       
                 }
 
                 hdnClientID.Value = ClientSession.ClientID;

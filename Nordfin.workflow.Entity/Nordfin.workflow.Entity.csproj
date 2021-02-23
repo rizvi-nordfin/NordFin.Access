@@ -45,6 +45,7 @@
     <Compile Include="AdvanceSearch.cs" />
     <Compile Include="BatchVolume.cs" />
     <Compile Include="Chart.cs" />
+    <Compile Include="ClientContracts.cs" />
     <Compile Include="ClientDetails.cs" />
     <Compile Include="ClientInformation.cs" />
     <Compile Include="ClientList.cs" />

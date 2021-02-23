@@ -33,7 +33,7 @@ appModule.controller("InvoiceBatchesControl", function ($scope, $http) {
 
 
     $scope.AmountSpaces = function (key, num) {
-        debugger;
+       
         if (key == "Year")
             return num.toString();
          

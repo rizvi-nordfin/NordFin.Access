@@ -1,0 +1,233 @@
+
+
+.sideContractMenuButtonStatistics {
+    background-color: rgb(44, 56, 80);
+}
+
+    .sideContractMenuButtonStatistics img.sideMenuIcon {
+        filter: brightness(0) saturate(100%) invert(78%) sepia(49%) saturate(3809%) hue-rotate(359deg) brightness(101%) contrast(106%);
+    }
+
+
+﻿.Buttoncolor {
+    background-color: #2C3850;
+    border: 1px solid #3DADC5;
+    color: #FFFFFF;
+}
+
+.labelcolor {
+    color: #FFB100;
+}
+
+.table td, .table th {
+    border-top: 1px solid #485774 !important;
+
+}
+
+.table{
+    border:none;
+}
+
+    .table tbody tr th {
+        color: #A9BFD5;
+        text-transform: uppercase;
+        font-size: 13px;
+        font-weight: 400;
+    }
+.table tbody tr th a{
+    color: #A9BFD5;
+    text-transform: uppercase;
+    font-size: 13px;
+    font-weight: 400;
+    
+
+
+}
+        .table tbody tr th a:hover {
+            color: #FFB100;
+            text-decoration: none;
+        }
+.table tbody tr td {
+    text-transform: uppercase;
+    font-size: 13px;
+    font-weight: normal;
+}
+
+.tableFixHead {
+    overflow-y: auto;
+   
+}
+
+.trHead th {
+    border-top: 1px solid #2C3850 !important;
+}
+
+.trHead {
+    background-color: #2C3850 !important;
+    border-top: 1px solid #485774 !important;
+}
+th {
+    background: #475672;
+}
+
+.tableFixHead th {
+    position: sticky;
+    top: -1px;
+}
+
+
+.itemalign {
+    text-align: center;
+    font-size: small;
+    border: none;
+}
+
+a.linkcss {
+    color: #FFB100;
+    text-decoration: none;
+    border: none;
+    cursor:pointer;
+}
+
+.Background {
+    overflow: hidden !important;
+}
+
+.Popup {
+    position: absolute !important;
+    margin-left: 100px !important;
+    height: 750px !important;
+    width: 90% !important;
+    left: 50px !important;
+    top: 200px !important;
+    overflow: hidden !important;
+}
+.GVFixedHeader {
+    font-weight: bold;
+    background-color: Green;
+    position: relative;
+    top: expression(this.parentNode.parentNode.parentNode.scrollTop-1);
+}
+
+
+.Emptyrow td {
+    border: none;
+}
+
+
+
+
+
+
+
+
+
+
+/* New Styles  */
+
+
+.invoicesDownloadAsButton {
+  border: 1px solid #A9BFD5;
+  color: #A9BFD5;
+  width: 200px;
+  float: right;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  text-align: left;
+  background-color: transparent;
+  border-radius: 0;
+  font-size: 12px;
+  height: 50px;
+  padding-left: 20px;
+}
+.invoicesDownloadAsButton:hover {
+  background-color: #A9BFD5;
+  color: #2c3850;
+}
+
+
+/* 
+.invoicesDownloadButton {
+  background-color: #38435f;
+  height: 34px;
+  width: 85px;
+  border: 1px solid #41acc8;
+  font-size: 11px;
+}
+
+.invoicesDownloadButton:hover {
+      background-color: #54607f;
+}
+
+ */
+
+.invoicesDownloadButton{
+    width:75px;
+}
+
+@media all and (max-width: 1300px) {
+    .Popup {
+     position: absolute !important;
+     margin-left: 0 !important;
+     /*height: 100% !important;*/
+     width: 100% !important;
+     left: 0 !important;
+     top: 5% !important;
+     /*overflow: scroll !important;*/
+   }
+   #popupHTML {overflow-y: scroll !important;}
+   
+ }
+ 
+
+@media only screen and (min-width : 600px) {
+.tableFixHead {height: auto;}
+    
+}
+
+
+.hide {
+    display: none !important;
+}
+
+
+.col-lg-3 {
+    padding-right: 25px !important;
+    
+}
+.textOrange {
+    color: #3DADC5;
+    background: #38445D;
+    padding: 5px;
+    font-size:12px;
+   
+   
+}
+
+
+
+
+
+
+
+.tableMarginBg {
+   background-color: #2C3850; margin-top: -25px;
+}
+
+::-webkit-scrollbar {
+    width: 0.1em !important;
+}
+
+::-webkit-scrollbar-track {
+    -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3);
+}
+
+::-webkit-scrollbar-thumb {
+    background-color: darkgrey;
+    outline: 1px solid slategrey;
+}
+
+
+.leftalign {
+    text-align: left;
+}

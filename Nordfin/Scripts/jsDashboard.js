@@ -731,7 +731,6 @@ app.controller("myCtrl", function ($scope, $http) {
             }
 
 
-            debugger;
             $("#mapsvgSweden").mapSvg({
                 width: 345.62482, height: 792.52374,
                 colors: {
@@ -889,7 +888,7 @@ app.controller("myCtrl", function ($scope, $http) {
           
             
 
-            debugger;
+           
 
 
       

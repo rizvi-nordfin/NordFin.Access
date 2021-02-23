@@ -27,33 +27,50 @@
 
                      <div  class="summaryHeading"> 
                          <div class="textOrange" style="background: #38445D; ">
+                             
+                             <div style="float:left;display:inline;">
                                     Amount
-                                    &nbsp; 
+                                 </div>
+                                   <div style="display:inline;">
                                     <asp:Label runat="server" CssClass="textWhite" ID="lblSumAmount"></asp:Label>
+                                       </div>
+                                
                                 </div></div>
                         <div  class="summaryHeading" > 
                              <div class="textOrange" style="background: #38445D;">
-                                    FEES
-                                      &nbsp;&nbsp;
+                                 <div style="float:left;display:inline;">
+                                    FEES 
+                                    </div>
+                                 <div style="display:inline;">
                                     <asp:Label runat="server" CssClass="textWhite" ID="lblFeesAmount"></asp:Label>
+                                     </div>
                                 </div></div>
                         <div  class="summaryHeading"> 
                               <div class="textOrange" style="background: #38445D;">
-                                    REMAIN
-                                      &nbsp;&nbsp;
+                                  <div style="float:left;display:inline;">
+                                    REMAIN 
+                                    </div>
+                                  <div style="display:inline;">
                                     <asp:Label ID="lblRemain" CssClass="textWhite" runat="server" />
+                                      </div>
                                 </div></div>
                          <div  class="summaryHeading"> 
                               <div class="textOrange" style="background: #38445D;">
+                                  <div style="float:left;display:inline;">
                                     TOTAL REMAIN
-                                      &nbsp;&nbsp;
+                                      </div>
+                                  <div style="display:inline;">
                                     <asp:Label ID="lblTotalRemain" CssClass="textWhite" runat="server" />
+                                      </div>
                                 </div></div>
                         <div class="summaryHeading"> 
                               <div class="textOrange" style="background: #38445D;">
-                                    OVERPAID
-                                      &nbsp;&nbsp;
+                                  <div style="float:left;display:inline;">
+                                    OVERPAID 
+                                      </div>
+                                  <div style="display:inline;">
                                    <asp:Label ID="lblOverPaid" CssClass="textWhite" runat="server" />
+                                      </div>
                                 </div></div>
 
                 </div>  
@@ -154,6 +171,10 @@
                                 <asp:BoundField DataField="TotalRemaining" DataFormatString="{0:#,0.00}" HeaderStyle-CssClass="itemalign" ItemStyle-CssClass="itemalign" HeaderText="TOTAL REMAIN" SortExpression="TotalRemaining" />
 
                                 <asp:BoundField DataField="Collectionstatus" HeaderStyle-CssClass="itemalign" ItemStyle-CssClass="itemalign" HeaderText="Collection Status" SortExpression="Collectionstatus" />
+
+                                  <asp:BoundField DataField="Credited" HeaderStyle-CssClass="itemalign" ItemStyle-CssClass="itemalign" HeaderText="Credited" SortExpression="Credited" />
+                                <asp:BoundField DataField="ClosedCredit" HeaderStyle-CssClass="itemalign" ItemStyle-CssClass="itemalign" HeaderText="Closed with credit" SortExpression="ClosedCredit" />
+
 
                                 <asp:BoundField DataField="Paymentreference" HeaderStyle-CssClass="itemalign" ItemStyle-CssClass="itemalign" HeaderText="PAY REF" SortExpression="Paymentreference" />
                                 <asp:BoundField DataField="Overpayment" DataFormatString="{0:#,0.00}" HeaderStyle-CssClass="itemalign" ItemStyle-CssClass="itemalign" HeaderText="OVER PAID" SortExpression="Overpayment" />

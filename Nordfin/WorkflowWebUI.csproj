@@ -241,6 +241,7 @@
     <Content Include="frmAccountSettings.aspx" />
     <Content Include="frmBatches.aspx" />
     <Content Include="frmClientInformation.aspx" />
+    <Content Include="frmContractOverview.aspx" />
     <Content Include="frmCustomer.aspx" />
     <Content Include="frmDashboard.aspx" />
     <Content Include="frmInvoiceBatches.aspx" />
@@ -248,12 +249,14 @@
     <Content Include="frmLogin.aspx" />
     <Content Include="frmReports.aspx" />
     <Content Include="frmRisk.aspx" />
-    <Content Include="frmTeleson.aspx" />
+    <Content Include="frmContracts.aspx" />
     <Content Include="frmTrafficDetails.aspx" />
     <Content Include="frmUserLoginInformation.aspx" />
     <Content Include="Global.asax" />
     <Content Include="Images\AgedList.png" />
     <Content Include="Images\Batches.png" />
+    <Content Include="Images\Contracts_Orange.svg" />
+    <Content Include="Images\Contracts.svg" />
     <Content Include="Images\Customer.png" />
     <Content Include="Images\favicon - Copy.png" />
     <Content Include="Images\favicon.png" />
@@ -329,7 +332,8 @@
     <Content Include="Scripts\font-Awesome.js" />
     <Content Include="Scripts\jquery-1.11.1.min.js" />
     <Content Include="libman.json" />
-    <None Include="Properties\PublishProfiles\FTPProfile.pubxml" />
+    <None Include="Properties\PublishProfiles\FTPProfileProd.pubxml" />
+    <None Include="Properties\PublishProfiles\FTPProfileTest.pubxml" />
     <None Include="Scripts\jquery-3.4.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.4.1.js" />
     <Content Include="Scripts\jquery-3.4.1.min.js" />
@@ -367,6 +371,7 @@
     <Content Include="Styles\Batches.css" />
     <Content Include="Styles\bootstrap.min.css" />
     <Content Include="Styles\AccountSettings.css" />
+    <Content Include="Styles\ContractsOverview.css" />
     <Content Include="Styles\Customer.css" />
     <Content Include="Styles\Dashboard.css" />
     <Content Include="Styles\datepicker.css" />
@@ -390,6 +395,7 @@
     <Content Include="Styles\normalize.css" />
     <Content Include="Styles\PaymentInformation.css" />
     <Content Include="Styles\Reports.css" />
+    <Content Include="Styles\Contracts.css" />
     <Content Include="Styles\TelsonGroup.css" />
     <Content Include="Styles\TrafficDetails.css" />
     <Content Include="ucManualInvoice.ascx" />
@@ -418,6 +424,13 @@
     </Compile>
     <Compile Include="frmClientInformation.aspx.designer.cs">
       <DependentUpon>frmClientInformation.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="frmContractOverview.aspx.cs">
+      <DependentUpon>frmContractOverview.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="frmContractOverview.aspx.designer.cs">
+      <DependentUpon>frmContractOverview.aspx</DependentUpon>
     </Compile>
     <Compile Include="frmCustomer.aspx.cs">
       <DependentUpon>frmCustomer.aspx</DependentUpon>
@@ -468,12 +481,12 @@
     <Compile Include="frmRisk.aspx.designer.cs">
       <DependentUpon>frmRisk.aspx</DependentUpon>
     </Compile>
-    <Compile Include="frmTeleson.aspx.cs">
-      <DependentUpon>frmTeleson.aspx</DependentUpon>
+    <Compile Include="frmContracts.aspx.cs">
+      <DependentUpon>frmContracts.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="frmTeleson.aspx.designer.cs">
-      <DependentUpon>frmTeleson.aspx</DependentUpon>
+    <Compile Include="frmContracts.aspx.designer.cs">
+      <DependentUpon>frmContracts.aspx</DependentUpon>
     </Compile>
     <Compile Include="frmTrafficDetails.aspx.cs">
       <DependentUpon>frmTrafficDetails.aspx</DependentUpon>

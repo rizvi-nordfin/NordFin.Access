@@ -269,9 +269,15 @@ a.linkcss {
     color: #3DADC5;
     background: #38445D;
     padding: 5px;
-    font-size:13px;
+    font-size:12px;
    
    
+}
+
+.textWhite {
+    color: #ffffff;
+    font-size: 12px;
+    font-weight: normal;
 }
 
 .summaryInvoices {
@@ -279,7 +285,7 @@ a.linkcss {
     display: grid;
     position: absolute;
     z-index: 4;
-    width: 90%;
+    width: 93%;
     margin-top: 75px;
     margin-left: -32px;
 }
@@ -387,4 +393,17 @@ a.linkcss {
 
 .tableMarginBg {
    background-color: #2C3850; margin-top: -25px;
+}
+
+::-webkit-scrollbar {
+    width: 0.1em !important;
+}
+
+::-webkit-scrollbar-track {
+    -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3);
+}
+
+::-webkit-scrollbar-thumb {
+    background-color: darkgrey;
+    outline: 1px solid slategrey;
 }
