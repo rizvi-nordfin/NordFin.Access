@@ -194,6 +194,13 @@
                                     </asp:Panel>
                                 </div>
                             </div>
+                              <div class="row" >
+                                <div class="col-lg-12 actionButtonColumn" id="divNotes">
+                                    <asp:Panel runat="server" ID="Panel1" Visible="true" CssClass="updateInfoButtonContainer">
+                                        <asp:Button Text="Make a Note" class="button panelButton form-control" runat="server" OnClientClick="return NotesPage();" Style="padding-left: 10px;" />
+                                    </asp:Panel>
+                                </div>
+                            </div>
                         </div>
                     </div>
 
@@ -623,6 +630,55 @@
             </div>
         </div>
     </div>
+
+
+     <div class="modal" id="mdlNotes" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                        <div class="modal-dialog" role="document">
+                            <div class="modal-content" style="top: 100px; background: none; border: none;">
+                                <div class="modal-header dashboardHeadline" style="background-color: #323e53; color: #fff; font-size: 16px;">
+                                    <h5 class="modal-title modalTextcolor dashboardHeadlineModal" id="NotesLabel">Notes</h5>
+                                    <button type="button" class="modalcloseButton" data-dismiss="modal" aria-label="Close" style="top: 35px; right: 20px;">
+                                        <span aria-hidden="true">✕</span>
+                                    </button>
+                                </div>
+                                <div class="modal-body" style="background-color: #323e53; color: #fff;">
+
+
+                               
+
+                                    <div class="form-group">
+                                        <label>
+                                            Invoice Number
+                                    <asp:DropDownList ID="cboInvoiceNumber" runat="server" autocomplete="nope" CssClass="form-control textboxModalColor"></asp:DropDownList>
+                                        </label>
+
+
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label>
+                                            Notes
+                                    <asp:TextBox TextMode="MultiLine" ID="txtNotes" runat="server" autocomplete="nope" CssClass="form-control textboxModalColor textareaHeight" style="height:100px !important;"></asp:TextBox>
+                                        </label>
+
+
+                                    </div>
+
+                                    <div class="form-group">
+                                        <asp:Button Text="Submit" class="button updateInfoButton form-control" runat="server" ID="btnNotes"  OnClick="btnNotes_Click" Width="128px" />
+
+
+                                    </div>
+
+                                 
+                                </div>
+                             
+
+
+
+                            </div>
+                        </div>
+                    </div>
 
     <asp:HiddenField ID="hdnInvoiceNumber" runat="server" />
     <asp:HiddenField ID="hdnEmailID" runat="server" />

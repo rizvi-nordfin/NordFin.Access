@@ -36,6 +36,11 @@ namespace Nordfin.workflow.Business
         {
             return objuser.getExportdetails(custorinvoiceNum, clientID);
         }
+
+        IList<Notes> IInvoicesPresentationBusinessLayer.InsertInvoiceInfo(Notes notes)
+        {
+            return objuser.InsertInvoiceInfo(notes);
+        }
     }
 
 }

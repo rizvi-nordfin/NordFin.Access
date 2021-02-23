@@ -50,7 +50,15 @@ namespace Nordfin
                     Session["CustomerGrid"] = ds.Tables[0];
                     grdCustomer.DataSource = ds;
                     grdCustomer.DataBind();
-
+                   
+                    cboInvoiceNumber.DataSource = ds.Tables[0] ;
+                    cboInvoiceNumber.DataTextField = "Invoicenumber";
+                    cboInvoiceNumber.DataValueField = "InvoiceID";
+                    cboInvoiceNumber.DataTextField = "Invoicenumber";
+                   
+                    cboInvoiceNumber.DataBind();
+                    cboInvoiceNumber.Items.Insert(0, new ListItem(String.Empty, String.Empty));
+                    cboInvoiceNumber.SelectedIndex = 0;
                     if (ds.Tables[0].Rows.Count > 0)
                     {
                         lblSumAmount.Text = string.Format("{0:#,0.00}", (ds.Tables[0].AsEnumerable().Sum(r => r.Field<decimal>("Invoiceamount"))));
@@ -651,6 +659,28 @@ namespace Nordfin
             }
 
             base.Render(writer);
+        }
+
+        protected void btnNotes_Click(object sender, EventArgs e)
+        {
+            Notes objNotes = new Notes();
+            objNotes.InvoiceID =Convert.ToInt32(cboInvoiceNumber.SelectedItem.Value);
+            objNotes.InvoiceNumber = cboInvoiceNumber.SelectedItem.Text;
+            objNotes.CustomerID = lblCustomerNumber.Text;
+            objNotes.UserID = Convert.ToInt32(ClientSession.UserID);
+            objNotes.ClientID = Convert.ToInt32(ClientSession.ClientID);
+            objNotes.UserName = ClientSession.UserName;
+            objNotes.NoteText = txtNotes.Text;
+            IPaymentInformationPresentationBusinessLayer objPresentationInfoLayer = new PaymentInformationBusinessLayer();
+            IInvoicesPresentationBusinessLayer objInvoicesLayer = new InvoicesBusinessLayer();
+       
+            var objNotesInformation = objInvoicesLayer.InsertInvoiceInfo(objNotes);
+
+            string jsonResult = new JavaScriptSerializer().Serialize(objNotesInformation);
+           
+            ScriptManager.RegisterStartupScript(this, this.GetType(), "NotesInsert", "InsertNotes('" + jsonResult + "');", true);
+            cboInvoiceNumber.SelectedIndex = 0;
+            txtNotes.Text = "";
         }
     }
 }
