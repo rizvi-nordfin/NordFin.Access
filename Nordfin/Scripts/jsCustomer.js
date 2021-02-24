@@ -371,16 +371,12 @@ function NotesPage() {
 }
 
 
-function InsertNotes(Notes) {
+function maxLengthPaste(field, maxChars) {
 
-    const NotesList = JSON.parse(Notes);
-    if ($("#NordfinContentHolder_grdNotes tr td")[0] != undefined && $("#NordfinContentHolder_grdNotes tr td")[0].colSpan == 5)
-       $("#NordfinContentHolder_grdNotes tr:eq(1)").remove();
-     $("#NordfinContentHolder_grdNotes tr:first").after("<tr><td class='Notesalign'>" + NotesList[0].InvoiceNumber + "</td>" + "<td class='Notesalign'>" + NotesList[0].NoteType + "</td> " +
-        + "</td>" + "<td class='Notesalign'>" + NotesList[0].NoteDate + "</td> " + "</td>" + "<td class='Notesalign'>" + NotesList[0].UserName + "</td> " +
-         "</td>" + "<td class='Notesalign'>" + NotesList[0].NoteText + "</td> " + "</tr>");
-    $('#divManualInvoiceRow').show();
-    $('#divManualInvoice').show();
+    if ((field.value.length + window.clipboardData.getData("Text").length) > maxChars) {
+        alert("Cannot have more than " + maxChars + " Characters");
+        return false;
+    }
 
 }
 //function Email(button) {

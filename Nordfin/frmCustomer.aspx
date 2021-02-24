@@ -320,7 +320,7 @@
                                     <asp:BoundField DataField="NoteDate" HeaderStyle-CssClass="Notesalign" ItemStyle-CssClass="Notesalign" HeaderText="DATE" SortExpression="NoteDate" />
 
                                     <asp:BoundField DataField="UserName" HeaderStyle-CssClass="Notesalign" ItemStyle-CssClass="Notesalign" HeaderText="USER" SortExpression="UserName" />
-                                    <asp:BoundField DataField="NoteText" HeaderStyle-CssClass="Notesalign" ItemStyle-CssClass="Notesalign" HeaderText="TEXT" SortExpression="NoteText" />
+                                    <asp:BoundField DataField="NoteText" HeaderStyle-CssClass="Notesalign" ItemStyle-CssClass="Notesalign" HeaderText="Information" SortExpression="NoteText" />
                                 </Columns>
                                 <EmptyDataTemplate>No Record Available</EmptyDataTemplate>
                             </asp:GridView>
@@ -658,8 +658,10 @@
                                     <div class="form-group">
                                         <label>
                                             Notes
-                                    <asp:TextBox TextMode="MultiLine" ID="txtNotes" runat="server" autocomplete="nope" CssClass="form-control textboxModalColor textareaHeight" style="height:100px !important;"></asp:TextBox>
+                                    <asp:TextBox TextMode="MultiLine" ID="txtNotes" runat="server" autocomplete="nope" CssClass="form-control textboxModalColor textareaHeight" onpaste="return maxLengthPaste(this, 500)" MaxLength="500" style="height:100px !important;"></asp:TextBox>
                                         </label>
+                                        
+                                            <div style="text-align: right;font-size: small;color:#A9BFD5"><span>Max 500</span></div>
 
 
                                     </div>

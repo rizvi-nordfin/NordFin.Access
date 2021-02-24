@@ -677,8 +677,9 @@ namespace Nordfin
             var objNotesInformation = objInvoicesLayer.InsertInvoiceInfo(objNotes);
 
             string jsonResult = new JavaScriptSerializer().Serialize(objNotesInformation);
-           
-            ScriptManager.RegisterStartupScript(this, this.GetType(), "NotesInsert", "InsertNotes('" + jsonResult + "');", true);
+
+            grdNotes.DataSource = objNotesInformation;
+            grdNotes.DataBind();
             cboInvoiceNumber.SelectedIndex = 0;
             txtNotes.Text = "";
         }
