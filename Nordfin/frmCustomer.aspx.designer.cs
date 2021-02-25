@@ -735,22 +735,76 @@ namespace Nordfin
         protected global::System.Web.UI.WebControls.Button btnSubmit;
 
         /// <summary>
-        /// btnExportreport control.
+        /// pnlExport control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btnExportreport;
+        protected global::System.Web.UI.WebControls.Panel pnlExport;
 
         /// <summary>
-        /// btnExportDetail control.
+        /// chkExport control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btnExportDetail;
+        protected global::System.Web.UI.WebControls.CheckBox chkExport;
+
+        /// <summary>
+        /// pnlExportDetail control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Panel pnlExportDetail;
+
+        /// <summary>
+        /// chkExportDetail control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.CheckBox chkExportDetail;
+
+        /// <summary>
+        /// upnlMultiDownload control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.UpdatePanel upnlMultiDownload;
+
+        /// <summary>
+        /// grdInvoiceDownlaod control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.GridView grdInvoiceDownlaod;
+
+        /// <summary>
+        /// btnMultiDownload control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button btnMultiDownload;
+
+        /// <summary>
+        /// btnMultiMail control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button btnMultiMail;
 
         /// <summary>
         /// btnMatchOk control.
@@ -760,33 +814,6 @@ namespace Nordfin
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Button btnMatchOk;
-
-        /// <summary>
-        /// mdlManualInvoice control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlGenericControl mdlManualInvoice;
-
-        /// <summary>
-        /// pnlManualInv control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.UpdatePanel pnlManualInv;
-
-        /// <summary>
-        /// ucManualInvoice control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::Nordfin.ucManualInvoice ucManualInvoice;
 
         /// <summary>
         /// hdnInvoiceNumber control.
