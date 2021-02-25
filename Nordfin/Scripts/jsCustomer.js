@@ -363,6 +363,22 @@ function showManualInvoiceSuccess() {
     return false;
 };
 
+function NotesPage() {
+
+    $('#mdlNotes').modal({ backdrop: 'static', keyboard: false }, 'show');
+
+    return false;
+}
+
+
+function maxLengthPaste(field, maxChars) {
+
+    if ((field.value.length + window.clipboardData.getData("Text").length) > maxChars) {
+        alert("Cannot have more than " + maxChars + " Characters");
+        return false;
+    }
+
+}
 //function Email(button) {
 
 //    var custNumber = button.getAttribute("custInvoice");

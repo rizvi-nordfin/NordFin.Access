@@ -148,5 +148,35 @@ namespace Nordfin.workflow.DataAccessLayer
 
             return ds;
         }
+
+        IList<Notes> IInvoicesBusinessDataLayer.InsertInvoiceInfo(Notes objNotes)
+        {
+            DBInitialize("usp_setInsertNotes");
+            DatabaseName.AddInParameter(DBBaseCommand, "@NotesText", System.Data.DbType.String, objNotes.NoteText);
+            DatabaseName.AddInParameter(DBBaseCommand, "@InvoiceID", System.Data.DbType.Int32, Convert.ToInt32(objNotes.InvoiceID));
+            DatabaseName.AddInParameter(DBBaseCommand, "@CustomerID", System.Data.DbType.String, objNotes.CustomerID);
+            DatabaseName.AddInParameter(DBBaseCommand, "@UserID", System.Data.DbType.Int32, Convert.ToInt32(objNotes.UserID));
+            DatabaseName.AddInParameter(DBBaseCommand, "@ClientID", System.Data.DbType.Int32, Convert.ToInt32(objNotes.ClientID));
+            DatabaseName.AddInParameter(DBBaseCommand, "@UserName", System.Data.DbType.String, objNotes.UserName);
+            DatabaseName.AddInParameter(DBBaseCommand, "@InvoiceNum", System.Data.DbType.String, objNotes.InvoiceNumber);
+           
+
+            DataSet ds = DatabaseName.ExecuteDataSet(DBBaseCommand);
+
+            IList<Notes> objlstNotes = new List<Notes>();
+            if (ds.Tables.Count > 0 && ds.Tables[0].Rows.Count > 0)
+            {
+                objlstNotes = ds.Tables[0].AsEnumerable().Select(dataRow => new Notes
+                {
+                    InvoiceNumber = dataRow.Field<string>("InvoiceNumber"),
+                    NoteType = dataRow.Field<string>("NoteType"),
+                    NoteDate = Convert.ToDateTime(dataRow.Field<string>("NoteDate")).ToString("yyyy-MM-dd HH:mm"),
+                    UserName = dataRow.Field<string>("UserName"),
+                    NoteText = dataRow.Field<string>("NoteText")
+
+                }).ToList();
+            }
+            return objlstNotes;
+        }
     }
 }

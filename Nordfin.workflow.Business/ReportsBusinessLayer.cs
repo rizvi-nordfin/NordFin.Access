@@ -35,5 +35,10 @@ namespace Nordfin.workflow.Business
             return objReportlist.GetContestedReport(ClientID);
         }
 
+        DataSet IReportsPresentationBusinessLayer.GetStoppedReport(string ClientID)
+        {
+            return objReportlist.GetStoppedReport(ClientID);
+        }
+
     }
 }

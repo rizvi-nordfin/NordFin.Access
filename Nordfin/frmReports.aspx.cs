@@ -219,5 +219,11 @@ namespace Nordfin
             IReportsPresentationBusinessLayer objReportsLayer = new ReportsBusinessLayer();
             ExporttoExcel(objReportsLayer.GetContestedReport(ClientSession.ClientID), "ContestedList");
         }
+
+        protected void btnStopped_Click(object sender, EventArgs e)
+        {
+            IReportsPresentationBusinessLayer objReportsLayer = new ReportsBusinessLayer();
+            ExporttoExcel(objReportsLayer.GetStoppedReport(ClientSession.ClientID), "StoppedList");
+        }
     }
 }
