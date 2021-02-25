@@ -202,12 +202,10 @@ namespace Nordfin
                     grdCustomer.DataSource = new List<string>();
                     grdCustomer.DataBind();
                 }
-
-                if (ClientSession.AllowManualInvoice)
-                {
-                    ScriptManager.RegisterStartupScript(this, this.GetType(), "showManualInvoiceButton", "$('#divManualInvoiceRow').show(); $('#divManualInvoice').show();", true);
-                }
-
+            }
+            if (ClientSession.AllowManualInvoice)
+            {
+                ScriptManager.RegisterStartupScript(this, this.GetType(), "showManualInvoiceButton", "$('#divManualInvoiceRow').show(); $('#divManualInvoice').show();", true);
             }
             ScriptManager.RegisterStartupScript(UpdatePanel1, UpdatePanel1.GetType(), "CreateControl", "CreateControl();", true);
         }
@@ -663,20 +661,20 @@ namespace Nordfin
 
         protected void btnNotes_Click(object sender, EventArgs e)
         {
-            Notes objNotes = new Notes();
-            objNotes.InvoiceID =Convert.ToInt32(cboInvoiceNumber.SelectedItem.Value);
-            objNotes.InvoiceNumber = cboInvoiceNumber.SelectedItem.Text;
-            objNotes.CustomerID = lblCustomerNumber.Text;
-            objNotes.UserID = Convert.ToInt32(ClientSession.UserID);
-            objNotes.ClientID = Convert.ToInt32(ClientSession.ClientID);
-            objNotes.UserName = ClientSession.UserName;
-            objNotes.NoteText = txtNotes.Text;
-            IPaymentInformationPresentationBusinessLayer objPresentationInfoLayer = new PaymentInformationBusinessLayer();
+            Notes objNotes = new Notes
+            {
+                InvoiceID = Convert.ToInt32(cboInvoiceNumber.SelectedItem.Value),
+                InvoiceNumber = cboInvoiceNumber.SelectedItem.Text,
+                CustomerID = lblCustomerNumber.Text,
+                UserID = Convert.ToInt32(ClientSession.UserID),
+                ClientID = Convert.ToInt32(ClientSession.ClientID),
+                UserName = ClientSession.UserName,
+                NoteText = txtNotes.Text
+            };
+
             IInvoicesPresentationBusinessLayer objInvoicesLayer = new InvoicesBusinessLayer();
        
             var objNotesInformation = objInvoicesLayer.InsertInvoiceInfo(objNotes);
-
-            string jsonResult = new JavaScriptSerializer().Serialize(objNotesInformation);
 
             grdNotes.DataSource = objNotesInformation;
             grdNotes.DataBind();
