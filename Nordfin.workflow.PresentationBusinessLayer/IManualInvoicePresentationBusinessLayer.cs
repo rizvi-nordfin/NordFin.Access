@@ -1,4 +1,5 @@
 ﻿using Nordfin.workflow.Entity;
+using System.Collections.Generic;
 
 namespace Nordfin.workflow.PresentationBusinessLayer
 {
@@ -13,5 +14,9 @@ namespace Nordfin.workflow.PresentationBusinessLayer
         bool ImportManualInvoice(string standardXml);
 
         Client GetClientPrintDetail(int clientId);
+
+        List<TransformationMapping> GetTransformationMappings(int clientId);
+
+        List<TransformationHeader> GetTransformationHeaders(int clientId);
     }
 }

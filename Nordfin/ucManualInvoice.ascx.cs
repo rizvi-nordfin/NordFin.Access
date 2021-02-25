@@ -105,6 +105,9 @@ namespace Nordfin
         {
             try
             {
+                var client = businessLayerObj.GetClientPrintDetail(Convert.ToInt32(ClientSession.ClientID));
+                var transformationMappings = businessLayerObj.GetTransformationMappings(client.ClientId);
+                var transformationHeaders = businessLayerObj.GetTransformationHeaders(client.ClientId);
                 var tempTable = (DataTable)ViewState["gridData"];
                 if (tempTable.Rows.Count == 0)
                 {
@@ -112,7 +115,7 @@ namespace Nordfin
                     ScriptManager.RegisterStartupScript(this, GetType(), "Pop", "showErrorModal('" + errorMessage + "');", true);
                     return;
                 }
-                var invoiceFile = new InvoiceFile();
+                
                 invoiceNumber = lblInvoiceNumber.Text?.Trim();
                 hdnInvoiceNumber.Value = invoiceNumber;
                 fileName = $"ManualInv_FA_" + ClientSession.ClientName.Split(' ')[0] + "_" + invoiceNumber + ".xml";
@@ -151,8 +154,6 @@ namespace Nordfin
                 var invoiceRows = new List<InvoiceRow>();
                 var rows = tempTable?.AsEnumerable().ToList();
                 int id = 1;
-                var firstDayOfMonth = new DateTime(DateTime.Today.Year, DateTime.Today.Month, 1);
-                var lastDayOfMonth = firstDayOfMonth.AddMonths(1).AddDays(-1);
                 foreach (var item in rows)
                 {
                     var invoiceRow = new InvoiceRow
@@ -177,16 +178,9 @@ namespace Nordfin
                     Invoice = invoice,
                     Customer = customer,
                     InvoiceRows = invoiceRows,
-                    Print = new Print
-                    {
-                        
-                    }
                 };
-                var client = businessLayerObj.GetClientPrintDetail(Convert.ToInt32(ClientSession.ClientID));
 
-                invoiceFile.Client = client;
-                invoiceFile.Invoices.Add(inv);
-
+                var invoiceFile = Utilities.ConstructInvoiceFile(inv, client, transformationMappings, transformationHeaders);
                 standardFile = GenerateStandardXml(invoiceFile);
                 ViewState["standardFile"] = standardFile;
 
@@ -194,13 +188,12 @@ namespace Nordfin
                 var plainTextBytes = Encoding.UTF8.GetBytes(standardFile);
                 var base64Xml = Convert.ToBase64String(plainTextBytes);
                 string connString = ConfigurationManager.ConnectionStrings["NordfinConnec"].ToString();
-                var x = new ManualInvoiceLayout.Input.Xml("TestingProd", null, null);
+                var x = new ManualInvoiceLayout.Input.Xml("TestingProd", null, null, null);
                 var base64Pdf = x.ReadFile(base64Xml);
                 ViewState["base64Pdf"] = base64Pdf;
                 ScriptManager.RegisterStartupScript(Page, Page.GetType(), "Pop", "showPDFViewer('" + base64Pdf + "');", true);
             }
-
-            catch(Exception ex)
+            catch (Exception ex)
             {
                 ShowErrorDialog("Error while creating invoice PDF. Try Again!");
                 return;

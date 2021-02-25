@@ -76,5 +76,28 @@ namespace Nordfin.workflow.DataAccessLayer
 
             return client;
         }
+        
+        public List<TransformationMapping> GetTransformationMappings(int clientId)
+        {
+            var mappings = new List<TransformationMapping>();
+            using (SqlConnection connection = new SqlConnection(connectionString))
+            {
+                mappings = connection.Query<TransformationMapping>("SELECT TM.* FROM TransformationMappings TM INNER JOIN TransformationFolders TF ON TM.MappingId = TF.MappingId WHERE ClientID = @ClientId AND TM.ManualInvoiceTag IS NOT NULL", new { clientId }).ToList();
+            }
+
+            return mappings;
+        }
+
+
+        public List<TransformationHeader> GetTransformationHeaders(int clientId)
+        {
+            var headers = new List<TransformationHeader>();
+            using (SqlConnection connection = new SqlConnection(connectionString))
+            {
+                headers = connection.Query<TransformationHeader>("SELECT TH.* FROM TransformationHeader TH INNER JOIN TransformationFolders TF ON TH.MappingId = TF.MappingId  WHERE ClientID = @ClientId", new { clientId }).ToList();
+            }
+
+            return headers;
+        }
     }
 }

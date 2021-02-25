@@ -170,5 +170,24 @@
                 return double.Parse(InvoiceVATAmount, System.Globalization.CultureInfo.InvariantCulture);
             }
         }
+
+        [XmlIgnore]
+        public double AmountExclVat
+        {
+            get
+            {
+                return Amount - VatAmount;
+            }
+        }
+
+        [XmlIgnore]
+        public string InvoiceDueDateFinnish
+        {
+            get
+            {
+                DateTime.TryParse(DueDate, out DateTime dueDate);
+                return dueDate.ToString("dd.MM.yyyy");
+            }
+        }
     }
 }

@@ -63,6 +63,8 @@
 
         public string ClientPrintName { get; set; }
 
+        public string Department { get; set; }
+
         [XmlIgnore]
         public string FreeText { get; set; }
     }
