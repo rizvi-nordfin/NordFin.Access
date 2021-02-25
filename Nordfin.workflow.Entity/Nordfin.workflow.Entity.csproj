@@ -90,7 +90,7 @@
     <Compile Include="TelsonGroup.cs" />
     <Compile Include="Transaction.cs" />
     <Compile Include="TransformationHeader.cs" />
-    <Compile Include="TransformationMapping.cs" />
+    <Compile Include="ManualInvoiceMapping.cs" />
     <Compile Include="UserChartData.cs" />
     <Compile Include="Users.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

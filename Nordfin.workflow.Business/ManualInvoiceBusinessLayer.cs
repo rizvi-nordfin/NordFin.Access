@@ -35,7 +35,7 @@ namespace Nordfin.workflow.BusinessLayer
             return objManualInvoice.GetClientPrintDetail(clientId);
         }
 
-        public List<TransformationMapping> GetTransformationMappings(int clientId)
+        public List<ManualInvoiceMapping> GetTransformationMappings(int clientId)
         {
             return objManualInvoice.GetTransformationMappings(clientId);
         }

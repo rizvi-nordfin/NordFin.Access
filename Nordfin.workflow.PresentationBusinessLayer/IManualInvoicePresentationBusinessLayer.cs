@@ -15,7 +15,7 @@ namespace Nordfin.workflow.PresentationBusinessLayer
 
         Client GetClientPrintDetail(int clientId);
 
-        List<TransformationMapping> GetTransformationMappings(int clientId);
+        List<ManualInvoiceMapping> GetTransformationMappings(int clientId);
 
         List<TransformationHeader> GetTransformationHeaders(int clientId);
     }

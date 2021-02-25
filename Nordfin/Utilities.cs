@@ -215,7 +215,7 @@ namespace Nordfin
             return headerRow;
         }
 
-        public static InvoiceFile ConstructInvoiceFile(Inv invoice, Client client, List<TransformationMapping> transformationMappings, List<TransformationHeader> transformationHeaders)
+        public static InvoiceFile ConstructInvoiceFile(Inv invoice, Client client, List<ManualInvoiceMapping> manualInvoiceMappings, List<TransformationHeader> transformationHeaders)
         {
             var invoiceFile = new InvoiceFile();
             var invoiceText = new InvoiceText();
@@ -224,9 +224,9 @@ namespace Nordfin
             invoiceFile.Client = client;
             var jsonString = Newtonsoft.Json.JsonConvert.SerializeObject(invoiceFile);
             var jsonTokens = JToken.Parse(jsonString);
-            var invoiceTextMapping = transformationMappings.Where(h => h.SectionName == "InvoiceText").Select(h => h);
-            var invoiceDetailMapping = transformationMappings.Where(h => h.SectionName == "InvoiceDetail").Select(h => h);
-            var parsing = transformationMappings.FirstOrDefault(h => h.SectionName == "Parsing" && h.ManualInvoiceTag == "UseInvoiceRow")?.InputTag;
+            var invoiceTextMapping = manualInvoiceMappings.Where(h => h.SectionName == "InvoiceText").Select(h => h);
+            var invoiceDetailMapping = manualInvoiceMappings.Where(h => h.SectionName == "InvoiceDetail").Select(h => h);
+            var parsing = manualInvoiceMappings.FirstOrDefault(h => h.SectionName == "Parsing" && h.MappingValue == "UseInvoiceRow")?.OutputValue;
             bool.TryParse(parsing, out bool useInvoiceRow);
 
             if(invoiceDetailMapping.Any())
@@ -250,7 +250,7 @@ namespace Nordfin
                     var index = 1;
                     foreach (var item in invoiceTextMapping)
                     {
-                        var manualTag = item.ManualInvoiceTag.Replace("[x]", "[" + rowId.ToString() + "]");
+                        var manualTag = item.MappingValue.Replace("[x]", "[" + rowId.ToString() + "]");
                         var tokenValue = jsonTokens.SelectToken(manualTag)?.ToString();
                         var value = tokenValue ?? item.AdditionalText;
                         row.Col.Add(ConstructColumn(value, index.ToString()));
@@ -270,14 +270,14 @@ namespace Nordfin
             return invoiceFile;
         }
 
-        private static List<Row> CreateTransformationRows(JToken jToken, IEnumerable<TransformationMapping> mappings)
+        private static List<Row> CreateTransformationRows(JToken jToken, IEnumerable<ManualInvoiceMapping> mappings)
         {
             var rowList = new List<Row>();
             foreach (var item in mappings)
             {
-                var row = ConstructRow();
-                row.Col.Add(ConstructColumn(item.InputTag, "1"));
-                var value = jToken.SelectToken(item.ManualInvoiceTag)?.ToString() + " " + item.AdditionalText;
+                var row = item.MappingValue == "Header" ? ConstructRow("Header") : ConstructRow();
+                row.Col.Add(ConstructColumn(item.OutputValue, "1"));
+                var value = jToken.SelectToken(item.MappingValue)?.ToString() + " " + item.AdditionalText;
                 row.Col.Add(ConstructColumn(value, "2"));
                 rowList.Add(row);
             }

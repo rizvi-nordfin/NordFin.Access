@@ -77,12 +77,12 @@ namespace Nordfin.workflow.DataAccessLayer
             return client;
         }
         
-        public List<TransformationMapping> GetTransformationMappings(int clientId)
+        public List<ManualInvoiceMapping> GetTransformationMappings(int clientId)
         {
-            var mappings = new List<TransformationMapping>();
+            var mappings = new List<ManualInvoiceMapping>();
             using (SqlConnection connection = new SqlConnection(connectionString))
             {
-                mappings = connection.Query<TransformationMapping>("SELECT TM.* FROM TransformationMappings TM INNER JOIN TransformationFolders TF ON TM.MappingId = TF.MappingId WHERE ClientID = @ClientId AND TM.ManualInvoiceTag IS NOT NULL", new { clientId }).ToList();
+                mappings = connection.Query<ManualInvoiceMapping>("SELECT M.* FROM ManualInvoiceMapping M INNER JOIN TransformationFolders TF ON M.MappingId = TF.MappingId WHERE ClientID = @ClientId", new { clientId }).ToList();
             }
 
             return mappings;
