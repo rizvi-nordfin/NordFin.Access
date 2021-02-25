@@ -549,4 +549,11 @@ input[type=checkbox] {
     color: #fff;
 }
 
- 
+
+option {
+    font-size: 1rem;
+    font-weight: normal;
+    font-family: 'Source Sans Pro', sans-serif;
+   
+   
+}

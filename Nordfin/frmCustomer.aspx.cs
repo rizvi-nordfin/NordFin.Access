@@ -50,7 +50,15 @@ namespace Nordfin
                     Session["CustomerGrid"] = ds.Tables[0];
                     grdCustomer.DataSource = ds;
                     grdCustomer.DataBind();
-
+                   
+                    cboInvoiceNumber.DataSource = ds.Tables[0] ;
+                    cboInvoiceNumber.DataTextField = "Invoicenumber";
+                    cboInvoiceNumber.DataValueField = "InvoiceID";
+                    cboInvoiceNumber.DataTextField = "Invoicenumber";
+                   
+                    cboInvoiceNumber.DataBind();
+                    cboInvoiceNumber.Items.Insert(0, new ListItem(String.Empty, String.Empty));
+                    cboInvoiceNumber.SelectedIndex = 0;
                     if (ds.Tables[0].Rows.Count > 0)
                     {
                         lblSumAmount.Text = string.Format("{0:#,0.00}", (ds.Tables[0].AsEnumerable().Sum(r => r.Field<decimal>("Invoiceamount"))));
@@ -194,12 +202,10 @@ namespace Nordfin
                     grdCustomer.DataSource = new List<string>();
                     grdCustomer.DataBind();
                 }
-
-                if (ClientSession.AllowManualInvoice)
-                {
-                    ScriptManager.RegisterStartupScript(this, this.GetType(), "showManualInvoiceButton", "$('#divManualInvoiceRow').show(); $('#divManualInvoice').show();", true);
-                }
-
+            }
+            if (ClientSession.AllowManualInvoice)
+            {
+                ScriptManager.RegisterStartupScript(this, this.GetType(), "showManualInvoiceButton", "$('#divManualInvoiceRow').show(); $('#divManualInvoice').show();", true);
             }
             ScriptManager.RegisterStartupScript(UpdatePanel1, UpdatePanel1.GetType(), "CreateControl", "CreateControl();", true);
         }
@@ -651,6 +657,29 @@ namespace Nordfin
             }
 
             base.Render(writer);
+        }
+
+        protected void btnNotes_Click(object sender, EventArgs e)
+        {
+            Notes objNotes = new Notes
+            {
+                InvoiceID = Convert.ToInt32(cboInvoiceNumber.SelectedItem.Value),
+                InvoiceNumber = cboInvoiceNumber.SelectedItem.Text,
+                CustomerID = lblCustomerNumber.Text,
+                UserID = Convert.ToInt32(ClientSession.UserID),
+                ClientID = Convert.ToInt32(ClientSession.ClientID),
+                UserName = ClientSession.UserName,
+                NoteText = txtNotes.Text
+            };
+
+            IInvoicesPresentationBusinessLayer objInvoicesLayer = new InvoicesBusinessLayer();
+       
+            var objNotesInformation = objInvoicesLayer.InsertInvoiceInfo(objNotes);
+
+            grdNotes.DataSource = objNotesInformation;
+            grdNotes.DataBind();
+            cboInvoiceNumber.SelectedIndex = 0;
+            txtNotes.Text = "";
         }
     }
 }

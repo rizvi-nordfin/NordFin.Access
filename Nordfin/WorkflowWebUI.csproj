@@ -328,6 +328,7 @@
     <Content Include="Scripts\font-Awesome.js" />
     <Content Include="Scripts\jquery-1.11.1.min.js" />
     <Content Include="libman.json" />
+    <None Include="Properties\PublishProfiles\FTPProfile-DevStage.pubxml" />
     <None Include="Properties\PublishProfiles\FTPProfileProd.pubxml" />
     <None Include="Properties\PublishProfiles\FTPProfileTest.pubxml" />
     <None Include="Scripts\jquery-3.4.1.intellisense.js" />
