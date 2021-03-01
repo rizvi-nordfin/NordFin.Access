@@ -610,7 +610,7 @@
                                             </asp:Panel>
                                             <asp:Panel runat="server" ID="pnlDC">
                                                 <asp:CheckBox ID="chkDC" AutoPostBack="false" Checked="true" Style="margin-top: 5px;" CssClass="checkbox"
-                                                    runat="server" Text="Debt Collection Letter"></asp:CheckBox>
+                                                    runat="server" Text="Debt Collection"></asp:CheckBox>
                                             </asp:Panel>
                                         </div>
 
