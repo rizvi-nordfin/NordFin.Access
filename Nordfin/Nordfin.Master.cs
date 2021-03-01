@@ -42,6 +42,7 @@ namespace Nordfin
                     ClientSession.ClientName = txtClientName.Text;
                     ClientSession.ClientLand = objClientList.Where(a => a.ClientID == Convert.ToInt32(ClientSession.ClientID)).ToList()[0].ClientLand;
                     ClientSession.AllowManualInvoice = objClientList.Where(a => a.ClientID == Convert.ToInt32(ClientSession.ClientID)).ToList()[0].AllowManualInvoice;
+                    ClientSession.ClientArchive= objClientList.Where(a => a.ClientID == Convert.ToInt32(ClientSession.ClientID)).ToList()[0].Archive;
                 }
                 if (BatchValues.ToUpper() == "FALSE")
                 {

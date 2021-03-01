@@ -10,6 +10,8 @@ namespace Nordfin.workflow.Entity
         public int Admin { get; set; }
         public int UserID { get; set; }
         public string LabelUser { get; set; }
+   
+
 
     }
 }

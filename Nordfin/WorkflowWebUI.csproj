@@ -69,6 +69,9 @@
     <Reference Include="DocumentFormat.OpenXml, Version=2.7.2.0, Culture=neutral, PublicKeyToken=8fb06cb64d019a17, processorArchitecture=MSIL">
       <HintPath>..\packages\DocumentFormat.OpenXml.2.7.2\lib\net46\DocumentFormat.OpenXml.dll</HintPath>
     </Reference>
+    <Reference Include="DotNetZip, Version=1.15.0.0, Culture=neutral, PublicKeyToken=6583c7c814667745, processorArchitecture=MSIL">
+      <HintPath>..\packages\DotNetZip.1.15.0\lib\net40\DotNetZip.dll</HintPath>
+    </Reference>
     <Reference Include="EPPlus, Version=5.4.2.0, Culture=neutral, PublicKeyToken=ea159fdaa78159a1, processorArchitecture=MSIL">
       <HintPath>..\packages\EPPlus.5.4.2\lib\net45\EPPlus.dll</HintPath>
     </Reference>
@@ -253,6 +256,7 @@
     <Content Include="frmInvoiceBatches.aspx" />
     <Content Include="frmInvoices.aspx" />
     <Content Include="frmLogin.aspx" />
+    <Content Include="frmMultiDownlaod.aspx" />
     <Content Include="frmPdfMultiDownload.aspx" />
     <Content Include="frmReports.aspx" />
     <Content Include="frmRisk.aspx" />
@@ -369,6 +373,7 @@
     <Content Include="Scripts\jsInvoices.js" />
     <Content Include="Scripts\jsLogin.js" />
     <Content Include="Scripts\jsManualInvoice.js" />
+    <Content Include="Scripts\jsMultiDownload.js" />
     <Content Include="Scripts\jsPaymentInformation.js" />
     <Content Include="Scripts\jsReports.js" />
     <Content Include="Scripts\jsTelsonGroup.js" />
@@ -477,6 +482,13 @@
     </Compile>
     <Compile Include="frmLogin.aspx.designer.cs">
       <DependentUpon>frmLogin.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="frmMultiDownlaod.aspx.cs">
+      <DependentUpon>frmMultiDownlaod.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="frmMultiDownlaod.aspx.designer.cs">
+      <DependentUpon>frmMultiDownlaod.aspx</DependentUpon>
     </Compile>
     <Compile Include="frmPdfMultiDownload.aspx.cs">
       <DependentUpon>frmPdfMultiDownload.aspx</DependentUpon>

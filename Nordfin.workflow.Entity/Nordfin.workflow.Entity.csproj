@@ -60,6 +60,7 @@
     <Compile Include="Demographics.cs" />
     <Compile Include="Fees.cs" />
     <Compile Include="FessDetails.cs" />
+    <Compile Include="FilesDownload.cs" />
     <Compile Include="FTPFileDetails.cs" />
     <Compile Include="FTPFolderDetails.cs" />
     <Compile Include="Interest.cs" />

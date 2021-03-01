@@ -1,8 +1,5 @@
 ﻿
-var jq13 = jQuery.noConflict();
 var $ = jQuery.noConflict();
-
-
 Array.prototype.contains = function (v) {
     for (var i = 0; i < this.length; i++) {
         if (this[i] === v) return true;
@@ -222,10 +219,10 @@ function AllowNumbersPlus(evt) {
     return true;
 }
 
-function ExportExcel() {
-    $('#mdlExportDetail').modal({ backdrop: 'static', keyboard: false }, 'show');
-    return false;
-}
+//function ExportExcel() {
+//    $('#mdlExportDetail').modal({ backdrop: 'static', keyboard: false }, 'show');
+//    return false;
+//}
 function InvoiceInfo() {
 
     Gridviewunclick();
@@ -442,3 +439,9 @@ function ExportClick(IsEmail, pdfArchive, bSent) {
 
 
 
+function ExportExcel() {
+    document.getElementById("NordfinContentHolder_btnOpenModal").click();
+
+    document.getElementById("NordfinContentHolder_iframeModal").src = "frmMultiDownlaod.aspx";
+    return false;
+}
