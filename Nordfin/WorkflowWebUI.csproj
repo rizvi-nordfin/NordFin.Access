@@ -381,6 +381,7 @@
     <Content Include="Styles\Batches.css" />
     <Content Include="Styles\bootstrap.min.css" />
     <Content Include="Styles\AccountSettings.css" />
+    <Content Include="Styles\ContractsOverview.css" />
     <Content Include="Styles\Customer.css" />
     <Content Include="Styles\Dashboard.css" />
     <Content Include="Styles\datepicker.css" />

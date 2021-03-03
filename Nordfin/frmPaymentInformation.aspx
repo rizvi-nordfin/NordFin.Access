@@ -450,7 +450,7 @@
                                     <asp:BoundField DataField="NoteType" HeaderStyle-CssClass="Notesalign" ItemStyle-CssClass="Notesalign" HeaderText="Type" SortExpression="NoteType" />
                                     <asp:BoundField DataField="NoteDate" HeaderStyle-CssClass="Notesalign" ItemStyle-CssClass="Notesalign" HeaderText="Date" SortExpression="NoteDate" />
                                     <asp:BoundField DataField="UserName" HeaderStyle-CssClass="Notesalign" ItemStyle-CssClass="Notesalign" HeaderText="User" SortExpression="UserName" />
-                                    <asp:BoundField DataField="NoteText" HeaderStyle-CssClass="Notesalign" ItemStyle-CssClass="Notesalign" HeaderText="Text" SortExpression="NoteText" />
+                                    <asp:BoundField DataField="NoteText" HeaderStyle-CssClass="Notesalign" ItemStyle-CssClass="Notesalign" HeaderText="Information" SortExpression="NoteText" />
                                 </Columns>
                                 <EmptyDataTemplate>No Record Available</EmptyDataTemplate>
                             </asp:GridView>

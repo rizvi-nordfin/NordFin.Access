@@ -438,6 +438,22 @@ function ExportClick(IsEmail, pdfArchive, bSent) {
 
 }
 
+function NotesPage() {
+
+    $('#mdlNotes').modal({ backdrop: 'static', keyboard: false }, 'show');
+
+    return false;
+}
+
+
+function maxLengthPaste(field, maxChars) {
+
+    if ((field.value.length + window.clipboardData.getData("Text").length) > maxChars) {
+        return false;
+    }
+
+}
+
 
 
 
