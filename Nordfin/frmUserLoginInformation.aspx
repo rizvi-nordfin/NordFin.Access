@@ -1,4 +1,4 @@
-﻿<%@ Page Language="C#" AutoEventWireup="true" MasterPageFile="~/Nordfin.Master" Title="NordfinCapital" CodeBehind="frmUserLoginInformation.aspx.cs" Inherits="Nordfin.frmUserLoginInformation" %>
+﻿<%@ Page Language="C#" AutoEventWireup="true" MasterPageFile="~/Nordfin.Master" Title="NFC ACCESS" CodeBehind="frmUserLoginInformation.aspx.cs" Inherits="Nordfin.frmUserLoginInformation" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="NordfinContentHolder" runat="server">
    
