@@ -65,7 +65,7 @@ namespace Nordfin
                 Response.ContentType = "application/zip";
                 Response.AddHeader("content-disposition", "attachment; filename=" + zipName);
                 zip.Save(Response.OutputStream);
-                Session["FileList"] = null;
+                
 
 
                 Response.End();

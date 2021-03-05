@@ -1,4 +1,4 @@
-﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="frmLogin.aspx.cs" Title="NordFinCaptital" Inherits="Nordfin.frmLogin" %>
+﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="frmLogin.aspx.cs" Title="NFC ACCESS" Inherits="Nordfin.frmLogin" %>
 
 <!DOCTYPE html>
 

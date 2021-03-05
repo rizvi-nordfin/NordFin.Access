@@ -3,8 +3,10 @@ using Nordfin.workflow.Entity;
 using Nordfin.workflow.PresentationBusinessLayer;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.IO;
 using System.Linq;
+using System.Threading;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
@@ -17,6 +19,10 @@ namespace Nordfin
         protected void Page_Load(object sender, EventArgs e)
         {
             ClearSession();
+
+            Thread thr = Thread.CurrentThread;
+
+            string Name = thr.Name;
             if (!IsPostBack)
             {
 

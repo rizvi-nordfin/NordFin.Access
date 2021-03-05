@@ -951,6 +951,9 @@ transition: .1s;
 .dropdownMenuAccounts table  tr td:first-child, .dropdownMenuAccounts table  tr th:first-child { display: none; }
 .dropdownMenuAccounts table  tr td:nth-child(3), .dropdownMenuAccounts table  tr th:nth-child(3) { display: none; }
 .dropdownMenuAccounts table  tr td:nth-child(4), .dropdownMenuAccounts table  tr th:nth-child(4) { display: none; }
+    .dropdownMenuAccounts table tr td:nth-child(5), .dropdownMenuAccounts table tr th:nth-child(4) {
+        display: none;
+    }
 .dropdownMenuAccounts table th { display: none; }
 
 .dropdownMenuAccounts table tr:nth-child(2) {
@@ -1483,6 +1486,14 @@ transition: .1s;
         width: 430px;
         height: 385px;
     }
+    .heightwidthMulti {
+        width: 100% !important;
+        height: 78% !important;
+    }
+    .flexnone
+    {
+        display:block;
+    }
 }
 
 
@@ -1640,3 +1651,17 @@ hr {
             color: #FFB100;
             text-decoration: none;
         }
+
+
+
+.heightwidth {
+    height: 90%;
+    width: 95%;
+}
+.heightwidthMulti {
+    height: 66%;
+    width: 35%;
+}
+@media screen and (max-width: 1700px) {
+   
+}

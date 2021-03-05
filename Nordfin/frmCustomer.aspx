@@ -9,7 +9,7 @@
     <script src="Scripts/jsManualInvoice.js?version=<%=ConfigurationManager.AppSettings["VersionConfiguration"].ToString() %>""></script>
     <script src="Scripts/jsCustomer.js?version=<%=ConfigurationManager.AppSettings["VersionConfiguration"].ToString() %>"></script>
     
-
+ 
     <div class="dashboardContainer">
         <div class="container-fluid">
             <div class="dashboardHeader">
@@ -414,7 +414,7 @@
                     <asp:Button ID="btnOpenModal" runat="server" Style="display: none;" />
                     <ModalWindow:ModalPopupExtender ID="mp1" runat="server" PopupControlID="pnlModal" BehaviorID="MPE" TargetControlID="btnOpenModal" CancelControlID="closeButton"></ModalWindow:ModalPopupExtender>
                     <asp:Panel ID="pnlModal" runat="server" CssClass="Popup" align="center" Style="display: none; overflow-x: hidden; overflow-y: hidden;">
-                        <iframe id="iframeModal" style="height: 72%; width: 50%; overflow-x: hidden; overflow-y: hidden;" runat="server"></iframe>
+                        <iframe id="iframeModal" class="heightwidthMulti" style=" overflow-x: hidden; overflow-y: hidden;" runat="server"></iframe>
                         <asp:Button ID="closeButton" runat="server" Style="display: none;" />
                     </asp:Panel>
 

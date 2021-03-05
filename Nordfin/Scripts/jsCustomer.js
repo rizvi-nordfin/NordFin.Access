@@ -40,7 +40,7 @@ function addButton() {
     
     var element = document.createElement("input");
     element.type = 'button';
-    element.value = 'Download';
+    element.value = 'Export';
     element.name = 'btncheck';
     element.onclick = function () {
             document.getElementById("NordfinContentHolder_btnExportreport").OnClientClick = ExportExcel();
@@ -142,6 +142,7 @@ function LinkClick(linkValues) {
     customerJson = encodeURIComponent(customerJson);
     document.getElementById("NordfinContentHolder_btnOpenModal").click();
 
+    document.getElementById("NordfinContentHolder_iframeModal").className = "heightwidth";
     document.getElementById("NordfinContentHolder_iframeModal").src = "frmPaymentInformation.aspx?InvoiceData=" + paramValues + "&CombineInvoice=" + combineInvoice + "&CustomerNumber=" + custInvoice+ "&CollectionStatus=" + collectionStatus + "&Remain=" + remainAmt + "&OverPaid=" + overpaidAmt + "&FileName=" + sFileName + "&ClientName=" + sClientName + "&Customer=" + customerJson + " ";
 
 
@@ -441,7 +442,7 @@ function ExportClick(IsEmail, pdfArchive, bSent) {
 
 function ExportExcel() {
     document.getElementById("NordfinContentHolder_btnOpenModal").click();
-
+    document.getElementById("NordfinContentHolder_iframeModal").className = "heightwidthMulti";
     document.getElementById("NordfinContentHolder_iframeModal").src = "frmMultiDownlaod.aspx";
     return false;
 }

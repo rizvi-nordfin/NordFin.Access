@@ -560,7 +560,7 @@ input[type=checkbox] {
 
 
 input[type="checkbox"]:checked {
-    color: blue;
+    color: red;
     background-color: yellow;
 }
 
@@ -620,4 +620,27 @@ input[type="checkbox"]:checked {
 
 .invoicesDownloadButton {
     width: 75px;
+}
+
+/*input[type='checkbox'] {
+    width: 10px !important;
+    height: 10px !important;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    -o-appearance: none;
+    appearance: none;
+    outline: 2px solid lightblue;
+    background-color:red;
+    box-shadow: none;
+    font-size: 2em;
+    content: '✔';
+   
+}
+
+*/
+
+input[type="checkbox" i]{
+
+    background-color:red !important;
+
 }

@@ -26,3 +26,12 @@ function PdfDownloadMsgNone() {
     $("#PnlDownloadMsg").css("display", "none");
     $("#spnDownloadMsg").text("");
 }
+
+function ProcessingModal() {
+    $('.featureNotAvailablePnlBG').toggleClass('hidden');
+}
+
+function MailClose() {
+    $(".modal-backdrop").remove();
+}
+
