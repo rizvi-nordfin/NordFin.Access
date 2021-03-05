@@ -124,7 +124,7 @@
 
                     <div class="modal-footer flexnone" style="background-color: #3a475d; padding: 0px;">
 
-                        <asp:Panel runat="server" ID="pnlSelectAll" CssClass="text-left" Style="margin: auto; margin-left: 20px;">
+                        <asp:Panel runat="server" ID="pnlSelectAll" CssClass="text-left marginleft" Style="margin: auto; margin-left: 10px;">
                             <asp:CheckBox ID="chkSelectAll" AutoPostBack="true" Checked="false" Style="margin-top: 5px;" OnCheckedChanged="chkSelectAll_CheckedChanged" CssClass="checkbox"
                                 runat="server" Text="Select All"></asp:CheckBox>
 
@@ -132,8 +132,8 @@
 
 
                         </asp:Panel>
-                        <div class="row">
-                            <div class="col-md-12">
+                        <div class="row text-right">
+                            <div class="col-md-12" style="margin-left:-42px;">
                                 <asp:CheckBox ID="chkExport" AutoPostBack="false" Checked="false" Style="margin-top: 5px;" CssClass="checkbox"
                                     runat="server" Text="xls"></asp:CheckBox>
                             </div>
@@ -144,7 +144,8 @@
 
                         </div>
                         <asp:Button runat="server" CssClass="modalbutton" ID="btnMultiDownload" Text="Download" OnClientClick="ProcessingModal();" OnClick="btnMultiDownload_Click"></asp:Button>
-                        <asp:Button runat="server" CssClass="modalbutton" ID="btnMultiMail" Text="EMail" OnClick="btnMultiMail_Click"></asp:Button>
+                        <asp:Button runat="server" CssClass="modalbutton" ID="btnMultiMail" Text="EMail" Style="margin-left: -2px; margin-right: 6px;"
+                            OnClick="btnMultiMail_Click"></asp:Button>
 
                     </div>
 

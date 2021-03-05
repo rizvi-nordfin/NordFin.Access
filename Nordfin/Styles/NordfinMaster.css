@@ -1490,10 +1490,7 @@ transition: .1s;
         width: 100% !important;
         height: 78% !important;
     }
-    .flexnone
-    {
-        display:block;
-    }
+   
 }
 
 
@@ -1661,7 +1658,68 @@ hr {
 .heightwidthMulti {
     height: 66%;
     width: 35%;
+    
 }
-@media screen and (max-width: 1700px) {
+.flexnone {
+    display: flex !important;
+}
+@media (min-width:1430px) and (max-width:1540px) {
+    .heightwidthMulti {
+        height: 66% !important;
+
+        width: 38% !important;
+      
+    }
+    .flexnone {
+        display: flex !important;
+    }
    
+}
+@media (min-width:1380px) and (max-width:1540px) {
+    .heightwidthMulti {
+        height: 66% !important;
+        width: 40% !important;
+    }
+    .flexnone {
+        display: flex !important;
+    }
+}
+@media (min-width:1220px) and (max-width:1380px) {
+    .heightwidthMulti {
+        height: 66%;
+        width: 45%;
+    }
+    .flexnone {
+        display: flex !important;
+    }
+
+}
+@media (min-width:1024px) and (max-width:1220px) {
+    .heightwidthMulti {
+        height: 66%;
+        width: 55%;
+    }
+    .flexnone {
+        display: flex !important;
+    }
+}
+@media (min-width:700px)  and (max-width:1024px) {
+    .heightwidthMulti {
+        height: 66%;
+        width: 65%;
+    }
+    .flexnone {
+        display: flex !important;
+    }
+}
+
+@media all and (max-width:700px) {
+    .heightwidthMulti {
+        height: 78%;
+        width: 100%;
+    }
+    .marginleft
+    {
+        margin-left:3px !important;
+    }
 }
