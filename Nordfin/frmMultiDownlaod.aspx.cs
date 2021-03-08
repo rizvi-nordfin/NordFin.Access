@@ -64,67 +64,95 @@ namespace Nordfin
         {
             string InvoiceNum = (string)Session["custNum"];
             List<FilesDownload> fileList = (List<FilesDownload>)Session["MailList"];
-            FTPFileProcess fileProcess = new FTPFileProcess();
-        
-          
-
-               
-
-            string sEmail = System.Configuration.ConfigurationManager.AppSettings["Email"].ToString();
-            string sEmailPassword = System.Configuration.ConfigurationManager.AppSettings["EmailPassword"].ToString();
-            string sEmailPort = System.Configuration.ConfigurationManager.AppSettings["EmailPort"].ToString();
-            using (SmtpClient SmtpServer = new SmtpClient("in-v3.mailjet.com", 587))
+            if (fileList.Count > 0)
             {
-                SmtpServer.Credentials = new NetworkCredential("1867ce5eecca8ce8ab72cda1fefe8d47", "3e70a81b01b2926189dd8875294b3c13");
-
-                using (System.Net.Mail.MailMessage mail = new System.Net.Mail.MailMessage())
+                try
                 {
-                    mail.From = new MailAddress(sEmail, fileList[0].SenderName);
 
-                    mail.To.Add(fileList[0].ToMail);
+                    FTPFileProcess fileProcess = new FTPFileProcess();
 
-                    mail.Subject = fileList[0].EmailHeader;
 
-                    mail.Body = fileList[0].EmailBody.Replace("\n", "<br>");
-                    mail.IsBodyHtml = true;
-                    for (int i = 0; i < fileList.Count; i++)
+
+
+
+                    string sEmail = System.Configuration.ConfigurationManager.AppSettings["Email"].ToString();
+                    string sEmailPassword = System.Configuration.ConfigurationManager.AppSettings["EmailPassword"].ToString();
+                    string sEmailPort = System.Configuration.ConfigurationManager.AppSettings["EmailPort"].ToString();
+                    using (SmtpClient SmtpServer = new SmtpClient("in-v3.mailjet.com", 587))
                     {
-                        byte[] bytes = fileProcess.FileDownload(fileList[i].ClientName, fileList[i].FolderName, out string ResultFileName, fileList[i].ClientArchive);
-                        fileList[i].Bytes = bytes;
+                        SmtpServer.Credentials = new NetworkCredential("1867ce5eecca8ce8ab72cda1fefe8d47", "3e70a81b01b2926189dd8875294b3c13");
 
-                    }
-                    using (MemoryStream memoryStream = new MemoryStream())
-                    {
-                        using (ZipFile zip = new ZipFile())
+                        using (System.Net.Mail.MailMessage mail = new System.Net.Mail.MailMessage())
                         {
-                            zip.AlternateEncodingUsage = ZipOption.AsNecessary;
-                            zip.UseZip64WhenSaving = Zip64Option.AsNecessary;// ZipOption.AsNecessary;
+                            mail.From = new MailAddress(sEmail, fileList[0].SenderName);
 
+                            mail.To.Add(fileList[0].ToMail);
 
-                            foreach (FilesDownload file in fileList)
+                            mail.Subject = fileList[0].EmailHeader;
+
+                            mail.Body = fileList[0].EmailBody.Replace("\n", "<br>");
+                            mail.IsBodyHtml = true;
+                            for (int i = 0; i < fileList.Count; i++)
                             {
-                                if (file.Bytes.Length > 64)
-                                    zip.AddEntry(file.FileName, file.Bytes);
+                                byte[] bytes = fileProcess.FileDownload(fileList[i].ClientName, fileList[i].FolderName, out string ResultFileName, fileList[i].ClientArchive);
+                                fileList[i].Bytes = bytes;
+
                             }
-                            zip.Save(memoryStream);
+                            using (MemoryStream memoryStream = new MemoryStream())
+                            {
+                                using (ZipFile zip = new ZipFile())
+                                {
+                                    zip.AlternateEncodingUsage = ZipOption.AsNecessary;
+                                    zip.UseZip64WhenSaving = Zip64Option.AsNecessary;// ZipOption.AsNecessary;
+
+
+                                    foreach (FilesDownload file in fileList)
+                                    {
+                                        if (file.Bytes.Length > 64)
+                                            zip.AddEntry(file.FileName, file.Bytes);
+                                    }
+                                    zip.Save(memoryStream);
+                                }
+
+                                MemoryStream attachmentStream = new MemoryStream(memoryStream.ToArray());
+
+                                Attachment attachment = new Attachment(attachmentStream, "Invoices" + ".zip", MediaTypeNames.Application.Zip);
+                                mail.Attachments.Add(attachment);
+                            }
+                            SmtpServer.EnableSsl = true;
+                            SmtpServer.Send(mail);
                         }
 
-                        MemoryStream attachmentStream = new MemoryStream(memoryStream.ToArray());
+                        IInvoicesPresentationBusinessLayer objInvoicesLayer = new InvoicesBusinessLayer();
+                        AccessLog accessLog = new AccessLog();
+                        accessLog.ClientID = fileList[0].ClientID;
+                        accessLog.CustomerNumber = fileList[0].CustomerNumber;
+                        accessLog.UserID = fileList[0].UserID;
+                        accessLog.Comments = "<EMailDetails>" + string.Join(",", fileList.Select(a => a.InvoiceNumber.ToString())) + "</EMailDetails>" + "<Status>Success</Status>";
 
-                        Attachment attachment = new Attachment(attachmentStream, "Invoices" + ".zip", MediaTypeNames.Application.Zip);
-                        mail.Attachments.Add(attachment);
+
+                        int scustEmail = objInvoicesLayer.setEmailSentAccessLog(accessLog);
                     }
-                    SmtpServer.EnableSsl = true;
-                    SmtpServer.Send(mail);
                 }
+                catch
+                {
+                    IInvoicesPresentationBusinessLayer objInvoicesLayer = new InvoicesBusinessLayer();
+                    AccessLog accessLog = new AccessLog();
+                    accessLog.ClientID = fileList[0].ClientID;
+                    accessLog.CustomerNumber = fileList[0].CustomerNumber;
+                    accessLog.UserID = fileList[0].UserID;
+                    accessLog.Comments = "<EMailDetails>" + string.Join(",", fileList.Select(a => a.InvoiceNumber.ToString())) + "</EMailDetails>" + "<Status>Failure</Status>";
 
-              
+
+                    int scustEmail = objInvoicesLayer.setEmailSentAccessLog(accessLog);
+                }
+            }
                 //ClientScript.RegisterStartupScript(Page.GetType(),"alert", "<script language=javascript>alert('test');</script>");
 
 
 
 
-            }
+            
         }
         protected void btnMultiDownload_Click(object sender, EventArgs e)
         {
@@ -195,7 +223,7 @@ namespace Nordfin
                         string fileNameDownload = hdnFileName.Value + "_" + linkButton.Text + "_" + DateTime.Now.ToString("hhmmss")+i.ToString() + "_" + "inv" + "." + sFileExt;
                         fileList.Add(new FilesDownload() { ClientArchive=ClientSession.ClientArchive,EmailBody=txtEmailBody.Text,EmailHeader=txtEmailHeader.Text
                                                           ,ClientName= hdnClientName.Value,FolderName= subFolderName + "/" + sFileName,ToMail=txtCustEmail.Text,
-                                                          FileName= fileNameDownload,SenderName = ClientSession.ClientName
+                                                          FileName= fileNameDownload,SenderName = ClientSession.ClientName,InvoiceNumber=linkButton.Text
                            
                         });
                     }
@@ -215,7 +243,8 @@ namespace Nordfin
                             FolderName = subFolderName + "/" + sFileName,
                             ToMail = txtCustEmail.Text,
                             FileName = fileNameDownload,
-                            SenderName= ClientSession.ClientName
+                            SenderName= ClientSession.ClientName,
+                            InvoiceNumber = linkButton.Text
                         });
                     }
                     if ((row.FindControl("chkMultiDC") as CheckBox).Checked && (row.FindControl("chkMultiRemind") as CheckBox).Visible)
@@ -234,7 +263,8 @@ namespace Nordfin
                             FolderName = subFolderName + "/" + sFileName,
                             ToMail = txtCustEmail.Text,
                             FileName = fileNameDownload,
-                            SenderName = ClientSession.ClientName
+                            SenderName = ClientSession.ClientName,
+                            InvoiceNumber = linkButton.Text
                         });
                     }
                     
@@ -277,6 +307,14 @@ namespace Nordfin
 
             }
 
+            if(fileList.Count>0)
+            {
+                fileList[0].ClientID =Convert.ToInt32(ClientSession.ClientID);
+                fileList[0].CustomerNumber = InvoiceNum;
+                fileList[0].UserID = Convert.ToInt32(ClientSession.UserID);
+
+            
+            }
             return fileList;
         }
 

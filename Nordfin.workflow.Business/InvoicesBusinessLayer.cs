@@ -36,6 +36,11 @@ namespace Nordfin.workflow.Business
         {
             return objuser.getExportdetails(custorinvoiceNum, clientID);
         }
+
+        int IInvoicesPresentationBusinessLayer.setEmailSentAccessLog(AccessLog accessLog)
+        {
+            return objuser.setEmailSentAccessLog(accessLog);
+        }
     }
 
 }

@@ -19,5 +19,11 @@ namespace Nordfin.workflow.Entity
         public string EmailHeader { get; set; }
         public string SenderName { get; set; }
         public string Subject { get; set; }
+        public int CustomerID { get; set; }
+        public string CustomerNumber { get; set; }
+        public int ClientID { get; set; }
+        public int UserID { get; set; }
+        public string InvoiceNumber { get; set; }
+
     }
 }

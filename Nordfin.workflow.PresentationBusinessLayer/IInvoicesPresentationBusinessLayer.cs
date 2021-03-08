@@ -12,6 +12,7 @@ namespace Nordfin.workflow.PresentationBusinessLayer
         int UpdateCustomerInfo(CustomerInfo customerInfo, string ClientID);
         IList<MatchInvoices> GetMatchedInvoices(string NegativeInvoices, string PositiveInvoices, string UserID);
         DataSet getExportdetails(string custorinvoiceNum, string clientID);
+        int setEmailSentAccessLog(AccessLog accessLog);
 
     }
 }
