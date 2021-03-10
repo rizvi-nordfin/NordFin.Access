@@ -1,4 +1,4 @@
-﻿<%@ Page Language="C#" MasterPageFile="~/Nordfin.Master" AutoEventWireup="true" Title="NordfinCapital" CodeBehind="frmDashboard.aspx.cs" Inherits="Nordfin.frmDashboard" %>
+﻿<%@ Page Language="C#" MasterPageFile="~/Nordfin.Master" AutoEventWireup="true" Title="NFC ACCESS" CodeBehind="frmDashboard.aspx.cs" Inherits="Nordfin.frmDashboard" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="NordfinContentHolder" runat="server">
     <link href="Styles/Dashboard.css?version=<%=ConfigurationManager.AppSettings["VersionConfiguration"].ToString() %>" rel="stylesheet" />

@@ -1,4 +1,4 @@
-﻿<%@ Page Language="C#" MasterPageFile="~/Nordfin.Master" Title="NordfinCapital" Inherits="Nordfin.frmInvoiceBatches" %>
+﻿<%@ Page Language="C#" MasterPageFile="~/Nordfin.Master" Title="NFC ACCESS" Inherits="Nordfin.frmInvoiceBatches" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="NordfinContentHolder" runat="server">
        
