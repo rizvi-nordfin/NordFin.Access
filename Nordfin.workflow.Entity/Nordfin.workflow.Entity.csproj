@@ -63,6 +63,7 @@
     <Compile Include="FTPFileDetails.cs" />
     <Compile Include="FTPFolderDetails.cs" />
     <Compile Include="Interest.cs" />
+    <Compile Include="InvoiceDownload.cs" />
     <Compile Include="InvoiceFile\Base.cs" />
     <Compile Include="InvoiceFile\Client.cs" />
     <Compile Include="InvoiceFile\Column.cs" />
@@ -86,6 +87,7 @@
     <Compile Include="PaymentInformationDTO.cs" />
     <Compile Include="Payments.cs" />
     <Compile Include="Payout.cs" />
+    <Compile Include="PDFMultiDownload.cs" />
     <Compile Include="TelsonChart.cs" />
     <Compile Include="TelsonGroup.cs" />
     <Compile Include="Transaction.cs" />

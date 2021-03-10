@@ -6,6 +6,8 @@ using Nordfin.workflow.PresentationBusinessLayer;
 using System;
 using System.Collections.Generic;
 using System.IO;
+using System.Net;
+using System.Net.Mail;
 using System.Text.RegularExpressions;
 using System.Web;
 using System.Web.Script.Serialization;
@@ -31,6 +33,12 @@ namespace Nordfin
                 hdnClientName.Value = Request.QueryString["ClientName"];
                 hdnInvoiceAmount.Value = sRemainAmount.Trim().Replace(',', '.');
 
+                btnDownload.CommandArgument = Request.QueryString["CombineInvoice"];
+
+                btnEmail.Attributes["combineInvoice"] = Request.QueryString["CombineInvoice"];
+
+                btnEmail.Attributes["collectionStatus"] = Request.QueryString["CollectionStatus"];
+                btnEmail.Attributes["custInvoice"] = Request.QueryString["CustomerNumber"];
 
                 if (InvoiceData.Split('|').Length > 1)
                 {
@@ -109,6 +117,9 @@ namespace Nordfin
                     ScriptManager.RegisterStartupScript(this, this.GetType(), "showManualInvoiceButton", "$('#btnCreditInvoice').show();", true);
                 }
             }
+            pdfInvoices.Src = "";
+            pdfRemind.Src = "";
+            pdfDC.Src = "";
 
         }
 
@@ -319,5 +330,102 @@ namespace Nordfin
         {
            
         }
+
+       
+
+        protected void btnPDFDownload_Click(object sender, EventArgs e)
+        {
+            EmailFunctions emailFunctions = new EmailFunctions();
+            string PDFArchive = "";
+
+            chkInvoices.Visible = emailFunctions.GetInvoiceExsits(hdnClientName.Value, hdnFileName.Value, btnDownload.CommandArgument.Trim(), "", true);
+            chkDC.Visible = (btnEmail.Attributes["collectionStatus"] == "DC" || btnEmail.Attributes["collectionStatus"].ToUpper() == "EXT") ? emailFunctions.GetInvoiceExsits(hdnClientName.Value, hdnFileName.Value, btnDownload.CommandArgument, "DC", true) : false;
+            chkRemind.Visible = (btnEmail.Attributes["collectionStatus"] == "DC" || btnEmail.Attributes["collectionStatus"] == "REMIND" || btnEmail.Attributes["collectionStatus"].ToUpper() == "EXT") ? emailFunctions.GetInvoiceExsits(hdnClientName.Value, hdnFileName.Value, btnDownload.CommandArgument, "Rem", true) : false;
+            chkInvoices.Checked = chkInvoices.Visible;
+            chkDC.Checked = chkDC.Visible;
+            chkRemind.Checked = chkRemind.Visible;
+            if (!chkInvoices.Visible)
+                PDFArchive = "";// hdnArchiveLink.Value + btnDownload.CommandArgument;
+
+            ScriptManager.RegisterStartupScript(this, this.GetType(), "ExportClick", "ExportClick(0,'" + PDFArchive + "');", true);
+        }
+        
+
+        protected void btnDownload_Click(object sender, EventArgs e)
+        {
+            string FileStartName = hdnFileName.Value;
+            string InvoiceNumber = btnDownload.CommandArgument.Trim();
+            EmailFunctions emailFunctions = new EmailFunctions();
+            if (chkInvoices.Checked && chkInvoices.Visible)
+            {
+                string sFileName = emailFunctions.GetFileName(FileStartName, InvoiceNumber, "", out bool bExist);
+                if (bExist)
+                    pdfInvoices.Src = "frmPdfMultiDownload.aspx?FileName=" + sFileName;
+            }
+            if (chkRemind.Checked && chkRemind.Visible)
+            {
+                string sFileName = emailFunctions.GetFileName(FileStartName, InvoiceNumber, "Rem", out bool bExist);
+                if (bExist)
+                    pdfRemind.Src = "frmPdfMultiDownload.aspx?FileName=" + sFileName;
+            }
+            if (chkDC.Checked && chkDC.Visible)
+            {
+                string sFileName = emailFunctions.GetFileName(FileStartName, InvoiceNumber, "DC", out bool bExist);
+                if (bExist)
+                    pdfDC.Src = "frmPdfMultiDownload.aspx?FileName=" + sFileName;
+            }
+            ScriptManager.RegisterStartupScript(this, this.GetType(), "ExportClick", "ExportClick(0);", true);
+
+        }
+
+
+        protected void btnEmail_Click(object sender, EventArgs e)
+        {
+            IInvoicesPresentationBusinessLayer objInvoicesLayer = new InvoicesBusinessLayer();
+            string scustEmail = objInvoicesLayer.GetCustInvoiceEmailID(ClientSession.ClientID, btnEmail.Attributes["custInvoice"].ToString());
+            txtCustEmail.Text = scustEmail;
+            txtEmailHeader.Text = ClientSession.ClientName + "; Invoice" + " " + btnEmail.Attributes["combineInvoice"];
+            txtEmailBody.Text = "Hei, Hi, Hej, Hallo!" + "\n\n" + "Your invoice copy has been attached" + "\n\n" + "Have a great day :-)" + "\n\n" + "Best Regards," + "\n" + ClientSession.ClientName;
+            ScriptManager.RegisterStartupScript(this, this.GetType(), "ExportClick", "ExportClick(1);", true);
+        }
+
+        protected void btnSend_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                EmailFunctions emailFunctions = new EmailFunctions();
+                string FileStartName = hdnFileName.Value;
+                string InvoiceNumber = btnEmail.Attributes["combineInvoice"];
+                List<PDFMultiDownload> multiDownloads = new List<PDFMultiDownload>();
+                if (chkInvoices.Checked && chkInvoices.Visible)
+                {
+                    string sFileName = emailFunctions.GetFileName(FileStartName, InvoiceNumber, "", out bool bExist);
+                    if (bExist)
+                        multiDownloads.Add(new PDFMultiDownload() { FileName = sFileName });
+                }
+                if (chkRemind.Checked && chkRemind.Visible)
+                {
+                    string sFileName = emailFunctions.GetFileName(FileStartName, InvoiceNumber, "Rem", out bool bExist);
+                    if (bExist)
+                        multiDownloads.Add(new PDFMultiDownload() { FileName = sFileName });
+                }
+                if (chkDC.Checked && chkDC.Visible)
+                {
+                    string sFileName = emailFunctions.GetFileName(FileStartName, InvoiceNumber, "DC", out bool bExist);
+                    if (bExist)
+                        multiDownloads.Add(new PDFMultiDownload() { FileName = sFileName });
+                }
+
+                bool bEmail = emailFunctions.SendMail(txtCustEmail.Text, txtEmailHeader.Text, txtEmailBody.Text, multiDownloads);
+
+                ScriptManager.RegisterStartupScript(this, this.GetType(), "ExportClick", "ExportClick(1,'','" + bEmail + "');", true);
+            }
+            catch
+            {
+                ScriptManager.RegisterStartupScript(this, this.GetType(), "ExportClick", "ExportClick(1,'','" + false + "');", true);
+            }
+        }
+     
+
     }
 }

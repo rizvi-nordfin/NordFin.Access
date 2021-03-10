@@ -1,6 +1,5 @@
 ﻿<%@ Page Language="C#" MasterPageFile="~/Nordfin.Master" AutoEventWireup="true" Title="NFC ACCESS" CodeBehind="frmInvoices.aspx.cs" Inherits="Nordfin.frmInvoices"
     UICulture="sv-SE" Culture="sv-SE" %>
-
 <%@ Register Assembly="AjaxControlToolkit" Namespace="AjaxControlToolkit" TagPrefix="ModalWindow" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="NordfinContentHolder" runat="server" style="padding: 5px;">
 
@@ -8,117 +7,80 @@
 
     <link href="Styles/Invoices.css?version=<%=ConfigurationManager.AppSettings["VersionConfiguration"].ToString() %>" rel="stylesheet" />
 
-
-
     <div class="dashboardContainer">
         <div class="container-fluid">
 
             <div class="row dashboardHeader">
-                <div class="col-lg-3 dashboardHeadline">Invoices: Overview   
-                    <asp:Button ID="btnExport" Text="Export" CssClass="export" Style="width: 75px;display:none;" OnClick="btnExport_Click" runat="server" /></div>
+                <div class="col-lg-3 dashboardHeadline">
+                    Invoices: Overview   
+                    <asp:Button ID="btnExport" Text="Export" CssClass="export" Style="width: 75px; display: none;" OnClick="btnExport_Click" runat="server" />
+                </div>
 
-               
 
-         
 
-                 <div class="col-lg-9">
 
-                 <div class="summaryInvoices">
 
-                     <div  class="summaryHeading"> 
-                         <div class="textOrange" style="background: #38445D; ">
-                             
-                             <div style="float:left;display:inline;">
+                <div class="col-lg-9">
+
+                    <div class="summaryInvoices">
+
+                        <div class="summaryHeading">
+                            <div class="textOrange" style="background: #38445D;">
+
+                                <div style="float: left; display: inline;">
                                     Amount
-                                 </div>
-                                   <div style="display:inline;">
+                                </div>
+                                <div style="display: inline;">
                                     <asp:Label runat="server" CssClass="textWhite" ID="lblSumAmount"></asp:Label>
-                                       </div>
-                                
-                                </div></div>
-                        <div  class="summaryHeading" > 
-                             <div class="textOrange" style="background: #38445D;">
-                                 <div style="float:left;display:inline;">
+                                </div>
+
+                            </div>
+                        </div>
+                        <div class="summaryHeading">
+                            <div class="textOrange" style="background: #38445D;">
+                                <div style="float: left; display: inline;">
                                     FEES 
-                                    </div>
-                                 <div style="display:inline;">
+                                </div>
+                                <div style="display: inline;">
                                     <asp:Label runat="server" CssClass="textWhite" ID="lblFeesAmount"></asp:Label>
-                                     </div>
-                                </div></div>
-                        <div  class="summaryHeading"> 
-                              <div class="textOrange" style="background: #38445D;">
-                                  <div style="float:left;display:inline;">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="summaryHeading">
+                            <div class="textOrange" style="background: #38445D;">
+                                <div style="float: left; display: inline;">
                                     REMAIN 
-                                    </div>
-                                  <div style="display:inline;">
+                                </div>
+                                <div style="display: inline;">
                                     <asp:Label ID="lblRemain" CssClass="textWhite" runat="server" />
-                                      </div>
-                                </div></div>
-                         <div  class="summaryHeading"> 
-                              <div class="textOrange" style="background: #38445D;">
-                                  <div style="float:left;display:inline;">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="summaryHeading">
+                            <div class="textOrange" style="background: #38445D;">
+                                <div style="float: left; display: inline;">
                                     TOTAL REMAIN
-                                      </div>
-                                  <div style="display:inline;">
+                                </div>
+                                <div style="display: inline;">
                                     <asp:Label ID="lblTotalRemain" CssClass="textWhite" runat="server" />
-                                      </div>
-                                </div></div>
-                        <div class="summaryHeading"> 
-                              <div class="textOrange" style="background: #38445D;">
-                                  <div style="float:left;display:inline;">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="summaryHeading">
+                            <div class="textOrange" style="background: #38445D;">
+                                <div style="float: left; display: inline;">
                                     OVERPAID 
-                                      </div>
-                                  <div style="display:inline;">
-                                   <asp:Label ID="lblOverPaid" CssClass="textWhite" runat="server" />
-                                      </div>
-                                </div></div>
-
-                </div>  
-                     </div>
-
-                <%-- <div class="col-lg-8     dashboardSummary">
-                    <div class="row">
-
-                        <div class="summarycolor col-lg-3 row">
-                           
-                            <div>
-                            <span class="summaryHead">AMOUNT</span>
-                           
                                 </div>
+                                <div style="display: inline;">
+                                    <asp:Label ID="lblOverPaid" CssClass="textWhite" runat="server" />
+                                </div>
+                            </div>
                         </div>
 
-
-
-                        <div class="summarycolor col-lg-2 row">
-                           
-                            <div>
-                            <span class="summaryHead">FEES</span>
-                           
-                                </div>
-                        </div>
-
-
-                      <div class="summarycolor col-lg-3 row">
-                           
-                            <div>
-                            <span class="summaryHead"> TOTAL REMAIN</span>
-                            
-                                </div>
-                        </div>
-                       
-                        
-                      <div class="summarycolor col-lg-3 row">
-                           
-                            <div>
-                            <span class="summaryHead"> OVERPAID</span>
-                          
-                                </div>
-                        </div>
-                        
                     </div>
-                    
-                    
-                </div>--%>
+                </div>
+
+
                 <div class="hidden">
                     <asp:Button Text="Download As" class="form-control invoicesDownloadAsButton" runat="server" />
                 </div>
@@ -135,7 +97,7 @@
                     <asp:Button ID="closeButton" runat="server" Style="display: none;" />
                 </asp:Panel>
             </div>
-            <asp:UpdatePanel runat="server" ID="UpdatePanel1">
+            <asp:UpdatePanel runat="server" ID="UpdatePanel1" >
                 <ContentTemplate>
                     <div class="tableFixHead tableMarginBg">
                         <asp:GridView ID="grdInvoices" runat="server" AutoGenerateColumns="False" AllowSorting="true" OnSorting="grdInvoices_Sorting" EmptyDataRowStyle-CssClass="Emptyrow" ViewStateMode="Enabled" Visible="true" Style="color: white; overflow-x: scroll; overflow-y: scroll;"
@@ -153,6 +115,7 @@
                                     <ItemTemplate>
 
                                         <asp:LinkButton CssClass="linkcss" Text='<%# Bind("Invoicenumber") %>' OnClientClick="return LinkClick(this);" overpaymentData='<%# Eval("Overpayment") %>'
+                                            collectionStatus=' <%# Eval("Collectionstatus") %>'   combineInvoice='<%# Eval("CombineInvoice") %>'  custInvoice=' <%# Eval("Customernumber") %>'
                                             remainData='<%# Eval("Remainingamount") %>' invoiceData='<%# Eval("Customernumber") +"|"+ Eval("InvoiceID")%>' ID="gridLink" CommandArgument=' <%# Eval("Customernumber") +"|"+ Eval("InvoiceID")%>' runat="server" />
                                     </ItemTemplate>
 
@@ -181,73 +144,197 @@
                                 <asp:TemplateField ItemStyle-CssClass="itemalign" HeaderStyle-CssClass="itemalign">
                                     <ItemTemplate>
 
-                                        <asp:Button runat="server" CssClass="invoicesDownloadButton button button-table" ID="btnPDFDownload" combineInvoice='<%# Eval("CombineInvoice") %>' CommandArgument=' <%# Eval("CombineInvoice") %>' OnClick="btnPDFDownload_Click" Text="Download" />
+                                        <asp:Button runat="server" CssClass="invoicesDownloadButton button button-table" ID="btnPDFDownload" collectionStatus=' <%# Eval("Collectionstatus") %>'
+                                            custInvoice=' <%# Eval("Customernumber") %>' combineInvoice='<%# Eval("CombineInvoice") %>'
+                                            CommandArgument=' <%# Eval("CombineInvoice") %>' OnClientClick="return ProcessingModal();" OnClick="btnPDFDownload_Click" Text="Export" />
                                     </ItemTemplate>
                                     <HeaderTemplate>
                                         PDF
                                     </HeaderTemplate>
                                 </asp:TemplateField>
 
-                                <%-- <asp:TemplateField ItemStyle-CssClass="itemalign" HeaderStyle-CssClass="itemalign">
-                            <ItemTemplate>
-
-                                <asp:Button runat="server" CssClass="invoicesDownloadButton button button-table" ID="btnEmail" download="0" custInvoice=' <%# Eval("Customernumber") %>' combineInvoice='<%# Eval("CombineInvoice") %>'  OnClientClick="return Email(this);" Text="Email" />
-                            </ItemTemplate>
-                            <HeaderTemplate>
-                                MAIL
-                            </HeaderTemplate>
-                        </asp:TemplateField>--%>
                             </Columns>
                             <EmptyDataTemplate>No Record Available</EmptyDataTemplate>
                         </asp:GridView>
                     </div>
 
-                </ContentTemplate>
-            </asp:UpdatePanel>
-            <div class="modal fade" id="mdlUpdateInfo" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                <div class="modal-dialog" role="document">
-                    <div class="modal-content" style="top: 200px; background: none; border: none;">
-                        <div class="modal-header dashboardHeadline" style="background-color: #323e53; color: #fff; font-size: 16px;">
-                            <h5 class="modal-title modalTextcolor dashboardHeadlineModal" id="updateInfoModalLabel">Email</h5>
-                            <button type="button" class="modalcloseButton" data-dismiss="modal" aria-label="Close" style="top: 35px; right: 20px;">
-                                <span aria-hidden="true">✕</span>
-                            </button>
+                    <div class="featureNotAvailablePnlBG hidden">
+                        <div class="featureNotAvailablePnl">
+
+                            <div id="PnlProcessing">
+                                <div style="text-align: center; color: #09abdc;">
+                                    <span></span>
+                                </div>
+                                <div class="progress">
+
+                                    <div class="progress-bar progress-bar-striped progress-bar-animated" role="progressbar" style="width: 100%" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
+
+                                </div>
+                            </div>
                         </div>
-                        <div class="modal-body" style="background-color: #323e53; color: #fff;">
+                    </div>
 
 
-                            <div id="pnlEmail">
-                                <label>
+                    <div class="modal" id="mdlUpdateInfo" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                        <div class="modal-dialog" role="document">
+                            <div class="modal-content" style="top: 100px; background: none; border: none;">
+                                <div class="modal-header dashboardHeadline" style="background-color: #323e53; color: #fff; font-size: 16px;">
+                                    <h5 class="modal-title modalTextcolor dashboardHeadlineModal" id="updateInfoModalLabel">Email</h5>
+                                    <button type="button" class="modalcloseButton" data-dismiss="modal" aria-label="Close" style="top: 35px; right: 20px;">
+                                        <span aria-hidden="true">✕</span>
+                                    </button>
+                                </div>
+                                <div class="modal-body" style="background-color: #323e53; color: #fff;">
 
 
-                                    <asp:TextBox ID="txtCustEmail" runat="server" autocomplete="off" CssClass="form-control textboxModalColor" onkeyup='checkEmail(this)'></asp:TextBox>
-                                </label>
+                                    <div id="pnlEmail" class="form-group">
+                                        <label>
+                                            Email
+                                    <asp:TextBox ID="txtCustEmail" runat="server" autocomplete="nope" CssClass="form-control textboxModalColor"></asp:TextBox>
+                                        </label>
 
-                                <span id="EmailValid" class="short">
-                                    <span id="spnEmail" class="hide" style="color: #f83030">Enter a valid email</span>
-                                </span>
+                                        <span id="EmailValid" class="short">
+                                            <span id="spnEmail" class="hide" style="color: #f83030">Enter a valid email</span>
+                                        </span>
+
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label>
+                                            Header
+                                    <asp:TextBox ID="txtEmailHeader" runat="server" autocomplete="nope" CssClass="form-control textboxModalColor"></asp:TextBox>
+                                        </label>
+
+
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label>
+                                            Body
+                                    <asp:TextBox TextMode="MultiLine" ID="txtEmailBody" runat="server" autocomplete="nope" CssClass="form-control textboxModalColor textareaHeight"></asp:TextBox>
+                                        </label>
+
+
+                                    </div>
+
+                                    <div class="form-group">
+                                        <asp:Button Text="Send" class="button updateInfoButton form-control" runat="server" ID="btnSend" OnClientClick="ProgressBarDisplay();" OnClick="btnSend_Click" Width="128px" />
+
+
+                                    </div>
+
+                                    <div id="PnlMsg" style="display: none;" class="alert alert-success" role="alert">
+                                        <span id="spnMsg"></span>
+                                    </div>
+                                    <div id="Pnlprogress" style="display: none;">
+                                        <div style="text-align: center; color: #3DADC5;">
+                                            <span>Processing please wait...</span>
+                                        </div>
+                                        <div class="progress">
+
+                                            <div class="progress-bar progress-bar-striped progress-bar-animated" role="progressbar" style="width: 100%" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
+                                        </div>
+                                    </div>
+
+
+                                </div>
+                                <div class="modal-footer" style="background-color: #323E53; padding: 5px;">
+                                    <%--<asp:Button Text="Send" class="button updateInfoButton form-control" runat="server" ID="btnEmail" OnClick="btnEmail_Click"  Width="128px" />--%>
+                                </div>
+
+
 
                             </div>
-
-
-
-
-
                         </div>
-                        <div class="modal-footer" style="background-color: #323E53; padding: 5px;">
-                            <%--<asp:Button Text="Send" class="button updateInfoButton form-control" runat="server" ID="btnEmail" OnClick="btnEmail_Click"  Width="128px" />--%>
-                        </div>
-
-
-
                     </div>
-                </div>
-            </div>
+
+
+                    <div class="modal" id="mdlExport" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                        <div class="modal-dialog" role="document">
+                            <div class="modal-content" style="top: 200px; background: none; border: none; width: 75%;">
+                                <div class="modal-header dashboardHeadline" style="background-color: #323e53; color: #fff; font-size: 16px; width: 86%;">
+                                    <div class="ml-3">
+                                        <h5 class="modal-title modalTextcolor dashboardHeadlineModal" id="ExportModal">Export</h5>
+                                    </div>
+                                    <button type="button" class="modalcloseButton" data-dismiss="modal" aria-label="Close" style="top: 35px; right: 82px;">
+                                        <span aria-hidden="true">✕</span>
+                                    </button>
+                                </div>
+                                <div class="modal-body" style="background-color: #323e53; color: #fff; width: 86%;">
+
+
+
+                                    <div class="col-md-12 form-inline">
+                                        <div style="float: left; width: 65%">
+                                            <asp:Panel runat="server" ID="pnlInvoices">
+                                                <asp:CheckBox ID="chkInvoices" AutoPostBack="false" Checked="true" Style="margin-top: 5px;" CssClass="checkbox"
+                                                    runat="server" Text="Invoice"></asp:CheckBox>
+                                            </asp:Panel>
+                                            <asp:Panel runat="server" ID="pnlRemind" >
+                                                <asp:CheckBox ID="chkRemind" AutoPostBack="false" Checked="true" Style="margin-top: 5px;" CssClass="checkbox"
+                                                    runat="server" Text="Reminder"></asp:CheckBox>
+                                            </asp:Panel>
+                                            <asp:Panel runat="server" ID="pnlDC">
+                                                <asp:CheckBox ID="chkDC" AutoPostBack="false" Checked="true" Style="margin-top: 5px;" CssClass="checkbox"
+                                                    runat="server" Text="Debt Collection"></asp:CheckBox>
+                                            </asp:Panel>
+                                        </div>
+
+                                        <div class="ml-3" style="float: right;">
+                                            <div>
+                                                <asp:Button runat="server" CssClass="invoicesDownloadButton button button-table" OnClientClick="PdfDownloadClick();" OnClick="btnDownload_Click" ID="btnDownload" Text="Download" />
+                                            </div>
+                                            <div class="mt-3">
+                                                <asp:Button runat="server" CssClass="invoicesDownloadButton button button-table" OnClick="btnEmail_Click" ID="btnEmail" Text="Email" />
+                                            </div>
+                                        </div>
+
+
+                                    </div>
+
+
+                                    <div id="PnlDownloadMsg" style="display: none;" class="mt-2 alert alert-success" role="alert">
+                                        <span id="spnDownloadMsg"></span>
+                                    </div>
+                                    <div id="PnlDownloadprogress" style="display: none;">
+                                        <div style="text-align: center; color: #3DADC5;">
+                                            <span>Downloading please wait...</span>
+                                        </div>
+                                        <div class="progress">
+
+                                            <div class="progress-bar progress-bar-striped progress-bar-animated" role="progressbar" style="width: 100%" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
+                                        </div>
+                                    </div>
+
+
+
+
+
+
+                                </div>
+
+
+
+
+                            </div>
+                        </div>
+                    </div>
+
+                    <div style="display: none;">
+                        <iframe id="pdfInvoices" runat="server"></iframe>
+                        <iframe id="pdfDC" runat="server"></iframe>
+                        <iframe id="pdfRemind" runat="server"></iframe>
+                    </div>
+                </ContentTemplate>
+            </asp:UpdatePanel>
+
             <asp:HiddenField ID="hdnClientName" runat="server" />
+            <asp:HiddenField ID="hdnCombineInvoice" runat="server" />
             <asp:HiddenField ID="hdnFileName" runat="server" />
             <asp:HiddenField ID="hdnArchiveLink" runat="server" />
             <asp:HiddenField ID="hdnInvoiceNumber" runat="server" />
             <asp:HiddenField ID="hdnEmailID" runat="server" />
+            <asp:HiddenField ID="hdnCollectionStatus" runat="server" />
             <a id="pdfViewer" href="" runat="server" target="_blank"></a>
         </div>
 

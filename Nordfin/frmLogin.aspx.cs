@@ -115,7 +115,7 @@ namespace Nordfin
                     if (bUserInfo)
                     {
                         userInformation.iStatus = 0;
-                        int Result = objUserLayer.InsertLoginUserInformation(userInformation);
+                       int Result = objUserLayer.InsertLoginUserInformation(userInformation);
                     }
                 }
             }
