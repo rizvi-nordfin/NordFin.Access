@@ -72,7 +72,6 @@ namespace Nordfin
                     pnlContractsMenuButton.Visible = false;
                 }
                   
-                       
              
 
                 hdnClientID.Value = ClientSession.ClientID;
