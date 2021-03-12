@@ -59,20 +59,21 @@ namespace Nordfin
                     pnlTrafficDetails.Visible = false;
                     pnlNotification.Visible = false;
                     //  pnlTeleson.Visible = false;
+
+
                     pnlSideMenuContracts.CssClass = "sideContractMenuStatistics pnlSideMenuContractsTop hidden";//.Add("top", "551px !important");
 
                 }
-                else
-                {
+              
 
-                    if (Contracts == 0)
-                    {
-                        pnlTeleson.Visible = false;
-                        pnlContractsMenuButton.Visible = false;
-                    }
+                if (Contracts == 0)
+                {
+                    pnlTeleson.Visible = false;
+                    pnlContractsMenuButton.Visible = false;
+                }
                   
                        
-                }
+             
 
                 hdnClientID.Value = ClientSession.ClientID;
             }
