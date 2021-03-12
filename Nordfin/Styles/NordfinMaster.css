@@ -1616,7 +1616,7 @@ hr {
 .sideContractMenuStatistics {
     position: fixed;
     width: auto;
-    height: auto;
+    height: 85px;
     left: 85px;
     top: 635px;
     z-index: 50;
@@ -1640,3 +1640,23 @@ hr {
             color: #FFB100;
             text-decoration: none;
         }
+
+.pnlSideMenuContractsTop {
+    top: 551px !important;
+}
+
+
+
+@media all and (max-width: 600px) {
+    .pnlSideMenuContractsTop {
+        top: 376px !important;
+    }
+    .sideContractMenuStatistics {
+        height: auto;
+    }
+}
+
+
+
+
+

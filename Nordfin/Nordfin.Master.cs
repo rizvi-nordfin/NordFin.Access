@@ -48,7 +48,7 @@ namespace Nordfin
                     pnlsideMenuButton.Visible = false;
                     btnStatistics.Visible = false;
                     imgStatistics.Visible = false;
-                    pnlContractsMenuButton.Visible = false;
+                   // pnlContractsMenuButton.Visible = false;
                 }
 
                 if (ClientSession.Admin != "0" && ClientSession.Admin != "1")
@@ -58,8 +58,8 @@ namespace Nordfin
                     pnlTraffic.Visible = false;
                     pnlTrafficDetails.Visible = false;
                     pnlNotification.Visible = false;
-                    pnlTeleson.Visible = false;
-                    pnlSideMenuContracts.Style.Add("top", "551px !important");
+                    //  pnlTeleson.Visible = false;
+                    pnlSideMenuContracts.CssClass = "sideContractMenuStatistics pnlSideMenuContractsTop hidden";//.Add("top", "551px !important");
 
                 }
                 else
