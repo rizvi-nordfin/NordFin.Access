@@ -40,7 +40,7 @@
 
                 <div data-ng-app="myApp" data-ng-controller="myCtrl">
                        <div class="row " style="margin-left: 0px;">
-                             <div class="col-lg-4 col-md-12 divPadding customerInfoSidebar" style="color: #FFFFFF;" id="divTelson">
+                             <div class="col-lg-4 col-md-12 divPadding customerInfoSidebar" style="color: #FFFFFF;display: none;" id="divTelson">
 
 
                               <div class="divPaddingLeft" style="background-color: #475672">
@@ -145,11 +145,11 @@
                         </div>
 
 
-                           <div class="col-lg-8  col-md-12  divPadding customerInfoSidebar marginleft" id="divPayment">
+                           <div class="col-lg-8  col-md-12  divPadding customerInfoSidebar marginleft"  id="divPayment">
 
                                <div class="row col-md-12">
                                    <div class="col-md-12">
-                                       <div class="col-md-12 col-lg-12 jqdivChart" id="divChart" style="margin-left: -16px;background:rgb(56, 68, 93);">
+                                       <div class="col-md-12 col-lg-12 jqdivChart" id="divChart" style="margin-left: -16px;">
 
                                            <div id="jqChart1" class="jquiChart"></div>
                                        </div>

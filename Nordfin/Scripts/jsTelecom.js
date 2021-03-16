@@ -33,7 +33,11 @@ app.controller("myCtrl", function ($scope, $http) {
       
 
 
-        $scope.DrawGraph(data1, data2)
+        $scope.DrawGraph(data1, data2); 
+
+            document.getElementById("divTelson").style.display = "";
+        
+        document.getElementById("divChart").style.background = "#38445d";
         //$scope.ContractsList = telsonData.Contracts;
 
     }, function (error) {
