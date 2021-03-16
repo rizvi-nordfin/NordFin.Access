@@ -41,6 +41,27 @@ appModule.controller("InvoiceBatchesControl", function ($scope, $http) {
            
     }
 
+    $scope.ExportExcel = function ($event) {
+
+            $http({
+                url: "frmInvoiceBatches.aspx/ExportExcel",
+                dataType: 'json',
+                method: 'POST',
+                data: '{}',
+
+                headers: {
+                    "Content-Type": "application/json; charset=utf-8",
+                    "X-Requested-With": "XMLHttpRequest"
+                }
+            }).then(function (response) {
+
+            }, function (error) {
+            });
+       
+        $event.preventDefault();
+    }
+
+
  
 });
 

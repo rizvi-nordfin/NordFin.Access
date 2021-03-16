@@ -257,6 +257,7 @@
     <Content Include="frmReports.aspx" />
     <Content Include="frmRisk.aspx" />
     <Content Include="frmContracts.aspx" />
+    <Content Include="frmTelecom.aspx" />
     <Content Include="frmTrafficDetails.aspx" />
     <Content Include="frmUserLoginInformation.aspx" />
     <Content Include="Global.asax" />
@@ -371,6 +372,7 @@
     <Content Include="Scripts\jsManualInvoice.js" />
     <Content Include="Scripts\jsPaymentInformation.js" />
     <Content Include="Scripts\jsReports.js" />
+    <Content Include="Scripts\jsTelecom.js" />
     <Content Include="Scripts\jsTelsonGroup.js" />
     <Content Include="Scripts\jsTrafficDetails.js" />
     <Content Include="Scripts\mapsvg.js" />
@@ -506,6 +508,13 @@
     </Compile>
     <Compile Include="frmContracts.aspx.designer.cs">
       <DependentUpon>frmContracts.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="frmTelecom.aspx.cs">
+      <DependentUpon>frmTelecom.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="frmTelecom.aspx.designer.cs">
+      <DependentUpon>frmTelecom.aspx</DependentUpon>
     </Compile>
     <Compile Include="frmTrafficDetails.aspx.cs">
       <DependentUpon>frmTrafficDetails.aspx</DependentUpon>

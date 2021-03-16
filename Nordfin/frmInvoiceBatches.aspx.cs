@@ -1,4 +1,6 @@
-﻿using Newtonsoft.Json;
+﻿using ClosedXML.Excel;
+using Newtonsoft.Json;
+using Nordfin.workflow.Business;
 using Nordfin.workflow.BusinessLayer;
 using Nordfin.workflow.PresentationBusinessLayer;
 using System;
@@ -17,7 +19,7 @@ namespace Nordfin
 
         }
 
-
+     
 
         [WebMethod]
         public static string LoadInvoiceBatches()
@@ -65,6 +67,41 @@ namespace Nordfin
             }
         }
 
+        protected void btnPaidBatches_Click(object sender, EventArgs e)
+        {
+            IReportsPresentationBusinessLayer objReportsLayer = new ReportsBusinessLayer();
+            ExportDataset(objReportsLayer.GetBatchesReport(ClientSession.ClientID), "Batches");
+
+        }
+       
+
+        public static void ExportDataset(DataSet dataSet, string sFileName)
+        {
+            HttpResponse response = HttpContext.Current.Response;
+            response.Clear();
+            response.Charset = "";
+
+
+            using (XLWorkbook wb = new XLWorkbook())
+            {
+                wb.Worksheets.Add(dataSet.Tables[0]);
+                HttpContext.Current.Response.Clear();
+                HttpContext.Current.Response.Buffer = true;
+                HttpContext.Current.Response.Charset = "";
+                string filename = sFileName + DateTime.Now.ToString("yyyy-MM-dd hh:mm tt") + ".xlsx";
+                HttpContext.Current.Response.ContentType = "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet";
+                HttpContext.Current.Response.AddHeader("Content-Disposition", "attachment;filename=\"" + filename + "\"");
+                using (MemoryStream MyMemoryStream = new MemoryStream())
+                {
+                    wb.SaveAs(MyMemoryStream);
+                    MyMemoryStream.WriteTo(HttpContext.Current.Response.OutputStream);
+                    HttpContext.Current.Response.Flush();
+                    HttpContext.Current.Response.End();
+                }
+            }
+
+
+        }
 
     }
 }
