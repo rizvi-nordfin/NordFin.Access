@@ -262,6 +262,9 @@
                     <asp:Panel ID="pnlTeleson" runat="server">
                         <a href="/frmRisk.aspx">Risk</a>
                     </asp:Panel>
+                      <asp:Panel ID="pnlTelecom" runat="server">
+                        <a href="/frmTelecom.aspx">Telecom</a>
+                    </asp:Panel>
 
                 </div>
             </div>

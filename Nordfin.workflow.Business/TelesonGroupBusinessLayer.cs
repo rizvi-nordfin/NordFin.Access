@@ -25,6 +25,9 @@ namespace Nordfin.workflow.BusinessLayer
             return telsonGroupBusinessData.GetTelsonGroupData(ClientID);
         }
 
-        
+        Tuple<IList<TelsonGroup>, IList<TelsonChart>> ITelsonGroupPresentationBusinessLayer.GetTelecomData()
+        {
+            return telsonGroupBusinessData.GetTelecomData();
+        }
     }
 }

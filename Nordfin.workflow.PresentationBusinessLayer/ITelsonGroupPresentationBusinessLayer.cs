@@ -12,5 +12,6 @@ namespace Nordfin.workflow.PresentationBusinessLayer
     {
         Tuple<IList<TelsonGroup>, IList<TelsonChart>, IList<ClientContracts>> GetTelsonGroupData(string ClientID);
         DataSet getContractList(string clientID);
+        Tuple<IList<TelsonGroup>, IList<TelsonChart>> GetTelecomData();
     }
 }
