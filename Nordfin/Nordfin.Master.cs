@@ -58,7 +58,8 @@ namespace Nordfin
                     pnlTraffic.Visible = false;
                     pnlTrafficDetails.Visible = false;
                     pnlNotification.Visible = false;
-                    //  pnlTeleson.Visible = false;
+                    pnlTeleson.Visible = false;
+                    pnlTelecom.Visible = false;
 
 
                     pnlSideMenuContracts.CssClass = "sideContractMenuStatistics pnlSideMenuContractsTop hidden";//.Add("top", "551px !important");
