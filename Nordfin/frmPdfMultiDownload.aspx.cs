@@ -52,12 +52,13 @@ namespace Nordfin
                 zip.AlternateEncodingUsage = ZipOption.AsNecessary;
                 zip.UseZip64WhenSaving = Zip64Option.AsNecessary;// ZipOption.AsNecessary;
 
-
+                
                 foreach (FilesDownload file in fileList)
                 {
                     zip.AddEntry(file.FileName, file.Bytes);
                 }
 
+              
                 Response.Clear();
                 Response.BufferOutput = false;
                 Response.Buffer = false;

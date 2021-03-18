@@ -408,7 +408,7 @@ namespace Nordfin
             {
                 if (!bAzure && !bFileExsits)
                 {
-                    byte[] bArchievebyte = FileArchiveDownload(FolderName, out string sResultFileName);
+                    byte[] bArchievebyte = FileArchiveDownload(FolderName+"/"+ subfolder.Split('/')[1], out string sResultFileName);
                     ResultFileName = sResultFileName;
                     return bArchievebyte;
 

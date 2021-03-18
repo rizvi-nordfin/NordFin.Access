@@ -160,7 +160,12 @@ namespace Nordfin
             string InvoiceNum = (string)Session["custNum"];
             List<FilesDownload> fileList = GetFileBytes();
             Session["FileList"] = fileList;
+            long totalBytes = fileList.Select(a => a.Bytes.Length).Sum();
 
+            //if (ConvertBytesToMegabytes(totalBytes) > 0)
+            //{
+            //    ScriptManager.RegisterStartupScript(this, this.GetType(), "Downloadlimit", "Downloadlimit();", true);
+            //}
             if (chkExport.Checked)
                 pdfExport.Src = "frmPdfMultiDownload.aspx?FileName=" + "Export";
             if (chkExportDetail.Checked )
@@ -173,15 +178,21 @@ namespace Nordfin
 
         }
 
+        static double ConvertBytesToMegabytes(long bytes)
+        {
+            return (bytes / 1024f) / 1024f;
+        }
+
+
         protected void chkSelectAll_CheckedChanged(object sender, EventArgs e)
         {
             foreach (GridViewRow row in grdInvoiceDownlaod.Rows)
             {
                 (row.FindControl("chkMultiInvoices") as CheckBox).Checked = chkSelectAll.Checked ? true : false;
 
-                (row.FindControl("chkMultiDC") as CheckBox).Checked = chkSelectAll.Checked ? true : false;
+                //(row.FindControl("chkMultiDC") as CheckBox).Checked = chkSelectAll.Checked ? true : false;
 
-                (row.FindControl("chkMultiRemind") as CheckBox).Checked = chkSelectAll.Checked ? true : false;
+                //(row.FindControl("chkMultiRemind") as CheckBox).Checked = chkSelectAll.Checked ? true : false;
             }
         }
 
@@ -392,6 +403,21 @@ namespace Nordfin
             {
                
                 //catch the issue
+            }
+        }
+
+
+
+        protected void chkUnpaid_CheckedChanged(object sender, EventArgs e)
+        {
+            foreach (GridViewRow row in grdInvoiceDownlaod.Rows)
+            {
+                LinkButton linkButton = (row.FindControl("gridLink") as LinkButton);
+                if (decimal.Parse(linkButton.Attributes["totalRemain"], System.Globalization.CultureInfo.CreateSpecificCulture("sv-SE"))>0)
+                {
+                    (row.FindControl("chkMultiInvoices") as CheckBox).Checked = chkUnpaid.Checked ? true : false;
+                }
+               
             }
         }
     }

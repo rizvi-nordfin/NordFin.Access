@@ -35,3 +35,13 @@ function MailClose() {
     $(".modal-backdrop").remove();
 }
 
+function Downloadlimit() {
+    debugger;
+
+    $('.featureNotAvailableBG').toggleClass('hidden');
+}
+
+$('.featureNotAvailableBG').click(function () {
+
+    $('.featureNotAvailableBG').toggleClass('hidden');
+});

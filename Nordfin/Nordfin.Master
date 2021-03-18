@@ -38,7 +38,7 @@
 <body>
     <form id="form1" runat="server">
 
-        <asp:ScriptManager EnablePartialRendering="true"
+        <asp:ScriptManager EnablePartialRendering="true" AsyncPostBackTimeout="3600"
             ID="ScriptManager1" runat="server">
         </asp:ScriptManager>
 
@@ -299,12 +299,7 @@
 
         <input type="button" id="btnNotification" style="display: none;" />
     </form>
-    <div class="featureNotAvailableBG hidden">
-        <div class="featureNotAvailable">
-            <div class="featureNotAvailableX">✕</div>
-           Detailed view only available in Google Chrome
-        </div>
-    </div>
+   
 
      <div class="featureNotAvailableMsgBG hidden">
         <div class="featureNotAvailableMsg">

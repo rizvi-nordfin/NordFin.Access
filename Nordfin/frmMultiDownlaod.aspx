@@ -41,22 +41,24 @@
                     </div>
                     <div class="modal-body" style="background-color: #323e53; color: #fff; text-align: center">
 
-
                         <div style="height: 300px; overflow-y: scroll;">
 
                             <asp:GridView ID="grdInvoiceDownlaod" runat="server" EmptyDataRowStyle-CssClass="Emptyrow" AllowSorting="true" AutoGenerateColumns="False" ViewStateMode="Enabled" Visible="true"
                                 Style="color: white; font-size: small; margin-top: -4px;" ShowHeaderWhenEmpty="true" CssClass="table" SelectedRowStyle-BackColor="#475672">
                                 <HeaderStyle BackColor="#475672" />
                                 <Columns>
-                                    <asp:TemplateField ItemStyle-CssClass="labelcolor itemalign" HeaderText="INVOICE Number" SortExpression="Invoicenumber" HeaderStyle-CssClass="itemalign">
+                                    <asp:TemplateField ItemStyle-CssClass="labelcolor itemalign" HeaderText="INVOICE" SortExpression="Invoicenumber" HeaderStyle-CssClass="itemalign">
                                         <ItemTemplate>
 
                                             <asp:LinkButton CssClass="linkcss" Text='<%# Bind("Invoicenumber") %>' overpaymentData='<%# Eval("Overpayment") %>' collectionStatus=' <%# Eval("Collectionstatus") %>'
-                                                combineInvoice='<%# Eval("CombineInvoice") %>' custInvoice=' <%# Eval("Customernumber") %>' CommandArgument=' <%# Eval("CombineInvoice") %>'
-                                                remainData='<%# Eval("Remainingamount") %>' invoiceData='<%# Eval("Customernumber") +"|"+ Eval("InvoiceID")%>' ID="gridLink" runat="server" />
+                                                combineInvoice='<%# Eval("CombineInvoice") %>' custInvoice=' <%# Eval("Customernumber") %>' CommandArgument=' <%# Eval("CombineInvoice") %>' 
+                                                totalRemain=' <%# Eval("TotalRemaining") %>'
+                                                remainData='<%# Eval("Remainingamount") %>' invoiceData='<%# Eval("Customernumber") +"|"+ Eval("InvoiceID")%>'  ID="gridLink" runat="server" />
                                         </ItemTemplate>
 
                                     </asp:TemplateField>
+                                    <asp:BoundField DataField="Billdate" HeaderStyle-CssClass="itemalign" ItemStyle-CssClass="itemalign tableNoWrap" HeaderText="BILL DATE" SortExpression="Billdate" />
+                                     <asp:BoundField DataField="TotalRemaining" DataFormatString="{0:#,0.00}"  HeaderStyle-CssClass="itemalign" ItemStyle-CssClass="itemalign" HeaderText="TOTAL REMAIN"  SortExpression="TotalRemaining" />
                                     <asp:TemplateField ItemStyle-CssClass="itemalign" HeaderStyle-CssClass="itemalign">
                                         <ItemTemplate>
 
@@ -124,16 +126,20 @@
 
                     <div class="modal-footer flexnone" style="background-color: #3a475d; padding: 0px;">
 
-                        <asp:Panel runat="server" ID="pnlSelectAll" CssClass="text-left marginleft" Style="margin: auto; margin-left: 10px;">
-                            <asp:CheckBox ID="chkSelectAll" AutoPostBack="true" Checked="false" Style="margin-top: 5px;" OnCheckedChanged="chkSelectAll_CheckedChanged" CssClass="checkbox"
-                                runat="server" Text="Select All"></asp:CheckBox>
+                        <asp:Panel runat="server" ID="pnlSelectAll" CssClass="text-left marginleft" Style="margin: auto; margin-left: 23px !important;">
+                            <div>
+                                <asp:CheckBox ID="chkSelectAll" AutoPostBack="true" Checked="false" Style="margin-top: 5px;" OnCheckedChanged="chkSelectAll_CheckedChanged" CssClass="checkbox"
+                                    runat="server" Text="Select All"></asp:CheckBox>
+                            </div>
 
-
-
+                              <div>
+                                <asp:CheckBox ID="chkUnpaid" AutoPostBack="true" Checked="false" Style="margin-top: 5px;" OnCheckedChanged="chkUnpaid_CheckedChanged" CssClass="checkbox"
+                                    runat="server" Text="Select All Unpaid"></asp:CheckBox>
+                            </div>
 
                         </asp:Panel>
                         <div class="row text-right">
-                            <div class="col-md-12" style="margin-left:-42px;">
+                            <div class="col-md-12" style="margin-left:-42px;top:15px;">
                                 <asp:CheckBox ID="chkExport" AutoPostBack="false" Checked="false" Style="margin-top: 5px;" CssClass="checkbox"
                                     runat="server" Text="xls"></asp:CheckBox>
                             </div>
@@ -249,6 +255,11 @@
             </ContentTemplate>
         </asp:UpdatePanel>
     </form>
-
+     <div class="featureNotAvailableBG hidden">
+        <div class="featureNotAvailable">
+            <div class="featureNotAvailableX">✕</div>
+          Download limit exceed anyhow check the download folder
+        </div>
+    </div>
 </body>
 </html>
