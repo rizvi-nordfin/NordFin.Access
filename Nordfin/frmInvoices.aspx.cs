@@ -197,19 +197,19 @@ namespace Nordfin
             {
                 string sFileName = emailFunctions.GetFileName(FileStartName, InvoiceNumber, "",out bool bExist);
                 if (bExist)
-                    pdfInvoices.Src = "frmPdfMultiDownload.aspx?FileName=" + sFileName;
+                    pdfInvoices.Src = "frmPdfMultiDownload.aspx?FileName=" + Server.UrlEncode(sFileName);
             }
             if (chkRemind.Checked && chkRemind.Visible)
             {
                 string sFileName = emailFunctions.GetFileName(FileStartName, InvoiceNumber, "Rem", out bool bExist);
                 if (bExist)
-                    pdfRemind.Src = "frmPdfMultiDownload.aspx?FileName=" + sFileName;
+                    pdfRemind.Src = "frmPdfMultiDownload.aspx?FileName=" + Server.UrlEncode(sFileName);
             }
             if (chkDC.Checked && chkDC.Visible)
             {
                 string sFileName = emailFunctions.GetFileName(FileStartName, InvoiceNumber, "DC", out bool bExist);
                 if (bExist)
-                    pdfDC.Src = "frmPdfMultiDownload.aspx?FileName=" + sFileName;
+                    pdfDC.Src ="frmPdfMultiDownload.aspx?FileName=" + Server.UrlEncode(sFileName);
             }
             
             ScriptManager.RegisterStartupScript(this, this.GetType(), "ExportClick", "ExportClick(0);", true);
