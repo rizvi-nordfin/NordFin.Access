@@ -17,7 +17,7 @@
             margin-left: 5px;
             color: #A9BFD5;
             text-transform: uppercase;
-            font-size: 11px !important;
+            font-size: 10px !important;
             font-weight: 400;
         }
        
@@ -127,19 +127,19 @@
                     <div class="modal-footer flexnone" style="background-color: #3a475d; padding: 0px;">
 
                         <asp:Panel runat="server" ID="pnlSelectAll" CssClass="text-left marginleft" Style="margin: auto; margin-left: 23px !important;">
-                            <div>
-                                <asp:CheckBox ID="chkSelectAll" AutoPostBack="true" Checked="false" Style="margin-top: 5px;" OnCheckedChanged="chkSelectAll_CheckedChanged" CssClass="checkbox"
+                             <div class="col-md-12" style="left:-15px;top:15px;">
+                                 <asp:CheckBox ID="chkSelectAll" AutoPostBack="true" Checked="false" Style="margin-top: 5px;" OnCheckedChanged="chkSelectAll_CheckedChanged" CssClass="checkbox"
                                     runat="server" Text="Select All"></asp:CheckBox>
                             </div>
-
-                              <div>
+                            <div class="col-md-12" style="left:-15px;">
                                 <asp:CheckBox ID="chkUnpaid" AutoPostBack="true" Checked="false" Style="margin-top: 5px;" OnCheckedChanged="chkUnpaid_CheckedChanged" CssClass="checkbox"
                                     runat="server" Text="Select All Unpaid"></asp:CheckBox>
                             </div>
+                            
 
                         </asp:Panel>
                         <div class="row text-right">
-                            <div class="col-md-12" style="margin-left:-42px;top:15px;">
+                            <div class="col-md-12" style="margin-left:-37px;top:14.9px;">
                                 <asp:CheckBox ID="chkExport" AutoPostBack="false" Checked="false" Style="margin-top: 5px;" CssClass="checkbox"
                                     runat="server" Text="xls"></asp:CheckBox>
                             </div>
