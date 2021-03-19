@@ -58,7 +58,7 @@ namespace Nordfin
                     zip.AddEntry(file.FileName, file.Bytes);
                 }
 
-              
+                zip.EntriesSorted.OrderByDescending(a => a.FileName);//= zip.EntryFileNames.OrderByDescending();
                 Response.Clear();
                 Response.BufferOutput = false;
                 Response.Buffer = false;

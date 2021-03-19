@@ -1,4 +1,4 @@
-﻿<%@ Page Language="C#" MasterPageFile="~/Nordfin.Master" AutoEventWireup="true" Title="NordfinCapital" CodeBehind="frmInvoices.aspx.cs" Inherits="Nordfin.frmInvoices" %>
+﻿<%@ Page Language="C#" MasterPageFile="~/Nordfin.Master" AutoEventWireup="true" Title="NordfinCapital" CodeBehind="frmInvoices.aspx.cs" Inherits="Nordfin.frmInvoices"  UICulture="sv-SE" Culture="sv-SE" %>
 
 <%@ Register Assembly="AjaxControlToolkit" Namespace="AjaxControlToolkit" TagPrefix="ModalWindow" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="NordfinContentHolder" runat="server" style="padding: 5px;">

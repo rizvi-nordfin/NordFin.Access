@@ -1,4 +1,4 @@
-﻿<%@ Page Language="C#" MasterPageFile="~/Nordfin.Master" AutoEventWireup="true" Title="NordfinCapital" EnableEventValidation="true" CodeBehind="frmCustomer.aspx.cs" Inherits="Nordfin.frmCustomer" %>
+﻿<%@ Page Language="C#" MasterPageFile="~/Nordfin.Master" AutoEventWireup="true" Title="NordfinCapital" EnableEventValidation="true" CodeBehind="frmCustomer.aspx.cs" Inherits="Nordfin.frmCustomer"  UICulture="sv-SE" Culture="sv-SE" %>
 
 
 <%@ Register Assembly="AjaxControlToolkit" Namespace="AjaxControlToolkit" TagPrefix="ModalWindow" %>
