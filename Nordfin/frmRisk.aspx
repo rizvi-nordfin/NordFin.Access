@@ -66,7 +66,7 @@
                                 </div>
 
                               <div class="row innerDiv col-md-12 mt-2 m-0" >
-                               <div class="col-md-6" data-ng-repeat="telson in telsonData|limitTo:8:6">
+                               <div class="col-md-6" data-ng-repeat="telson in telsonData|limitTo:4:6">
 
                                     <div class="revenue">
 

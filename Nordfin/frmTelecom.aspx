@@ -32,6 +32,15 @@
    
     height: 667px !important;
 }
+
+        .innerDiv {
+   padding:0px !important;
+   
+}
+        .dashboardTable tr {
+    height: 38.9px !important;
+}
+
     </style>
     <div class="dashboardContainer">
         <div class="container-fluid">

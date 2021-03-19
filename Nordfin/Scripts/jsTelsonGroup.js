@@ -66,8 +66,7 @@ app.controller("myCtrl", function ($scope, $http) {
 
             },
             legend: {
-                display: true,
-                location: 'top'
+                display: true
 
             },
 
