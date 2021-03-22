@@ -41,7 +41,7 @@ function Downloadlimit() {
     $('.featureNotAvailableBG').toggleClass('hidden');
 }
 
-$('.featureNotAvailableBG').click(function () {
 
+function msgNoneClick() {
     $('.featureNotAvailableBG').toggleClass('hidden');
-});
+}

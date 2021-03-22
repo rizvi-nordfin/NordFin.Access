@@ -252,14 +252,15 @@
                 </div>
                 <asp:HiddenField ID="hdnClientName" runat="server" />
                 <asp:HiddenField ID="hdnFileName" runat="server" />
+                   <div class="featureNotAvailableBG hidden" onclick="msgNoneClick();">
+        <div class="featureNotAvailable">
+            <div class="featureNotAvailableX">✕</div>
+          Download limit exceeded please check the download folder and try again
+        </div>
+    </div>
             </ContentTemplate>
         </asp:UpdatePanel>
     </form>
-     <div class="featureNotAvailableBG hidden">
-        <div class="featureNotAvailable">
-            <div class="featureNotAvailableX">✕</div>
-          Download limit exceed anyhow check the download folder
-        </div>
-    </div>
+  
 </body>
 </html>

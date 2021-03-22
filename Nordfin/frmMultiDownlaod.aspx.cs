@@ -162,10 +162,10 @@ namespace Nordfin
             Session["FileList"] = fileList;
             long totalBytes = fileList.Select(a => a.Bytes.Length).Sum();
 
-            //if (ConvertBytesToMegabytes(totalBytes) > 0)
-            //{
-            //    ScriptManager.RegisterStartupScript(this, this.GetType(), "Downloadlimit", "Downloadlimit();", true);
-            //}
+            if (ConvertBytesToMegabytes(totalBytes) > 20)
+            {
+                ScriptManager.RegisterStartupScript(this, this.GetType(), "Downloadlimit", "Downloadlimit();", true);
+            }
             if (chkExport.Checked)
                 pdfExport.Src = "frmPdfMultiDownload.aspx?FileName=" + "Export";
             if (chkExportDetail.Checked )
