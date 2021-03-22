@@ -128,7 +128,7 @@ function LinkClick(linkValues) {
     const combineInvoice = document.getElementById(linkValues.id).getAttribute("combineInvoice").replace(/\s/g, '');
     const custInvoice = document.getElementById(linkValues.id).getAttribute("custInvoice").replace(/\s/g, '');
 
-    const sFileName = document.getElementById("NordfinContentHolder_hdnFileName").value;
+    const sFileName = encodeURIComponent(document.getElementById("NordfinContentHolder_hdnFileName").value);
 
     const sClientName = document.getElementById("NordfinContentHolder_hdnClientName").value;
 

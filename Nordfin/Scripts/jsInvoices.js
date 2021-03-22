@@ -70,7 +70,7 @@ function LinkClick(linkValues) {
     document.getElementById("NordfinContentHolder_btnOpenModal").click();
 
 
-    const sFileName = document.getElementById("NordfinContentHolder_hdnFileName").value;//+ "_" + linkValues.text + "_" + "inv" + ".";
+    const sFileName = encodeURIComponent(document.getElementById("NordfinContentHolder_hdnFileName").value);//+ "_" + linkValues.text + "_" + "inv" + ".";
 
     const sClientName = document.getElementById("NordfinContentHolder_hdnClientName").value;
 
