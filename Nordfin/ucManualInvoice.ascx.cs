@@ -378,13 +378,13 @@ namespace Nordfin
 
         private bool UploadInvoicePdfToFtp()
         {
-            var hdnClientName = (HiddenField)Parent.FindControl("hdnClientName");
-            var hdnFileName = (HiddenField)Parent.FindControl("hdnFileName");
-            string subFolderName = hdnClientName.Value.Substring(hdnClientName.Value.LastIndexOf("/") + 1) + Utilities.Execute(hdnInvoiceNumber.Value);
+            var folderName = (HiddenField)Parent.FindControl("hdnClientName");
+            var clientName = ClientSession.ClientName;
+            string subFolderName = folderName.Value.Substring(folderName.Value.LastIndexOf("/") + 1) + Utilities.Execute(hdnInvoiceNumber.Value);
             string sFileExt = ConfigurationManager.AppSettings["FileExtension"].ToString();
-            string sFileName = (hdnFileName.Value.IndexOf('_') == -1 ? hdnFileName.Value : hdnFileName.Value.Substring(0, hdnFileName.Value.IndexOf('_'))) + "_" + hdnInvoiceNumber.Value + "_" + "inv" + "." + sFileExt;
+            string sFileName = (clientName.IndexOf('_') == -1 ? clientName : clientName.Substring(0, clientName.IndexOf('_'))) + "_" + hdnInvoiceNumber.Value + "_" + "inv" + "." + sFileExt;
             string base64Pdf = ViewState["base64Pdf"]?.ToString();
-            var bResult = new FTPFileProcess().UploadInvoicePdf(base64Pdf, hdnClientName.Value, subFolderName, sFileName);
+            var bResult = new FTPFileProcess().UploadInvoicePdf(base64Pdf, folderName.Value, subFolderName, sFileName);
             return bResult == FtpStatusCode.ClosingData;
         }
     }
