@@ -116,6 +116,12 @@ namespace Nordfin
                 {
                     ScriptManager.RegisterStartupScript(this, this.GetType(), "showManualInvoiceButton", "$('#btnCreditInvoice').show();", true);
                 }
+                txtPaymentInfoReference.Attributes.Add("readonly", "readonly");
+                txtPaymentInfoDelivery.Attributes.Add("readonly", "readonly");
+                txtCollectionStatus.Attributes.Add("readonly", "readonly");
+                txtCollectionDate.Attributes.Add("readonly", "readonly");
+                txtContestedDate.Attributes.Add("readonly", "readonly");
+                txtPaymentMethod.Attributes.Add("readonly", "readonly");
             }
             pdfInvoices.Src = "";
             pdfRemind.Src = "";

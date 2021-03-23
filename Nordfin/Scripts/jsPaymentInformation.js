@@ -126,7 +126,7 @@ jQuery(document).ready(function () {
                 var year = currentDate.getFullYear();
                 var dateFormat = year + "-" + month + "-" + day;
                 jq142("#txtContestedDate").val(dateFormat);
-                jq142("#txtContestedDate").attr("disabled", "disabled");
+                jq142("#txtContestedDate").attr('readonly', true);;
                 jq142("#txtCollectionStopUntil").val('');
                 
             }

@@ -70,7 +70,7 @@
                                          Text="Payment Reference"
                                          AssociatedControlID="txtPaymentInfoReference"
                                          runat="server">
-                                         <asp:TextBox runat="server" class="form-control controlColor" disabled="disabled" ID="txtPaymentInfoReference"></asp:TextBox>
+                                         <asp:TextBox runat="server" class="form-control controlColor" style="color:#fff;"  ID="txtPaymentInfoReference"></asp:TextBox>
                               </asp:Label>
                                 
                             </div>
@@ -79,7 +79,7 @@
                                          Text="Delivery"
                                          AssociatedControlID="txtPaymentInfoDelivery"
                                          runat="server">
-                                         <asp:TextBox runat="server" class="form-control controlColor" disabled="disabled" ID="txtPaymentInfoDelivery"></asp:TextBox>
+                                         <asp:TextBox runat="server" class="form-control controlColor" style="color:#fff;" ID="txtPaymentInfoDelivery"></asp:TextBox>
                               </asp:Label>
                                 
                             </div>
@@ -94,7 +94,7 @@
                                          Text="Collection Status:"
                                          AssociatedControlID="txtCollectionStatus"
                                          runat="server">
-                                  <asp:TextBox runat="server" class="form-control controlColor" disabled="disabled" ID="txtCollectionStatus"></asp:TextBox>
+                                  <asp:TextBox runat="server" class="form-control controlColor" style="color:#fff;" ID="txtCollectionStatus"></asp:TextBox>
                               </asp:Label>
 
                               
@@ -104,7 +104,7 @@
                                          Text="Collection Date:"
                                          AssociatedControlID="txtCollectionDate"
                                          runat="server">
-                                  <asp:TextBox runat="server" class="form-control controlColor" disabled="disabled" ID="txtCollectionDate"></asp:TextBox>
+                                  <asp:TextBox runat="server" class="form-control controlColor" style="color:#fff;"  ID="txtCollectionDate"></asp:TextBox>
                               </asp:Label>
                             </div>
 
@@ -165,7 +165,7 @@
                                          Text="Contested Date"
                                          AssociatedControlID="txtContestedDate"
                                          runat="server">
-                                         <asp:TextBox runat="server" CssClass="form-control controlColor" disabled="disabled" AutoCompleteType="Disabled" ID="txtContestedDate"></asp:TextBox>
+                                         <asp:TextBox runat="server" CssClass="form-control controlColor" style="color:#fff;"  AutoCompleteType="Disabled" ID="txtContestedDate"></asp:TextBox>
                               </asp:Label>
                                 
                             </div>
@@ -179,7 +179,7 @@
                                          Text="Payment Method"
                                          AssociatedControlID="txtPaymentMethod"
                                          runat="server">
-                                         <asp:TextBox runat="server" CssClass="form-control controlColor" disabled="disabled" ID="txtPaymentMethod"></asp:TextBox>
+                                         <asp:TextBox runat="server" CssClass="form-control controlColor"  style="color:#fff;" ID="txtPaymentMethod"></asp:TextBox>
                               </asp:Label>
                                 
                             </div>
