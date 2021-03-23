@@ -111,17 +111,16 @@ namespace Nordfin
                     grdNotes.DataSource = new List<string>();
                     grdNotes.DataBind();
                 }
-
-                if (ClientSession.AllowManualInvoice)
-                {
-                    ScriptManager.RegisterStartupScript(this, this.GetType(), "showManualInvoiceButton", "$('#btnCreditInvoice').show();", true);
-                }
                 txtPaymentInfoReference.Attributes.Add("readonly", "readonly");
                 txtPaymentInfoDelivery.Attributes.Add("readonly", "readonly");
                 txtCollectionStatus.Attributes.Add("readonly", "readonly");
                 txtCollectionDate.Attributes.Add("readonly", "readonly");
                 txtContestedDate.Attributes.Add("readonly", "readonly");
                 txtPaymentMethod.Attributes.Add("readonly", "readonly");
+            }
+            if (ClientSession.AllowManualInvoice)
+            {
+                ScriptManager.RegisterStartupScript(this, this.GetType(), "showManualInvoiceButton", "$('#btnCreditInvoice').show();", true);
             }
             pdfInvoices.Src = "";
             pdfRemind.Src = "";
