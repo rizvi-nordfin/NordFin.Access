@@ -13,8 +13,11 @@
         <div class="container-fluid">
 
             <div class="row dashboardHeader">
-                <div class="col-lg-12 dashboardHeadline">Contract: Overview   
-                    <asp:Button ID="btnExport" Text="Export" CssClass="export" Style="width: 75px;display:none;"  runat="server" /></div>
+                <div class="col-lg-12 dashboardHeadline">Contract: Overview  
+                    <div style="margin-top: 10px;margin-right: -28px;float:right;">
+                        <asp:Button ID="btnExport" Text="Download" CssClass="export" Style="width: 100px;" runat="server" OnClick="btnExport_Click" />
+                    </div>
+                    </div>
 
                
 
