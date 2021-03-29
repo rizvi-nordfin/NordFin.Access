@@ -236,10 +236,14 @@ namespace Nordfin
             chkInvoices.Checked = chkInvoices.Visible;
             chkDC.Checked = chkDC.Visible;
             chkRemind.Checked = chkRemind.Visible;
+            bool bMultidownlaod = false;
             if (!chkInvoices.Visible)
+            {
                 PDFArchive = hdnArchiveLink.Value + btnDownload.CommandArgument;
+                bMultidownlaod = (chkDC.Visible || chkRemind.Visible) ? true : false;
+            }
 
-            ScriptManager.RegisterStartupScript(this, this.GetType(), "ExportClick", "ExportClick(0,'" + PDFArchive + "');", true);
+            ScriptManager.RegisterStartupScript(this, this.GetType(), "ExportClick", "ExportClick(0,'" + PDFArchive + "','','"+ bMultidownlaod + "');", true);
           
         }
 
@@ -571,10 +575,17 @@ namespace Nordfin
 
         protected void grdCustomer_OnRowDataBound(object sender, GridViewRowEventArgs e)
         {
-            if (e.Row.RowType == DataControlRowType.DataRow)
+            if (e.Row.RowIndex >= 0)
             {
-                e.Row.Attributes["onclick"] = Page.ClientScript.GetPostBackClientHyperlink(grdCustomer, "Select$" + e.Row.RowIndex);
-                e.Row.ToolTip = "click to create Credit Invoice";
+                LinkButton linkButton = (e.Row.FindControl("gridLinkCollectionSatatus") as LinkButton);
+                if (linkButton.Text.ToUpper() == "EXT")
+                {
+                    linkButton.CssClass = "linkcss";
+
+                    linkButton.OnClientClick = "return ParentModal(this);";
+                }
+                else
+                    linkButton.OnClientClick = "return false";
             }
         }
 
@@ -704,6 +715,11 @@ namespace Nordfin
             grdNotes.DataBind();
             cboInvoiceNumber.SelectedIndex = 0;
             txtNotes.Text = "";
+        }
+
+        protected void grdInvoices_RowDataBound(object sender, GridViewRowEventArgs e)
+        {
+           
         }
     }
 }

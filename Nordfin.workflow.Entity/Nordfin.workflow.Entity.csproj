@@ -43,6 +43,7 @@
   <ItemGroup>
     <Compile Include="AccountSettings.cs" />
     <Compile Include="AdvanceSearch.cs" />
+    <Compile Include="ApiOutgoing.cs" />
     <Compile Include="BatchVolume.cs" />
     <Compile Include="Chart.cs" />
     <Compile Include="ClientContracts.cs" />
@@ -88,6 +89,7 @@
     <Compile Include="Payments.cs" />
     <Compile Include="Payout.cs" />
     <Compile Include="PDFMultiDownload.cs" />
+    <Compile Include="Result.cs" />
     <Compile Include="TelsonChart.cs" />
     <Compile Include="TelsonGroup.cs" />
     <Compile Include="Transaction.cs" />

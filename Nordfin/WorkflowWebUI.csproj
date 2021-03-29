@@ -254,6 +254,7 @@
     <Content Include="frmInvoices.aspx" />
     <Content Include="frmLogin.aspx" />
     <Content Include="frmPdfMultiDownload.aspx" />
+    <Content Include="frmPSInformation.aspx" />
     <Content Include="frmReports.aspx" />
     <Content Include="frmRisk.aspx" />
     <Content Include="frmContracts.aspx" />
@@ -371,6 +372,7 @@
     <Content Include="Scripts\jsLogin.js" />
     <Content Include="Scripts\jsManualInvoice.js" />
     <Content Include="Scripts\jsPaymentInformation.js" />
+    <Content Include="Scripts\jsPsInformationModal.js" />
     <Content Include="Scripts\jsReports.js" />
     <Content Include="Scripts\jsTelecom.js" />
     <Content Include="Scripts\jsTelsonGroup.js" />
@@ -407,6 +409,7 @@
     <Content Include="Styles\NordfinMaster.css" />
     <Content Include="Styles\normalize.css" />
     <Content Include="Styles\PaymentInformation.css" />
+    <Content Include="Styles\PSInformation.css" />
     <Content Include="Styles\Reports.css" />
     <Content Include="Styles\Contracts.css" />
     <Content Include="Styles\TelsonGroup.css" />
@@ -487,6 +490,13 @@
     </Compile>
     <Compile Include="frmPdfMultiDownload.aspx.designer.cs">
       <DependentUpon>frmPdfMultiDownload.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="frmPSInformation.aspx.cs">
+      <DependentUpon>frmPSInformation.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="frmPSInformation.aspx.designer.cs">
+      <DependentUpon>frmPSInformation.aspx</DependentUpon>
     </Compile>
     <Compile Include="frmReports.aspx.cs">
       <DependentUpon>frmReports.aspx</DependentUpon>

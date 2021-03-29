@@ -1,6 +1,6 @@
 ﻿
 var jq13 = jQuery.noConflict();
-debugger;
+
 jQuery(document).ready(function () {
     
     $(function () {

@@ -116,7 +116,7 @@ function EmailIDEnable() {
     }
 }
 
-function ExportClick(IsEmail, pdfArchive, bSent) {
+function ExportClick(IsEmail, pdfArchive, bSent,bMultidownlaod) {
     $(".modal-backdrop").remove();
     $(".modal-backdrop").remove();
     if (IsEmail == 1) {
@@ -137,8 +137,11 @@ function ExportClick(IsEmail, pdfArchive, bSent) {
 
         if (pdfArchive == undefined || pdfArchive == "")
             $('#mdlExport').modal({ backdrop: 'static', keyboard: false }, 'show');
-        else
+        else {
             PDFViewerArchive(pdfArchive);
+            if (bMultidownlaod)
+                $('#mdlExport').modal({ backdrop: 'static', keyboard: false }, 'show');
+        }
     }
    
    
@@ -199,3 +202,5 @@ function PDFDownloadClick(buttonValues) {
 
     return false;
 }
+
+

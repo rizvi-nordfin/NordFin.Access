@@ -114,10 +114,14 @@ namespace Nordfin
             chkInvoices.Checked = chkInvoices.Visible;
             chkDC.Checked = chkDC.Visible;
             chkRemind.Checked = chkRemind.Visible;
+            bool bMultidownlaod = false;
             if (!chkInvoices.Visible)
+            {
                 PDFArchive = hdnArchiveLink.Value + btnDownload.CommandArgument;
-           
-            ScriptManager.RegisterStartupScript(this, this.GetType(), "ExportClick", "ExportClick(0,'" + PDFArchive + "');", true);
+                bMultidownlaod = (chkDC.Visible || chkRemind.Visible) ? true : false;
+            }
+            
+            ScriptManager.RegisterStartupScript(this, this.GetType(), "ExportClick", "ExportClick(0,'" + PDFArchive + "','','"+ bMultidownlaod + "');", true);
           
         }
         //private List<InvoiceDownload> InvoiceDownloadNew(string InvoiceNumber, string collectionStatus)
@@ -391,6 +395,20 @@ namespace Nordfin
             }
         }
 
+        protected void grdInvoices_RowDataBound(object sender, GridViewRowEventArgs e)
+        {
+            if (e.Row.RowIndex >= 0)
+            {
+                LinkButton linkButton = (e.Row.FindControl("gridLinkCollectionSatatus") as LinkButton);
+                if (linkButton.Text.ToUpper() == "EXT")
+                {
+                    linkButton.CssClass = "linkcss";
 
+                    linkButton.OnClientClick = "return ParentModal(this);";
+                }
+                else
+                    linkButton.OnClientClick = "return false";
+            }
+        }
     }
 }

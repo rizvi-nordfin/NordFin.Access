@@ -42,6 +42,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="IAccountSettingsBusinessDataLayer.cs" />
+    <Compile Include="IApiOutgoingBusinessDataLayer.cs" />
     <Compile Include="IBatchesBusinessDataLayer.cs" />
     <Compile Include="IClientInformationBusinessDataLayer.cs" />
     <Compile Include="IInvoiceDashboardBusinessDataLayer.cs" />

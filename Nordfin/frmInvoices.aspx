@@ -7,6 +7,7 @@
 
     <link href="Styles/Invoices.css?version=<%=ConfigurationManager.AppSettings["VersionConfiguration"].ToString() %>" rel="stylesheet" />
 
+    <script src="Scripts/jsPsInformationModal.js?version=<%=ConfigurationManager.AppSettings["VersionConfiguration"].ToString() %>"></script>
     <div class="dashboardContainer">
         <div class="container-fluid">
 
@@ -100,7 +101,7 @@
             <asp:UpdatePanel runat="server" ID="UpdatePanel1" >
                 <ContentTemplate>
                     <div class="tableFixHead tableMarginBg">
-                        <asp:GridView ID="grdInvoices" runat="server" AutoGenerateColumns="False" AllowSorting="true" OnSorting="grdInvoices_Sorting" EmptyDataRowStyle-CssClass="Emptyrow" ViewStateMode="Enabled" Visible="true" Style="color: white; overflow-x: scroll; overflow-y: scroll;"
+                        <asp:GridView ID="grdInvoices" runat="server" AutoGenerateColumns="False" AllowSorting="true" OnSorting="grdInvoices_Sorting" OnRowDataBound="grdInvoices_RowDataBound" EmptyDataRowStyle-CssClass="Emptyrow" ViewStateMode="Enabled" Visible="true" Style="color: white; overflow-x: scroll; overflow-y: scroll;"
                             ShowHeaderWhenEmpty="true" CssClass="table table-borderless">
                             <HeaderStyle BackColor="#475672" CssClass="GVFixedHeader" />
                             <Columns>
@@ -133,7 +134,15 @@
 
                                 <asp:BoundField DataField="TotalRemaining" DataFormatString="{0:#,0.00}" HeaderStyle-CssClass="itemalign" ItemStyle-CssClass="itemalign" HeaderText="TOTAL REMAIN" SortExpression="TotalRemaining" />
 
-                                <asp:BoundField DataField="Collectionstatus" HeaderStyle-CssClass="itemalign" ItemStyle-CssClass="itemalign" HeaderText="Collection Status" SortExpression="Collectionstatus" />
+                                <asp:TemplateField ItemStyle-CssClass="itemalign" HeaderText="Collection Status" SortExpression="Collectionstatus" HeaderStyle-CssClass="itemalign">
+                                    <ItemTemplate>
+
+                                        <asp:LinkButton CssClass="linkNormalcss" Text='<%# Bind("Collectionstatus") %>' CommandName="Sort" ID="gridLinkCollectionSatatus" 
+                                           invoice='<%# Eval("Invoicenumber") %>'   runat="server" />
+                                    </ItemTemplate>
+
+                                </asp:TemplateField>
+
 
                                   <asp:BoundField DataField="Credited" HeaderStyle-CssClass="itemalign" ItemStyle-CssClass="itemalign" HeaderText="Credited" SortExpression="Credited" />
                                 <asp:BoundField DataField="ClosedCredit" HeaderStyle-CssClass="itemalign" ItemStyle-CssClass="itemalign" HeaderText="Closed with credit" SortExpression="ClosedCredit" />

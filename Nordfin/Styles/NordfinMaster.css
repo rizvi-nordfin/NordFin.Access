@@ -1658,5 +1658,16 @@ hr {
 
 
 
+a.linkNormalcss {
+    color: #fff !important;
+    text-decoration: none;
+    border: none;
+    cursor: unset !important;
+}
 
-
+a.linkcss {
+    color: #FFB100;
+    text-decoration: none;
+    border: none;
+    cursor: pointer;
+}
