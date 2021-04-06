@@ -41,6 +41,7 @@
           <asp:Label runat="server" ID="lblInvoiceNum" Style="color: #FFB100; text-align: left; font-size: medium;"></asp:Label>
           <div class="paymentInfoButtons">
             <button class="button paymentInfoButton" onclick="return showManualInvoice();" style="width:auto !important;display:none" id="btnCreditInvoice">Credit Invoice</button>
+            <button class="button paymentInfoButton" onclick="return showCreditButton();" style="width:auto !important;display:none" id="btnCredit">Credit Invoice</button>
             <button class="button paymentInfoButton" data-ng-click="notesUpdate($event)" runat="server">Update</button>
             <asp:Button Text="Download" class="button paymentInfoButton" id="btnPDFDownload" OnClientClick="return ProcessingModal();" OnClick="btnPDFDownload_Click"  runat="server"></asp:Button>
           </div>
@@ -489,7 +490,30 @@
                 </div>
             </div>
 
+             <div class="modal fade" style="top:100px !important;" id="mdlCreditConfirm" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                <div class="modal-dialog" role="document">
+                    <div class="modal-content" style="background: none;border:none;width: 75%;">
+                        <div class="modal-header dashboardHeadline" style="background-color: #323e53; color: #fff;font-size:16px;">
+                            <h5 class="modal-title" >Information</h5>
+                            <button type="button" class="modalcloseButton" data-dismiss="modal" aria-label="Close" style="top: 30px;right: 0px;">
+                                        <span aria-hidden="true">✕</span>
+                                    </button>
+                        </div>
+                        <div class="modal-body" style="background-color: #323e53; color: #fff;">
+                            <div>
+                                <span id="spnCredit" style="color: #A9BFD5;text-transform: uppercase;font-size:12px;">   </span>
+                            </div>
+                        </div>
 
+                           <div class="modal-footer" style="background-color: #323E53;padding:0px;">
+                               <button type="button" class="modalbutton" id="btnCreditYes" data-ng-click="creditAdded($event)" >Yes</button>
+                            <button type="button" class="modalbutton" id="btnCreditNo" data-dismiss="modal">No</button>
+                            
+                            </div>
+                        
+                    </div>
+                </div>
+            </div>
             
             <div class="modal fade" id="mdlInformConfirm" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
                 <div class="modal-dialog" role="document">

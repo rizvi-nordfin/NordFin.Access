@@ -5,6 +5,7 @@ using Nordfin.workflow.Entity;
 using Nordfin.workflow.PresentationBusinessLayer;
 using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.IO;
 using System.Net;
 using System.Net.Mail;
@@ -122,6 +123,11 @@ namespace Nordfin
             {
                 ScriptManager.RegisterStartupScript(this, this.GetType(), "showManualInvoiceButton", "$('#btnCreditInvoice').show();", true);
             }
+            else if ((decimal.Parse(hdnInvoiceAmount.Value, CultureInfo.InvariantCulture) > 0) && (ClientSession.Admin == "0" || ClientSession.Admin == "1"))
+            {
+                ScriptManager.RegisterStartupScript(this, this.GetType(), "showCreditButton", "$('#btnCredit').show();", true);
+            }
+
             pdfInvoices.Src = "";
             pdfRemind.Src = "";
             pdfDC.Src = "";
@@ -430,7 +436,30 @@ namespace Nordfin
                 ScriptManager.RegisterStartupScript(this, this.GetType(), "ExportClick", "ExportClick(1,'','" + false + "');", true);
             }
         }
-     
 
+        [WebMethod]
+        public static string InsertServerJob()
+        {
+
+            ServerJob serverJob = new ServerJob
+            {
+                ClientID = ClientSession.ClientID,
+                JobData = Convert.ToString(HttpContext.Current.Session["InvoiceID"]),
+                CustomerID = (string)HttpContext.Current.Session["custNum"],
+                InvoiceNumber = (string)HttpContext.Current.Session["InvoiceNum"],
+                UserID = Convert.ToInt32(ClientSession.UserID),
+                UserName = ClientSession.UserName
+            };
+
+
+
+
+            IPaymentInformationPresentationBusinessLayer objPresentationInfoLayer = new PaymentInformationBusinessLayer();
+            IList<Notes> NoteList = objPresentationInfoLayer.insertServerJob(serverJob);
+            string jsonNotesListResult = new JavaScriptSerializer().Serialize(NoteList);
+            string sResultList = "{\"NotesList\" :" + jsonNotesListResult + "}";
+            return sResultList;
+            //updateInterest
+        }
     }
 }

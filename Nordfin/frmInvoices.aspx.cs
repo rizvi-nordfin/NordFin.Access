@@ -114,11 +114,20 @@ namespace Nordfin
             chkInvoices.Checked = chkInvoices.Visible;
             chkDC.Checked = chkDC.Visible;
             chkRemind.Checked = chkRemind.Visible;
+            bool bMultidownlaod = false;
             if (!chkInvoices.Visible)
+            {
                 PDFArchive = hdnArchiveLink.Value + btnDownload.CommandArgument;
+                //bMultidownlaod = (chkDC.Visible || chkRemind.Visible) ? true : false;
+                chkInvoices.Attributes.Add("EvryArchive", "true");
+                chkInvoices.Checked = true;
+                chkInvoices.Visible = true;
+            }
            
-            ScriptManager.RegisterStartupScript(this, this.GetType(), "ExportClick", "ExportClick(0,'" + PDFArchive + "');", true);
-          
+            ScriptManager.RegisterStartupScript(this, this.GetType(), "ExportClick", "ExportClick(0,'" + PDFArchive + "','','" + bMultidownlaod + "');", true);
+
+
+
         }
         //private List<InvoiceDownload> InvoiceDownloadNew(string InvoiceNumber, string collectionStatus)
         //{
@@ -193,7 +202,14 @@ namespace Nordfin
             string FileStartName = hdnFileName.Value;
             string InvoiceNumber= ((Button)sender).CommandArgument.Trim();
             EmailFunctions emailFunctions = new EmailFunctions();
-            if (chkInvoices.Checked && chkInvoices.Visible)
+            bool isMultidownload = false;
+            string PDFArchive = "";
+            if (chkInvoices.Attributes["EvryArchive"] != null && chkInvoices.Attributes["EvryArchive"]=="true")
+            {
+                PDFArchive = hdnArchiveLink.Value + btnDownload.CommandArgument;
+                isMultidownload = true;
+            }
+            else if (chkInvoices.Checked && chkInvoices.Visible)
             {
                 string sFileName = emailFunctions.GetFileName(FileStartName, InvoiceNumber, "",out bool bExist);
                 if (bExist)
@@ -211,8 +227,8 @@ namespace Nordfin
                 if (bExist)
                     pdfDC.Src ="frmPdfMultiDownload.aspx?FileName=" + Server.UrlEncode(sFileName);
             }
-            
-            ScriptManager.RegisterStartupScript(this, this.GetType(), "ExportClick", "ExportClick(0);", true);
+
+            ScriptManager.RegisterStartupScript(this, this.GetType(), "ExportClick", "ExportClick(0,'" + PDFArchive + "','','" + isMultidownload + "');", true);
         }
       
 

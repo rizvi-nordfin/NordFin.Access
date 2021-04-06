@@ -303,6 +303,18 @@ function logKey(e) {
        
     }
 }
+
+function showCreditButton() {
+    debugger;
+    if (jq13('#btnCreditYes').hide()) {
+
+        jq13('#btnCreditYes').show();
+    }
+    jq13('#spnCredit').text("Are you sure you want to credit invoice"+ " " + jq13('#lblInvoiceNum').text());
+    jq13('#mdlCreditConfirm').modal({ backdrop: 'static', keyboard: false }, 'show');
+    return false;
+    
+}
 var app = angular.module("myApp", []);
 
 app.controller("myCtrl", function ($scope, $http) {
@@ -712,7 +724,48 @@ app.controller("myCtrl", function ($scope, $http) {
 
     }
 
- 
+    $scope.creditAdded = function ($event) {
+        $http({
+            url: "frmPaymentInformation.aspx/InsertServerJob",
+            dataType: 'json',
+            method: 'POST',
+            data: {},
+
+            headers: {
+                "Content-Type": "application/json; charset=utf-8",
+                "X-Requested-With": "XMLHttpRequest"
+            }
+        }).then(function (response) {
+
+            debugger;
+            const resData = response.data.d;
+            const jobList = JSON.parse(resData);
+
+            $scope.NotesAdded(jobList.NotesList);
+            jq13('#btnCreditNo').text('Ok');
+            jq13('#spnCredit').text("Invoice marked for crediting");
+            jq13('#btnCreditYes').hide();
+        }, function (error) {
+        });
+        $event.preventDefault();
+    }
+    $scope.NotesAdded = function (NotesList) {
+
+        if (jq13("#grdNotes tr td")[0].colSpan == 5)
+            jq13("#grdNotes tr:eq(1)").remove();
+
+        for (var i = 0; i < NotesList.length; i++) {
+            jq13("#grdNotes").append("<tr><td class='Notesalign'>" + NotesList[i].InvoiceNumber + "</td>" + "<td class='Notesalign'>" + NotesList[i].NoteType + "</td> " +
+                + "</td>" + "<td class='Notesalign'>" + NotesList[i].NoteDate + "</td> " + "</td>" + "<td class='Notesalign'>" + NotesList[i].UserName + "</td> " +
+                "</td>" + "<td class='Notesalign'>" + NotesList[i].NoteText + "</td> " + "</tr>");
+
+            if (window.parent.$("#NordfinContentHolder_grdNotes tr td")[0] != undefined && window.parent.$("#NordfinContentHolder_grdNotes tr td")[0].colSpan == 5)
+                window.parent.$("#NordfinContentHolder_grdNotes tr:eq(1)").remove();
+            window.parent.$("#NordfinContentHolder_grdNotes tr:first").after("<tr><td class='Notesalign'>" + NotesList[i].InvoiceNumber + "</td>" + "<td class='Notesalign'>" + NotesList[i].NoteType + "</td> " +
+                + "</td>" + "<td class='Notesalign'>" + NotesList[i].NoteDate + "</td> " + "</td>" + "<td class='Notesalign'>" + NotesList[i].UserName + "</td> " +
+                "</td>" + "<td class='Notesalign'>" + NotesList[i].NoteText + "</td> " + "</tr>");
+        }
+    }
 });
 
 

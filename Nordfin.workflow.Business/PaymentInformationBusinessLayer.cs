@@ -40,5 +40,9 @@ namespace Nordfin.workflow.Business
         {
             return objuser.removePayout(payoutID);
         }
+        IList<Notes> IPaymentInformationPresentationBusinessLayer.insertServerJob(ServerJob serverJob)
+        {
+            return objuser.insertServerJob(serverJob);
+        }
     }
 }

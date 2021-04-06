@@ -14,5 +14,6 @@ namespace Nordfin.workflow.BusinessDataLayerInterface
         IList<Interest> updateInterest(int InteresrID);
         Tuple<Notes, IList<Notes>> insertInterest(Notes objNotes);
         int removePayout(int payoutID);
+        IList<Notes> insertServerJob(ServerJob serverJob);
     }
 }
