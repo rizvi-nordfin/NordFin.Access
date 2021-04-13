@@ -237,11 +237,16 @@ namespace Nordfin
             IInvoicesPresentationBusinessLayer objInvoicesLayer = new InvoicesBusinessLayer();
             string scustEmail = objInvoicesLayer.GetCustInvoiceEmailID(ClientSession.ClientID, btnEmail.Attributes["custInvoice"].ToString());
             txtCustEmail.Text = scustEmail;
-            txtEmailHeader.Text = ClientSession.ClientName + "; Invoice" + " " + btnEmail.Attributes["combineInvoice"];
             if (ClientSession.ClientLand.ToUpper() == "FI")
+            {
+                txtEmailHeader.Text = ClientSession.ClientName + "; Lasku" + " " + btnEmail.Attributes["combineInvoice"];
                 txtEmailBody.Text = "Hei," + "\n\n" + "Liitteenä laskunne." + "\n\n" + "Hyvää päivänjatkoa!" + "\n\n" + "Best Regards," + "\n" + ClientSession.ClientName;
+            }
             else
+            {
+                txtEmailHeader.Text = ClientSession.ClientName + "; Invoice" + " " + btnEmail.Attributes["combineInvoice"];
                 txtEmailBody.Text = "Hei, Hi, Hej, Hallo!" + "\n\n" + "Your invoice copy has been attached" + "\n\n" + "Have a great day :-)" + "\n\n" + "Best Regards," + "\n" + ClientSession.ClientName;
+            }
             ScriptManager.RegisterStartupScript(this, this.GetType(), "ExportClick", "ExportClick(1);", true);
         }
    
