@@ -1,6 +1,6 @@
 ﻿
 var jq13 = jQuery.noConflict();
-debugger;
+
 jQuery(document).ready(function () {
     
     $(function () {
@@ -305,7 +305,7 @@ function logKey(e) {
 }
 
 function showCreditButton() {
-    debugger;
+   
     if (jq13('#btnCreditYes').hide()) {
 
         jq13('#btnCreditYes').show();
@@ -314,6 +314,14 @@ function showCreditButton() {
     jq13('#mdlCreditConfirm').modal({ backdrop: 'static', keyboard: false }, 'show');
     return false;
     
+}
+
+
+function ModalBackdrop() {
+    jq13(".modal-backdrop").remove();
+    jq13(".modal-backdrop").remove();
+    jq13('#mdlExport').modal({ backdrop: 'static', keyboard: false }, 'show');
+
 }
 var app = angular.module("myApp", []);
 

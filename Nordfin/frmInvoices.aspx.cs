@@ -103,6 +103,8 @@ namespace Nordfin
         {
             EmailFunctions emailFunctions = new EmailFunctions();
             string PDFArchive = "";
+            if(chkInvoices.Attributes["EvryArchive"] != null)
+                chkInvoices.Attributes.Remove("EvryArchive");
             btnDownload.CommandArgument = ((Button)sender).CommandArgument.Trim().Replace("INV-", "");
             btnEmail.Attributes["custInvoice"] = ((Button)sender).Attributes["custInvoice"].ToString();
             btnEmail.Attributes["combineInvoice"] = ((Button)sender).Attributes["combineInvoice"].ToString();
@@ -234,6 +236,13 @@ namespace Nordfin
 
         protected void btnEmail_Click(object sender, EventArgs e)
         {
+            if (chkInvoices.Attributes["EvryArchive"] != null && chkInvoices.Attributes["EvryArchive"] == "true" && !chkDC.Checked && !chkRemind.Checked)
+            {
+                ScriptManager.RegisterStartupScript(this, this.GetType(), "ModalBackdrop", "ModalBackdrop();", true);
+                return;
+
+            }
+               
             IInvoicesPresentationBusinessLayer objInvoicesLayer = new InvoicesBusinessLayer();
             string scustEmail = objInvoicesLayer.GetCustInvoiceEmailID(ClientSession.ClientID, btnEmail.Attributes["custInvoice"].ToString());
             txtCustEmail.Text = scustEmail;

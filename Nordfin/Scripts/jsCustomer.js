@@ -464,5 +464,10 @@ function maxLengthPaste(field, maxChars) {
 
 
 
+function ModalBackdrop() {
+    $(".modal-backdrop").remove();
+    $(".modal-backdrop").remove();
+    $('#mdlExport').modal({ backdrop: 'static', keyboard: false }, 'show');
+}
 
 

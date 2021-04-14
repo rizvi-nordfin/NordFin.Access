@@ -207,3 +207,9 @@ function PDFDownloadClick(buttonValues) {
 
     return false;
 }
+
+function ModalBackdrop(){
+    $(".modal-backdrop").remove();
+    $(".modal-backdrop").remove();
+    $('#mdlExport').modal({ backdrop: 'static', keyboard: false }, 'show');
+}
