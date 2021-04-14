@@ -399,7 +399,7 @@ namespace Nordfin
             if (ClientSession.ClientLand.ToUpper() == "FI")
             {
                 txtEmailHeader.Text = ClientSession.ClientName + "; Lasku" + " " + btnEmail.Attributes["combineInvoice"];
-                txtEmailBody.Text = "Hei," + "\n\n" + "Liitteenä laskunne." + "\n\n" + "Hyvää päivänjatkoa!" + "\n\n" + "Best Regards," + "\n" + ClientSession.ClientName;
+                txtEmailBody.Text = "Hei," + "\n\n" + "Liitteenä laskunne." + "\n\n" + "Hyvää päivänjatkoa!" + "\n\n" + "Ystävällisin terveisin," + "\n" + ClientSession.ClientName;
             }
             else
             {
