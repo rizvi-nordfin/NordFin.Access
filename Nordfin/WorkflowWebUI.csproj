@@ -248,8 +248,10 @@
     <Content Include="frmBatches.aspx" />
     <Content Include="frmClientInformation.aspx" />
     <Content Include="frmContractOverview.aspx" />
+    <Content Include="frmCreditCheck.aspx" />
     <Content Include="frmCustomer.aspx" />
     <Content Include="frmDashboard.aspx" />
+    <Content Include="frmDebitCollection.aspx" />
     <Content Include="frmInvoiceBatches.aspx" />
     <Content Include="frmInvoices.aspx" />
     <Content Include="frmLogin.aspx" />
@@ -384,6 +386,7 @@
     <Content Include="Styles\bootstrap.min.css" />
     <Content Include="Styles\AccountSettings.css" />
     <Content Include="Styles\ContractsOverview.css" />
+    <Content Include="Styles\CreditCheck.css" />
     <Content Include="Styles\Customer.css" />
     <Content Include="Styles\Dashboard.css" />
     <Content Include="Styles\datepicker.css" />
@@ -446,6 +449,13 @@
     <Compile Include="frmContractOverview.aspx.designer.cs">
       <DependentUpon>frmContractOverview.aspx</DependentUpon>
     </Compile>
+    <Compile Include="frmCreditCheck.aspx.cs">
+      <DependentUpon>frmCreditCheck.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="frmCreditCheck.aspx.designer.cs">
+      <DependentUpon>frmCreditCheck.aspx</DependentUpon>
+    </Compile>
     <Compile Include="frmCustomer.aspx.cs">
       <DependentUpon>frmCustomer.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -459,6 +469,13 @@
     </Compile>
     <Compile Include="frmDashboard.aspx.designer.cs">
       <DependentUpon>frmDashboard.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="frmDebitCollection.aspx.cs">
+      <DependentUpon>frmDebitCollection.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="frmDebitCollection.aspx.designer.cs">
+      <DependentUpon>frmDebitCollection.aspx</DependentUpon>
     </Compile>
     <Compile Include="frmInvoiceBatches.aspx.cs">
       <DependentUpon>frmInvoiceBatches.aspx</DependentUpon>

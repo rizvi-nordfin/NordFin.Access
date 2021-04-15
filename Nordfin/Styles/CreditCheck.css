@@ -1,0 +1,56 @@
+﻿.divPadding {
+    padding-right: 0px;
+    padding-left: 0px;
+    background-color: #3E4B64;
+
+}
+.divPaddingLeft {
+    padding-left: 20px;
+}
+
+
+.divHeading {
+    font-size: x-small;
+    color: #A9BFD5;
+    text-transform:uppercase;
+}
+
+
+.divText {
+    display: block;
+    color: #fff;
+    overflow-x: hidden;
+    text-overflow: ellipsis;
+}
+
+.divHrLine {
+    border: 0.7px solid #475672;
+    background-color: #475672;
+    margin-top: 5px;
+    margin-bottom: 5px;
+}
+.actionButtonColumn {
+    padding-left: 5%;
+    padding-right: 0px;
+}
+
+.updateInfoButtonContainer {
+    background: #475672;
+    height: 70px;
+    margin-top: 0;
+    padding-top: 10px;
+}
+
+.panelButton {
+    background-color: transparent;
+    border: 1px solid #3DADC5;
+    color: #3DADC5;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    width: 100%;
+    padding-left: 15px;
+    font-size: 10px;
+    height: 90%;
+    line-height: 25px
+}
