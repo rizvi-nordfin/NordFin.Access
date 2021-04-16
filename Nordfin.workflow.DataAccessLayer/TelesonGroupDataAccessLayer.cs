@@ -130,5 +130,21 @@ namespace Nordfin.workflow.DataAccessLayer
 
 
         }
+        int ITelsonGroupBusinessDataLayer.setCreditCheck(CreditCheck creditSafe)
+        {
+            DBInitialize("usp_setCreditCheckFromApi");
+            DatabaseName.AddInParameter(DBBaseCommand, "@CreditStatus", System.Data.DbType.String, creditSafe.CreditStatus);
+            DatabaseName.AddInParameter(DBBaseCommand, "@CreditInfo", System.Data.DbType.String, creditSafe.CreditInfo);
+            DatabaseName.AddInParameter(DBBaseCommand, "@PersonalNumber", System.Data.DbType.String, creditSafe.PersonalNumber);
+            DatabaseName.AddInParameter(DBBaseCommand, "@ErrorMsg", System.Data.DbType.String, creditSafe.ErrorMessage);
+
+
+            DatabaseName.AddInParameter(DBBaseCommand, "@ClientID", System.Data.DbType.Int32, creditSafe.ClientID);
+            DatabaseName.AddInParameter(DBBaseCommand, "@CreditAccept", System.Data.DbType.Int32, creditSafe.CreditScoreAccepted);
+            DatabaseName.AddInParameter(DBBaseCommand, "@ContractID", System.Data.DbType.Int32, 0);
+
+            DatabaseName.ExecuteNonQuery(DBBaseCommand);
+            return 0;
+        }
     }
 }

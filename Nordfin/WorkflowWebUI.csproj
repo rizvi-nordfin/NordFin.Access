@@ -191,6 +191,7 @@
       <HintPath>..\packages\System.IO.Packaging.4.0.0\lib\net46\System.IO.Packaging.dll</HintPath>
     </Reference>
     <Reference Include="System.Net.Http" />
+    <Reference Include="System.Runtime.Serialization" />
     <Reference Include="System.Security" />
     <Reference Include="System.Security.AccessControl, Version=5.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
@@ -204,6 +205,7 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>lib\System.Security.Principal.Windows.dll</HintPath>
     </Reference>
+    <Reference Include="System.ServiceModel" />
     <Reference Include="System.Threading.Tasks" />
     <Reference Include="System.Web.DynamicData" />
     <Reference Include="System.Web.Entity" />
@@ -244,6 +246,31 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <None Include="Connected Services\CreditSafeTemplate\cas_service.disco" />
+    <None Include="Connected Services\CreditSafeTemplate\configuration91.svcinfo" />
+    <None Include="Connected Services\CreditSafeTemplate\configuration.svcinfo" />
+    <Content Include="Connected Services\CreditSafeTemplate\Nordfin.CreditSafeTemplate.CasCompanyServiceResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
+    <Content Include="Connected Services\CreditSafeTemplate\Nordfin.CreditSafeTemplate.CasPersonServiceResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
+    <Content Include="Connected Services\CreditSafeTemplate\Nordfin.CreditSafeTemplate.CAS_COMPANY_RESPONSE.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
+    <Content Include="Connected Services\CreditSafeTemplate\Nordfin.CreditSafeTemplate.CAS_PERSON_RESPONSE.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
+    <Content Include="Connected Services\CreditSafeTemplate\Nordfin.CreditSafeTemplate.CAS_SERVICE_RESPONSE.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
+    <Content Include="Connected Services\CreditSafeTemplate\Nordfin.CreditSafeTemplate.GetTemplateListResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
+    <None Include="Connected Services\CreditSafeTemplate\Reference.svcmap">
+      <Generator>WCF Proxy Generator</Generator>
+      <LastGenOutput>Reference.cs</LastGenOutput>
+    </None>
     <Content Include="frmAccountSettings.aspx" />
     <Content Include="frmBatches.aspx" />
     <Content Include="frmClientInformation.aspx" />
@@ -342,9 +369,7 @@
     <Content Include="Scripts\font-Awesome.js" />
     <Content Include="Scripts\jquery-1.11.1.min.js" />
     <Content Include="libman.json" />
-    <Content Include="Files\GNP Energy Finland Oy_2714890_inv.pdf" />
-    <Content Include="Files\GNP Energy Finland Oy_DC2714890_inv.pdf" />
-    <Content Include="Files\GNP Energy Finland Oy_Rem2714890_inv.pdf" />
+    <None Include="Connected Services\CreditSafeTemplate\cas_service.wsdl" />
     <None Include="Properties\PublishProfiles\FTPProfileProd.pubxml" />
     <None Include="Properties\PublishProfiles\FTPProfileTest.pubxml" />
     <None Include="Scripts\jquery-3.4.1.intellisense.js" />
@@ -420,6 +445,11 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="ClientSession.cs" />
+    <Compile Include="Connected Services\CreditSafeTemplate\Reference.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Compile>
     <Compile Include="EmailFunctions.cs" />
     <Compile Include="frmAccountSettings.aspx.cs">
       <DependentUpon>frmAccountSettings.aspx</DependentUpon>
@@ -612,9 +642,11 @@
       <Name>Nordfin.workflow.PresentationBusinessLayer</Name>
     </ProjectReference>
   </ItemGroup>
-  <ItemGroup />
   <ItemGroup>
     <WCFMetadata Include="Connected Services\" />
+  </ItemGroup>
+  <ItemGroup>
+    <WCFMetadataStorage Include="Connected Services\CreditSafeTemplate\" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

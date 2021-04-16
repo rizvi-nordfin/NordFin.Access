@@ -89,7 +89,7 @@
                             </div>
 
                         </div>
-                        <asp:Button Text="Search" OnClick="Search_Click" ID="Search" OnClientClick="return AdvanceSearch();" class="button topMenuSearchButton" runat="server" />
+                        <asp:Button Text="Search" OnClick="Search_Click"  ID="Search" OnClientClick="return AdvanceSearch();" class="button topMenuSearchButton" runat="server" />
 
 
                     </div>

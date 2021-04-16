@@ -1,9 +1,18 @@
 ﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="frmCreditCheck.aspx.cs" MasterPageFile="~/Nordfin.Master" Inherits="Nordfin.frmCreditCheck" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="NordfinContentHolder" runat="server"   style="background-color: #232D41;">
-
+    <asp:Panel DefaultButton="btnCreditCheck" runat="server">
     <link href="Styles/AccountSettings.css?version=<%=ConfigurationManager.AppSettings["VersionConfiguration"].ToString() %>" rel="stylesheet" />
 
     <script src="Scripts/jsAccountSettings.js?version=<%=ConfigurationManager.AppSettings["VersionConfiguration"].ToString() %>"></script>
+        <style>
+            .sideContractMenuButtonStatistics {
+                background-color: rgb(44, 56, 80);
+            }
+
+                .sideContractMenuButtonStatistics img.sideMenuIcon {
+                    filter: brightness(0) saturate(100%) invert(78%) sepia(49%) saturate(3809%) hue-rotate(359deg) brightness(101%) contrast(106%);
+                }
+        </style>
     <div class="dashboardContainer">
         <div class="container-fluid">
             <div class="dashboardHeader">
@@ -21,7 +30,7 @@
 
 
                             <div class="divPaddingLeft" style="background-color: #475672">
-                                <span class="customerdivHeading">CreditCheck</span>
+                                <asp:Label runat="server" CssClass="customerdivHeading" ID="lblClientName"></asp:Label>
 
                                 
 
@@ -30,14 +39,15 @@
 
                               <div class="divPaddingLeft">
                                 <span class="customerdivHeading">UserName</span>
-                                  <asp:TextBox CssClass="customerdivText form-control textboxColor" style="width: 90%;" runat="server" AutoCompleteType="Disabled" ID="txtUserName"></asp:TextBox>
+                                  <asp:TextBox CssClass="customerdivText form-control textboxColor" style="width: 90%;" runat="server" AutoCompleteType="Disabled"  ID="txtUserName"></asp:TextBox>
 
                             </div>
                             <hr class="divHrLine" />
 
                              <div class="divPaddingLeft">
                                 <span class="customerdivHeading">Password</span>
-                                  <asp:TextBox CssClass="customerdivText form-control textboxColor" style="width: 90%;" runat="server" AutoCompleteType="Disabled" ID="txtPassword"></asp:TextBox>
+                                 <%--<input  name="password" id="password" runat="server" AutoCompleteType="Disabled" class="customerdivText form-control textboxColor"/>--%>
+                                  <asp:TextBox CssClass="customerdivText form-control textboxColor" style="width: 90%;" runat="server"  AutoCompleteType="Disabled"  ID="txtPassword"></asp:TextBox>
 
                             </div>
                             <hr class="divHrLine" />
@@ -62,7 +72,7 @@
                         </div>
                        
                          <div class="updateInfoButtonContainer text-center">
-                          <asp:Button Text="Credit Check" class="button panelButton form-control" style="width:250px;" runat="server" OnClick="btnCreditCheck_Click" ID="btnCreditCheck"/>
+                          <asp:Button Text="Credit Check"  class="button panelButton form-control" style="width:250px;" runat="server" OnClick="btnCreditCheck_Click" ID="btnCreditCheck"/>
                         </div>
 
 
@@ -82,7 +92,8 @@
                                  <asp:BoundField DataField="Name" HeaderStyle-CssClass="Notesalign" ItemStyle-CssClass="Notesalign" HeaderText="Name" SortExpression="Name" />
                                  <asp:BoundField DataField="Address" HeaderStyle-CssClass="Notesalign" ItemStyle-CssClass="Notesalign" HeaderText="Address" SortExpression="Address" />
                                  <asp:BoundField DataField="Status" HeaderStyle-CssClass="Notesalign" ItemStyle-CssClass="Notesalign" HeaderText="Status" SortExpression="Status" />
-                                    <asp:BoundField DataField="Error" HeaderStyle-CssClass="Notesalign" ItemStyle-CssClass="Notesalign" HeaderText="Error" SortExpression="Error" />
+                                    <asp:BoundField DataField="Error" HeaderStyle-CssClass="Notesalign" ItemStyle-CssClass="Notesalign" HeaderText="Reject Code" SortExpression="Error" />
+                                 <%--<asp:BoundField DataField="ErrorMessage" HeaderStyle-CssClass="Notesalign" ItemStyle-CssClass="Notesalign" HeaderText="Reject Text" SortExpression="ErrorMessage" />--%>
                                      <asp:BoundField DataField="City" HeaderStyle-CssClass="Notesalign" ItemStyle-CssClass="Notesalign" HeaderText="City" SortExpression="City" />
                                      <asp:BoundField DataField="PostalCode" HeaderStyle-CssClass="Notesalign" ItemStyle-CssClass="Notesalign" HeaderText="Postal Code" SortExpression="PostalCode" />
                                    
@@ -116,6 +127,6 @@
 
         </div>
         </div>
-
+        </asp:Panel>
 </asp:Content>
 
