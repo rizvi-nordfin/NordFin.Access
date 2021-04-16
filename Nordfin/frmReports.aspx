@@ -115,7 +115,7 @@
                                 <div class="reportsCardCaption"> Transactions in period <br>Bookkeeping</div>
                             </div>
                             <div class="reportsCardBottom">
-                                <asp:Button CssClass="button reportsCardButton form-control" runat="server" Text="Download" ID="Button5" OnClientClick="return Message();" ></asp:Button>
+                                <asp:Button CssClass="button reportsCardButton form-control" runat="server" Text="Download" ID="btnTransactionReport" OnClick="btnTransactionReport_Click"  OnClientClick="return DateSelection('Transaction report');"></asp:Button>
                             </div>
                         </div>
                     </div>

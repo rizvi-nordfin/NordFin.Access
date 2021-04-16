@@ -66,6 +66,16 @@ namespace Nordfin.workflow.DataAccessLayer
             return dataSet;
         }
 
+        DataSet IReportsBusinessDataLayer.GetTransactionReport(string ClientID, string sFromDate, string sToDate)
+        {
+            DBInitialize("usp_getTransactionReport");
+            DatabaseName.AddInParameter(DBBaseCommand, "@ClientID", System.Data.DbType.Int32, Convert.ToInt32(ClientID));
+            DatabaseName.AddInParameter(DBBaseCommand, "@startDate", System.Data.DbType.String, sFromDate);
+            DatabaseName.AddInParameter(DBBaseCommand, "@endDate", System.Data.DbType.String, sToDate);
+            DataSet dataSet = DatabaseName.ExecuteDataSet(DBBaseCommand);
+            return dataSet;
+        }
+
 
     }
 }

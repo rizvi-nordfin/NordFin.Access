@@ -13,6 +13,7 @@ namespace Nordfin.workflow.PresentationBusinessLayer
         DataSet usp_getPeriodicReport(string ClientID, string sFromDate, string sToDate);
         DataSet GetContestedReport(string ClientID);
         DataSet GetStoppedReport(string ClientID);
+        DataSet GetTransactionReport(string ClientID, string sFromDate, string sToDate);
 
     }
 }
