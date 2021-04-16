@@ -265,6 +265,9 @@
                       <asp:Panel ID="pnlTelecom" runat="server">
                         <a href="/frmTelecom.aspx">Telecom</a>
                     </asp:Panel>
+                      <asp:Panel ID="pnlDebtCollection" runat="server">
+                        <a href="frmDebtCollection.aspx">Debt Collection List</a>
+                    </asp:Panel>
 
                 </div>
             </div>

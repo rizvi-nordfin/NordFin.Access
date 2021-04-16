@@ -57,6 +57,7 @@
     <Compile Include="CustomerInvoiceNumber.cs" />
     <Compile Include="CustomerMap.cs" />
     <Compile Include="CustomerRegion.cs" />
+    <Compile Include="DebtCollectionList.cs" />
     <Compile Include="Demographics.cs" />
     <Compile Include="Fees.cs" />
     <Compile Include="FessDetails.cs" />

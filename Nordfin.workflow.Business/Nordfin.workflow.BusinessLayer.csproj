@@ -44,6 +44,7 @@
     <Compile Include="AccountSettingsBusinessLayer.cs" />
     <Compile Include="BatchesBusinessLayer.cs" />
     <Compile Include="ClientInformationBusinessLayer.cs" />
+    <Compile Include="DebtCollectionBusinessLayer.cs" />
     <Compile Include="InvoiceDashboardBusinessLayer.cs" />
     <Compile Include="InvoicesBusinessLayer.cs" />
     <Compile Include="ManualInvoiceBusinessLayer.cs" />

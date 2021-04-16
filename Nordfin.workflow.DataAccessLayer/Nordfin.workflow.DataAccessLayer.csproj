@@ -57,6 +57,7 @@
     <Compile Include="AccountSettingsDataAccessLayer.cs" />
     <Compile Include="BatchesDataAccessLayer.cs" />
     <Compile Include="ClientInformationDataAccessLayer.cs" />
+    <Compile Include="DebtCollectionDataAccessLayer.cs" />
     <Compile Include="InvoiceDashboardDataAccessLayer.cs" />
     <Compile Include="InvoicesDataAccessLayer.cs" />
     <Compile Include="ManualInvoiceDataAccessLayer.cs" />

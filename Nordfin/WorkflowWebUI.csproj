@@ -250,6 +250,7 @@
     <Content Include="frmContractOverview.aspx" />
     <Content Include="frmCustomer.aspx" />
     <Content Include="frmDashboard.aspx" />
+    <Content Include="frmDebtCollection.aspx" />
     <Content Include="frmInvoiceBatches.aspx" />
     <Content Include="frmInvoices.aspx" />
     <Content Include="frmLogin.aspx" />
@@ -383,6 +384,7 @@
     <Content Include="Styles\Batches.css" />
     <Content Include="Styles\bootstrap.min.css" />
     <Content Include="Styles\AccountSettings.css" />
+    <Content Include="Styles\DebtCollection.css" />
     <Content Include="Styles\ContractsOverview.css" />
     <Content Include="Styles\Customer.css" />
     <Content Include="Styles\Dashboard.css" />
@@ -391,7 +393,6 @@
     <Content Include="Styles\fontawesome.min.css" />
     <Content Include="Scripts\jquery-1.10.2.js" />
     <Content Include="Styles\InvoiceBatches.css" />
-    <Content Include="Styles\ContractsOverview.css" />
     <Content Include="Styles\Invoices.css" />
     <Content Include="Scripts\jquery-jvectormap-2.0.5.min.js" />
     <Content Include="Styles\jquery-jvectormap-2.0.5.css" />
@@ -459,6 +460,13 @@
     </Compile>
     <Compile Include="frmDashboard.aspx.designer.cs">
       <DependentUpon>frmDashboard.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="frmDebtCollection.aspx.cs">
+      <DependentUpon>frmDebtCollection.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="frmDebtCollection.aspx.designer.cs">
+      <DependentUpon>frmDebtCollection.aspx</DependentUpon>
     </Compile>
     <Compile Include="frmInvoiceBatches.aspx.cs">
       <DependentUpon>frmInvoiceBatches.aspx</DependentUpon>
