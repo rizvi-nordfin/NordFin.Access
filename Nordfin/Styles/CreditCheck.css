@@ -102,3 +102,17 @@
 }
 
 
+.creditMeter {
+    width:400px !important;
+    height:350px !important;
+   
+}
+@media (min-width:1024px) and (max-width:1440px) {
+    .creditMeter {
+        width: 300px !important;
+        height: 349px !important;
+    }
+}
+@media all and (max-width: 1439px) {
+   
+}

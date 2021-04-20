@@ -32,24 +32,24 @@ namespace Nordfin
                 txtUserName.Text = Decrypt(GetFromCookie("CreditUser", "UserName"));
                 txtPassword.Text = Decrypt(GetFromCookie("CreditToken", "Token"));
                 lblClientName.Text = ClientSession.ClientName;
-                //grdCreditCheck.DataSource = new List<string>();
-                //grdCreditCheck.DataBind();
                 ScriptManager.RegisterStartupScript(this, this.GetType(), "setCreditScore", "setCreditScore(0);", true);
             }
         }
 
         protected void btnCreditCheck_Click(object sender, EventArgs e)
         {
-
-            if (cboCustomerType.SelectedItem.Text == "")
+           
+            if (cboCustomerType.SelectedItem.Text == "" || string.IsNullOrWhiteSpace(txtUserName.Text) || string.IsNullOrWhiteSpace(txtPersonalNumber.Text) || string.IsNullOrWhiteSpace(txtPassword.Text))
+            {
+                ScriptManager.RegisterStartupScript(this, this.GetType(), "setCreditScore", "setCreditScore(0);", true);
                 return;
+            }
+              
             if (cboCustomerType.SelectedItem.Value.ToUpper() == "1")
                 GetPersonCreditDetails();
             else
                 GetCompanyCreditDetails();
 
-            //grdCreditCheck.DataSource = creditCheckList;
-            //grdCreditCheck.DataBind();
         }
 
 

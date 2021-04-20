@@ -81,13 +81,13 @@
 
 
 
-                    <div class="ml-1 col-md-12 col-lg-4 text-center" >
+                    <div class="ml-1 ml-sm-0 ml-md-0 col-md-12 col-lg-4 text-center" >
                         <asp:Panel runat="server" ID="pnlStatus"  CssClass="row headingDiv tableDiv overviewHeading" >
                               <asp:Label runat="server" ID="lblResultStatus" Text="STATUS"></asp:Label>
                         </asp:Panel>
                         <div id="preview" style="background-color: #3e4a66;margin-top:-5px;">
                             <div style="margin-top:0px" >
-                                <canvas width="400" height="350" id="demo"></canvas>
+                                <canvas class="creditMeter" id="demo"></canvas>
                                 <div style="background:#38445D;height:49px;display: flex;justify-content: center;">
                                 <div id="preview-textfield" style="font-size: 20px;font-weight: bold; color: #fff;margin-top: 10px;"></div>
                                     </div>
