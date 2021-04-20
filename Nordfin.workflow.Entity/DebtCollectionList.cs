@@ -15,5 +15,6 @@ namespace Nordfin.workflow.Entity
         public string InvoiceAmount { get; set; }
         public string DueDate { get; set; }
         public string ExtDate { get; set; }
+        public string CustomerName { get; set; }
     }
 }

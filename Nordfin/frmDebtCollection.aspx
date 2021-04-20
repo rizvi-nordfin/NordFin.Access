@@ -36,6 +36,7 @@
                                     </ItemTemplate>
 
                                 </asp:TemplateField>
+                                 <asp:BoundField DataField="CustomerName"  HeaderStyle-CssClass="itemalign" ItemStyle-CssClass="itemalign" HeaderText="Name" SortExpression="CustomerName" />
                               <asp:BoundField DataField="InvoiceNumber" HeaderStyle-CssClass="itemalign" ItemStyle-CssClass="itemalign" HeaderText="Invoice" SortExpression="InvoiceNumber" />
                                  <asp:BoundField DataField="InvoiceAmount" DataFormatString="{0:#,0.00}" HeaderStyle-CssClass="itemalign" ItemStyle-CssClass="itemalign" HeaderText="AMOUNT" SortExpression="Invoiceamount" />
                                 <asp:BoundField DataField="RemainingAmount" DataFormatString="{0:#,0.00}" HeaderStyle-CssClass="itemalign" ItemStyle-CssClass="itemalign" HeaderText="REMAIN" SortExpression="Remainingamount" />
