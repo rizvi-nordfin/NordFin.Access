@@ -37,11 +37,11 @@ namespace Nordfin.workflow.Entity
 	// }
 
 	[XmlRoot(ElementName = "GETDATA_RESPONSE")]
-	public class GETDATARESPONSE
+	public class CreditGetData
 	{
 
 		[XmlElement(ElementName = "ORGNR")]
-		public double ORGNR { get; set; }
+		public string ORGNR { get; set; }
 
 		[XmlElement(ElementName = "NAME")]
 		public string NAME { get; set; }
@@ -49,30 +49,37 @@ namespace Nordfin.workflow.Entity
 		[XmlElement(ElementName = "ADDRESS")]
 		public string ADDRESS { get; set; }
 		[XmlElement(ElementName = "ZIPCODE")]
-		public int ZIPCODE { get; set; }
+		public string ZIPCODE { get; set; }
 
 		[XmlElement(ElementName = "TOWN")]
 		public string TOWN { get; set; }
 
-		[XmlElement(ElementName = "REGION")]
-		public string REGION { get; set; }
+		//[XmlElement(ElementName = "REGION")]
+		//public string REGION { get; set; }
 
-		[XmlElement(ElementName = "EMAIL_ADRESS")]
-		public object EMAILADRESS { get; set; }
+		//[XmlElement(ElementName = "EMAIL_ADRESS")]
+		//public object EMAILADRESS { get; set; }
 
 		[XmlElement(ElementName = "RATING")]
-		public int RATING { get; set; }
+		public string RATING { get; set; }
 
 		[XmlElement(ElementName = "RATING_TEXT")]
 		public string RATINGTEXT { get; set; }
 
 		[XmlElement(ElementName = "RISK_PROGNOSIS")]
-		public double RISKPROGNOSIS { get; set; }
+		public string RISKPROGNOSIS { get; set; }
 
 		[XmlElement(ElementName = "RATING_HISTORY")]
-		public int RATINGHISTORY { get; set; }
+		public string RATINGHISTORY { get; set; }
+		[XmlElement(ElementName = "GIVEN_NAME")]
+		public string GIVENNAME { get; set; }
 
-		
+		[XmlElement(ElementName = "PNR")]
+		public string PNR { get; set; }
+
+		[XmlElement(ElementName = "SCORING")]
+		public string SCORING { get; set; }
+
 	}
 
 
@@ -91,11 +98,11 @@ namespace Nordfin.workflow.Entity
 
 
 	[XmlRoot(ElementName = "NewDataSet")]
-	public class NewDataSet
+	public class CreditDataSet
 	{
 
 		[XmlElement(ElementName = "GETDATA_RESPONSE")]
-		public GETDATARESPONSE GETDATARESPONSE { get; set; }
+		public CreditGetData CreditGetData { get; set; }
 
 		
 

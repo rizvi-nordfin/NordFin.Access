@@ -1,7 +1,7 @@
 ﻿
 using Nordfin.CreditSafeTemplate;
 using Nordfin.GetDataTemplate;
-using Nordfin.GetDataTemplate;
+
 using Nordfin.workflow.BusinessLayer;
 using Nordfin.workflow.Entity;
 using Nordfin.workflow.PresentationBusinessLayer;
@@ -34,45 +34,56 @@ namespace Nordfin
                 lblClientName.Text = ClientSession.ClientName;
                 //grdCreditCheck.DataSource = new List<string>();
                 //grdCreditCheck.DataBind();
-                ScriptManager.RegisterStartupScript(this, this.GetType(), "setCreditScore", "setCreditScore();", true);
+                ScriptManager.RegisterStartupScript(this, this.GetType(), "setCreditScore", "setCreditScore(0);", true);
             }
         }
 
         protected void btnCreditCheck_Click(object sender, EventArgs e)
         {
+
             if (cboCustomerType.SelectedItem.Text == "")
                 return;
-            IList<CreditCheck> creditCheckList = cboCustomerType.SelectedItem.Text.ToUpper() == "1" ? GetPersonCreditDetails() : GetCompanyCreditDetails();
+            if (cboCustomerType.SelectedItem.Value.ToUpper() == "1")
+                GetPersonCreditDetails();
+            else
+                GetCompanyCreditDetails();
+
             //grdCreditCheck.DataSource = creditCheckList;
             //grdCreditCheck.DataBind();
         }
 
 
-        private IList<CreditCheck> GetCompanyCreditDetails()
+        private void GetCompanyCreditDetails()
         {
+
             var test = new GetDataSoapClient();
             GETDATA_REQUEST gETDATA_REQUEST = new GETDATA_REQUEST();
             var account = new GetDataTemplate.Account();
-            account.UserName = "NORDFIN";
-            account.Password = "4!c3KFxpzXLQR69";
-            account.Language = GetDataTemplate.LANGUAGE.SWE;
+            account.UserName = txtUserName.Text;
+            account.Password = txtPassword.Text;
+            account.Language = GetDataTemplate.LANGUAGE.EN;
             gETDATA_REQUEST.account = account;
             gETDATA_REQUEST.Block_Name = "NORDFIN_C_CREDIT";
-            gETDATA_REQUEST.SearchNumber = "5591234900";
+            gETDATA_REQUEST.SearchNumber = txtPersonalNumber.Text;
             gETDATA_REQUEST.FormattedOutput = "1";
 
             GETDATA_RESPONSE dataResponse = test.GetDataBySecure(gETDATA_REQUEST);
-
+            if (dataResponse.Error != null)
+            {
+                ScriptManager.RegisterStartupScript(this, this.GetType(), "setCreditScore", "setCreditScore(0);", true);
+                return;
+            }
+             
             string xmlResponse = dataResponse.Parameters.GetXml();
             XmlDocument document = new XmlDocument();
             document.LoadXml(xmlResponse);
-            NewDataSet datasetReponse = new NewDataSet();
-            XmlSerializer serializer = new XmlSerializer(typeof(NewDataSet));
+            CreditDataSet datasetReponse = new CreditDataSet();
+            XmlSerializer serializer = new XmlSerializer(typeof(CreditDataSet));
             using (StringReader reader = new StringReader(xmlResponse))
             {
-                datasetReponse = (NewDataSet)serializer.Deserialize(reader);
+                datasetReponse = (CreditDataSet)serializer.Deserialize(reader);
             }
-
+            FillData(datasetReponse);
 
             var cas = new CreditSafeTemplate.Cas_ServiceSoapClient();
             IList<CreditCheck> creditCheckList = null;
@@ -98,14 +109,14 @@ namespace Nordfin
                 creditCheck.City = Company_RESPONSE.Town;
                 creditCheck.PostalCode = Company_RESPONSE.ZIP;
                 creditCheck.Status = Company_RESPONSE.Status_Text;
-              
+
                 if (Company_RESPONSE.ErrorList != null && Company_RESPONSE.ErrorList.Count() > 0)
                 {
                     for (int k = 0; k < Company_RESPONSE.ErrorList.Count(); k++)
                     {
                         creditCheck.CreditInfo += (creditCheck.Error == "") ? Company_RESPONSE.ErrorList[k].Cause_of_Reject : "#" + Company_RESPONSE.ErrorList[k].Cause_of_Reject;
                         creditCheck.ErrorMessage += (creditCheck.ErrorMessage == "") ? Company_RESPONSE.ErrorList[k].Reject_text : "#" + Company_RESPONSE.ErrorList[k].Reject_text;
-                        creditCheck.Error+= (creditCheck.Error == "") ? Company_RESPONSE.ErrorList[k].Cause_of_Reject+"-"+ Company_RESPONSE.ErrorList[k].Reject_text : ";" + Company_RESPONSE.ErrorList[k].Cause_of_Reject+"-"+ Company_RESPONSE.ErrorList[k].Reject_text;
+                        creditCheck.Error += (creditCheck.Error == "") ? Company_RESPONSE.ErrorList[k].Cause_of_Reject + "-" + Company_RESPONSE.ErrorList[k].Reject_text : ";" + Company_RESPONSE.ErrorList[k].Cause_of_Reject + "-" + Company_RESPONSE.ErrorList[k].Reject_text;
                     }
                 }
                 else
@@ -129,30 +140,48 @@ namespace Nordfin
                 SetCookie("CreditUser", "UserName", txtUserName.Text);
                 SetCookie("CreditToken", "Token", txtPassword.Text);
                 creditCheckList = new List<CreditCheck>();
-                
+
 
                 int Result = objTelsonData.setCreditCheck(creditCheck);
-                
-                creditCheckList.Add(creditCheck);
+                CasData(creditCheck.Status, creditCheck.Error);
+
             }
-            return creditCheckList;
+            ScriptManager.RegisterStartupScript(this, this.GetType(), "setCreditScore", "setCreditScore('" + datasetReponse.CreditGetData.RATING + "');", true);
+
+
         }
 
 
-        private IList<CreditCheck> GetPersonCreditDetails()
+        private void GetPersonCreditDetails()
         {
-            //var test = new GetDataSoapClient();
-            //GETDATA_REQUEST gETDATA_REQUEST = new GETDATA_REQUEST();
-            //var account = new GetDataTemplate.Account();
-            //account.UserName = "NORDFIN";
-            //account.Password = "4!c3KFxpzXLQR69";
-            //account.Language = GetDataTemplate.LANGUAGE.SWE;
-            //gETDATA_REQUEST.account = account;
-            //gETDATA_REQUEST.Block_Name = "NORDFIN_P_CREDIT";
-            //gETDATA_REQUEST.SearchNumber = "198707296318";
-            //gETDATA_REQUEST.FormattedOutput = "1";
+            var test = new GetDataSoapClient();
+            GETDATA_REQUEST gETDATA_REQUEST = new GETDATA_REQUEST();
+            var account = new GetDataTemplate.Account();
+            account.UserName = "NORDFIN";
+            account.Password = "4!c3KFxpzXLQR69";
+            account.Language = GetDataTemplate.LANGUAGE.EN;
+            gETDATA_REQUEST.account = account;
+            gETDATA_REQUEST.Block_Name = "NORDFIN_P_CREDIT";
+            gETDATA_REQUEST.SearchNumber = txtPersonalNumber.Text;
+            gETDATA_REQUEST.FormattedOutput = "1";
+            GETDATA_RESPONSE dataResponse = test.GetDataBySecure(gETDATA_REQUEST);
+            if (dataResponse.Error != null)
+            {
+                ScriptManager.RegisterStartupScript(this, this.GetType(), "setCreditScore", "setCreditScore(0);", true);
+                return;
+            }
+            string xmlResponse = dataResponse.Parameters.GetXml();
+            XmlDocument document = new XmlDocument();
+            document.LoadXml(xmlResponse);
+            CreditDataSet datasetReponse = new CreditDataSet();
+            XmlSerializer serializer = new XmlSerializer(typeof(CreditDataSet));
+            using (StringReader reader = new StringReader(xmlResponse))
+            {
+                datasetReponse = (CreditDataSet)serializer.Deserialize(reader);
+            }
+            FillData(datasetReponse);
 
-            //GETDATA_RESPONSE gETDATA_RESPONSE = test.GetDataBySecure(gETDATA_REQUEST);
+
 
             var cas = new CreditSafeTemplate.Cas_ServiceSoapClient();
             IList<CreditCheck> creditCheckList = null;
@@ -209,16 +238,31 @@ namespace Nordfin
                 SetCookie("CreditUser", "UserName", txtUserName.Text);
                 SetCookie("CreditToken", "Token", txtPassword.Text);
                 creditCheckList = new List<CreditCheck>();
-
-
+                CasData(creditCheck.Status, creditCheck.Error);
                 int Result = objTelsonData.setCreditCheck(creditCheck);
 
-                creditCheckList.Add(creditCheck);
+                
             }
-            return creditCheckList;
+            ScriptManager.RegisterStartupScript(this, this.GetType(), "setCreditScore", "setCreditScore('" +  datasetReponse.CreditGetData.SCORING + "');", true);
         }
 
-      
+        private void FillData(CreditDataSet creditData)
+        {
+            lblResultName.Text = creditData.CreditGetData.NAME??creditData.CreditGetData.GIVENNAME;
+            lblRegNumber.Text = creditData.CreditGetData.ORGNR?? creditData.CreditGetData.PNR;
+            lblAddress.Text = creditData.CreditGetData.ADDRESS;
+            lblPostalCode.Text = creditData.CreditGetData.ZIPCODE;
+            lblCity.Text = creditData.CreditGetData.TOWN;
+            lblCountry.Text = ClientSession.ClientLand;
+
+        }
+        private void CasData(string Status,string Code)
+        {
+            lblStatus.Text = Status.ToUpper() != "APPROVED" ? "DECLIEND" : Status.ToUpper();
+            lblResultStatus.Text = lblStatus.Text;
+            lblResultStatus.Style.Add("color", lblStatus.Text == "APPROVED" ? "lightgreen" : "#f83030");
+            lblRejectCode.Text = Code ?? "";
+        }
         public  string GetFromCookie(string cookieName, string keyName)
         {
             HttpCookie cookie = HttpContext.Current.Request.Cookies[cookieName];
@@ -230,23 +274,23 @@ namespace Nordfin
             return "";
         }
 
-        public  void SetCookie(string cookieName,string Name,string Value)
+        public void SetCookie(string cookieName, string Name, string Value)
         {
-           
-            
-            HttpCookie cookie = HttpContext.Current.Response.Cookies.AllKeys.Contains(cookieName)? HttpContext.Current.Response.Cookies[cookieName]
+
+
+            HttpCookie cookie = HttpContext.Current.Response.Cookies.AllKeys.Contains(cookieName) ? HttpContext.Current.Response.Cookies[cookieName]
                                  : HttpContext.Current.Request.Cookies[cookieName];
-            if (cookie == null)
-            {
-                cookie = new HttpCookie(cookieName);
-                if (!String.IsNullOrEmpty(Name))
-                    cookie.Values.Set(Name, Encrypt(Value));
-                cookie.HttpOnly = true;
-                cookie.Secure = true;
-                cookie.SameSite = SameSiteMode.Strict;
-                HttpContext.Current.Response.Cookies.Set(cookie);
-            }
-           
+            //if (cookie == null)
+            //{
+            cookie = new HttpCookie(cookieName);
+            if (!String.IsNullOrEmpty(Name))
+                cookie.Values.Set(Name, Encrypt(Value));
+            cookie.HttpOnly = true;
+            cookie.Secure = true;
+            cookie.SameSite = SameSiteMode.Strict;
+            HttpContext.Current.Response.Cookies.Set(cookie);
+            //}
+
         }
 
         public string Encrypt(string text)

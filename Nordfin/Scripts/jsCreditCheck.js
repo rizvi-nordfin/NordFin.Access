@@ -1,7 +1,7 @@
 ﻿
 
 
-function setCreditScore() {
+function setCreditScore(score) {
    
     demoGauge = new Gauge(document.getElementById("demo"));
     var opts = {
@@ -23,7 +23,7 @@ function setCreditScore() {
             { strokeStyle: "#B03820", min: 0, max: 20    },
             { strokeStyle: "#F03E3E", min: 20, max: 40 },
             { strokeStyle: "#178F33", min: 40, max: 70 },
-            { strokeStyle: "#30B32D", min: 70, max: 101 }
+            { strokeStyle: "#30B32D", min: 70, max: 100 }
         ],
         limitMax: false,
         limitMin: false,
@@ -33,6 +33,6 @@ function setCreditScore() {
     demoGauge.setTextField(document.getElementById("preview-textfield"));
     demoGauge.minValue = 0;
     demoGauge.maxValue = 100;
-    demoGauge.set(document.getElementById("NordfinContentHolder_hdnCreditScore").value);
+    demoGauge.set(score);
 };
 

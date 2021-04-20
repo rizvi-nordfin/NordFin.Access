@@ -23,7 +23,7 @@
                 <div class="row " style="height: 50px; margin-left: 0px;">
 
 
-                    <div class="col-md-2 divPadding customerInfoSidebar" style="color: #FFFFFF;">
+                    <div class="col-md-12 col-lg-3  divPadding customerInfoSidebar" style="color: #FFFFFF;">
                         <div style="background-color: #3E4B64;">
 
 
@@ -62,7 +62,7 @@
                             </div>
                             <hr class="divHrLine" />
                               <div class="divPaddingLeft">
-                                <span class="customerdivHeading">PersonalNumber</span>
+                                <span class="customerdivHeading">Org./PersonalNumber</span>
                                     <asp:TextBox CssClass="customerdivText form-control textboxColor" style="width: 90%;" runat="server" AutoCompleteType="Disabled" ID="txtPersonalNumber"></asp:TextBox>
                             </div>
                             <hr class="divHrLine" />
@@ -81,15 +81,15 @@
 
 
 
-                    <div class="ml-1 col-md-3 text-center" >
-                        <div class="row headingDiv tableDiv overviewHeading" style="color:lightgreen;">
-                           APPROVED
-                        </div>
+                    <div class="ml-1 col-md-12 col-lg-4 text-center" >
+                        <asp:Panel runat="server" ID="pnlStatus"  CssClass="row headingDiv tableDiv overviewHeading" >
+                              <asp:Label runat="server" ID="lblResultStatus" Text="STATUS"></asp:Label>
+                        </asp:Panel>
                         <div id="preview" style="background-color: #3e4a66;margin-top:-5px;">
                             <div style="margin-top:0px" >
                                 <canvas width="400" height="350" id="demo"></canvas>
-                                <div style="background:#38445D;height:42px;display: flex;justify-content: center;">
-                                <div id="preview-textfield" style="font-size: 20px;font-weight: bold; color: #fff;margin-top: 8px;"></div>
+                                <div style="background:#38445D;height:49px;display: flex;justify-content: center;">
+                                <div id="preview-textfield" style="font-size: 20px;font-weight: bold; color: #fff;margin-top: 10px;"></div>
                                     </div>
                             </div>
                         </div>
@@ -101,14 +101,14 @@
                     </div>
 
 
-                    <div class="ml-1 col-md-2 divPadding customerInfoSidebar" style="color: #FFFFFF;">
+                    <div class="ml-1 col-md-12 col-lg-3  divPadding customerInfoSidebar" style="color: #FFFFFF;">
                         <div style="background-color: #3E4B64;">
 
 
                             <div class="divPaddingLeft" style="background-color: #475672">
                                 <asp:Label runat="server" CssClass="customerdivHeading" ID="lblCreditName">Name</asp:Label>
 
-                                  <asp:Label CssClass="customerdivText ResultHeight" Text="" runat="server" ID="lblResultName">Muthusamy</asp:Label>
+                                  <asp:Label CssClass="customerdivText ResultHeight" Text="" runat="server" ID="lblResultName"></asp:Label>
 
                                   <hr class="divHrLine" />
                             </div>
