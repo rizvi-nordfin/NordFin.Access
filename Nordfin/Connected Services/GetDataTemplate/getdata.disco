@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<discovery xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns="http://schemas.xmlsoap.org/disco/">
+  <contractRef ref="https://webservice.creditsafe.se/getdata/getdata.asmx?wsdl" docRef="https://webservice.creditsafe.se/getdata/getdata.asmx" xmlns="http://schemas.xmlsoap.org/disco/scl/" />
+  <soap address="https://webservice.creditsafe.se/getdata/getdata.asmx" xmlns:q1="https://webservice.creditsafe.se/getdata/" binding="q1:GetDataSoap" xmlns="http://schemas.xmlsoap.org/disco/soap/" />
+  <soap address="https://webservice.creditsafe.se/getdata/getdata.asmx" xmlns:q2="https://webservice.creditsafe.se/getdata/" binding="q2:GetDataSoap12" xmlns="http://schemas.xmlsoap.org/disco/soap/" />
+</discovery>

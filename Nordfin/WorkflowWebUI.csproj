@@ -271,6 +271,16 @@
       <Generator>WCF Proxy Generator</Generator>
       <LastGenOutput>Reference.cs</LastGenOutput>
     </None>
+    <None Include="Connected Services\GetDataTemplate\getdata.disco" />
+    <None Include="Connected Services\GetDataTemplate\configuration91.svcinfo" />
+    <None Include="Connected Services\GetDataTemplate\configuration.svcinfo" />
+    <Content Include="Connected Services\GetDataTemplate\Nordfin.GetDataTemplate.GETDATA_RESPONSE.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
+    <None Include="Connected Services\GetDataTemplate\Reference.svcmap">
+      <Generator>WCF Proxy Generator</Generator>
+      <LastGenOutput>Reference.cs</LastGenOutput>
+    </None>
     <Content Include="frmAccountSettings.aspx" />
     <Content Include="frmBatches.aspx" />
     <Content Include="frmClientInformation.aspx" />
@@ -341,6 +351,7 @@
     <Content Include="Images\sweden.svg" />
     <Content Include="Images\ui-icons_cd0a0a_256x240.png" />
     <Content Include="Images\ui-icons_ffffff_256x240.png" />
+    <Content Include="Images\CreditSafe.svg" />
     <Content Include="lib\BouncyCastle.Crypto.dll" />
     <Content Include="lib\Common.Logging.Core.dll" />
     <Content Include="lib\Common.Logging.dll" />
@@ -367,9 +378,12 @@
     <Content Include="Scripts\angular.min.js" />
     <Content Include="Scripts\bootstrap.min.js" />
     <Content Include="Scripts\font-Awesome.js" />
+    <Content Include="Scripts\gauge.js" />
+    <Content Include="Scripts\gauge.min.js" />
     <Content Include="Scripts\jquery-1.11.1.min.js" />
     <Content Include="libman.json" />
     <None Include="Connected Services\CreditSafeTemplate\cas_service.wsdl" />
+    <None Include="Connected Services\GetDataTemplate\getdata.wsdl" />
     <None Include="Properties\PublishProfiles\FTPProfileProd.pubxml" />
     <None Include="Properties\PublishProfiles\FTPProfileTest.pubxml" />
     <None Include="Scripts\jquery-3.4.1.intellisense.js" />
@@ -391,6 +405,7 @@
     <Content Include="Scripts\jsClientInformation.js" />
     <Content Include="Scripts\jquery-3.3.1.slim.min.js" />
     <Content Include="Scripts\jquery-ui.js" />
+    <Content Include="Scripts\jsCreditCheck.js" />
     <Content Include="Scripts\jsCustomer.js" />
     <Content Include="Scripts\jsDashboard.js" />
     <Content Include="Scripts\jsInvoiceBatches.js" />
@@ -446,6 +461,11 @@
   <ItemGroup>
     <Compile Include="ClientSession.cs" />
     <Compile Include="Connected Services\CreditSafeTemplate\Reference.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Compile>
+    <Compile Include="Connected Services\GetDataTemplate\Reference.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>Reference.svcmap</DependentUpon>
@@ -647,6 +667,7 @@
   </ItemGroup>
   <ItemGroup>
     <WCFMetadataStorage Include="Connected Services\CreditSafeTemplate\" />
+    <WCFMetadataStorage Include="Connected Services\GetDataTemplate\" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

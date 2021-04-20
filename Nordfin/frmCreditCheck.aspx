@@ -2,16 +2,14 @@
 <asp:Content ID="Content1" ContentPlaceHolderID="NordfinContentHolder" runat="server"   style="background-color: #232D41;">
     <asp:Panel DefaultButton="btnCreditCheck" runat="server">
     <link href="Styles/AccountSettings.css?version=<%=ConfigurationManager.AppSettings["VersionConfiguration"].ToString() %>" rel="stylesheet" />
-
-    <script src="Scripts/jsAccountSettings.js?version=<%=ConfigurationManager.AppSettings["VersionConfiguration"].ToString() %>"></script>
+         <link href="Styles/CreditCheck.css?version=<%=ConfigurationManager.AppSettings["VersionConfiguration"].ToString() %>" rel="stylesheet" />
+        <script src="Scripts/gauge.js?version=<%=ConfigurationManager.AppSettings["VersionConfiguration"].ToString() %>"></script>
+    <script src="Scripts/jsCreditCheck.js?version=<%=ConfigurationManager.AppSettings["VersionConfiguration"].ToString() %>"></script>
+       <%-- <script src="Scripts/gauge.min.js"></script>--%>
         <style>
-            .sideContractMenuButtonStatistics {
-                background-color: rgb(44, 56, 80);
-            }
-
-                .sideContractMenuButtonStatistics img.sideMenuIcon {
-                    filter: brightness(0) saturate(100%) invert(78%) sepia(49%) saturate(3809%) hue-rotate(359deg) brightness(101%) contrast(106%);
-                }
+         
+               
+    
         </style>
     <div class="dashboardContainer">
         <div class="container-fluid">
@@ -57,8 +55,8 @@
                                 <span class="customerdivHeading">CustomerType</span>
                                     <asp:DropDownList runat="server" ID="cboCustomerType" style="width: 90%;"  CssClass="form-control customerdivText textboxColor">
                         <asp:ListItem Text="" Value="-1"></asp:ListItem>
-                        <asp:ListItem Text="FTG" Value="0"></asp:ListItem>
-                        <asp:ListItem Text="PRV" Value="1"></asp:ListItem>
+                        <asp:ListItem Text="Corporate" Value="0"></asp:ListItem>
+                        <asp:ListItem Text="Private" Value="1"></asp:ListItem>
                     </asp:DropDownList>
 
                             </div>
@@ -72,7 +70,7 @@
                         </div>
                        
                          <div class="updateInfoButtonContainer text-center">
-                          <asp:Button Text="Credit Check"  class="button panelButton form-control" style="width:250px;" runat="server" OnClick="btnCreditCheck_Click" ID="btnCreditCheck"/>
+                          <asp:Button Text="Credit Check"  class="button panelButton form-control" style="width:250px;" runat="server" OnClick="btnCreditCheck_Click" OnClientClick="return CreditCheck();" ID="btnCreditCheck"/>
                         </div>
 
 
@@ -83,32 +81,83 @@
 
 
 
-                    <div class="col-md-10 tableFixHead table-responsive customerTable" style="background-color: #2C3850;">
+                    <div class="ml-1 col-md-3 text-center" >
+                        <div class="row headingDiv tableDiv overviewHeading" style="color:lightgreen;">
+                           APPROVED
+                        </div>
+                        <div id="preview" style="background-color: #3e4a66;margin-top:-5px;">
+                            <div style="margin-top:0px" >
+                                <canvas width="400" height="350" id="demo"></canvas>
+                                <div style="background:#38445D;height:42px;display: flex;justify-content: center;">
+                                <div id="preview-textfield" style="font-size: 20px;font-weight: bold; color: #fff;margin-top: 8px;"></div>
+                                    </div>
+                            </div>
+                        </div>
 
-                        
-                        <asp:GridView ID="grdCreditCheck" runat="server" EmptyDataRowStyle-CssClass="Emptyrow" AutoGenerateColumns="False" ViewStateMode="Enabled" Visible="true" Style="color: white; font-size: small;" ShowHeaderWhenEmpty="true" CssClass="table">
-                            <HeaderStyle BackColor="#475672" />
-                            <Columns>
-                                 <asp:BoundField DataField="Name" HeaderStyle-CssClass="Notesalign" ItemStyle-CssClass="Notesalign" HeaderText="Name" SortExpression="Name" />
-                                 <asp:BoundField DataField="Address" HeaderStyle-CssClass="Notesalign" ItemStyle-CssClass="Notesalign" HeaderText="Address" SortExpression="Address" />
-                                 <asp:BoundField DataField="Status" HeaderStyle-CssClass="Notesalign" ItemStyle-CssClass="Notesalign" HeaderText="Status" SortExpression="Status" />
-                                    <asp:BoundField DataField="Error" HeaderStyle-CssClass="Notesalign" ItemStyle-CssClass="Notesalign" HeaderText="Reject Code" SortExpression="Error" />
-                                 <%--<asp:BoundField DataField="ErrorMessage" HeaderStyle-CssClass="Notesalign" ItemStyle-CssClass="Notesalign" HeaderText="Reject Text" SortExpression="ErrorMessage" />--%>
-                                     <asp:BoundField DataField="City" HeaderStyle-CssClass="Notesalign" ItemStyle-CssClass="Notesalign" HeaderText="City" SortExpression="City" />
-                                     <asp:BoundField DataField="PostalCode" HeaderStyle-CssClass="Notesalign" ItemStyle-CssClass="Notesalign" HeaderText="Postal Code" SortExpression="PostalCode" />
-                                   
-
-                                   
-                                  
-                            </Columns>
-                            <EmptyDataTemplate>No Record Available</EmptyDataTemplate>
-                        </asp:GridView>
+                 
                       
                      
                       
                     </div>
 
 
+                    <div class="ml-1 col-md-2 divPadding customerInfoSidebar" style="color: #FFFFFF;">
+                        <div style="background-color: #3E4B64;">
+
+
+                            <div class="divPaddingLeft" style="background-color: #475672">
+                                <asp:Label runat="server" CssClass="customerdivHeading" ID="lblCreditName">Name</asp:Label>
+
+                                  <asp:Label CssClass="customerdivText ResultHeight" Text="" runat="server" ID="lblResultName">Muthusamy</asp:Label>
+
+                                  <hr class="divHrLine" />
+                            </div>
+
+                              <div class="divPaddingLeft">
+                                <span class="customerdivHeading">SSN/Reg.Number</span>
+                                    <asp:Label CssClass="customerdivText ResultHeight" Text="" runat="server" ID="lblRegNumber"></asp:Label>
+
+                            </div>
+                            <hr class="divHrLine" />
+
+                             <div class="divPaddingLeft">
+                                <span class="customerdivHeading">Address</span>
+                                 <%--<input  name="password" id="password" runat="server" AutoCompleteType="Disabled" class="customerdivText form-control textboxColor"/>--%>
+                                 <asp:Label CssClass="customerdivText ResultHeight" Text="" runat="server" ID="lblAddress"></asp:Label>
+
+                            </div>
+                            <hr class="divHrLine" />
+                          
+                            
+                           
+                              <div class="divPaddingLeft">
+                                <span class="customerdivHeading">PostalCode</span>
+                                 <asp:Label CssClass="customerdivText ResultHeight" Text="" runat="server" ID="lblPostalCode"></asp:Label>
+                            </div>
+                            <hr class="divHrLine" />
+                             <div class="divPaddingLeft">
+                                <span class="customerdivHeading">City</span>
+                                 <asp:Label CssClass="customerdivText ResultHeight" Text="" runat="server" ID="lblCity"></asp:Label>
+                            </div>
+                            <hr class="divHrLine" />
+                               <div class="divPaddingLeft">
+                                <span class="customerdivHeading">Country</span>
+                                 <asp:Label CssClass="customerdivText ResultHeight" Text="" runat="server" ID="lblCountry"></asp:Label>
+                            </div>
+                            <hr class="divHrLine" />
+                                <div class="divPaddingLeft">
+                                <span class="customerdivHeading">Status</span>
+                                 <asp:Label CssClass="customerdivText ResultHeight" Text="" runat="server" ID="lblStatus"></asp:Label>
+                            </div>
+                            <hr class="divHrLine" />
+                               <div class="divPaddingLeft">
+                                <span class="customerdivHeading">Reject Code</span>
+                                 <asp:Label CssClass="customerdivText ResultHeight" Text="" runat="server" ID="lblRejectCode"></asp:Label>
+                            </div>
+                            <hr class="divHrLine" />
+
+                        </div>
+                    </div>
 
                 </div>
              
@@ -127,6 +176,7 @@
 
         </div>
         </div>
+          <asp:HiddenField ID="hdnCreditScore" Value="0" runat="server" />
         </asp:Panel>
 </asp:Content>
 

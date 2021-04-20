@@ -1,16 +1,21 @@
 ﻿
 using Nordfin.CreditSafeTemplate;
+using Nordfin.GetDataTemplate;
+using Nordfin.GetDataTemplate;
 using Nordfin.workflow.BusinessLayer;
 using Nordfin.workflow.Entity;
 using Nordfin.workflow.PresentationBusinessLayer;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Security.Cryptography;
 using System.Text;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
+using System.Xml;
+using System.Xml.Serialization;
 
 namespace Nordfin
 {
@@ -27,8 +32,9 @@ namespace Nordfin
                 txtUserName.Text = Decrypt(GetFromCookie("CreditUser", "UserName"));
                 txtPassword.Text = Decrypt(GetFromCookie("CreditToken", "Token"));
                 lblClientName.Text = ClientSession.ClientName;
-                grdCreditCheck.DataSource = new List<string>();
-                grdCreditCheck.DataBind();
+                //grdCreditCheck.DataSource = new List<string>();
+                //grdCreditCheck.DataBind();
+                ScriptManager.RegisterStartupScript(this, this.GetType(), "setCreditScore", "setCreditScore();", true);
             }
         }
 
@@ -36,14 +42,38 @@ namespace Nordfin
         {
             if (cboCustomerType.SelectedItem.Text == "")
                 return;
-            IList<CreditCheck> creditCheckList = cboCustomerType.SelectedItem.Text.ToUpper() == "PRV" ? GetPersonCreditDetails() : GetCompanyCreditDetails();
-            grdCreditCheck.DataSource = creditCheckList;
-            grdCreditCheck.DataBind();
+            IList<CreditCheck> creditCheckList = cboCustomerType.SelectedItem.Text.ToUpper() == "1" ? GetPersonCreditDetails() : GetCompanyCreditDetails();
+            //grdCreditCheck.DataSource = creditCheckList;
+            //grdCreditCheck.DataBind();
         }
 
 
         private IList<CreditCheck> GetCompanyCreditDetails()
         {
+            var test = new GetDataSoapClient();
+            GETDATA_REQUEST gETDATA_REQUEST = new GETDATA_REQUEST();
+            var account = new GetDataTemplate.Account();
+            account.UserName = "NORDFIN";
+            account.Password = "4!c3KFxpzXLQR69";
+            account.Language = GetDataTemplate.LANGUAGE.SWE;
+            gETDATA_REQUEST.account = account;
+            gETDATA_REQUEST.Block_Name = "NORDFIN_C_CREDIT";
+            gETDATA_REQUEST.SearchNumber = "5591234900";
+            gETDATA_REQUEST.FormattedOutput = "1";
+
+            GETDATA_RESPONSE dataResponse = test.GetDataBySecure(gETDATA_REQUEST);
+
+            string xmlResponse = dataResponse.Parameters.GetXml();
+            XmlDocument document = new XmlDocument();
+            document.LoadXml(xmlResponse);
+            NewDataSet datasetReponse = new NewDataSet();
+            XmlSerializer serializer = new XmlSerializer(typeof(NewDataSet));
+            using (StringReader reader = new StringReader(xmlResponse))
+            {
+                datasetReponse = (NewDataSet)serializer.Deserialize(reader);
+            }
+
+
             var cas = new CreditSafeTemplate.Cas_ServiceSoapClient();
             IList<CreditCheck> creditCheckList = null;
             ITelsonGroupPresentationBusinessLayer objTelsonData = new TelesonGroupBusinessLayer();
@@ -111,6 +141,19 @@ namespace Nordfin
 
         private IList<CreditCheck> GetPersonCreditDetails()
         {
+            //var test = new GetDataSoapClient();
+            //GETDATA_REQUEST gETDATA_REQUEST = new GETDATA_REQUEST();
+            //var account = new GetDataTemplate.Account();
+            //account.UserName = "NORDFIN";
+            //account.Password = "4!c3KFxpzXLQR69";
+            //account.Language = GetDataTemplate.LANGUAGE.SWE;
+            //gETDATA_REQUEST.account = account;
+            //gETDATA_REQUEST.Block_Name = "NORDFIN_P_CREDIT";
+            //gETDATA_REQUEST.SearchNumber = "198707296318";
+            //gETDATA_REQUEST.FormattedOutput = "1";
+
+            //GETDATA_RESPONSE gETDATA_RESPONSE = test.GetDataBySecure(gETDATA_REQUEST);
+
             var cas = new CreditSafeTemplate.Cas_ServiceSoapClient();
             IList<CreditCheck> creditCheckList = null;
             ITelsonGroupPresentationBusinessLayer objTelsonData = new TelesonGroupBusinessLayer();

@@ -199,6 +199,11 @@ namespace Nordfin
             }
         }
 
+       
 
+        protected void btnCreditCheck_ServerClick(object sender, EventArgs e)
+        {
+            Response.Redirect("frmCreditCheck.aspx");
+        }
     }
 }

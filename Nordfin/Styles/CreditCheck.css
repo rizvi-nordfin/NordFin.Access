@@ -1,4 +1,4 @@
-﻿.divPadding {
+﻿/*.divPadding {
     padding-right: 0px;
     padding-left: 0px;
     background-color: #3E4B64;
@@ -53,4 +53,52 @@
     font-size: 10px;
     height: 90%;
     line-height: 25px
+}*/
+.row {
+    margin-right: -7px !important;
 }
+
+.headingDiv {
+    padding: 10px;
+    background-color: #41546E;
+    margin-bottom: 10px !important;
+}
+
+.tableDiv {
+    background-color: #38445D;
+    color: #707070;
+    margin: 0px;
+    
+    width: 100%;
+}
+.overviewHeading {
+    display: grid;
+    grid-template-columns: 5fr;
+    justify-content: center;
+    align-items: center;
+    margin-top: -1px;
+    background-color: #41546E;
+    font-weight: bolder;
+}
+
+.customerdivText
+{
+    visibility:visible;
+   
+}
+.ResultHeight{
+    height:20px;
+}
+.updateInfoButtonContainer 
+{
+    height:120px;
+}
+#tdCredicheck {
+    background-color: rgb(44, 56, 80);
+}
+
+#tdCredicheck img.sideMenuIcon {
+    filter: brightness(0) saturate(100%) invert(78%) sepia(49%) saturate(3809%) hue-rotate(359deg) brightness(101%) contrast(106%);
+}
+
+

@@ -198,6 +198,14 @@
                     </div>
                 </div>
 
+                  <div class="sideMenuButton">
+                    <div id="tdCredicheck">
+                        <button runat="server" onserverclick="btnCreditCheck_ServerClick" id="btnCreditCheck">
+                            <img class="sideMenuIcon iReports" style="width:35px;" src="Images/CreditSafe.svg" runat="server" id="imgCreditcheck" alt="Reports" />
+                        </button>
+                    </div>
+                </div>
+
                 <div class="sideMenuButton">
                     <div id="tdReport">
                         <button runat="server" onserverclick="btnPaymentInfo_ServerClick" id="btnReports">
@@ -279,9 +287,9 @@
                     <asp:Panel ID="Panel2" runat="server">
                         <a href="frmContractOverview.aspx">Contracts</a>
                     </asp:Panel>
-                    <asp:Panel ID="Panel3" runat="server">
+                   <%-- <asp:Panel ID="Panel3" runat="server">
                         <a href="frmCreditCheck.aspx">CreditCheck</a>
-                    </asp:Panel>
+                    </asp:Panel>--%>
 
                 </asp:panel>
             </div>
