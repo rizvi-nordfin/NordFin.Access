@@ -42,6 +42,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AccountSettingsBusinessLayer.cs" />
+    <Compile Include="ApiOutgoingBusinessLayer.cs" />
     <Compile Include="BatchesBusinessLayer.cs" />
     <Compile Include="ClientInformationBusinessLayer.cs" />
     <Compile Include="InvoiceDashboardBusinessLayer.cs" />

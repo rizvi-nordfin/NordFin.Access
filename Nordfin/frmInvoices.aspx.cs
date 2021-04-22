@@ -424,6 +424,20 @@ namespace Nordfin
             }
         }
 
+        protected void grdInvoices_RowDataBound(object sender, GridViewRowEventArgs e)
+        {
+            if (e.Row.RowIndex >= 0)
+            {
+                LinkButton linkButton = (e.Row.FindControl("gridLinkCollectionSatatus") as LinkButton);
+                if (linkButton.Text.ToUpper() == "EXT")
+                {
+                    linkButton.CssClass = "linkcss";
 
+                    linkButton.OnClientClick = "return ParentModal(this);";
+                }
+                else
+                    linkButton.OnClientClick = "return false";
+            }
+        }
     }
 }
