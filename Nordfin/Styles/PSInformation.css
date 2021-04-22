@@ -11,3 +11,8 @@
     height: 350px !important;
 
 }
+
+.form-control[readonly] {
+    background-color: #2c3850 !important;
+    opacity: 1;
+}

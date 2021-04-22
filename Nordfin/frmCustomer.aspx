@@ -204,7 +204,7 @@
 
                           <asp:UpdatePanel runat="server" ID="UpdatePanel1" >
                 <ContentTemplate>
-                        <asp:GridView ID="grdCustomer" runat="server" EmptyDataRowStyle-CssClass="Emptyrow" AllowSorting="true" OnSorting="grdCustomer_Sorting" AutoGenerateColumns="False" ViewStateMode="Enabled" Visible="true" 
+                        <asp:GridView ID="grdCustomer" runat="server" EmptyDataRowStyle-CssClass="Emptyrow" AllowSorting="true" OnRowDataBound="grdCustomer_OnRowDataBound" OnSorting="grdCustomer_Sorting" AutoGenerateColumns="False" ViewStateMode="Enabled" Visible="true" 
                             Style="color: white; font-size: small; margin-top: -4px;" ShowHeaderWhenEmpty="true" CssClass="table"  SelectedRowStyle-BackColor="#475672">
                             <HeaderStyle BackColor="#475672" />
                             <Columns>
@@ -516,7 +516,7 @@
                         <div>
                             <span id="spnBody" style="color: #A9BFD5;">
 
-                                <asp:GridView ID="grdInvoiceRemaining" runat="server" EmptyDataRowStyle-CssClass="Emptyrow" AutoGenerateColumns="False" ViewStateMode="Enabled" Visible="true" Style="color: white; font-size: small;" ShowHeaderWhenEmpty="true" CssClass="table">
+                                <asp:GridView ID="grdInvoiceRemaining" runat="server" EmptyDataRowStyle-CssClass="Emptyrow"  AutoGenerateColumns="False" ViewStateMode="Enabled" Visible="true" Style="color: white; font-size: small;" ShowHeaderWhenEmpty="true" CssClass="table">
                                     <HeaderStyle BackColor="#475672" />
                                     <Columns>
 

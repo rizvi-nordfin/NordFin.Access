@@ -17,4 +17,40 @@ namespace Nordfin.workflow.Entity
        
 
     }
+    public class ApiInvoiceCaseResult
+    {
+        public PSApiBalance Balance { get; set; }
+        public PSApiStatus Status { get; set; }
+        public PSApiEvent Event { get; set; }
+    }
+    public class PSApiInvoiceCaseResponse
+    {
+        public ApiInvoiceCaseResult Result { get; set; }
+    }
+
+
+
+    public class PSApiStatus
+    {
+      
+        public string InternalStatus { get; set; }
+       
+    }
+
+    public class PSApiEvent
+    {
+ 
+        public string LatestEventDate { get; set; }
+    }
+
+    public class PSApiBalance
+    {
+        public string DebtAmount { get; set; }
+        public string RemainingAmount { get; set; }
+        public string RemainingInterest { get; set; }
+        public string RemainingFees { get; set; }
+        public string RemainingTotal { get; set; }
+      
+    }
+
 }

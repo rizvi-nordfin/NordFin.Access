@@ -107,7 +107,13 @@ namespace Nordfin
                     ClientSession.ClientID = Convert.ToString(objuser.ClientID);
                     ClientSession.UserID = Convert.ToString(objuser.UserID);
                     ClientSession.LabelUser = objuser.LabelUser;
-                    Response.Redirect("frmDashboard.aspx");
+                    ClientSession.CreditUser = objuser.CreditUser;
+                    if (ClientSession.CreditUser == 2)
+                    {
+                        Response.Redirect("frmNordfinCreditCheck.aspx");
+                    }
+                    else
+                        Response.Redirect("frmDashboard.aspx");
                 }
                 else
                 {

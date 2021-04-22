@@ -5,8 +5,10 @@ using Nordfin.workflow.Entity;
 using Nordfin.workflow.PresentationBusinessLayer;
 using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Linq;
 using System.Net;
+using System.Text.RegularExpressions;
 using System.Web;
 using System.Web.Script.Serialization;
 using System.Web.UI;
@@ -32,7 +34,17 @@ namespace Nordfin
                         PSApiResponse resultPsIDInfo = new JavaScriptSerializer().Deserialize<PSApiResponse>(GetResponsePSApi("https://api.pssync.com/v1/Invoice?invoiceid=" + InvoiceNumber, apiOutgoing));
                         if (resultPsIDInfo != null && !string.IsNullOrEmpty(resultPsIDInfo.Result.PsInvoiceId))
                         {
-                            txtPSInfo.Value = GetResponsePSApi("https://pssync.com/api/v1/invoicecase?psinvoiceid=" + resultPsIDInfo.Result.PsInvoiceId, apiOutgoing);
+                            PSApiInvoiceCaseResponse invoiceCaseResponse = JsonConvert.DeserializeObject<PSApiInvoiceCaseResponse>(GetResponsePSApi("https://pssync.com/api/v1/invoicecase?psinvoiceid=" + resultPsIDInfo.Result.PsInvoiceId, apiOutgoing));
+                            if(invoiceCaseResponse!=null && invoiceCaseResponse.Result !=null&& invoiceCaseResponse.Result.Balance !=null)
+                            {
+                                txtDebtAMount.Text = FormatingString(invoiceCaseResponse.Result.Balance.DebtAmount);
+                                txtRemainingAmount.Text = FormatingString(invoiceCaseResponse.Result.Balance.RemainingAmount);
+                                txtRemainInterest.Text = FormatingString(invoiceCaseResponse.Result.Balance.RemainingInterest);
+                                txtRemainFees.Text = FormatingString(invoiceCaseResponse.Result.Balance.RemainingFees);
+                                txtRemainTotal.Text = FormatingString(invoiceCaseResponse.Result.Balance.RemainingTotal);
+                                txtInternalStatus.Text = invoiceCaseResponse.Result.Status.InternalStatus;
+                                txtLatestEventDate.Text = invoiceCaseResponse.Result.Event.LatestEventDate;
+                            }
                         }
                     }
                 }
@@ -56,6 +68,7 @@ namespace Nordfin
                 using (var reader = new System.IO.StreamReader(httpResponse.GetResponseStream()))
                 {
                     return reader.ReadToEnd();
+                    //return reader.ReadToEnd();
                 }
             }
             catch (WebException ex)
@@ -64,6 +77,10 @@ namespace Nordfin
             }
             return responseText;
 
+        }
+        protected string FormatingString(string Numbers)
+        {
+            return string.Format("{0:#,0.00}", Convert.ToDecimal(Numbers, CultureInfo.InvariantCulture));
         }
     }
 }

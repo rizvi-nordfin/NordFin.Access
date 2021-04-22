@@ -285,6 +285,7 @@
     <Content Include="frmBatches.aspx" />
     <Content Include="frmClientInformation.aspx" />
     <Content Include="frmContractOverview.aspx" />
+    <Content Include="frmNordfinCreditCheck.aspx" />
     <Content Include="frmCreditCheck.aspx" />
     <Content Include="frmCustomer.aspx" />
     <Content Include="frmDashboard.aspx" />
@@ -303,6 +304,7 @@
     <Content Include="Global.asax" />
     <Content Include="Images\AgedList.png" />
     <Content Include="Images\Batches.png" />
+    <Content Include="Images\Check.svg" />
     <Content Include="Images\Contracts_Orange.svg" />
     <Content Include="Images\Contracts.svg" />
     <Content Include="Images\Customer.png" />
@@ -385,6 +387,7 @@
     <Content Include="libman.json" />
     <None Include="Connected Services\CreditSafeTemplate\cas_service.wsdl" />
     <None Include="Connected Services\GetDataTemplate\getdata.wsdl" />
+    <Content Include="NordfinCredit.Master" />
     <None Include="Properties\PublishProfiles\FTPProfileProd.pubxml" />
     <None Include="Properties\PublishProfiles\FTPProfileTest.pubxml" />
     <None Include="Scripts\jquery-3.4.1.intellisense.js" />
@@ -413,6 +416,8 @@
     <Content Include="Scripts\jsInvoices.js" />
     <Content Include="Scripts\jsLogin.js" />
     <Content Include="Scripts\jsManualInvoice.js" />
+    <Content Include="Scripts\jsNordfinCreditCheck.js" />
+    <Content Include="Scripts\NordfinCreditMaster.js" />
     <Content Include="Scripts\jsPaymentInformation.js" />
     <Content Include="Scripts\jsPsInformationModal.js" />
     <Content Include="Scripts\jsReports.js" />
@@ -501,6 +506,13 @@
     </Compile>
     <Compile Include="frmContractOverview.aspx.designer.cs">
       <DependentUpon>frmContractOverview.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="frmNordfinCreditCheck.aspx.cs">
+      <DependentUpon>frmNordfinCreditCheck.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="frmNordfinCreditCheck.aspx.designer.cs">
+      <DependentUpon>frmNordfinCreditCheck.aspx</DependentUpon>
     </Compile>
     <Compile Include="frmCreditCheck.aspx.cs">
       <DependentUpon>frmCreditCheck.aspx</DependentUpon>
@@ -617,6 +629,13 @@
     </Compile>
     <Compile Include="Nordfin.Master.designer.cs">
       <DependentUpon>Nordfin.Master</DependentUpon>
+    </Compile>
+    <Compile Include="NordfinCredit.Master.cs">
+      <DependentUpon>NordfinCredit.Master</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="NordfinCredit.Master.designer.cs">
+      <DependentUpon>NordfinCredit.Master</DependentUpon>
     </Compile>
     <Compile Include="NotificationHub.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

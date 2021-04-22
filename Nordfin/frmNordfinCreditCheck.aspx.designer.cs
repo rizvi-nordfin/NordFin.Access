@@ -11,7 +11,7 @@ namespace Nordfin
 {
 
 
-    public partial class frmCreditCheck
+    public partial class frmNordfinCreditCheck
     {
 
         /// <summary>
@@ -175,23 +175,5 @@ namespace Nordfin
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Label lblRejectCode;
-
-        /// <summary>
-        /// hdnCreditScore control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.HiddenField hdnCreditScore;
-
-        /// <summary>
-        /// hdnCreditVisible control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.HiddenField hdnCreditVisible;
     }
 }

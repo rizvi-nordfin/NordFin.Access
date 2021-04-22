@@ -1,74 +1,18 @@
-﻿/*.divPadding {
-    padding-right: 0px;
-    padding-left: 0px;
-    background-color: #3E4B64;
-
-}
-.divPaddingLeft {
-    padding-left: 20px;
-}
-
-
-.divHeading {
-    font-size: x-small;
-    color: #A9BFD5;
-    text-transform:uppercase;
-}
-
-
-.divText {
-    display: block;
-    color: #fff;
-    overflow-x: hidden;
-    text-overflow: ellipsis;
-}
-
-.divHrLine {
-    border: 0.7px solid #475672;
-    background-color: #475672;
-    margin-top: 5px;
-    margin-bottom: 5px;
-}
-.actionButtonColumn {
-    padding-left: 5%;
-    padding-right: 0px;
-}
-
-.updateInfoButtonContainer {
-    background: #475672;
-    height: 70px;
-    margin-top: 0;
-    padding-top: 10px;
-}
-
-.panelButton {
-    background-color: transparent;
-    border: 1px solid #3DADC5;
-    color: #3DADC5;
-    display: block;
-    margin-left: auto;
-    margin-right: auto;
-    width: 100%;
-    padding-left: 15px;
-    font-size: 10px;
-    height: 90%;
-    line-height: 25px
-}*/
+﻿
 .row {
     margin-right: -7px !important;
 }
 
 .headingDiv {
-    padding: 10px;
+    padding: 15px;
     background-color: #41546E;
     margin-bottom: 10px !important;
 }
 
 .tableDiv {
     background-color: #38445D;
-    color: #707070;
+    color: #A9BFD5;
     margin: 0px;
-    
     width: 100%;
 }
 .overviewHeading {
@@ -77,8 +21,8 @@
     justify-content: center;
     align-items: center;
     margin-top: -1px;
-    background-color: #41546E;
-    font-weight: bolder;
+    background-color: #475672;
+   
 }
 
 .customerdivText
@@ -86,12 +30,18 @@
     visibility:visible;
    
 }
-.ResultHeight{
-    height:21px;
+.ResultMainHeadingHeight {
+    height: 23px;
 }
-.updateInfoButtonContainer 
-{
-    height:127px;
+.ResultHeight{
+    height:24px;
+}
+.updateInfoButtonContainer {
+    height: 71px;
+    margin-top: -5px;
+}
+.ResultLastHeight {
+    height: 29px;
 }
 #tdCredicheck {
     background-color: rgb(44, 56, 80);
@@ -107,12 +57,34 @@
     height:350px !important;
    
 }
+.mt-mb {
+    margin-top: -1px;
+}
 @media (min-width:1024px) and (max-width:1440px) {
     .creditMeter {
         width: 300px !important;
-        height: 349px !important;
+        height: 350px !important;
     }
 }
-@media all and (max-width: 1439px) {
-   
+@media (min-width:500px) and (max-width:1024px) {
+    .creditMeter {
+        width: 200px !important;
+        height: 350px !important;
+    }
+}
+@media all and (max-width:500px) {
+    .creditMeterMl {
+        margin-left: -14px;
+        margin-top: -12px;
+    }
+    .w-mb{
+        width:105%;
+    }
+    .mt-mb {
+        margin-top: 6px;
+    }
+    .creditMeter {
+        width: 250px !important;
+        height:220px !important;
+    }
 }

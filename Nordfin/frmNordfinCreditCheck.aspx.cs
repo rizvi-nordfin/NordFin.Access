@@ -19,7 +19,7 @@ using System.Xml.Serialization;
 
 namespace Nordfin
 {
-    public partial class frmCreditCheck : System.Web.UI.Page
+    public partial class frmNordfinCreditCheck : System.Web.UI.Page
     {
         string key { get; set; } = "B832002DA297545CFC6B5F5C9B5";
         protected void Page_Load(object sender, EventArgs e)
@@ -31,28 +31,25 @@ namespace Nordfin
                 txtPassword.Attributes["type"] = "password";
                 txtUserName.Text = Decrypt(GetFromCookie("CreditUser", "UserName"));
                 txtPassword.Text = Decrypt(GetFromCookie("CreditToken", "Token"));
-                lblClientName.Text = ClientSession.ClientName;
-                hdnCreditScore.Value ="0";
-                hdnCreditVisible.Value= Convert.ToString(ClientSession.CreditUser);
+                ScriptManager.RegisterStartupScript(this, this.GetType(), "setCreditScore", "setCreditScore(0);", true);
             }
         }
 
         protected void btnCreditCheck_Click(object sender, EventArgs e)
         {
-            if (ClientSession.CreditUser == 1)
+
+
+            if (cboCustomerType.SelectedItem.Text == "" || string.IsNullOrWhiteSpace(txtUserName.Text) || string.IsNullOrWhiteSpace(txtPersonalNumber.Text) || string.IsNullOrWhiteSpace(txtPassword.Text))
             {
-
-                if (cboCustomerType.SelectedItem.Text == "" || string.IsNullOrWhiteSpace(txtUserName.Text) || string.IsNullOrWhiteSpace(txtPersonalNumber.Text) || string.IsNullOrWhiteSpace(txtPassword.Text))
-                {
-                    hdnCreditScore.Value = "0";
-                    return;
-                }
-
-                if (cboCustomerType.SelectedItem.Value.ToUpper() == "1")
-                    GetPersonCreditDetails();
-                else
-                    GetCompanyCreditDetails();
+                ScriptManager.RegisterStartupScript(this, this.GetType(), "setCreditScore", "setCreditScore(0);", true);
+                return;
             }
+
+            if (cboCustomerType.SelectedItem.Value.ToUpper() == "1")
+                GetPersonCreditDetails();
+            else
+                GetCompanyCreditDetails();
+
 
         }
 
@@ -74,7 +71,7 @@ namespace Nordfin
             GETDATA_RESPONSE dataResponse = test.GetDataBySecure(gETDATA_REQUEST);
             if (dataResponse.Error != null)
             {
-                hdnCreditScore.Value = "0";
+                ScriptManager.RegisterStartupScript(this, this.GetType(), "setCreditScore", "setCreditScore(0);", true);
                 return;
             }
              
@@ -150,8 +147,8 @@ namespace Nordfin
                 CasData(creditCheck.Status, creditCheck.Error);
 
             }
-            hdnCreditScore.Value = datasetReponse.CreditGetData.RATING;
-            
+            ScriptManager.RegisterStartupScript(this, this.GetType(), "setCreditScore", "setCreditScore('" + datasetReponse.CreditGetData.RATING + "');", true);
+
 
 
         }
@@ -172,7 +169,7 @@ namespace Nordfin
             GETDATA_RESPONSE dataResponse = test.GetDataBySecure(gETDATA_REQUEST);
             if (dataResponse.Error != null)
             {
-                hdnCreditScore.Value = "0";
+                ScriptManager.RegisterStartupScript(this, this.GetType(), "setCreditScore", "setCreditScore(0);", true);
                 return;
             }
             string xmlResponse = dataResponse.Parameters.GetXml();
@@ -248,8 +245,8 @@ namespace Nordfin
 
                 
             }
-            hdnCreditScore.Value = datasetReponse.CreditGetData.SCORING;
-           
+            ScriptManager.RegisterStartupScript(this, this.GetType(), "setCreditScore", "setCreditScore('" + datasetReponse.CreditGetData.SCORING + "');", true);
+
         }
 
         private void FillData(CreditDataSet creditData)

@@ -1,10 +1,10 @@
-﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="frmCreditCheck.aspx.cs" MasterPageFile="~/Nordfin.Master" Inherits="Nordfin.frmCreditCheck" %>
+﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="frmNordfinCreditCheck.aspx.cs" MasterPageFile="~/NordfinCredit.Master" Inherits="Nordfin.frmNordfinCreditCheck" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="NordfinContentHolder" runat="server"   style="background-color: #232D41;">
     <asp:Panel DefaultButton="btnCreditCheck" runat="server">
     <link href="Styles/AccountSettings.css?version=<%=ConfigurationManager.AppSettings["VersionConfiguration"].ToString() %>" rel="stylesheet" />
          <link href="Styles/CreditCheck.css?version=<%=ConfigurationManager.AppSettings["VersionConfiguration"].ToString() %>" rel="stylesheet" />
         <script src="Scripts/gauge.js?version=<%=ConfigurationManager.AppSettings["VersionConfiguration"].ToString() %>"></script>
-    <script src="Scripts/jsCreditCheck.js?version=<%=ConfigurationManager.AppSettings["VersionConfiguration"].ToString() %>"></script>
+    <script src="Scripts/jsNordfinCreditCheck.js?version=<%=ConfigurationManager.AppSettings["VersionConfiguration"].ToString() %>"></script>
        <%-- <script src="Scripts/gauge.min.js"></script>--%>
         <style>
          
@@ -25,7 +25,7 @@
 
                     <div class="col-md-12 col-lg-3  divPadding customerInfoSidebar" style="color: #FFFFFF;">
                          <div class="row headingDiv tableDiv overviewHeading text-center" style="background-color: #475672;height:54px;font-size:16px;">
-                                <asp:Label runat="server" style="text-transform:uppercase;" ID="lblClientName"></asp:Label>
+                                <asp:Label runat="server" style="text-transform:uppercase;" Text="Login" ID="lblClientName"></asp:Label>
 
                                 
 
@@ -98,7 +98,7 @@
                         <div id="preview"  class="w-mb"  style="background-color: #3e4a66;margin-top:-7px;">
                             <div style="margin-top:0px" >
                                 <canvas class="creditMeter" id="demo"></canvas>
-                                <div style="background:#38445D;height:73px;display: flex;justify-content: center;margin-top:-12px;">
+                                <div style="background:#38445D;height:73px;display: flex;justify-content: center;margin-top:-14px;">
                                 <div id="preview-textfield" style="font-size: 30px;color: #A9BFD5;margin-top: 15px;"></div>
                                     </div>
                             </div>
@@ -187,8 +187,7 @@
 
         </div>
         </div>
-          <asp:HiddenField ID="hdnCreditScore" runat="server" />
-        <asp:HiddenField ID="hdnCreditVisible" runat="server" />
+        
         </asp:Panel>
 
   <%--   <div class="featureNotAvailableBG hidden">

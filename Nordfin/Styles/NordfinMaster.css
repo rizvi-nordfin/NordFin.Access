@@ -1671,3 +1671,15 @@ a.linkcss {
     border: none;
     cursor: pointer;
 }
+
+.mtmlCredit {
+    margin-left: 21px;
+    margin-top: 26px;
+}
+
+@media all and (max-width: 500px) {
+    .mtmlCredit {
+        margin-left: 10px;
+        margin-top: 17px;
+    }
+}
