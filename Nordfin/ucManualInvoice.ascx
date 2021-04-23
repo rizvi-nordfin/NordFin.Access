@@ -38,9 +38,11 @@
         var vatPercent = (percent.length != 0 ? parseInt(percent) : 0);
         var vatAmount = vatPercent == 0 ? 0 : (rowTotal * vatPercent) / 100;
         var invoiceAmount = rowTotal - vatAmount;
-        var itemPrice = quantity.length == 0 ? invoiceAmount : invoiceAmount / parseInt(quantity);
+        //var itemPrice = quantity.length == 0 ? invoiceAmount : invoiceAmount / parseInt(quantity);
+        var itemPrice = (totalAmount / (100 + vatPercent)) * 100;
+        var totalVat = (itemPrice * vatPercent) / 100;
         $("#<%= txtInvAmount.ClientID %>").val(invoiceAmount);
-        $("#<%= txtVat.ClientID %>").val(vatAmount);
+        $("#<%= txtVat.ClientID %>").val(totalVat);
         $("#<%= txtAmount.ClientID %>").val(itemPrice);
     }
 </script>
