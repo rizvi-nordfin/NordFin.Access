@@ -31,8 +31,9 @@ namespace Nordfin
                 txtPassword.Attributes["type"] = "password";
                 txtUserName.Text = Decrypt(GetFromCookie("CreditUser", "UserName"));
                 txtPassword.Text = Decrypt(GetFromCookie("CreditToken", "Token"));
-                ScriptManager.RegisterStartupScript(this, this.GetType(), "setCreditScore", "setCreditScore(0);", true);
+                
             }
+            ScriptManager.RegisterStartupScript(this, this.GetType(), "setCreditScore", "setCreditScore(0);", true);
         }
 
         protected void btnCreditCheck_Click(object sender, EventArgs e)

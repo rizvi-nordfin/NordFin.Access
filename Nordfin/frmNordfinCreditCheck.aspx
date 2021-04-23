@@ -31,7 +31,7 @@
 
                                   <hr class="divHrLine" />
                             </div>
-                        <div  style="background-color: #3E4B64;margin-top:-6px;">
+                        <div  style="background-color: #3E4B64;margin-top:-7px;">
 
 
                            
