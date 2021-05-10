@@ -55,6 +55,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AccountSettingsDataAccessLayer.cs" />
+    <Compile Include="ApiOutgoingDataAccessLayer.cs" />
     <Compile Include="BatchesDataAccessLayer.cs" />
     <Compile Include="ClientInformationDataAccessLayer.cs" />
     <Compile Include="DebtCollectionDataAccessLayer.cs" />

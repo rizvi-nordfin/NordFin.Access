@@ -29,5 +29,9 @@ namespace Nordfin.workflow.BusinessLayer
         {
             return telsonGroupBusinessData.GetTelecomData();
         }
+        int ITelsonGroupPresentationBusinessLayer.setCreditCheck(CreditCheck creditCheck)
+        {
+            return telsonGroupBusinessData.setCreditCheck(creditCheck);
+        }
     }
 }

@@ -1,0 +1,18 @@
+﻿.textboxModalColor, .textboxModalColor:focus {
+    background-color: #2c3850;
+    border-color: #2c3850;
+    color: #fff;
+    width: 100%;
+    font-family: 'Source Sans Pro', sans-serif;
+    font-size:12px;
+}
+
+.textareaHeight {
+    height: 350px !important;
+
+}
+
+.form-control[readonly] {
+    background-color: #2c3850 !important;
+    opacity: 1;
+}

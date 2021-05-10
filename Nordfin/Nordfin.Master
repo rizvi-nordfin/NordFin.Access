@@ -89,7 +89,7 @@
                             </div>
 
                         </div>
-                        <asp:Button Text="Search" OnClick="Search_Click" ID="Search" OnClientClick="return AdvanceSearch();" class="button topMenuSearchButton" runat="server" />
+                        <asp:Button Text="Search" OnClick="Search_Click"  ID="Search" OnClientClick="return AdvanceSearch();" class="button topMenuSearchButton" runat="server" />
 
 
                     </div>
@@ -198,6 +198,14 @@
                     </div>
                 </div>
 
+                  <div class="sideMenuButton">
+                    <div id="tdCredicheck">
+                        <button runat="server" onserverclick="btnCreditCheck_ServerClick" id="btnCreditCheck">
+                            <img class="sideMenuIcon iReports mtmlCredit" style="width:100px;" src="Images/Check.svg" runat="server" id="imgCreditcheck" alt="Reports" />
+                        </button>
+                    </div>
+                </div>
+
                 <div class="sideMenuButton">
                     <div id="tdReport">
                         <button runat="server" onserverclick="btnPaymentInfo_ServerClick" id="btnReports">
@@ -282,7 +290,9 @@
                     <asp:Panel ID="Panel2" runat="server">
                         <a href="frmContractOverview.aspx">Contracts</a>
                     </asp:Panel>
-                   
+                   <%-- <asp:Panel ID="Panel3" runat="server">
+                        <a href="frmCreditCheck.aspx">CreditCheck</a>
+                    </asp:Panel>--%>
 
                 </asp:panel>
             </div>
@@ -291,6 +301,24 @@
             <asp:ContentPlaceHolder ID="NordfinContentHolder" runat="server">
             </asp:ContentPlaceHolder>
 
+
+               <div class="modal" id="ModalMaster" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                        <div class="modal-dialog" role="document">
+                            <div class="modal-content" style="top: 196px; background: none; border: none; width: 100%;">
+                                <div class="modal-header dashboardHeadline" style="background-color: #323e53; color: #fff; font-size: 16px;">
+                                    <div class="ml-3">
+                                        <h5 class="modal-title modalTextcolor dashboardHeadlineModal" id="ExportModal">External DC Status</h5>
+                                    </div>
+                                    <button type="button" class="modalcloseButton" data-dismiss="modal" aria-label="Close" style="top: 35px; right: 10px;">
+                                        <span aria-hidden="true">✕</span>
+                                    </button>
+                                </div>
+                                <div class="modal-body" style="background-color: #323e53; color: #fff; ">
+                                      <iframe id="FrameMaster" class="border-0" runat="server" style="    height: 394px;width:100%"></iframe>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
 
 
         </div>
@@ -308,7 +336,7 @@
     <div class="featureNotAvailableBG hidden">
         <div class="featureNotAvailable">
             <div class="featureNotAvailableX">✕</div>
-           Detailed view only available in Google Chrome
+           In order to use the credit scoring function please contact your nordfin contact
         </div>
     </div>
 

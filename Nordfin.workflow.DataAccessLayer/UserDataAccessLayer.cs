@@ -29,7 +29,8 @@ namespace Nordfin.workflow.DataAccessLayer
                     Admin = dataRow.Field<int>("Admin"),
                     ClientID = dataRow.Field<int>("ClientID"),
                     UserID = dataRow.Field<int>("ID"),
-                    LabelUser = dataRow.Field<string>("LabelUser")
+                    LabelUser = dataRow.Field<string>("LabelUser"),
+                    CreditUser = dataRow.Field<int>("CreditUser")
                 }).ToList()[0];
             }
             return user;

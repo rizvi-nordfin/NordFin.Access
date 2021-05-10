@@ -99,7 +99,7 @@ namespace Nordfin
                         userInformation.iStatus = 1;
 
 
-                        int Result = objUserLayer.InsertLoginUserInformation(userInformation);
+                        //int Result = objUserLayer.InsertLoginUserInformation(userInformation);
                     }
 
                     ClientSession.UserName = objuser.UserName;
@@ -107,7 +107,13 @@ namespace Nordfin
                     ClientSession.ClientID = Convert.ToString(objuser.ClientID);
                     ClientSession.UserID = Convert.ToString(objuser.UserID);
                     ClientSession.LabelUser = objuser.LabelUser;
-                    Response.Redirect("frmDashboard.aspx");
+                    ClientSession.CreditUser = objuser.CreditUser;
+                    if (ClientSession.CreditUser == 2)
+                    {
+                        Response.Redirect("frmNordfinCreditCheck.aspx");
+                    }
+                    else
+                        Response.Redirect("frmDashboard.aspx");
                 }
                 else
                 {
@@ -115,7 +121,7 @@ namespace Nordfin
                     if (bUserInfo)
                     {
                         userInformation.iStatus = 0;
-                        int Result = objUserLayer.InsertLoginUserInformation(userInformation);
+                        //int Result = objUserLayer.InsertLoginUserInformation(userInformation);
                     }
                 }
             }

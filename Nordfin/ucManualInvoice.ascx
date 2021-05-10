@@ -31,6 +31,7 @@
     }
 
     function SetAmountFromTotal() {
+        debugger;
         var totalAmount = $("#<%= txtRowTotal.ClientID %>").val();
         var percent = $("#<%= drpVat.ClientID %>").val();
         var quantity = $("#<%= txtQuantity.ClientID %>").val();
