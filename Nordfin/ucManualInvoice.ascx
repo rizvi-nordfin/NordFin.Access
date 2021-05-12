@@ -25,26 +25,23 @@
         var vatPercent = percent.length != 0 ? parseInt(percent) : 0;
         var vatAmount = vatPercent == 0 ? 0 : (invoiceAmount * vatPercent) / 100;
         var total = vatAmount + invoiceAmount;
-        $("#<%= txtInvAmount.ClientID %>").val(invoiceAmount);
-        $("#<%= txtVat.ClientID %>").val(vatAmount);
-        $("#<%= txtRowTotal.ClientID %>").val(total);
+        $("#<%= txtInvAmount.ClientID %>").val(invoiceAmount.toFixed(2));
+        $("#<%= txtVat.ClientID %>").val(vatAmount.toFixed(2));
+        $("#<%= txtRowTotal.ClientID %>").val(total.toFixed(2));
     }
 
     function SetAmountFromTotal() {
-        debugger;
         var totalAmount = $("#<%= txtRowTotal.ClientID %>").val();
         var percent = $("#<%= drpVat.ClientID %>").val();
         var quantity = $("#<%= txtQuantity.ClientID %>").val();
         var rowTotal = (totalAmount.length != 0 ? parseFloat(totalAmount) : 0.0);
         var vatPercent = (percent.length != 0 ? parseInt(percent) : 0);
-        var vatAmount = vatPercent == 0 ? 0 : (rowTotal * vatPercent) / 100;
-        var invoiceAmount = rowTotal - vatAmount;
-        //var itemPrice = quantity.length == 0 ? invoiceAmount : invoiceAmount / parseInt(quantity);
-        var itemPrice = (totalAmount / (100 + vatPercent)) * 100;
+        var invoiceAmount = (rowTotal / (100 + vatPercent)) * 100;
+        var itemPrice = quantity.length == 0 ? invoiceAmount : invoiceAmount / parseInt(quantity);
         var totalVat = (itemPrice * vatPercent) / 100;
-        $("#<%= txtInvAmount.ClientID %>").val(invoiceAmount);
-        $("#<%= txtVat.ClientID %>").val(totalVat);
-        $("#<%= txtAmount.ClientID %>").val(itemPrice);
+        $("#<%= txtInvAmount.ClientID %>").val(invoiceAmount.toFixed(2));
+        $("#<%= txtVat.ClientID %>").val(totalVat.toFixed(2));
+        $("#<%= txtAmount.ClientID %>").val(itemPrice.toFixed(2));
     }
 </script>
 <div>
@@ -147,7 +144,7 @@
         <div class="row">
             <div class="col-md-2">
                 <span class="title">Amount excl. VAT</span>
-                <asp:TextBox ID="txtAmount" runat="server" autocomplete="off" CssClass="form-control controls" ClientIDMode="Static" onkeypress="return ValidateAmount(this, event);" onblur="SetTotalAmount(); return false;"></asp:TextBox>
+                <asp:TextBox ID="txtAmount" runat="server" autocomplete="off" CssClass="form-control controls" ClientIDMode="Static" onkeypress="return ValidateAmount(this, event);" oninput="RestrictToTwoDecimal(this)" onblur="SetTotalAmount(); return false;"></asp:TextBox>
             </div>
             <div class="col-md-2">
                 <span class="title">VAT %</span>
@@ -156,7 +153,7 @@
             </div>
             <div class="col-md-2">
                 <span class="title">Invoice Amount</span>
-                <asp:TextBox ID="txtInvAmount" runat="server" autocomplete="off" CssClass="form-control controls" ClientIDMode="Static" onkeypress="return ValidateAmount(this, event);"></asp:TextBox>
+                <asp:TextBox ID="txtInvAmount" runat="server" autocomplete="off" CssClass="form-control controls" ClientIDMode="Static" Enabled="false"></asp:TextBox>
 
             </div>
             <div class="col-md-2">

@@ -13,6 +13,7 @@ using System.Net;
 using System.Text;
 using System.Web.UI.WebControls;
 using System.Configuration;
+using System.Globalization;
 
 namespace Nordfin
 {
@@ -22,7 +23,7 @@ namespace Nordfin
         private string standardFile = string.Empty;
         private string fileName = string.Empty;
         private string invoiceNumber = string.Empty;
-
+        private readonly CultureInfo culture = CultureInfo.InvariantCulture;
         protected void Page_Load(object sender, EventArgs e)
         {
             if (!IsPostBack)
@@ -341,34 +342,34 @@ namespace Nordfin
 
         private void AddRow_SetTotalAmounts()
         {
-            double.TryParse(txtInvAmount.Text?.Trim(), out double rowInvoice);
-            double.TryParse(txtVat.Text?.Trim(), out double rowVat);
-            double.TryParse(txtRowTotal.Text?.Trim(), out double rowTotal);
-            double.TryParse(txtTotalInv.Text?.Trim(), out double totalInvoice);
-            double.TryParse(txtTotalVat.Text?.Trim(), out double totalVat);
-            double.TryParse(txtTotalAmount.Text?.Trim(), out double totalAmount);
+            var rowInvoice = Convert.ToDouble(!string.IsNullOrWhiteSpace(txtInvAmount.Text) ? txtInvAmount.Text.Trim() : "0", culture);
+            var rowVat = Convert.ToDouble(!string.IsNullOrWhiteSpace(txtVat.Text) ? txtVat.Text.Trim() : "0", culture);
+            var rowTotal = Convert.ToDouble(!string.IsNullOrWhiteSpace(txtRowTotal.Text) ? txtRowTotal.Text.Trim() : "0", culture);
+            var totalInvoice = Convert.ToDouble(!string.IsNullOrWhiteSpace(txtTotalInv.Text) ? txtTotalInv.Text.Trim() : "0", culture);
+            var totalVat = Convert.ToDouble(!string.IsNullOrWhiteSpace(txtTotalVat.Text) ? txtTotalVat.Text.Trim() : "0", culture);
+            var totalAmount = Convert.ToDouble(!string.IsNullOrWhiteSpace(txtTotalAmount.Text) ? txtTotalAmount.Text.Trim() : "0", culture);
             totalInvoice += rowInvoice;
             totalVat += rowVat;
             totalAmount += rowTotal;
-            txtTotalInv.Text = totalInvoice.ToString();
-            txtTotalVat.Text = totalVat.ToString();
-            txtTotalAmount.Text = totalAmount.ToString();
+            txtTotalInv.Text = totalInvoice.ToString().Replace(',', '.');
+            txtTotalVat.Text = totalVat.ToString().Replace(',', '.');
+            txtTotalAmount.Text = totalAmount.ToString().Replace(',', '.');
         }
 
         private void DeleteRow_SetTotalAmounts(DataRow rowToDelete)
         {
-            double.TryParse(rowToDelete["InvoiceAmount"].ToString(), out double rowInvoice);
-            double.TryParse(rowToDelete["VATAmount"].ToString(), out double rowVat);
-            double.TryParse(rowToDelete["TotalAmount"].ToString(), out double rowTotal);
-            double.TryParse(txtTotalInv.Text?.Trim(), out double totalInvoice);
-            double.TryParse(txtTotalVat.Text?.Trim(), out double totalVat);
-            double.TryParse(txtTotalAmount.Text?.Trim(), out double totalAmount);
+            var rowInvoice = Convert.ToDouble(rowToDelete["InvoiceAmount"].ToString(), culture);
+            var rowVat = Convert.ToDouble(rowToDelete["VATAmount"].ToString(), culture);
+            var rowTotal = Convert.ToDouble(rowToDelete["TotalAmount"].ToString(), culture);
+            var totalInvoice = Convert.ToDouble(!string.IsNullOrWhiteSpace(txtTotalInv.Text) ? txtTotalInv.Text.Trim() : "0", culture);
+            var totalVat = Convert.ToDouble(!string.IsNullOrWhiteSpace(txtTotalVat.Text) ? txtTotalVat.Text.Trim() : "0", culture);
+            var totalAmount = Convert.ToDouble(!string.IsNullOrWhiteSpace(txtTotalAmount.Text) ? txtTotalAmount.Text.Trim() : "0", culture);
             totalInvoice -= rowInvoice;
             totalVat -= rowVat;
             totalAmount -= rowTotal;
-            txtTotalInv.Text = totalInvoice.ToString();
-            txtTotalVat.Text = totalVat.ToString();
-            txtTotalAmount.Text = totalAmount.ToString();
+            txtTotalInv.Text = totalInvoice.ToString().Replace(',', '.');
+            txtTotalVat.Text = totalVat.ToString().Replace(',', '.');
+            txtTotalAmount.Text = totalAmount.ToString().Replace(',', '.');
         }
 
         private void ShowErrorDialog(string errorMessage)
