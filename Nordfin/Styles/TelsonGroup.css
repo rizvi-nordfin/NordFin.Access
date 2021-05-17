@@ -692,3 +692,11 @@ Inline style {
 .dashboardTable tr {
     height: 50px !important;
 }
+
+@media (max-width: 420px) {
+
+    .jquiChart {
+        width: 300px !important;
+        height: 385px !important;
+    }
+}
