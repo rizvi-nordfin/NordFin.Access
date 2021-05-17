@@ -13,7 +13,8 @@ namespace Nordfin.workflow.Entity
             if (amount is string)
             {
                 amount = amount.Replace(" kr", string.Empty).Replace(" €", string.Empty).Replace(" ", string.Empty).Replace(',', '.');
-                return string.Format("{0:0.00}", Convert.ToDouble(amount));
+                var amountDecimal = Convert.ToDouble(amount, System.Globalization.CultureInfo.InvariantCulture);
+                return amountDecimal.ToString().Replace(',', '.');
             }
 
             return amount;

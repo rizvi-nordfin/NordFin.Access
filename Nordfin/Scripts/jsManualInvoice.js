@@ -82,6 +82,11 @@ function ValidateAmount(txt, evt) {
     return true;
 }
 
+function RestrictToTwoDecimal(e) {
+    var t = e.value;
+    e.value = (t.indexOf(".") >= 0) ? (t.substr(0, t.indexOf(".")) + t.substr(t.indexOf("."), 3)) : t;
+}
+
 function setupModalDialog() {
     var zIndex = 1040 + (10 * jq10('.modal:visible').length);
     jq10(this).css('z-index', zIndex);
