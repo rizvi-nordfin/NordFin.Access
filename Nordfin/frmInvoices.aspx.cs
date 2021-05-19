@@ -70,14 +70,14 @@ namespace Nordfin
                 }
                 if (ds.Tables[0].Rows.Count > 0)
                 {
-                    lblSumAmount.Text =string.Format("{0:#,0.00}", (ds.Tables[0].AsEnumerable().Sum(r => r.Field<decimal>("Invoiceamount"))));
+                    lblSumAmount.Text = string.Format("{0:#,0.00}", (ds.Tables[0].AsEnumerable().Sum(r => r.Field<decimal>("Invoiceamount"))));
                     lblFeesAmount.Text = string.Format("{0:#,0.00}", ds.Tables[0].AsEnumerable().Sum(r => r.Field<decimal>("Fees")));
-                    lblTotalRemain.Text = string.Format( "{0:#,0.00}", ds.Tables[0].AsEnumerable().Sum(r =>r.Field<decimal>("TotalRemaining")));
+                    lblTotalRemain.Text = string.Format("{0:#,0.00}", ds.Tables[0].AsEnumerable().Sum(r => r.Field<decimal>("TotalRemaining")));
                     lblOverPaid.Text = string.Format("{0:#,0.00}", ds.Tables[0].AsEnumerable().Sum(r => r.Field<decimal>("Overpayment")));
                     lblRemain.Text = string.Format("{0:#,0.00}", ds.Tables[0].AsEnumerable().Sum(r => r.Field<decimal>("Remainingamount")));
                 }
-               
-             
+
+
             }
 
             pdfInvoices.Src = "";
@@ -103,7 +103,7 @@ namespace Nordfin
         {
             EmailFunctions emailFunctions = new EmailFunctions();
             string PDFArchive = "";
-            if(chkInvoices.Attributes["EvryArchive"] != null)
+            if (chkInvoices.Attributes["EvryArchive"] != null)
                 chkInvoices.Attributes.Remove("EvryArchive");
             btnDownload.CommandArgument = ((Button)sender).CommandArgument.Trim().Replace("INV-", "");
             btnEmail.Attributes["custInvoice"] = ((Button)sender).Attributes["custInvoice"].ToString();
@@ -125,7 +125,7 @@ namespace Nordfin
                 chkInvoices.Checked = true;
                 chkInvoices.Visible = true;
             }
-           
+
             ScriptManager.RegisterStartupScript(this, this.GetType(), "ExportClick", "ExportClick(0,'" + PDFArchive + "','','" + bMultidownlaod + "');", true);
 
 
@@ -200,20 +200,20 @@ namespace Nordfin
 
         protected void btnDownload_Click(object sender, EventArgs e)
         {
-           
+
             string FileStartName = hdnFileName.Value;
-            string InvoiceNumber= ((Button)sender).CommandArgument.Trim();
+            string InvoiceNumber = ((Button)sender).CommandArgument.Trim();
             EmailFunctions emailFunctions = new EmailFunctions();
             bool isMultidownload = false;
             string PDFArchive = "";
-            if (chkInvoices.Attributes["EvryArchive"] != null && chkInvoices.Attributes["EvryArchive"]=="true")
+            if (chkInvoices.Attributes["EvryArchive"] != null && chkInvoices.Attributes["EvryArchive"] == "true")
             {
                 PDFArchive = hdnArchiveLink.Value + btnDownload.CommandArgument;
                 isMultidownload = true;
             }
             else if (chkInvoices.Checked && chkInvoices.Visible)
             {
-                string sFileName = emailFunctions.GetFileName(FileStartName, InvoiceNumber, "",out bool bExist);
+                string sFileName = emailFunctions.GetFileName(FileStartName, InvoiceNumber, "", out bool bExist);
                 if (bExist)
                     pdfInvoices.Src = "frmPdfMultiDownload.aspx?FileName=" + Server.UrlEncode(sFileName);
             }
@@ -227,12 +227,12 @@ namespace Nordfin
             {
                 string sFileName = emailFunctions.GetFileName(FileStartName, InvoiceNumber, "DC", out bool bExist);
                 if (bExist)
-                    pdfDC.Src ="frmPdfMultiDownload.aspx?FileName=" + Server.UrlEncode(sFileName);
+                    pdfDC.Src = "frmPdfMultiDownload.aspx?FileName=" + Server.UrlEncode(sFileName);
             }
 
             ScriptManager.RegisterStartupScript(this, this.GetType(), "ExportClick", "ExportClick(0,'" + PDFArchive + "','','" + isMultidownload + "');", true);
         }
-      
+
 
         protected void btnEmail_Click(object sender, EventArgs e)
         {
@@ -242,7 +242,7 @@ namespace Nordfin
                 return;
 
             }
-               
+
             IInvoicesPresentationBusinessLayer objInvoicesLayer = new InvoicesBusinessLayer();
             string scustEmail = objInvoicesLayer.GetCustInvoiceEmailID(ClientSession.ClientID, btnEmail.Attributes["custInvoice"].ToString());
             txtCustEmail.Text = scustEmail;
@@ -258,7 +258,7 @@ namespace Nordfin
             }
             ScriptManager.RegisterStartupScript(this, this.GetType(), "ExportClick", "ExportClick(1);", true);
         }
-   
+
         protected void btnSend_Click(object sender, EventArgs e)
         {
             try
@@ -286,7 +286,7 @@ namespace Nordfin
                         multiDownloads.Add(new PDFMultiDownload() { FileName = sFileName });
                 }
 
-                bool bEmail =emailFunctions.SendMail(txtCustEmail.Text, txtEmailHeader.Text, txtEmailBody.Text, multiDownloads);
+                bool bEmail = emailFunctions.SendMail(txtCustEmail.Text, txtEmailHeader.Text, txtEmailBody.Text, multiDownloads);
 
                 ScriptManager.RegisterStartupScript(this, this.GetType(), "ExportClick", "ExportClick(1,'','" + bEmail + "');", true);
             }
@@ -295,7 +295,7 @@ namespace Nordfin
                 ScriptManager.RegisterStartupScript(this, this.GetType(), "ExportClick", "ExportClick(1,'','" + false + "');", true);
             }
         }
-       
+
 
         protected void btnExport_Click(object sender, EventArgs e)
         {
@@ -313,7 +313,7 @@ namespace Nordfin
                 {
 
                     var ws = wb.Worksheets.Add(dataTable);
-                  
+
                     Response.Clear();
                     Response.Buffer = true;
                     Response.Charset = "";
@@ -334,7 +334,7 @@ namespace Nordfin
                     }
                 }
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
                 //catch the issue
             }
@@ -389,11 +389,11 @@ namespace Nordfin
                 GridViewSortDirection = SortDirection.Ascending;
                 SortGridView(sortExpression, ASCENDING);
             }
-          
+
         }
         private void SortGridView(string sortExpression, string direction)
         {
-           
+
             DataTable dt = (DataTable)Session["InvoiceGrid"];
             DataView dv = new DataView(dt);
             dv.Sort = sortExpression + direction;
@@ -439,5 +439,61 @@ namespace Nordfin
                     linkButton.OnClientClick = "return false";
             }
         }
+
+        protected void btnAddCustomer_Click(object sender, EventArgs e)
+        {
+            IInvoicesPresentationBusinessLayer objInvoicesLayer = new InvoicesBusinessLayer();
+            CustomerInfo customerInfo = new CustomerInfo
+            {
+                Name = txtCustomerName.Text,
+                Address1 = txtAddress1.Text,
+                Address2 = txtAddress2.Text ?? null,
+                PostalCode = txtPostalCode.Text,
+                City = txtCity.Text,
+                Country = txtCountry.Text ?? null,
+                Email = txtEmail.Text ?? null,
+                PhoneNumber = txtPhoneNumber.Text ?? null,
+                UserID = Convert.ToInt32(ClientSession.UserID),
+                CustomerNumber = txtCustomerNumber.Text,
+                ClientID = int.Parse(ClientSession.ClientID),
+                PersonalNumber = txtPersonalNumber.Text,
+                CustomerType = rbPrivate.Checked ? "PRV" : "FTG"
+            };
+
+            var alreadyExistsDictionary = objInvoicesLayer.CheckCustomerAlreadyExists(customerInfo.CustomerNumber, customerInfo.PersonalNumber, customerInfo.ClientID);
+            alreadyExistsDictionary.TryGetValue("CustomerNumber", out string customerNumberExists);
+            if (!string.IsNullOrWhiteSpace(customerNumberExists))
+            {
+                ScriptManager.RegisterStartupScript(this, GetType(), "Pop", "showErrorModal('" + customerNumberExists + "');", true);
+                return;
+            }
+
+            alreadyExistsDictionary.TryGetValue("PersonalNumber", out string personalNumberExists);
+            if (!string.IsNullOrWhiteSpace(personalNumberExists))
+            {
+                ScriptManager.RegisterStartupScript(this, GetType(), "Pop", "showErrorModal('" + personalNumberExists + "');", true);
+                return;
+            }
+
+            bool added = objInvoicesLayer.AddNewCustomerInfo(customerInfo);
+            if (added)
+            {
+                ScriptManager.RegisterStartupScript(this, GetType(), "Pop", "showSuccessModal();", true);
+                return;
+            }
+            else
+            {
+                var errorMessage = "Failed to add customer. Close & try again.";
+                ScriptManager.RegisterStartupScript(this, GetType(), "Pop", "showErrorModal('" + errorMessage + "');", true);
+                return;
+            }
+        }
+        
+        protected void CloseAddCustomer(object sender, EventArgs e)
+        {
+            ScriptManager.RegisterStartupScript(this, GetType(), "Pop", "CloseAddCustomer();", true);
+            return;
+        }
+
     }
 }

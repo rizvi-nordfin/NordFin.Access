@@ -815,6 +815,7 @@
     <asp:HiddenField ID="hdnEmailID" runat="server" />
     <asp:HiddenField ID="hdnMatch" runat="server" Value="true" />
      <asp:HiddenField ID="hdnAdmin" runat="server" Value="true" />
+    <asp:HiddenField ID="hdnCustomerType" runat="server" />
     <asp:TextBox ID="txtCustomerID" runat="server" autocomplete="off" Visible="false"></asp:TextBox>
 
 </asp:Content>

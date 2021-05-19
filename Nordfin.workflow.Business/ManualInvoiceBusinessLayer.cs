@@ -14,9 +14,9 @@ namespace Nordfin.workflow.BusinessLayer
             return objManualInvoice.GetCustomerInfoForClient(customerNumber, clientID);
         }
 
-        public int GetNumberSeries(string seriesName)
+        public int GetLatestNumberSeries(string seriesName)
         {
-            return objManualInvoice.GetNumberSeries(seriesName);
+            return objManualInvoice.GetLatestNumberSeries(seriesName);
         }
 
         public void UpdateNumberSeries(string seriesName, int newSeries)

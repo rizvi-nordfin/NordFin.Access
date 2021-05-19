@@ -84,6 +84,7 @@ namespace Nordfin
                             lblEmail.Text = dtResult.Rows[0].ItemArray[6].ToString();
                             lblPhone.Text = dtResult.Rows[0].ItemArray[7].ToString();
                             lblCustomerNumber.Text = dtResult.Rows[0].ItemArray[8].ToString();
+                            hdnCustomerType.Value = dtResult.Rows[0].ItemArray[17].ToString();
                             txtCustomerID.Text = Convert.ToString(dtResult.Rows[0].Field<int>("Customerid"));
 
 

@@ -10,21 +10,20 @@
     <script src="Scripts/jsPsInformationModal.js?version=<%=ConfigurationManager.AppSettings["VersionConfiguration"].ToString() %>"></script>
     <div class="dashboardContainer">
         <div class="container-fluid">
-
+            <div class="row">
+                <div class="col-lg-3 dashboardHeadline" style="margin-top: 0px !important">
+                    Invoices: Overview   
+                    <asp:Button ID="btnExport" Text="Export" CssClass="export" Style="width: 75px; display: none;" OnClick="btnExport_Click" runat="server" CausesValidation="false" />
+                </div>
+                <div class="col-lg-9" style="padding-right: 38px;">
+                 <asp:Button Text="New Customer" id="btnCreateCustomer" CssClass="newCustomer" OnClientClick="return OpenAddCustomer();" runat="server" CausesValidation="false"  />
+                </div>
+                </div>
             <div class="row dashboardHeader">
                 <div class="col-lg-3 dashboardHeadline">
-                    Invoices: Overview   
-                    <asp:Button ID="btnExport" Text="Export" CssClass="export" Style="width: 75px; display: none;" OnClick="btnExport_Click" runat="server" />
                 </div>
-
-
-
-
-
-                <div class="col-lg-9">
-
-                    <div class="summaryInvoices">
-
+                <div class="col-lg-9 summaryRow">
+                    <div class="summaryInvoices" style="margin-top: 60px !important">
                         <div class="summaryHeading">
                             <div class="textOrange" style="background: #38445D;">
 
@@ -77,17 +76,17 @@
                                 </div>
                             </div>
                         </div>
-
+                        
                     </div>
                 </div>
 
 
                 <div class="hidden">
-                    <asp:Button Text="Download As" class="form-control invoicesDownloadAsButton" runat="server" />
+                    <asp:Button Text="Download As" class="form-control invoicesDownloadAsButton" runat="server" CausesValidation="false"/>
                 </div>
             </div>
 
-            <asp:Button ID="btnOpenModal" runat="server" Style="display: none;" />
+            <asp:Button ID="btnOpenModal" runat="server" Style="display: none;" CausesValidation="false" />
             <ModalWindow:ModalPopupExtender ID="mp1" runat="server" PopupControlID="pnlModal" TargetControlID="btnOpenModal"
                 CancelControlID="closeButton">
             </ModalWindow:ModalPopupExtender>
@@ -108,14 +107,14 @@
                                 <asp:TemplateField ItemStyle-CssClass="itemalign" HeaderText="CUSTOMER" SortExpression="Customernumber" HeaderStyle-CssClass="itemalign">
                                     <ItemTemplate>
 
-                                        <asp:LinkButton CssClass="linkcss" Text='<%# Bind("Customernumber") %>' CommandName="Sort" ID="gridLinkCustNum" CommandArgument=' <%# Bind("Customernumber") %>' OnClick="gridLinkCustNum_Click" runat="server" />
+                                        <asp:LinkButton CausesValidation="false" CssClass="linkcss" Text='<%# Bind("Customernumber") %>' CommandName="Sort" ID="gridLinkCustNum" CommandArgument=' <%# Bind("Customernumber") %>' OnClick="gridLinkCustNum_Click" runat="server" />
                                     </ItemTemplate>
 
                                 </asp:TemplateField>
                                 <asp:TemplateField ItemStyle-CssClass="itemalign" HeaderText="INVOICE" SortExpression="Invoicenumber" HeaderStyle-CssClass="itemalign">
                                     <ItemTemplate>
 
-                                        <asp:LinkButton CssClass="linkcss" Text='<%# Bind("Invoicenumber") %>' OnClientClick="return LinkClick(this);" overpaymentData='<%# Eval("Overpayment") %>'
+                                        <asp:LinkButton CausesValidation="false" CssClass="linkcss" Text='<%# Bind("Invoicenumber") %>' OnClientClick="return LinkClick(this);" overpaymentData='<%# Eval("Overpayment") %>'
                                             collectionStatus=' <%# Eval("Collectionstatus") %>'   combineInvoice='<%# Eval("CombineInvoice") %>'  custInvoice=' <%# Eval("Customernumber") %>'
                                             remainData='<%# Eval("Remainingamount") %>' invoiceData='<%# Eval("Customernumber") +"|"+ Eval("InvoiceID")%>' ID="gridLink" CommandArgument=' <%# Eval("Customernumber") +"|"+ Eval("InvoiceID")%>' runat="server" />
                                     </ItemTemplate>
@@ -138,7 +137,7 @@
                                 <asp:TemplateField ItemStyle-CssClass="itemalign" HeaderText="Collection Status" SortExpression="Collectionstatus" HeaderStyle-CssClass="itemalign">
                                     <ItemTemplate>
 
-                                        <asp:LinkButton CssClass="linkNormalcss" Text='<%# Bind("Collectionstatus") %>' CommandName="Sort" ID="gridLinkCollectionSatatus" 
+                                        <asp:LinkButton CausesValidation="false" CssClass="linkNormalcss" Text='<%# Bind("Collectionstatus") %>' CommandName="Sort" ID="gridLinkCollectionSatatus" 
                                            invoice='<%# Eval("Invoicenumber") %>'   runat="server" />
                                     </ItemTemplate>
 
@@ -154,7 +153,7 @@
                                 <asp:TemplateField ItemStyle-CssClass="itemalign" HeaderStyle-CssClass="itemalign">
                                     <ItemTemplate>
 
-                                        <asp:Button runat="server" CssClass="invoicesDownloadButton button button-table" ID="btnPDFDownload" collectionStatus=' <%# Eval("Collectionstatus") %>'
+                                        <asp:Button CausesValidation="false" runat="server" CssClass="invoicesDownloadButton button button-table" ID="btnPDFDownload" collectionStatus=' <%# Eval("Collectionstatus") %>'
                                             custInvoice=' <%# Eval("Customernumber") %>' combineInvoice='<%# Eval("CombineInvoice") %>'
                                             CommandArgument=' <%# Eval("CombineInvoice") %>' OnClientClick="return ProcessingModal();" OnClick="btnPDFDownload_Click" Text="Export" />
                                     </ItemTemplate>
@@ -228,7 +227,7 @@
                                     </div>
 
                                     <div class="form-group">
-                                        <asp:Button Text="Send" class="button updateInfoButton form-control" runat="server" ID="btnSend" OnClientClick="ProgressBarDisplay();" OnClick="btnSend_Click" Width="128px" />
+                                        <asp:Button Text="Send" class="button updateInfoButton form-control" runat="server" ID="btnSend" OnClientClick="ProgressBarDisplay();" OnClick="btnSend_Click" Width="128px" CausesValidation="false"/>
 
 
                                     </div>
@@ -257,7 +256,6 @@
                             </div>
                         </div>
                     </div>
-
 
                     <div class="modal" id="mdlExport" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
                         <div class="modal-dialog" role="document">
@@ -292,10 +290,10 @@
 
                                         <div class="ml-3" style="float: right;">
                                             <div>
-                                                <asp:Button runat="server" CssClass="invoicesDownloadButton button button-table" OnClientClick="PdfDownloadClick();" OnClick="btnDownload_Click" ID="btnDownload" Text="Download" />
+                                                <asp:Button runat="server" CssClass="invoicesDownloadButton button button-table" OnClientClick="PdfDownloadClick();" OnClick="btnDownload_Click" ID="btnDownload" Text="Download" CausesValidation="false" />
                                             </div>
                                             <div class="mt-3">
-                                                <asp:Button runat="server" CssClass="invoicesDownloadButton button button-table" OnClick="btnEmail_Click" ID="btnEmail" Text="Email" />
+                                                <asp:Button runat="server" CssClass="invoicesDownloadButton button button-table" OnClick="btnEmail_Click" ID="btnEmail" Text="Email" CausesValidation="false" />
                                             </div>
                                         </div>
 
@@ -326,6 +324,146 @@
 
 
 
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="modal" id="mdlAddCustomer" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true" runat="server">
+                        <div class="modal-dialog" role="document">
+                            <div class="modal-content" style="top: -10px; background: none; border: none;">
+                                <div class="modal-header dashboardHeadline" style="background-color: #323e53; color: #fff; font-size: 16px;">
+                                    <h5 class="modal-title modalTextcolor dashboardHeadlineModal" id="informModalLabel">NEW CUSTOMER</h5>
+                                    <button type="button" class="modalcloseButton" data-dismiss="modal" aria-label="Close" style="top: 35px; right: 20px;">
+                                        <span aria-hidden="true">✕</span>
+                                    </button>
+                                </div>
+                                <div class="modal-body" style="background-color: #323e53; color: #fff;">
+                                    <div class="row addCustomerRowHeight" >
+                                        <div class="col-md-8">
+                                            <asp:Label CssClass="addCustomerLabel" runat="server" ID="spnCustomerName" Text="Customer Name"></asp:Label>
+                                            <asp:TextBox ID="txtCustomerName" runat="server" autocomplete="off" CssClass="form-control textboxModalColor"></asp:TextBox>
+                                            <asp:RequiredFieldValidator ID="rfvCustomerName" runat="server" ControlToValidate="txtCustomerName" ErrorMessage="Customer Name is required." ForeColor="Red" Font-Size="Smaller" />
+                                            <asp:CompareValidator runat="server" Operator="DataTypeCheck" Type="String" ControlToValidate="txtCustomerName" ErrorMessage="Value must be only text" />
+                                        </div>
+                                        <div class="col-md-2" style="padding-top:20px">
+                                            <asp:RadioButton GroupName="CustomerType" runat="server" Text="Private" Value="PRV" ID="rbPrivate" CssClass="addCustomerLabel"  />
+                                        </div>
+                                        <div class="col-md-2" style="padding-top:20px">
+                                            <asp:RadioButton GroupName="CustomerType" runat="server" Text="Company" Value="FTG" ID="rbCompany" CssClass="addCustomerLabel" />
+                                        </div>
+                                    </div>
+                                    <div class="row addCustomerRowHeight">
+                                        <div class="col-md-6">
+                                            <asp:Label CssClass="addCustomerLabel" runat="server" ID="spnCustomerNumber" Text="Customer Number"></asp:Label>
+                                            <asp:TextBox ID="txtCustomerNumber" runat="server" autocomplete="off" CssClass="form-control textboxModalColor"></asp:TextBox>
+                                            <asp:RequiredFieldValidator ID="rfvCustomerNumber" runat="server" ControlToValidate="txtCustomerNumber" ErrorMessage="Customer Number is required." ForeColor="Red" Font-Size="Smaller" />
+                                            <asp:CompareValidator runat="server" Operator="DataTypeCheck" Type="Integer" ControlToValidate="txtCustomerNumber" ErrorMessage="Value must be only number" ForeColor="Red" Font-Size="Smaller" />
+                                        </div>
+                                        <div class="col-md-6">
+                                            <asp:Label CssClass="addCustomerLabel" runat="server" ID="spnPersonalNumber" Text="Personal Number"></asp:Label>
+                                            <asp:TextBox ID="txtPersonalNumber" runat="server" autocomplete="off" CssClass="form-control textboxModalColor" placeholder="YYMMDDNNNN"></asp:TextBox>
+                                            <asp:RequiredFieldValidator ID="rfvPersonalNumber" runat="server" ControlToValidate="txtPersonalNumber" ErrorMessage="Personal Number is required." ForeColor="Red" Font-Size="Smaller"/>
+                                            <asp:CompareValidator runat="server" Operator="DataTypeCheck" Type="Integer" ControlToValidate="txtPersonalNumber" ErrorMessage="Value must be only number and in specified format (YYMMDDNNNN)" />
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-md-12">
+                                            <asp:Label CssClass="addCustomerLabel" ID="spnAddress1" Text="Address Line 1" runat="server"></asp:Label>
+                                            <asp:TextBox ID="txtAddress1" runat="server" autocomplete="off" CssClass="form-control textboxModalColor"></asp:TextBox>
+                                            <asp:RequiredFieldValidator ID="rfvAddress1" runat="server" ControlToValidate="txtAddress1" ErrorMessage="Address Line 1 is required." ForeColor="Red" Font-Size="Smaller" />
+                                        </div>
+                                    </div>
+                                    <div class="row addCustomerRowHeight">
+                                        <div class="col-md-12">
+                                            <asp:Label CssClass="addCustomerLabel" runat="server" Text="Address Line 2" ID="spnAddress2"> </asp:Label>
+                                            <asp:TextBox ID="txtAddress2" runat="server" autocomplete="off" CssClass="form-control textboxModalColor"></asp:TextBox>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-md-4">
+                                            <asp:Label CssClass="addCustomerLabel" runat="server" Text="Postal Code" ID="spnPostalCode"> </asp:Label>
+                                            <asp:TextBox ID="txtPostalCode" runat="server" autocomplete="off" CssClass="form-control textboxModalColor"></asp:TextBox>
+                                            <asp:RequiredFieldValidator ID="rfvPostalCode" runat="server" ControlToValidate="txtPostalCode" ErrorMessage="Postal Code is required." ForeColor="Red" Font-Size="Smaller" />
+                                        </div>
+
+                                        <div class="col-md-4">
+                                            <asp:Label CssClass="addCustomerLabel" runat="server" ID="spnCity" Text="City"></asp:Label>
+                                            <asp:TextBox ID="txtCity" runat="server" autocomplete="off" CssClass="form-control textboxModalColor"></asp:TextBox>
+                                            <asp:RequiredFieldValidator ID="rfvCity" runat="server" ControlToValidate="txtCity" ErrorMessage="City is required." ForeColor="Red" Font-Size="Smaller" />
+                                        </div>
+                                        <div class="col-md-4">
+                                            <asp:Label CssClass="addCustomerLabel" runat="server" ID="spnCountry" Text="Country"> </asp:Label>
+                                            <asp:TextBox ID="txtCountry" runat="server" autocomplete="off" CssClass="form-control textboxModalColor"></asp:TextBox>
+                                        </div>
+                                    </div>
+                                    <div class="row addCustomerRowHeight">
+                                        <div class="col-md-12">
+                                            <asp:Label CssClass="addCustomerLabel" runat="server" ID="spnModalEmail" Text="Email"> </asp:Label>
+                                            <asp:TextBox ID="txtEmail" runat="server" autocomplete="off" CssClass="form-control textboxModalColor"></asp:TextBox>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-md-12">
+                                            <asp:Label CssClass="addCustomerLabel" runat="server" ID="spnPhonenumber" Text="Phone Number"> </asp:Label>
+                                            <asp:TextBox ID="txtPhoneNumber" runat="server" autocomplete="off" CssClass="form-control textboxModalColor"></asp:TextBox>
+                                        </div>
+                                    </div>
+                                <div class="modal-footer" style="background-color: #323E53; padding: 0px; margin-top: -15px;">
+                                    <asp:Button runat="server" class="modalbutton" ID="btnAddCustomer" Text="Add" OnClick="btnAddCustomer_Click"></asp:Button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                 </div>
+
+                    <div class="modal" id="mdlError"  data-backdrop="static">
+                        <div class="modal-dialog" role="document">
+                            <div class="modal-content">
+                                <div class="modal-body" style="background-color: #323e53; color: #fff;">
+                                    <div class="container-fluid">
+                                        <div class="row">
+                                            <div class="col-md-1">
+                            <i class="far fa-times-circle errorIcon"></i>
+                            </div>
+                        <div class="col-md-11">
+                                                <p style="color: white; font-size: 15px !important;" id="txtError" />
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-md-9">
+                                            </div>
+                                            <div class="col-md-3">
+                                                <button type="button" class="export rowButton" style="float: right" onclick="closeErrorModal();">OK</button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="modal" id="mdlSuccess" tabindex="-1" role="dialog">
+                        <div class="modal-dialog" role="document">
+                            <div class="modal-content errorModel">
+                                <div class="modal-body" style="background-color: #323e53; color: #fff; text-align: center">
+                                    <div class="container-fluid">
+                                        <div class="row">
+                                            <div class="col-md-1">
+                                                <i class="far fa-thumbs-up successIcon"></i>
+                                            </div>
+                                            <div class="col-md-11">
+                                                <p style="color: white; font-size: 15px !important; text-align: left">Customer Added Successfully.</p>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-md-9">
+                                            </div>
+                                            <div class="col-md-3">
+                                                <button type="button" class="export rowButton" style="float: right" onclick="closeSuccessModal();">OK</button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
                             </div>
                         </div>
                     </div>

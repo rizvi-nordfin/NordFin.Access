@@ -305,4 +305,4 @@
 <asp:HiddenField ID="hdnInvoiceNumber" runat="server" />
 <asp:HiddenField ID="hdnFileName" runat="server" />
 <asp:HiddenField ID="hdnTitle" runat="server" />
-
+<asp:HiddenField ID="hdnCustomerType" runat="server" />
