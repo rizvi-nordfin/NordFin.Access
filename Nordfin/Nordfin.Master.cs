@@ -130,6 +130,12 @@ namespace Nordfin
             Response.Redirect("frmReports.aspx");
         }
 
+        protected void btnAddNew_ServerClick(object sender, EventArgs e)
+        {
+
+            Response.Redirect("frmAddNew.aspx");
+        }
+
         protected void lstStatistics_SelectedIndexChanged(object sender, EventArgs e)
         {
             Response.Redirect("frmBatches.aspx");

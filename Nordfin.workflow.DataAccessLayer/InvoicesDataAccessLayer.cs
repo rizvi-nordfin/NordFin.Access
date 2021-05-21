@@ -236,7 +236,7 @@ namespace Nordfin.workflow.DataAccessLayer
                 var pNumber = db.Query<string>("SELECT PersonalNumber FROM Customers WHERE PersonalNumber = @PersonalNumber", new { PersonalNumber = personalNumber }).FirstOrDefault();
                 if (!string.IsNullOrWhiteSpace(pNumber))
                 {
-                    result.Add("PersonalNumber", "Personal Number already exist. Do you want to proceed?");
+                    result.Add("PersonalNumber", "Social Security/Registration Number already exist. Do you want to proceed?");
                 }
             };
 

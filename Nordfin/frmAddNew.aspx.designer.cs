@@ -11,331 +11,331 @@ namespace Nordfin
 {
 
 
-    public partial class frmInvoices
+    public partial class frmAddNew
     {
 
         /// <summary>
-        /// btnExport control.
+        /// btnAddNewCustomer control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btnExport;
+        protected global::System.Web.UI.WebControls.Button btnAddNewCustomer;
 
         /// <summary>
-        /// lblSumAmount control.
+        /// hdnPrivate control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblSumAmount;
+        protected global::System.Web.UI.WebControls.HiddenField hdnPrivate;
 
         /// <summary>
-        /// lblFeesAmount control.
+        /// hdnPhoneCode control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblFeesAmount;
+        protected global::System.Web.UI.WebControls.HiddenField hdnPhoneCode;
 
         /// <summary>
-        /// lblRemain control.
+        /// drpCountry control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblRemain;
+        protected global::System.Web.UI.WebControls.DropDownList drpCountry;
 
         /// <summary>
-        /// lblTotalRemain control.
+        /// cmpCountry control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblTotalRemain;
+        protected global::System.Web.UI.WebControls.CompareValidator cmpCountry;
 
         /// <summary>
-        /// lblOverPaid control.
+        /// Label1 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblOverPaid;
+        protected global::System.Web.UI.WebControls.Label Label1;
 
         /// <summary>
-        /// btnOpenModal control.
+        /// txtCustomerName control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btnOpenModal;
+        protected global::System.Web.UI.WebControls.TextBox txtCustomerName;
 
         /// <summary>
-        /// mp1 control.
+        /// rfvCustomerName control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::AjaxControlToolkit.ModalPopupExtender mp1;
+        protected global::System.Web.UI.WebControls.RequiredFieldValidator rfvCustomerName;
 
         /// <summary>
-        /// pnlModal control.
+        /// spnCustomerNumber control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Panel pnlModal;
+        protected global::System.Web.UI.WebControls.Label spnCustomerNumber;
 
         /// <summary>
-        /// iframeModal control.
+        /// txtCustomerNumber control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlIframe iframeModal;
+        protected global::System.Web.UI.WebControls.TextBox txtCustomerNumber;
 
         /// <summary>
-        /// closeButton control.
+        /// rfvCustomerNumber control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button closeButton;
+        protected global::System.Web.UI.WebControls.RequiredFieldValidator rfvCustomerNumber;
 
         /// <summary>
-        /// UpdatePanel1 control.
+        /// spnPersonalNumber control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.UpdatePanel UpdatePanel1;
+        protected global::System.Web.UI.WebControls.Label spnPersonalNumber;
 
         /// <summary>
-        /// grdInvoices control.
+        /// txtPersonalNumber control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.GridView grdInvoices;
+        protected global::System.Web.UI.WebControls.TextBox txtPersonalNumber;
 
         /// <summary>
-        /// txtCustEmail control.
+        /// rfvPersonalNumber control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtCustEmail;
+        protected global::System.Web.UI.WebControls.RequiredFieldValidator rfvPersonalNumber;
 
         /// <summary>
-        /// txtEmailHeader control.
+        /// spnAddress1 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtEmailHeader;
+        protected global::System.Web.UI.WebControls.Label spnAddress1;
 
         /// <summary>
-        /// txtEmailBody control.
+        /// txtAddress1 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtEmailBody;
+        protected global::System.Web.UI.WebControls.TextBox txtAddress1;
 
         /// <summary>
-        /// btnSend control.
+        /// rfvAddress1 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btnSend;
+        protected global::System.Web.UI.WebControls.RequiredFieldValidator rfvAddress1;
 
         /// <summary>
-        /// pnlInvoices control.
+        /// spnAddress2 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Panel pnlInvoices;
+        protected global::System.Web.UI.WebControls.Label spnAddress2;
 
         /// <summary>
-        /// chkInvoices control.
+        /// txtAddress2 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.CheckBox chkInvoices;
+        protected global::System.Web.UI.WebControls.TextBox txtAddress2;
 
         /// <summary>
-        /// pnlRemind control.
+        /// spnPostalCode control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Panel pnlRemind;
+        protected global::System.Web.UI.WebControls.Label spnPostalCode;
 
         /// <summary>
-        /// chkRemind control.
+        /// txtPostalCode control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.CheckBox chkRemind;
+        protected global::System.Web.UI.WebControls.TextBox txtPostalCode;
 
         /// <summary>
-        /// pnlDC control.
+        /// rfvPostalCode control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Panel pnlDC;
+        protected global::System.Web.UI.WebControls.RequiredFieldValidator rfvPostalCode;
 
         /// <summary>
-        /// chkDC control.
+        /// spnCity control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.CheckBox chkDC;
+        protected global::System.Web.UI.WebControls.Label spnCity;
 
         /// <summary>
-        /// btnDownload control.
+        /// txtCity control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btnDownload;
+        protected global::System.Web.UI.WebControls.TextBox txtCity;
 
         /// <summary>
-        /// btnEmail control.
+        /// rfvCity control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btnEmail;
+        protected global::System.Web.UI.WebControls.RequiredFieldValidator rfvCity;
 
         /// <summary>
-        /// pdfInvoices control.
+        /// spnModalEmail control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlIframe pdfInvoices;
+        protected global::System.Web.UI.WebControls.Label spnModalEmail;
 
         /// <summary>
-        /// pdfDC control.
+        /// txtEmail control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlIframe pdfDC;
+        protected global::System.Web.UI.WebControls.TextBox txtEmail;
 
         /// <summary>
-        /// pdfRemind control.
+        /// rfvEmail control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlIframe pdfRemind;
+        protected global::System.Web.UI.WebControls.RequiredFieldValidator rfvEmail;
 
         /// <summary>
-        /// hdnClientName control.
+        /// revEmailValid control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.HiddenField hdnClientName;
+        protected global::System.Web.UI.WebControls.RegularExpressionValidator revEmailValid;
 
         /// <summary>
-        /// hdnCombineInvoice control.
+        /// spnPhonenumber control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.HiddenField hdnCombineInvoice;
+        protected global::System.Web.UI.WebControls.Label spnPhonenumber;
 
         /// <summary>
-        /// hdnFileName control.
+        /// txtPhoneCode control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.HiddenField hdnFileName;
+        protected global::System.Web.UI.WebControls.TextBox txtPhoneCode;
 
         /// <summary>
-        /// hdnArchiveLink control.
+        /// txtPhoneNumber control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.HiddenField hdnArchiveLink;
+        protected global::System.Web.UI.WebControls.TextBox txtPhoneNumber;
 
         /// <summary>
-        /// hdnInvoiceNumber control.
+        /// rfvPhone control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.HiddenField hdnInvoiceNumber;
+        protected global::System.Web.UI.WebControls.RequiredFieldValidator rfvPhone;
 
         /// <summary>
-        /// hdnEmailID control.
+        /// btnAddCustomer control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.HiddenField hdnEmailID;
+        protected global::System.Web.UI.WebControls.Button btnAddCustomer;
 
         /// <summary>
-        /// hdnCollectionStatus control.
+        /// Button1 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.HiddenField hdnCollectionStatus;
+        protected global::System.Web.UI.WebControls.Button Button1;
 
         /// <summary>
-        /// pdfViewer control.
+        /// Button2 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlAnchor pdfViewer;
+        protected global::System.Web.UI.WebControls.Button Button2;
     }
 }

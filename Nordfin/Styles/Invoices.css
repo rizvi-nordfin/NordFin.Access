@@ -507,39 +507,3 @@ input[type="checkbox"]:checked  {
 .textareaHeight {
     height:140px !important;
 }
-
-.newCustomer {
-    height: 40px;
-    text-transform: uppercase;
-    letter-spacing: .5px;
-    font-size: 9px;
-    background-color: #2C3850;
-    border: 1px solid #3DADC5;
-    color: #3DADC5;
-    padding: 0px;
-    width: 75px;
-    float: right;
-}
-
-.errorModel {
-    border-color: #2C3850;
-    box-shadow: 0 0 0 1px #2C3850;
-    top: 250px;
-    background: none;
-    width: 85% !important;
-    left: 50px;
-}
-
-.addCustomerLabel {
-    color: #A9BFD5;
-    text-transform: uppercase;
-    font-size: 12px;
-}
-
-.addCustomerRowHeight{
-    height:80px;
-}
-
-.summaryRow {
-    margin-top: -3px;
-}

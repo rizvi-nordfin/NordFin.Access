@@ -1,6 +1,9 @@
 ﻿
+using System;
+
 namespace Nordfin.workflow.Entity
 {
+    [Serializable]
     public class CustomerInfo
     {
         public string Name { get; set; }

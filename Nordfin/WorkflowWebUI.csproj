@@ -282,6 +282,7 @@
       <LastGenOutput>Reference.cs</LastGenOutput>
     </None>
     <Content Include="frmAccountSettings.aspx" />
+    <Content Include="frmAddNew.aspx" />
     <Content Include="frmBatches.aspx" />
     <Content Include="frmClientInformation.aspx" />
     <Content Include="frmContractOverview.aspx" />
@@ -383,6 +384,7 @@
     <Content Include="Scripts\font-Awesome.js" />
     <Content Include="Scripts\gauge.js" />
     <Content Include="Scripts\gauge.min.js" />
+    <Content Include="Scripts\jAddNew.js" />
     <Content Include="Scripts\jquery-1.11.1.min.js" />
     <Content Include="libman.json" />
     <None Include="Connected Services\CreditSafeTemplate\cas_service.wsdl" />
@@ -429,6 +431,7 @@
     <Content Include="Scripts\NordfinMaster.js" />
     <Content Include="Scripts\popper.min.js" />
     <Content Include="Scripts\recaptcha_api.js" />
+    <Content Include="Styles\AddNew.css" />
     <Content Include="Styles\Batches.css" />
     <Content Include="Styles\bootstrap.min.css" />
     <Content Include="Styles\AccountSettings.css" />
@@ -485,6 +488,13 @@
     </Compile>
     <Compile Include="frmAccountSettings.aspx.designer.cs">
       <DependentUpon>frmAccountSettings.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="frmAddNew.aspx.cs">
+      <DependentUpon>frmAddNew.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="frmAddNew.aspx.designer.cs">
+      <DependentUpon>frmAddNew.aspx</DependentUpon>
     </Compile>
     <Compile Include="frmBatches.aspx.cs">
       <DependentUpon>frmBatches.aspx</DependentUpon>
