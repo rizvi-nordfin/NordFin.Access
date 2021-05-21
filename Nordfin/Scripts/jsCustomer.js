@@ -139,6 +139,7 @@ function LinkClick(linkValues) {
         Address2: $('#NordfinContentHolder_lblAddress1').text(),
         PostalCode: $('#NordfinContentHolder_lblPostalCode').text(),
         City: $('#NordfinContentHolder_lblCity').text(),
+        CustomerType: $('#NordfinContentHolder_hdnCustomerType').val(),
     }
 
     var customerJson = JSON.stringify(customerData);
@@ -355,6 +356,7 @@ function showManualInvoice() {
     $('#NordfinContentHolder_ucManualInvoice_txtCustAddress').val($('#NordfinContentHolder_lblAddress1').text());
     $('#NordfinContentHolder_ucManualInvoice_txtCustPostCode').val($('#NordfinContentHolder_lblPostalCode').text());
     $('#NordfinContentHolder_ucManualInvoice_txtCustCity').val($('#NordfinContentHolder_lblCity').text());
+    $('#NordfinContentHolder_ucManualInvoice_hdnCustomerType').val($('#NordfinContentHolder_hdnCustomerType').val());
     $('#NordfinContentHolder_ucManualInvoice_hdnTitle').val("Manual Invoice");
     $('#NordfinContentHolder_ucManualInvoice_spnTitle').text("Manual Invoice");
     $('#NordfinContentHolder_mdlManualInvoice').modal({ backdrop: 'static', keyboard: false }, 'show');

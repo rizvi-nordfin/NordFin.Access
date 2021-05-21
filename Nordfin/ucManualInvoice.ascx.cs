@@ -14,6 +14,7 @@ using System.Text;
 using System.Web.UI.WebControls;
 using System.Configuration;
 using System.Globalization;
+using System.Threading;
 
 namespace Nordfin
 {
@@ -28,7 +29,6 @@ namespace Nordfin
         {
             if (!IsPostBack)
             {
-                lblInvoiceNumber.Text = businessLayerObj.GetNumberSeries("Telson").ToString();
                 var vatlistItems = new List<ListItem>();
                 var currencylistItems = new List<ListItem>();
                 if (ClientSession.ClientLand == "FI")
@@ -114,7 +114,9 @@ namespace Nordfin
                     return;
                 }
                 var invoiceFile = new InvoiceFile();
-                invoiceNumber = lblInvoiceNumber.Text?.Trim();
+                var delayMilliSeconds = new Random().Next(100, 1000);
+                Thread.Sleep(delayMilliSeconds);
+                invoiceNumber = businessLayerObj.GetAndUpdateNumberSeries("Telson").ToString();
                 hdnInvoiceNumber.Value = invoiceNumber;
                 fileName = $"ManualInv_FA_" + ClientSession.ClientName.Split(' ')[0] + "_" + invoiceNumber + ".xml";
                 hdnFileName.Value = fileName;
@@ -145,7 +147,7 @@ namespace Nordfin
                     CustomerAddress2 = txtCustAddress.Text?.Trim(),
                     CustomerCity = txtCustCity.Text?.Trim(),
                     CustomerPostalCode = txtCustPostCode.Text?.Trim(),
-                    CustomerType = "PRV",
+                    CustomerType = hdnCustomerType.Value,
                     ClientId = ClientSession.ClientID,
                 };
 
@@ -203,7 +205,7 @@ namespace Nordfin
                 ViewState["base64Pdf"] = base64Pdf;
                 ScriptManager.RegisterStartupScript(Page, Page.GetType(), "Pop", "showPDFViewer('" + base64Pdf + "');", true);
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
                 ShowErrorDialog("Error while creating invoice PDF. Try Again!");
                 return;
@@ -217,19 +219,17 @@ namespace Nordfin
             fileName = hdnFileName.Value;
             try
             {
+                bool imported = businessLayerObj.ImportManualInvoice(standardFile);
+                if (!imported)
+                {
+                    ShowErrorDialog("Error while importing the invoice. Try Again!");
+                    return;
+                }
+
                 var pdfUploaded = UploadInvoicePdfToFtp();
                 if (!pdfUploaded)
                 {
                     ShowErrorDialog("Error while uploading invoice PDF. Try Again!");
-                    return;
-                }
-
-                bool imported = businessLayerObj.ImportManualInvoice(standardFile);
-                int.TryParse(invoiceNumber, out int oldSeries);
-                businessLayerObj.UpdateNumberSeries("Telson", oldSeries + 1);
-                if (!imported)
-                {
-                    ShowErrorDialog("Error while importing the invoice. Try Again!");
                     return;
                 }
 
@@ -261,7 +261,7 @@ namespace Nordfin
 
         protected void grdInvoiceRows_SelectedIndexChanged(object sender, EventArgs e)
         {
-            
+
         }
 
         protected override void Render(HtmlTextWriter writer)
