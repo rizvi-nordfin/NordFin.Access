@@ -11,10 +11,7 @@ namespace Nordfin
         IInvoicesPresentationBusinessLayer objInvoicesLayer = new InvoicesBusinessLayer();
         protected void Page_Load(object sender, EventArgs e)
         {
-            if(IsPostBack)
-            {
-
-            }
+            txtPhoneCode.Text = hdnPhoneCode.Value;
         }
 
         protected void btnAddCustomer_Click(object sender, EventArgs e)

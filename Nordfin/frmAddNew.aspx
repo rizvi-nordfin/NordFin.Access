@@ -86,9 +86,9 @@
                                         </div>
                                         <div class="col-md-6">
                                             <asp:Label CssClass="addCustomerLabel" runat="server" ID="spnPersonalNumber" Text="Social Security Number"></asp:Label>
-                                            <asp:TextBox ID="txtPersonalNumber" runat="server" autocomplete="off" CssClass="form-control textboxModalColor" placeholder="YYMMDDNNNN" MaxLength="10"></asp:TextBox>
+                                            <asp:TextBox ID="txtPersonalNumber" runat="server" autocomplete="off" CssClass="form-control textboxModalColor" placeholder="YYMMDDNNNN" MaxLength="10" onkeypress="return isNumber(event)"></asp:TextBox>
                                             <asp:RequiredFieldValidator ID="rfvPersonalNumber" runat="server" ControlToValidate="txtPersonalNumber" ErrorMessage="Social Security Number is required." ForeColor="Red" Font-Size="Smaller" Display="Dynamic"/>
-                                            <asp:CompareValidator runat="server" Operator="DataTypeCheck" Type="Integer" ControlToValidate="txtPersonalNumber" ErrorMessage="Value must be only number and in specified format" ForeColor="Red" Font-Size="Smaller"/>
+                                            <%--<asp:CompareValidator runat="server" Operator="DataTypeCheck" Type="Integer" ControlToValidate="txtPersonalNumber" ErrorMessage="Enter only number and in specified format" ForeColor="Red" Font-Size="Smaller"/>--%>
                                         </div>
                                     </div>
                                     <div class="row">
@@ -131,9 +131,9 @@
                                             <asp:TextBox ID="txtPhoneCode" runat="server" Enabled="false" autocomplete="off" CssClass="form-control textboxModalColor"></asp:TextBox>
                                         </div>
                                         <div class="col-md-9" style="padding-top:24px">
-                                            <asp:TextBox ID="txtPhoneNumber" runat="server" autocomplete="off" CssClass="form-control textboxModalColor" placeholder="Enter 9 digit number" MaxLength="9"></asp:TextBox>
+                                            <asp:TextBox ID="txtPhoneNumber" runat="server" autocomplete="off" CssClass="form-control textboxModalColor" placeholder="Enter 9 digit number" MaxLength="9" onkeypress="return isNumber(event)" ></asp:TextBox>
                                             <asp:RequiredFieldValidator ID="rfvPhone" runat="server" ControlToValidate="txtPhoneNumber" ErrorMessage="Phone Number is required." ForeColor="Red" Font-Size="Smaller" Display="Dynamic"/>
-                                            <asp:CompareValidator runat="server" Operator="DataTypeCheck" Type="Integer" ControlToValidate="txtPhoneNumber" ErrorMessage="Enter only numbers" ForeColor="Red" Font-Size="Smaller"/>
+                                            <%--<asp:CompareValidator runat="server" Operator="DataTypeCheck" Type="Integer" ControlToValidate="txtPhoneNumber" ErrorMessage="Enter only numbers" ForeColor="Red" Font-Size="Smaller"/>--%>
                                         </div>
                                     </div>
                                 <div class="modal-footer" style="background-color: #323E53; padding: 0px; margin-top: -15px;">
