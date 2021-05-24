@@ -280,6 +280,7 @@ function showManualInvoice() {
         jq13('#ucManualInvoice_txtCustAddress').val(customerData.Address2);
         jq13('#ucManualInvoice_txtCustPostCode').val(customerData.PostalCode);
         jq13('#ucManualInvoice_txtCustCity').val(customerData.City);
+        jq13('#ucManualInvoice_hdnCustomerType').val(customerData.CustomerType);
     }
     jq13('#ucManualInvoice_txtRowTotal').val(-jq13('#hdnInvoiceAmount').val());
     jq13('#ucManualInvoice_hdnTitle').val("Credit Invoice");

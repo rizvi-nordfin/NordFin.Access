@@ -17,6 +17,8 @@ namespace Nordfin.workflow.Entity
         public string CustomerNumber { get; set; }
         public string Comments { get; set; }
 
+        public string CustomerType { get; set; }
+
         public int UserID { get; set; }
 
 
