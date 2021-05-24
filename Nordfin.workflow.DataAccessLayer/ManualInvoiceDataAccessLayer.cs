@@ -25,7 +25,7 @@ namespace Nordfin.workflow.DataAccessLayer
             return customerInfo;
         }
 
-        public int GetLatestNumberSeries(string seriesName)
+        public int GetAndUpdateNumberSeries(string seriesName)
         {
             int number = 0;
             using (SqlConnection connection = new SqlConnection(connectionString))
@@ -42,6 +42,7 @@ namespace Nordfin.workflow.DataAccessLayer
             using (SqlConnection connection = new SqlConnection(connectionString))
             {
                 connection.Execute("UPDATE NumberSeries SET Number = @NewNumber WHERE Series LIKE @SeriesName", new { NewNumber = newSeries, SeriesName = "%" + seriesName + "%" });
+
             }
         }
 

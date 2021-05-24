@@ -6,7 +6,7 @@ namespace Nordfin.workflow.PresentationBusinessLayer
     {
         CustomerInfo GetCustomerInfoForClient(string customerNumber, int clientID);
 
-        int GetLatestNumberSeries(string seriesName);
+        int GetAndUpdateNumberSeries(string seriesName);
 
         void UpdateNumberSeries(string seriesName, int newSeries);
 

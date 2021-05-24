@@ -116,7 +116,7 @@ namespace Nordfin
                 var invoiceFile = new InvoiceFile();
                 var delayMilliSeconds = new Random().Next(100, 1000);
                 Thread.Sleep(delayMilliSeconds);
-                invoiceNumber = businessLayerObj.GetLatestNumberSeries("Telson").ToString();
+                invoiceNumber = businessLayerObj.GetAndUpdateNumberSeries("Telson").ToString();
                 hdnInvoiceNumber.Value = invoiceNumber;
                 fileName = $"ManualInv_FA_" + ClientSession.ClientName.Split(' ')[0] + "_" + invoiceNumber + ".xml";
                 hdnFileName.Value = fileName;
@@ -205,7 +205,7 @@ namespace Nordfin
                 ViewState["base64Pdf"] = base64Pdf;
                 ScriptManager.RegisterStartupScript(Page, Page.GetType(), "Pop", "showPDFViewer('" + base64Pdf + "');", true);
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
                 ShowErrorDialog("Error while creating invoice PDF. Try Again!");
                 return;
@@ -261,7 +261,7 @@ namespace Nordfin
 
         protected void grdInvoiceRows_SelectedIndexChanged(object sender, EventArgs e)
         {
-            
+
         }
 
         protected override void Render(HtmlTextWriter writer)

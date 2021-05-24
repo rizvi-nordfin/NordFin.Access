@@ -1,4 +1,4 @@
-﻿<%@ Control Language="C#" AutoEventWireup="true" CodeBehind="ucManualInvoice.ascx.cs" Inherits="Nordfin.ucManualInvoice" %>
+﻿  <%@ Control Language="C#" AutoEventWireup="true" CodeBehind="ucManualInvoice.ascx.cs" Inherits="Nordfin.ucManualInvoice" %>
 
 <link rel="stylesheet" href="Styles/jquery-ui-NordFin.css" />
       <script src="//code.jquery.com/jquery-1.10.2.js"></script>
@@ -15,7 +15,6 @@
         $("#<%= txtDueDate.ClientID %>").val(thirtyDays.toISOString().slice(0, 10));
         $("#<%= txtQuantity.ClientID %>").val(1);
     });
-
     function SetTotalAmount() {
         var itemPrice = $("#<%= txtAmount.ClientID %>").val();
         var percent = $("#<%= drpVat.ClientID %>").val();
@@ -29,7 +28,6 @@
         $("#<%= txtVat.ClientID %>").val(vatAmount.toFixed(2));
         $("#<%= txtRowTotal.ClientID %>").val(total.toFixed(2));
     }
-
     function SetAmountFromTotal() {
         var totalAmount = $("#<%= txtRowTotal.ClientID %>").val();
         var percent = $("#<%= drpVat.ClientID %>").val();
