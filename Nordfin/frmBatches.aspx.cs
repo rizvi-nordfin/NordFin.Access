@@ -109,17 +109,17 @@ namespace Nordfin
         {
             IBatchPresentationBusinessLayer objInvoicesLayer = new BatchesBusinessLayer();
             DataSet ds = objInvoicesLayer.getInvoicesBatches(1);
-            ExporttoExcel(ds.Tables[2], "TotalInvoicePerClient_");
+            ExporttoExcel(ds.Tables[2], "TotalInvoicePerClient_", bFormat: true);
         }
 
         protected void btnTotalInvoiceAmount_Click(object sender, EventArgs e)
         {
             IBatchPresentationBusinessLayer objInvoicesLayer = new BatchesBusinessLayer();
             DataSet ds = objInvoicesLayer.getInvoicesBatches(1);
-            ExporttoExcel(ds.Tables[3], "TotalInvoiceAmountPerClient_");
+            ExporttoExcel(ds.Tables[3], "TotalInvoiceAmountPerClient_",bFormat:true); ;
         }
 
-        public void ExporttoExcel(DataTable dataTable, string sFileName)
+        public void ExporttoExcel(DataTable dataTable, string sFileName,bool bFormat=false)
         {
             HttpResponse response = HttpContext.Current.Response;
             response.Clear();
@@ -127,7 +127,11 @@ namespace Nordfin
 
             using (XLWorkbook wb = new XLWorkbook())
             {
-                wb.Worksheets.Add(dataTable);
+                //wb.Worksheets.Add(dataTable);
+                var ws = wb.Worksheets.Add(dataTable);
+                if (bFormat)
+                    ws.Columns(2, dataTable.Columns.Count).Style.NumberFormat.Format = "#,##0";
+               
                 Response.Clear();
                 Response.Buffer = true;
                 Response.Charset = "";
