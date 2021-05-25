@@ -76,6 +76,14 @@ namespace Nordfin.workflow.DataAccessLayer
             return dataSet;
         }
 
+        DataSet IReportsBusinessDataLayer.GetInvoicesBatchesReport(string ClientID)
+        {
+            DBInitialize("usp_getInvoiceBatchesInfo");
+            DatabaseName.AddInParameter(DBBaseCommand, "@ClientID", System.Data.DbType.Int32, Convert.ToInt32(ClientID));
+            DataSet dataSet = DatabaseName.ExecuteDataSet(DBBaseCommand);
+            return dataSet;
+        }
+
 
     }
 }
