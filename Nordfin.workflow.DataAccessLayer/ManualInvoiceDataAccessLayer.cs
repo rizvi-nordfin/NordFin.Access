@@ -61,5 +61,44 @@ namespace Nordfin.workflow.DataAccessLayer
                 return false;
             }
         }
+
+        public Client GetClientPrintDetail(int clientId)
+        {
+            Client client;
+            using (SqlConnection connection = new SqlConnection(connectionString))
+            {
+                client = connection.Query<Client>(
+                                            "SELECT CL.ClientId,ClientCurrency,ClientReference,SpvName AS LedgerName,CP.* FROM ClientList CL " +
+                                            "INNER JOIN ClientPrintLayout CP ON CL.ClientId = CP.ClientId " +
+                                            "LEFT JOIN Spv S ON S.id = CL.SpvId " +
+                                            "WHERE CL.ClientId = @ClientId AND Active = 1",
+                                            new { ClientId = clientId }).FirstOrDefault();
+            }
+
+            return client;
+        }
+        
+        public List<ManualInvoiceMapping> GetTransformationMappings(int clientId)
+        {
+            var mappings = new List<ManualInvoiceMapping>();
+            using (SqlConnection connection = new SqlConnection(connectionString))
+            {
+                mappings = connection.Query<ManualInvoiceMapping>("SELECT M.* FROM ManualInvoiceMapping M INNER JOIN TransformationFolders TF ON M.MappingId = TF.MappingId WHERE ClientID = @ClientId", new { clientId }).ToList();
+            }
+
+            return mappings;
+        }
+
+
+        public List<TransformationHeader> GetTransformationHeaders(int clientId)
+        {
+            var headers = new List<TransformationHeader>();
+            using (SqlConnection connection = new SqlConnection(connectionString))
+            {
+                headers = connection.Query<TransformationHeader>("SELECT TH.* FROM TransformationHeader TH INNER JOIN TransformationFolders TF ON TH.MappingId = TF.MappingId  WHERE ClientID = @ClientId", new { clientId }).ToList();
+            }
+
+            return headers;
+        }
     }
 }

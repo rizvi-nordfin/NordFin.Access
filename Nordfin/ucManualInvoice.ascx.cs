@@ -106,6 +106,9 @@ namespace Nordfin
         {
             try
             {
+                var client = businessLayerObj.GetClientPrintDetail(Convert.ToInt32(ClientSession.ClientID));
+                var transformationMappings = businessLayerObj.GetTransformationMappings(client.ClientId);
+                var transformationHeaders = businessLayerObj.GetTransformationHeaders(client.ClientId);
                 var tempTable = (DataTable)ViewState["gridData"];
                 if (tempTable.Rows.Count == 0)
                 {
@@ -154,8 +157,6 @@ namespace Nordfin
                 var invoiceRows = new List<InvoiceRow>();
                 var rows = tempTable?.AsEnumerable().ToList();
                 int id = 1;
-                var firstDayOfMonth = new DateTime(DateTime.Today.Year, DateTime.Today.Month, 1);
-                var lastDayOfMonth = firstDayOfMonth.AddMonths(1).AddDays(-1);
                 foreach (var item in rows)
                 {
                     var invoiceRow = new InvoiceRow
@@ -179,20 +180,10 @@ namespace Nordfin
                 {
                     Invoice = invoice,
                     Customer = customer,
-                    Print = new Print
-                    {
-                        InvoiceRows = invoiceRows
-                    }
-                };
-                var client = new Client
-                {
-                    ClientId = ClientSession.ClientID,
-                    ClientName = ClientSession.ClientName
+                    InvoiceRows = invoiceRows,
                 };
 
-                invoiceFile.Client = client;
-                invoiceFile.Invoices.Add(inv);
-
+                var invoiceFile = Utilities.ConstructInvoiceFile(inv, client, transformationMappings, transformationHeaders);
                 standardFile = GenerateStandardXml(invoiceFile);
                 ViewState["standardFile"] = standardFile;
 
@@ -200,7 +191,7 @@ namespace Nordfin
                 var plainTextBytes = Encoding.UTF8.GetBytes(standardFile);
                 var base64Xml = Convert.ToBase64String(plainTextBytes);
                 string connString = ConfigurationManager.ConnectionStrings["NordfinConnec"].ToString();
-                var x = new ManualInvoiceLayout.Input.Xml(connString);
+                var x = new ManualInvoiceLayout.Input.Xml("TestingProd", null, null, null);
                 var base64Pdf = x.ReadFile(base64Xml);
                 ViewState["base64Pdf"] = base64Pdf;
                 ScriptManager.RegisterStartupScript(Page, Page.GetType(), "Pop", "showPDFViewer('" + base64Pdf + "');", true);
