@@ -15,6 +15,7 @@ namespace Nordfin
             switch(country)
             {
                 case "Sweden":
+                case "Sverige":
                     return BuildOcrForSweden(invoice, ocrLength, prefix);
                 case "Finland":
                     return BuildOcrForFinland(invoice, prefix);
@@ -28,6 +29,7 @@ namespace Nordfin
             switch (country)
             {
                 case "Sweden":
+                case "Sverige":
                     return CalculateCheckSumSweden(inputString);
                 case "Finland":
                     return CalculateCheckSumFinland(inputString);
@@ -265,7 +267,7 @@ namespace Nordfin
             invoiceText.Columns = invoiceText.Rows.Max(r => r.Col.Count);
             invoice.Print.InvoiceText = invoiceText;
 
-            invoiceDetail.Columns = invoiceDetail.Rows.Max(r => r.Col.Count);
+            invoiceDetail.Columns = invoiceDetail.Rows.Any()? invoiceDetail.Rows.Max(r => r.Col.Count) : 0;
             invoice.Print.InvoiceDetail = invoiceDetail;
             return invoiceFile;
         }

@@ -41,6 +41,24 @@
         $("#<%= txtVat.ClientID %>").val(totalVat.toFixed(2));
         $("#<%= txtAmount.ClientID %>").val(itemPrice.toFixed(2));
     }
+
+    function setPrint() {
+        $("#<%= hdnSendToPrint.ClientID %>").val($('#swtchSendToPrint').prop('checked'));
+        var dropdown = document.getElementById("drpInvDelivery");
+        if ($('#swtchSendToPrint').prop('checked')) {
+            dropdown.options[0] = new Option('Paper', 'PAPER', true);
+            dropdown.options[1] = new Option('E-Mail', 'EMAIL');
+        }
+        else {
+            dropdown.options.length = 0;
+            dropdown.options[0] = new Option('PDF Only', 'PDF Only', true);
+        }
+        $("#<%= hdnDelivery.ClientID %>").val($('#drpInvDelivery').val());
+    }
+
+    function setInvoiceDelivery() {
+        $("#<%= hdnDelivery.ClientID %>").val($('#drpInvDelivery').val());
+    }
 </script>
 <div>
     <div class="container-fluid">
@@ -49,7 +67,7 @@
                 <span class="header" id="spnTitle" runat="server"></span>
             </div>
             <div class="col-md-1">
-                <asp:Button ID="btnManualInvClose" Text ="✕" CssClass="modalcloseButton" style="float:right" OnClick="ClosePopup" runat="server" />
+                <asp:Button ID="btnManualInvClose" Text ="✕" CssClass="modalcloseButton" style="float:right" OnClick="ClosePopup" runat="server" CausesValidation="false" />
             </div>
         </div>
     </div>
@@ -89,11 +107,11 @@
                 <span class="title">Invoice Number</span>
                 <asp:Label Text="" runat="server" ID="lblInvoiceNumber" CssClass="invNumber"></asp:Label>
             </div>
-            <div class="col-md-3">
+            <div class="col-md-2">
                 <span class="title">Invoice Date</span>
                 <asp:TextBox ID="txtInvDate" runat="server" autocomplete="off" CssClass="form-control controls textboxColor"></asp:TextBox>
             </div>
-            <div class="col-md-3">
+            <div class="col-md-2">
                 <span class="title">Due Date</span>
                 <asp:TextBox ID="txtDueDate" runat="server" autocomplete="off" CssClass="form-control controls textboxColor"></asp:TextBox>
             </div>
@@ -103,10 +121,16 @@
                 </asp:DropDownList>
             </div>
             <div class="col-md-2">
+                <div class="custom-control custom-switch">
+                <input type="checkbox" class="custom-control-input" id="swtchSendToPrint" style="position:relative" onchange="setPrint()">
+                <label id="lblSendToPrint" class="custom-control-label title" for="swtchSendToPrint">Send To Print</label>
+                </div>
+            </div>
+            <div class="col-md-2">
                 <span class="title">Delivery Mode</span>
-                <asp:DropDownList ID="drpInvDelivery" runat="server" CssClass="form-control dropdown controls" Height="">
-                    <asp:ListItem>PDF Only</asp:ListItem>
-                </asp:DropDownList>
+                <select id="drpInvDelivery" class="form-control dropdown controls" onchange="setInvoiceDelivery()">
+                    <option value="PDF Only" selected="selected">PDF Only</option>
+                </select>
             </div>
         </div>
     </div>
@@ -304,3 +328,5 @@
 <asp:HiddenField ID="hdnFileName" runat="server" />
 <asp:HiddenField ID="hdnTitle" runat="server" />
 <asp:HiddenField ID="hdnCustomerType" runat="server" />
+<asp:HiddenField ID="hdnSendToPrint" runat="server" Value="false" />
+<asp:HiddenField ID="hdnDelivery" runat="server" Value="PDF Only"/>

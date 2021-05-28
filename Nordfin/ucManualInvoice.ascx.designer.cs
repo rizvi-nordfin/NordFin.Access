@@ -123,15 +123,6 @@ namespace Nordfin
         protected global::System.Web.UI.WebControls.DropDownList drpCurrency;
 
         /// <summary>
-        /// drpInvDelivery control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList drpInvDelivery;
-
-        /// <summary>
         /// txtArticle control.
         /// </summary>
         /// <remarks>
@@ -328,5 +319,23 @@ namespace Nordfin
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.HiddenField hdnCustomerType;
+
+        /// <summary>
+        /// hdnSendToPrint control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.HiddenField hdnSendToPrint;
+
+        /// <summary>
+        /// hdnDelivery control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.HiddenField hdnDelivery;
     }
 }

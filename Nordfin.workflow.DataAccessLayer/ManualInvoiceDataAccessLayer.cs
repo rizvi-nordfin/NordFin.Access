@@ -83,7 +83,7 @@ namespace Nordfin.workflow.DataAccessLayer
             var mappings = new List<ManualInvoiceMapping>();
             using (SqlConnection connection = new SqlConnection(connectionString))
             {
-                mappings = connection.Query<ManualInvoiceMapping>("SELECT M.* FROM ManualInvoiceMapping M INNER JOIN TransformationFolders TF ON M.MappingId = TF.MappingId WHERE ClientID = @ClientId", new { clientId }).ToList();
+                mappings = connection.Query<ManualInvoiceMapping>("SELECT M.* FROM ManualInvoiceMapping M INNER JOIN ClientTransformationMapping CM ON M.MappingId = CM.MappingId WHERE ClientID = @ClientId", new { clientId }).ToList();
             }
 
             return mappings;
@@ -95,7 +95,7 @@ namespace Nordfin.workflow.DataAccessLayer
             var headers = new List<TransformationHeader>();
             using (SqlConnection connection = new SqlConnection(connectionString))
             {
-                headers = connection.Query<TransformationHeader>("SELECT TH.* FROM TransformationHeader TH INNER JOIN TransformationFolders TF ON TH.MappingId = TF.MappingId  WHERE ClientID = @ClientId", new { clientId }).ToList();
+                headers = connection.Query<TransformationHeader>("SELECT TH.* FROM TransformationHeader TH INNER JOIN ClientTransformationMapping CM ON TH.MappingId = CM.MappingId  WHERE ClientID = @ClientId", new { clientId }).ToList();
             }
 
             return headers;

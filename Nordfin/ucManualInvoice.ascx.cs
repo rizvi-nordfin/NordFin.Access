@@ -116,7 +116,7 @@ namespace Nordfin
                     ScriptManager.RegisterStartupScript(this, GetType(), "Pop", "showErrorModal('" + errorMessage + "');", true);
                     return;
                 }
-                var invoiceFile = new InvoiceFile();
+                
                 var delayMilliSeconds = new Random().Next(100, 1000);
                 Thread.Sleep(delayMilliSeconds);
                 invoiceNumber = businessLayerObj.GetAndUpdateNumberSeries("Telson").ToString();
@@ -134,8 +134,8 @@ namespace Nordfin
                     ClientID = ClientSession.ClientID,
                     Purchased = "0",
                     FileName = fileName,
-                    Delivery = drpInvDelivery.SelectedValue?.Trim(),
-                    PaymentReference = Utilities.BuildOcr(lblInvoiceNumber.Text?.Trim(), (lblInvoiceNumber.Text?.Trim().Length).Value + 3, "9", "Sweden"),
+                    Delivery = hdnDelivery.Value?.Trim(),
+                    PaymentReference = Utilities.BuildOcr(invoiceNumber?.Trim(), (invoiceNumber?.Trim().Length).Value + 3, "9", client.Country),
                     CurrencyCode = drpCurrency.Text?.Trim(),
                     InvoiceAmount = txtTotalAmount.Text?.Trim(),
                     RemainingAmount = txtTotalAmount.Text?.Trim(),
@@ -190,8 +190,7 @@ namespace Nordfin
                 //Generate PDF
                 var plainTextBytes = Encoding.UTF8.GetBytes(standardFile);
                 var base64Xml = Convert.ToBase64String(plainTextBytes);
-                string connString = ConfigurationManager.ConnectionStrings["NordfinConnec"].ToString();
-                var x = new ManualInvoiceLayout.Input.Xml("TestingProd", null, null, null);
+                var x = new ManualInvoiceLayout.Input.Xml("NordfinConnec", null, null);
                 var base64Pdf = x.ReadFile(base64Xml);
                 ViewState["base64Pdf"] = base64Pdf;
                 ScriptManager.RegisterStartupScript(Page, Page.GetType(), "Pop", "showPDFViewer('" + base64Pdf + "');", true);
@@ -224,7 +223,7 @@ namespace Nordfin
                     return;
                 }
 
-                var ftpStatus = new FTPFileProcess().UploadStandardXml(standardFile, fileName);
+                var ftpStatus = new FTPFileProcess().UploadStandardXml(standardFile, fileName, bool.Parse(hdnSendToPrint.Value));
                 if (ftpStatus != FtpStatusCode.ClosingData)
                 {
                     ShowErrorDialog("Error while uploading invoice XML. Try Again!");
@@ -361,7 +360,7 @@ namespace Nordfin
             txtTotalInv.Text = totalInvoice.ToString().Replace(',', '.');
             txtTotalVat.Text = totalVat.ToString().Replace(',', '.');
             txtTotalAmount.Text = totalAmount.ToString().Replace(',', '.');
-        }
+        } 
 
         private void ShowErrorDialog(string errorMessage)
         {
