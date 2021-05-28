@@ -16,6 +16,10 @@ namespace Nordfin
             ClearSession();
 
             hdnAdmin.Value = ClientSession.Admin;
+            if (ClientSession.Admin != "0" && ClientSession.Admin != "1")
+            {
+                pnlInvoiceBatches.Visible = false;
+            }
         }
 
         protected void btnLederlistReport_Click(object sender, EventArgs e)
@@ -40,6 +44,7 @@ namespace Nordfin
             using (XLWorkbook wb = new XLWorkbook())
             {
                 wb.Worksheets.Add(dataSet.Tables[0]);
+                wb.Worksheet(1).Columns().AdjustToContents();
                 Response.Clear();
                 Response.Buffer = true;
                 Response.Charset = "";
@@ -233,6 +238,12 @@ namespace Nordfin
         protected void btnTransactionReport_Click(object sender, EventArgs e)
         {
 
+        }
+
+        protected void btnInvoiceBatches_Click(object sender, EventArgs e)
+        {
+            IReportsPresentationBusinessLayer objReportsLayer = new ReportsBusinessLayer();
+            ExporttoExcel(objReportsLayer.GetInvoicesBatchesReport(ClientSession.ClientID), "InvoiceBatches");
         }
     }
 }

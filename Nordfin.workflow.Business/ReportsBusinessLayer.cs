@@ -44,6 +44,10 @@ namespace Nordfin.workflow.Business
         {
             return objReportlist.GetTransactionReport(ClientID, sFromDate, sToDate);
         }
+        DataSet IReportsPresentationBusinessLayer.GetInvoicesBatchesReport(string ClientID)
+        {
+            return objReportlist.GetInvoicesBatchesReport(ClientID);
+        }
 
     }
 }

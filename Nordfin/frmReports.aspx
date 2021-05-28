@@ -146,6 +146,19 @@
                         </div>
                     </div>
 
+                      <asp:Panel ID="pnlInvoiceBatches" runat="server" CssClass="reportsCardContainer col-md-3">
+                        <div class="reportsCard">
+                            <div class="info-icon"></div>
+                            <div class="reportsCardContent">
+                                <img src="Images/NFC_reports_ledgerlist.svg" alt="" />
+                                <div class="reportsCardCaption">Invoice Batches</div>
+                            </div>
+                            <div class="reportsCardBottom">
+                                <asp:Button CssClass="button reportsCardButton form-control" runat="server" Text="Download" ID="btnInvoiceBatches" OnClick="btnInvoiceBatches_Click"></asp:Button>
+                            </div>
+                        </div>
+                    </asp:Panel>
+
 
                     <div class="modal fade" id="mdlReport" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
                         <div class="modal-dialog" role="document">
