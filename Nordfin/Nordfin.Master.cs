@@ -65,6 +65,11 @@ namespace Nordfin
                     pnlSideMenuContracts.CssClass = "sideContractMenuStatistics pnlSideMenuContractsTop hidden";//.Add("top", "551px !important");
 
                 }
+
+                if(ClientSession.AllowManualInvoice)
+                {
+                    pnlSideMenuAdd.Visible = true;
+                }
               
 
                 if (Contracts == 0)

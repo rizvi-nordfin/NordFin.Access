@@ -234,13 +234,15 @@
                         </div>
                     </div>
                 </asp:Panel>
-                <div class="sideMenuButton">
+                <asp:Panel ID="pnlSideMenuAdd" runat="server" Visible="false">
+                <div id="addNew" class="sideMenuButton">
                     <div id="tdAddNew">
                         <button runat="server" onserverclick="btnAddNew_ServerClick" id="btnAddNew" causesvalidation="false">
                             <i class="fas fa-plus sideMenuIcon"></i>
                         </button>
                     </div>
                 </div>
+               </asp:Panel>
                 <!-- <div class="sideMenuButton">
                 <button  runat="server" id="Button">
                   <i class="fas fa-cog"></i>
