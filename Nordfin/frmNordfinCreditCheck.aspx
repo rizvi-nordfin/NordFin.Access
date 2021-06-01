@@ -187,7 +187,8 @@
 
         </div>
         </div>
-        
+           <asp:HiddenField ID="hdnCreditScore" runat="server" />
+      
         </asp:Panel>
 
   <%--   <div class="featureNotAvailableBG hidden">
