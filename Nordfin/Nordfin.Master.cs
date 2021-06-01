@@ -20,9 +20,7 @@ namespace Nordfin
         {
             ClearSession();
 
-            Thread thr = Thread.CurrentThread;
-
-            string Name = thr.Name;
+           
             if (!IsPostBack)
             {
 
