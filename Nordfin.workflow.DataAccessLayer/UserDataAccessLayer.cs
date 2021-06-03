@@ -56,7 +56,7 @@ namespace Nordfin.workflow.DataAccessLayer
                 ClientName = dataRow.Field<string>("ClientName"),
                 ClientID = dataRow.Field<int>("ClientID"),
                 ClientLand = dataRow.Field<string>("ClientLand"),
-                AllowManualInvoice = dataRow.Field<int>("AllowManualInvoice") == 1,
+                AllowManualInvoice = dataRow.Field<int>("AllowManualInvoice"),
             }).ToList();
 
             BatchValues = Convert.ToString(DatabaseName.GetParameterValue(DBBaseCommand, "@BatchesValue"));

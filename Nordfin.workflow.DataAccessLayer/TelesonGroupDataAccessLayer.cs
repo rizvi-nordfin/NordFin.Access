@@ -141,6 +141,7 @@ namespace Nordfin.workflow.DataAccessLayer
 
             DatabaseName.AddInParameter(DBBaseCommand, "@ClientID", System.Data.DbType.Int32, creditSafe.ClientID);
             DatabaseName.AddInParameter(DBBaseCommand, "@CreditAccept", System.Data.DbType.Int32, creditSafe.CreditScoreAccepted);
+            DatabaseName.AddInParameter(DBBaseCommand, "@CreditScore", System.Data.DbType.Int32, creditSafe.CreditScore);
             DatabaseName.AddInParameter(DBBaseCommand, "@ContractID", System.Data.DbType.Int32, 0);
 
             DatabaseName.ExecuteNonQuery(DBBaseCommand);

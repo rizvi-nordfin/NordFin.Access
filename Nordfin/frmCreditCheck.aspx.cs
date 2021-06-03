@@ -141,6 +141,7 @@ namespace Nordfin
                 }
                 creditCheck.PersonalNumber = serachNumber;
                 creditCheck.ClientID = Convert.ToInt32(ClientSession.ClientID);
+                creditCheck.CreditScore = Convert.ToInt32(datasetReponse.CreditGetData.RATING);
                 SetCookie("CreditUser", "UserName", txtUserName.Text);
                 SetCookie("CreditToken", "Token", txtPassword.Text);
                 creditCheckList = new List<CreditCheck>();
@@ -240,6 +241,7 @@ namespace Nordfin
                 }
                 creditCheck.PersonalNumber = serachNumber;
                 creditCheck.ClientID = Convert.ToInt32(ClientSession.ClientID);
+                creditCheck.CreditScore = Convert.ToInt32(datasetReponse.CreditGetData.SCORING);
                 SetCookie("CreditUser", "UserName", txtUserName.Text);
                 SetCookie("CreditToken", "Token", txtPassword.Text);
                 creditCheckList = new List<CreditCheck>();
@@ -294,6 +296,7 @@ namespace Nordfin
             cookie.HttpOnly = true;
             cookie.Secure = true;
             cookie.SameSite = SameSiteMode.Strict;
+           
             HttpContext.Current.Response.Cookies.Set(cookie);
             //}
 

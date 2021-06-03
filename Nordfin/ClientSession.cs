@@ -152,11 +152,11 @@ namespace Nordfin
             }
         }
 
-        public static bool AllowManualInvoice
+        public static int AllowManualInvoice
         {
             get
             {
-                return (bool)HttpContext.Current.Session[allowManualInvoice];
+                return (int)HttpContext.Current.Session[allowManualInvoice];
             }
 
             set

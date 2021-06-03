@@ -1,8 +1,9 @@
 ﻿
 
-    
-    function setCreditScore(score) {
-
+$(document).ready(function () {
+    setCreditScore($('#NordfinContentHolder_hdnCreditScore').val(), $('#NordfinContentHolder_hdnCreditVisible').val())
+    function setCreditScore(score, CreditUser) {
+        debugger;
         demoGauge = new Gauge(document.getElementById("demo"));
         var opts = {
             angle: -0.15,
@@ -35,6 +36,8 @@
         demoGauge.maxValue = 100;
         demoGauge.set(score);
 
-        
-    }
+        if (CreditUser != undefined && CreditUser == 0)
+            $('.featureNotAvailableBG').toggleClass('hidden');
+    };
+});
 

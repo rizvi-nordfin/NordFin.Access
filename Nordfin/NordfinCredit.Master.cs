@@ -1,4 +1,5 @@
 ﻿using Nordfin.workflow.Business;
+using Nordfin.workflow.Entity;
 using Nordfin.workflow.PresentationBusinessLayer;
 using System;
 using System.Collections.Generic;
@@ -16,6 +17,13 @@ namespace Nordfin
             if(!IsPostBack)
             {
                 lblUserName.Text = ClientSession.LabelUser;
+
+                IUserPresentationBusinessLayer objUserLayer = new UserBusinessLayer();
+                string BatchValues = "";
+                int Contracts = 0;
+                IList<ClientList> objClientList = objUserLayer.GetClientList(Convert.ToInt32(ClientSession.Admin), Convert.ToInt32(ClientSession.ClientID), ClientSession.UserID, out BatchValues, out Contracts);
+                if (objClientList.Count > 0 && objClientList.Any(a => a.ClientID == Convert.ToInt32(ClientSession.ClientID)))
+                    txtClientName.Text = objClientList.Where(a => a.ClientID == Convert.ToInt32(ClientSession.ClientID)).ToList()[0].ClientName;
             }
             ScriptManager.RegisterStartupScript(this, this.GetType(), "CallAlert", "save();", true);
         }

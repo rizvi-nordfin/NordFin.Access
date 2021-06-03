@@ -31,9 +31,10 @@ namespace Nordfin
                 txtPassword.Attributes["type"] = "password";
                 txtUserName.Text = Decrypt(GetFromCookie("CreditUser", "UserName"));
                 txtPassword.Text = Decrypt(GetFromCookie("CreditToken", "Token"));
-                
+                hdnCreditScore.Value = "0";
+
             }
-            ScriptManager.RegisterStartupScript(this, this.GetType(), "setCreditScore", "setCreditScore(0);", true);
+          
         }
 
         protected void btnCreditCheck_Click(object sender, EventArgs e)
@@ -42,7 +43,7 @@ namespace Nordfin
 
             if (cboCustomerType.SelectedItem.Text == "" || string.IsNullOrWhiteSpace(txtUserName.Text) || string.IsNullOrWhiteSpace(txtPersonalNumber.Text) || string.IsNullOrWhiteSpace(txtPassword.Text))
             {
-                ScriptManager.RegisterStartupScript(this, this.GetType(), "setCreditScore", "setCreditScore(0);", true);
+                hdnCreditScore.Value = "0";
                 return;
             }
 
@@ -139,6 +140,7 @@ namespace Nordfin
                 }
                 creditCheck.PersonalNumber = serachNumber;
                 creditCheck.ClientID = Convert.ToInt32(ClientSession.ClientID);
+                creditCheck.CreditScore = Convert.ToInt32(datasetReponse.CreditGetData.RATING);
                 SetCookie("CreditUser", "UserName", txtUserName.Text);
                 SetCookie("CreditToken", "Token", txtPassword.Text);
                 creditCheckList = new List<CreditCheck>();
@@ -148,7 +150,7 @@ namespace Nordfin
                 CasData(creditCheck.Status, creditCheck.Error);
 
             }
-            ScriptManager.RegisterStartupScript(this, this.GetType(), "setCreditScore", "setCreditScore('" + datasetReponse.CreditGetData.RATING + "');", true);
+            hdnCreditScore.Value = datasetReponse.CreditGetData.RATING;
 
 
 
@@ -238,6 +240,7 @@ namespace Nordfin
                 }
                 creditCheck.PersonalNumber = serachNumber;
                 creditCheck.ClientID = Convert.ToInt32(ClientSession.ClientID);
+                creditCheck.CreditScore = Convert.ToInt32(datasetReponse.CreditGetData.SCORING);
                 SetCookie("CreditUser", "UserName", txtUserName.Text);
                 SetCookie("CreditToken", "Token", txtPassword.Text);
                 creditCheckList = new List<CreditCheck>();
@@ -246,7 +249,7 @@ namespace Nordfin
 
                 
             }
-            ScriptManager.RegisterStartupScript(this, this.GetType(), "setCreditScore", "setCreditScore('" + datasetReponse.CreditGetData.SCORING + "');", true);
+            hdnCreditScore.Value = datasetReponse.CreditGetData.SCORING;
 
         }
 

@@ -27,7 +27,8 @@ namespace Nordfin.workflow.Entity
         public int ClientID { get; set; }
 
         public int CreditScoreAccepted { get; set; }
-    }
+		public int CreditScore { get; set; }
+	}
 
 	// using System.Xml.Serialization;
 	// XmlSerializer serializer = new XmlSerializer(typeof(NewDataSet));
