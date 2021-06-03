@@ -390,6 +390,8 @@
     <None Include="Connected Services\CreditSafeTemplate\cas_service.wsdl" />
     <None Include="Connected Services\GetDataTemplate\getdata.wsdl" />
     <Content Include="NordfinCredit.Master" />
+    <None Include="Properties\PublishProfiles\FolderProfile-Prod.pubxml" />
+    <None Include="Properties\PublishProfiles\FolderProfile-Test.pubxml" />
     <None Include="Properties\PublishProfiles\FTPProfileProd.pubxml" />
     <None Include="Properties\PublishProfiles\FTPProfileTest.pubxml" />
     <None Include="Scripts\jquery-3.4.1.intellisense.js" />
@@ -669,7 +671,6 @@
   <ItemGroup>
     <Content Include="Nordfin.Master" />
     <None Include="packages.config" />
-    <None Include="Properties\PublishProfiles\FolderProfile.pubxml" />
     <Content Include="Scripts\jquery-3.4.1.min.map" />
     <Content Include="Scripts\jquery-3.4.1.slim.min.map" />
     <None Include="Web.Debug.config">
