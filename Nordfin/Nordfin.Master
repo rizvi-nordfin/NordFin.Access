@@ -238,7 +238,7 @@
                 <div id="addNew" class="sideMenuButton">
                     <div id="tdAddNew">
                         <button runat="server" onserverclick="btnAddNew_ServerClick" id="btnAddNew" causesvalidation="false">
-                            <i class="fas fa-plus sideMenuIcon"></i>
+                            <i class="fas fa-plus sideMenuIcon" style="font-size: 1.7em;"></i>
                         </button>
                     </div>
                 </div>

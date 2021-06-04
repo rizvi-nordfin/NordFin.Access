@@ -64,6 +64,22 @@ function showSuccessModal() {
     return false;
 };
 
+function showConfirmModal() {
+    var zIndex = 1040 + (10 * jq10('.modal:visible').length);
+    jq10('#mdlConfirmData').css('z-index', zIndex);
+    var parent = $('#mdlManualInvoice').parent();
+    //if (parent.length != 0 && parent.attr('id').includes('AngularDiv')) {
+    //    jq10('#mdlConfirmData').css('left', '200px');
+    //}
+    jq10('#mdlConfirmData').modal({ backdrop: 'static', keyboard: false }, 'show');
+    return false;
+};
+
+function closeConfirmModal() {
+    jq10('#mdlConfirmData').modal('hide');
+    return false;
+};
+
 
 function ValidateAmount(txt, evt) {
     var charCode = (evt.which) ? evt.which : evt.keyCode;

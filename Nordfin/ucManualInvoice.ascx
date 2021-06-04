@@ -282,7 +282,7 @@
                             <i class="far fa-times-circle errorIcon"></i>
                             </div>
                         <div class="col-md-11">
-                            <p style="color:white;font-size: 15px !important;" id="txtError"/>
+                            <p class="modelDialogText" id="txtError"/>
                         </div>
                     </div>
                     <div class="row">
@@ -308,7 +308,7 @@
                             <i class="far fa-thumbs-up successIcon"></i>
                             </div>
                         <div class="col-md-11">
-                            <p style="color: white; font-size: 15px !important;text-align:left">Invoice Imported Successfully.</p>
+                            <p class="modelDialogText">Invoice Imported Successfully.</p>
                         </div>
                     </div>
                     <div class="row">
@@ -316,6 +316,46 @@
                             </div>
                         <div class="col-md-3">
                             <button type="button" class="export rowButton" style="float:right" onclick="closeSuccessModal();">OK</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal" id="mdlConfirmData" tabindex="-1" role="dialog">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content errorModel" style="width: 120% !important;height: 200px">
+            <div class="modal-body" style="background-color: #323e53; color: #fff; text-align: center">
+                <div class="container-fluid">
+                    <div class="row" style="height:50px">
+                        <div class="col-md-12">
+                            <p class="modelDialogText">Are you sure to create invoice with following details?</p>
+                        </div>
+                    </div>
+                    <div class="row" style="height:70px;text-align: left">
+                        <div class="col-md-4">
+                            <span class="title">Invoice Amount:</span>
+                            <asp:Label ID="lblInvoiceAmount" runat="server" CssClass="confirmData"></asp:Label>
+                        </div>
+                        <div class="col-md-4">
+                            <span class="title">Due Date:</span>
+                            <asp:Label ID="lblDueDate" runat="server" CssClass="confirmData"></asp:Label>
+                        </div>
+                        <div class="col-md-4">
+                            <span class="title">Delivery:</span>
+                            <asp:Label ID="lblDelivery" runat="server" CssClass="confirmData"></asp:Label>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-6">
+                        </div>
+                        <div class="col-md-3">
+                            <asp:Button ID="btnCreateInvoice" Text="Yes" CssClass="export rowButton" OnClick="CreateInvoicePdf" OnClientClick="closeConfirmModal();" runat="server" />
+                        </div>
+                        <div class="col-md-3">
+                            <button type="button" class="export rowButton" style="float: right" onclick="closeConfirmModal();">No</button>
                         </div>
                     </div>
                 </div>

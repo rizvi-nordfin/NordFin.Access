@@ -106,9 +106,6 @@ namespace Nordfin
         {
             try
             {
-                var client = businessLayerObj.GetClientPrintDetail(Convert.ToInt32(ClientSession.ClientID));
-                var transformationMappings = businessLayerObj.GetTransformationMappings(client.ClientId);
-                var transformationHeaders = businessLayerObj.GetTransformationHeaders(client.ClientId);
                 var tempTable = (DataTable)ViewState["gridData"];
                 if (tempTable.Rows.Count == 0)
                 {
@@ -116,90 +113,104 @@ namespace Nordfin
                     ScriptManager.RegisterStartupScript(this, GetType(), "Pop", "showErrorModal('" + errorMessage + "');", true);
                     return;
                 }
-                
-                var delayMilliSeconds = new Random().Next(100, 1000);
-                Thread.Sleep(delayMilliSeconds);
-                invoiceNumber = businessLayerObj.GetAndUpdateNumberSeries("Telson").ToString();
-                hdnInvoiceNumber.Value = invoiceNumber;
-                fileName = $"ManualInv_FA_" + ClientSession.ClientName.Split(' ')[0] + "_" + invoiceNumber + ".xml";
-                hdnFileName.Value = fileName;
-                var invoice = new Invoice
-                {
-                    InvoiceNumber = invoiceNumber,
-                    ConnectionId = "0",
-                    BillDate = !string.IsNullOrEmpty(txtInvDate.Text?.Trim()) ? txtInvDate.Text?.Trim() : DateTime.Today.ToString("yyyy-MM-dd"),
-                    DueDate = !string.IsNullOrEmpty(txtDueDate.Text?.Trim()) ? txtDueDate.Text?.Trim() : DateTime.Today.AddDays(30).ToString("yyyy-MM-dd"),
-                    CustomerNumber = txtCustNum.Text?.Trim(),
-                    OrderNumber = txtCustNum.Text?.Trim(),
-                    ClientID = ClientSession.ClientID,
-                    Purchased = "0",
-                    FileName = fileName,
-                    Delivery = hdnDelivery.Value?.Trim(),
-                    PaymentReference = Utilities.BuildOcr(invoiceNumber?.Trim(), (invoiceNumber?.Trim().Length).Value + 3, "9", client.Country),
-                    CurrencyCode = drpCurrency.Text?.Trim(),
-                    InvoiceAmount = txtTotalAmount.Text?.Trim(),
-                    RemainingAmount = txtTotalAmount.Text?.Trim(),
-                    InvoiceVATAmount = txtTotalVat.Text?.Trim()
-                };
+                 
+                lblDelivery.Text = hdnDelivery.Value?.Trim();
+                lblInvoiceAmount.Text = txtTotalAmount.Text?.Trim();
+                lblDueDate.Text = txtDueDate.Text?.Trim();
 
-                var customer = new Customer
-                {
-                    CustomerNumber = txtCustNum.Text?.Trim(),
-                    CustomerName = txtCustName.Text?.Trim(),
-                    CustomerAddress = txtCustContact.Text?.Trim(),
-                    CustomerAddress2 = txtCustAddress.Text?.Trim(),
-                    CustomerCity = txtCustCity.Text?.Trim(),
-                    CustomerPostalCode = txtCustPostCode.Text?.Trim(),
-                    CustomerType = hdnCustomerType.Value,
-                    ClientId = ClientSession.ClientID,
-                };
-
-                var invoiceRows = new List<InvoiceRow>();
-                var rows = tempTable?.AsEnumerable().ToList();
-                int id = 1;
-                foreach (var item in rows)
-                {
-                    var invoiceRow = new InvoiceRow
-                    {
-                        Id = id,
-                        Number = item["Article"].ToString(),
-                        Description = item["Description"].ToString(),
-                        Period = item["Period"].ToString(),
-                        Unit = item["Unit"].ToString(),
-                        Quantity = item["Quantity"].ToString(),
-                        Total = item["TotalAmount"].ToString(),
-                        Price = item["InvoiceAmount"].ToString(),
-                        VatAmount = item["VATAmount"].ToString(),
-                        VatPercent = item["VATPercent"].ToString(),
-                    };
-                    invoiceRows.Add(invoiceRow);
-                    id++;
-                }
-
-                var inv = new Inv
-                {
-                    Invoice = invoice,
-                    Customer = customer,
-                    InvoiceRows = invoiceRows,
-                };
-
-                var invoiceFile = Utilities.ConstructInvoiceFile(inv, client, transformationMappings, transformationHeaders);
-                standardFile = GenerateStandardXml(invoiceFile);
-                ViewState["standardFile"] = standardFile;
-
-                //Generate PDF
-                var plainTextBytes = Encoding.UTF8.GetBytes(standardFile);
-                var base64Xml = Convert.ToBase64String(plainTextBytes);
-                var x = new ManualInvoiceLayout.Input.Xml("NordfinConnec", null, null);
-                var base64Pdf = x.ReadFile(base64Xml);
-                ViewState["base64Pdf"] = base64Pdf;
-                ScriptManager.RegisterStartupScript(Page, Page.GetType(), "Pop", "showPDFViewer('" + base64Pdf + "');", true);
+                ScriptManager.RegisterStartupScript(this, GetType(), "Pop", "showConfirmModal();", true);
+                return;
             }
             catch (Exception ex)
             {
                 ShowErrorDialog("Error while creating invoice PDF. Try Again!");
                 return;
             }
+        }
+
+        protected void CreateInvoicePdf(object sender, EventArgs e)
+        {
+            var client = businessLayerObj.GetClientPrintDetail(Convert.ToInt32(ClientSession.ClientID));
+            var transformationMappings = businessLayerObj.GetTransformationMappings(client.ClientId);
+            var transformationHeaders = businessLayerObj.GetTransformationHeaders(client.ClientId);
+
+            var delayMilliSeconds = new Random().Next(100, 1000);
+            Thread.Sleep(delayMilliSeconds);
+            invoiceNumber = businessLayerObj.GetAndUpdateNumberSeries("Telson").ToString();
+            hdnInvoiceNumber.Value = invoiceNumber;
+            fileName = $"ManualInv_FA_" + ClientSession.ClientName.Split(' ')[0] + "_" + invoiceNumber + ".xml";
+            hdnFileName.Value = fileName;
+
+            var invoice = new Invoice
+            {
+                InvoiceNumber = invoiceNumber,
+                ConnectionId = "0",
+                BillDate = !string.IsNullOrEmpty(txtInvDate.Text?.Trim()) ? txtInvDate.Text?.Trim() : DateTime.Today.ToString("yyyy-MM-dd"),
+                DueDate = !string.IsNullOrEmpty(txtDueDate.Text?.Trim()) ? txtDueDate.Text?.Trim() : DateTime.Today.AddDays(30).ToString("yyyy-MM-dd"),
+                CustomerNumber = txtCustNum.Text?.Trim(),
+                OrderNumber = txtCustNum.Text?.Trim(),
+                ClientID = ClientSession.ClientID,
+                Purchased = "0",
+                FileName = fileName,
+                Delivery = hdnDelivery.Value?.Trim(),
+                PaymentReference = Utilities.BuildOcr(invoiceNumber?.Trim(), (invoiceNumber?.Trim().Length).Value + 3, "9", client.Country),
+                CurrencyCode = drpCurrency.Text?.Trim(),
+                InvoiceAmount = txtTotalAmount.Text?.Trim(),
+                RemainingAmount = txtTotalAmount.Text?.Trim(),
+                InvoiceVATAmount = txtTotalVat.Text?.Trim()
+            };
+            var customer = new Customer
+            {
+                CustomerNumber = txtCustNum.Text?.Trim(),
+                CustomerName = txtCustName.Text?.Trim(),
+                CustomerAddress = txtCustContact.Text?.Trim(),
+                CustomerAddress2 = txtCustAddress.Text?.Trim(),
+                CustomerCity = txtCustCity.Text?.Trim(),
+                CustomerPostalCode = txtCustPostCode.Text?.Trim(),
+                CustomerType = hdnCustomerType.Value,
+                ClientId = ClientSession.ClientID,
+            };
+            var invoiceRows = new List<InvoiceRow>();
+
+            var tempTable = (DataTable)ViewState["gridData"];
+            var rows = tempTable?.AsEnumerable().ToList();
+            int id = 1;
+            foreach (var item in rows)
+            {
+                var invoiceRow = new InvoiceRow
+                {
+                    Id = id,
+                    Number = item["Article"].ToString(),
+                    Description = item["Description"].ToString(),
+                    Period = item["Period"].ToString(),
+                    Unit = item["Unit"].ToString(),
+                    Quantity = item["Quantity"].ToString(),
+                    Total = item["TotalAmount"].ToString(),
+                    Price = item["InvoiceAmount"].ToString(),
+                    VatAmount = item["VATAmount"].ToString(),
+                    VatPercent = item["VATPercent"].ToString(),
+                };
+                invoiceRows.Add(invoiceRow);
+                id++;
+            }
+
+            var inv = new Inv
+            {
+                Invoice = invoice,
+                Customer = customer,
+                InvoiceRows = invoiceRows,
+            };
+
+            var invoiceFile = Utilities.ConstructInvoiceFile(inv, client, transformationMappings, transformationHeaders);
+            standardFile = GenerateStandardXml(invoiceFile);
+
+            ViewState["standardFile"] = standardFile;
+            var plainTextBytes = Encoding.UTF8.GetBytes(standardFile);
+            var base64Xml = Convert.ToBase64String(plainTextBytes);
+            var x = new ManualInvoiceLayout.Input.Xml("NordfinConnec", null, null);
+            var base64Pdf = x.ReadFile(base64Xml);
+            ViewState["base64Pdf"] = base64Pdf;
+            ScriptManager.RegisterStartupScript(Page, Page.GetType(), "Pop", "showPDFViewer('" + base64Pdf + "');", true);
         }
 
         protected void ImportManualInvoice(object sender, EventArgs e)

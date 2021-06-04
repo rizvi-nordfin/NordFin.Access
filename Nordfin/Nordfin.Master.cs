@@ -66,7 +66,7 @@ namespace Nordfin
 
                 }
 
-                if(ClientSession.AllowManualInvoice)
+                if(ClientSession.AllowManualInvoice == 1)
                 {
                     pnlSideMenuAdd.Visible = true;
                 }

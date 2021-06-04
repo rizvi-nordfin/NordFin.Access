@@ -119,7 +119,7 @@ namespace Nordfin
                 txtContestedDate.Attributes.Add("readonly", "readonly");
                 txtPaymentMethod.Attributes.Add("readonly", "readonly");
             }
-            if (ClientSession.AllowManualInvoice)
+            if (ClientSession.AllowManualInvoice == 1)
             {
                 ScriptManager.RegisterStartupScript(this, this.GetType(), "showManualInvoiceButton", "$('#btnCreditInvoice').show();", true);
             }
