@@ -123,7 +123,7 @@ namespace Nordfin
             {
                 ScriptManager.RegisterStartupScript(this, this.GetType(), "showManualInvoiceButton", "$('#btnCreditInvoice').show();", true);
             }
-            else if ((decimal.Parse(hdnInvoiceAmount.Value, CultureInfo.InvariantCulture) != 0) && (ClientSession.Admin == "0" || ClientSession.Admin == "1"))
+            else if ((decimal.Parse(hdnInvoiceAmount.Value, CultureInfo.InvariantCulture) != 0) && (ClientSession.Admin == "0" || ClientSession.Admin == "1") && ClientSession.AllowManualInvoice == 2)
             {
                 ScriptManager.RegisterStartupScript(this, this.GetType(), "showCreditButton", "$('#btnCredit').show();", true);
             }
