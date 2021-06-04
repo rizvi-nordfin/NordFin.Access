@@ -206,7 +206,7 @@ namespace Nordfin
                 }
 
             }
-            if (ClientSession.AllowManualInvoice)
+            if (ClientSession.AllowManualInvoice == 1)
             {
                 ScriptManager.RegisterStartupScript(this, this.GetType(), "showManualInvoiceButton", "$('#divManualInvoiceRow').show(); $('#divManualInvoice').show();", true);
             }
