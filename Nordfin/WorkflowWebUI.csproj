@@ -246,9 +246,23 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <None Include="Connected Services\AutoAccount\AutoAccountService.wsdl" />
+    <Content Include="Connected Services\AutoAccount\Nordfin.AutoAccount.AutoAccountResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
+    <Content Include="Connected Services\AutoAccount\Nordfin.AutoAccount.GetPackageListResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
     <None Include="Connected Services\CreditSafeTemplate\cas_service.disco" />
     <None Include="Connected Services\CreditSafeTemplate\configuration91.svcinfo" />
     <None Include="Connected Services\CreditSafeTemplate\configuration.svcinfo" />
+    <None Include="Connected Services\AutoAccount\AutoAccountService.disco" />
+    <None Include="Connected Services\AutoAccount\configuration91.svcinfo" />
+    <None Include="Connected Services\AutoAccount\configuration.svcinfo" />
+    <None Include="Connected Services\AutoAccount\Reference.svcmap">
+      <Generator>WCF Proxy Generator</Generator>
+      <LastGenOutput>Reference.cs</LastGenOutput>
+    </None>
     <Content Include="Connected Services\CreditSafeTemplate\Nordfin.CreditSafeTemplate.CasCompanyServiceResponse.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </Content>
@@ -282,6 +296,7 @@
       <LastGenOutput>Reference.cs</LastGenOutput>
     </None>
     <Content Include="frmAccountSettings.aspx" />
+    <Content Include="frmAutoAccount.aspx" />
     <Content Include="frmBatches.aspx" />
     <Content Include="frmClientInformation.aspx" />
     <Content Include="frmContractOverview.aspx" />
@@ -388,6 +403,7 @@
     <None Include="Connected Services\CreditSafeTemplate\cas_service.wsdl" />
     <None Include="Connected Services\GetDataTemplate\getdata.wsdl" />
     <Content Include="NordfinCredit.Master" />
+    <Content Include="Files\CSSE ÅF-villkor AutoAccount 20190101.pdf" />
     <None Include="Properties\PublishProfiles\FTPProfileProd.pubxml" />
     <None Include="Properties\PublishProfiles\FTPProfileTest.pubxml" />
     <None Include="Scripts\jquery-3.4.1.intellisense.js" />
@@ -406,6 +422,7 @@
     <Content Include="Scripts\jquery.signalR-2.2.2.min.js" />
     <Content Include="Scripts\jquery.table2excel.js" />
     <Content Include="Scripts\jsAccountSettings.js" />
+    <Content Include="Scripts\jsAutoAccount.js" />
     <Content Include="Scripts\jsClientInformation.js" />
     <Content Include="Scripts\jquery-3.3.1.slim.min.js" />
     <Content Include="Scripts\jquery-ui.js" />
@@ -468,6 +485,11 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="ClientSession.cs" />
+    <Compile Include="Connected Services\AutoAccount\Reference.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Compile>
     <Compile Include="Connected Services\CreditSafeTemplate\Reference.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -485,6 +507,13 @@
     </Compile>
     <Compile Include="frmAccountSettings.aspx.designer.cs">
       <DependentUpon>frmAccountSettings.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="frmAutoAccount.aspx.cs">
+      <DependentUpon>frmAutoAccount.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="frmAutoAccount.aspx.designer.cs">
+      <DependentUpon>frmAutoAccount.aspx</DependentUpon>
     </Compile>
     <Compile Include="frmBatches.aspx.cs">
       <DependentUpon>frmBatches.aspx</DependentUpon>
@@ -695,6 +724,7 @@
     <WCFMetadata Include="Connected Services\" />
   </ItemGroup>
   <ItemGroup>
+    <WCFMetadataStorage Include="Connected Services\AutoAccount\" />
     <WCFMetadataStorage Include="Connected Services\CreditSafeTemplate\" />
     <WCFMetadataStorage Include="Connected Services\GetDataTemplate\" />
   </ItemGroup>
