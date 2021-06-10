@@ -83,7 +83,15 @@ namespace Nordfin
             }
 
 
+            if(Application["EmailDetails"]!=null)
+            {
+                IList<EMailInvoices> EmailDetails = (IList<EMailInvoices>)Application["EmailDetails"];
+                if(EmailDetails.Any(a=>a.UserID==Convert.ToInt32(ClientSession.UserID)))
+                {
 
+                }
+
+            }
 
             ScriptManager.RegisterStartupScript(this, this.GetType(), "CallAlert", "save();", true);
         }

@@ -8,7 +8,8 @@ namespace Nordfin.workflow.Entity
 {
     public class EMailInvoices
     {
-    
+        public int UserID { get; set; }
+        public string CustomerNumber { get; set; }
 
     }
 }

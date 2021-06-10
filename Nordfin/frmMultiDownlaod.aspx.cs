@@ -68,13 +68,7 @@ namespace Nordfin
             {
                 try
                 {
-
                     FTPFileProcess fileProcess = new FTPFileProcess();
-
-
-
-
-
                     string sEmail = System.Configuration.ConfigurationManager.AppSettings["Email"].ToString();
                     string sEmailPassword = System.Configuration.ConfigurationManager.AppSettings["EmailPassword"].ToString();
                     string sEmailPort = System.Configuration.ConfigurationManager.AppSettings["EmailPort"].ToString();
@@ -98,6 +92,23 @@ namespace Nordfin
                                 fileList[i].Bytes = bytes;
 
                             }
+
+                            long totalBytes = fileList.Select(a => a.Bytes.Length).Sum();
+                            IList<EMailInvoices> emailInvoiceList = new List<EMailInvoices>();
+                            if (ConvertBytesToMegabytes(totalBytes) > 0)
+                            {
+                                if (Application["EmailDetails"] != null)
+                                    emailInvoiceList = (IList<EMailInvoices>)Application["EmailDetails"];
+                                EMailInvoices eMailInvoices = new EMailInvoices();
+                                eMailInvoices.UserID = fileList[0].UserID;
+                                eMailInvoices.CustomerNumber = fileList[0].CustomerNumber;
+                                emailInvoiceList.Add(eMailInvoices);
+                                Application["EmailDetails"] = emailInvoiceList;
+                                return;
+                            }
+
+                           
+
                             using (MemoryStream memoryStream = new MemoryStream())
                             {
                                 using (ZipFile zip = new ZipFile())
@@ -129,6 +140,8 @@ namespace Nordfin
                         accessLog.CustomerNumber = fileList[0].CustomerNumber;
                         accessLog.UserID = fileList[0].UserID;
                         accessLog.Comments = "<EMailDetails>" + string.Join(",", fileList.Select(a => a.InvoiceNumber.ToString())) + "</EMailDetails>" + "<Status>Success</Status>";
+                       
+
 
 
                         int scustEmail = objInvoicesLayer.setEmailSentAccessLog(accessLog);
