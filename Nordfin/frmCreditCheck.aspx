@@ -5,6 +5,7 @@
          <link href="Styles/CreditCheck.css?version=<%=ConfigurationManager.AppSettings["VersionConfiguration"].ToString() %>" rel="stylesheet" />
         <script src="Scripts/gauge.js?version=<%=ConfigurationManager.AppSettings["VersionConfiguration"].ToString() %>"></script>
     <script src="Scripts/jsCreditCheck.js?version=<%=ConfigurationManager.AppSettings["VersionConfiguration"].ToString() %>"></script>
+        <script src="Scripts/jsAutoAccount.js?version=<%=ConfigurationManager.AppSettings["VersionConfiguration"].ToString() %>"></script>
        <%-- <script src="Scripts/gauge.min.js"></script>--%>
         <style>
          
@@ -17,11 +18,14 @@
                 <div class="dashboardHeadline">CreditCheck</div>
             </div>
 
-
+            
 
             <div>
                 <div class="row " style="height: 50px; margin-left: 0px;">
 
+                    <div class="col-md-10" style="height:40px;">
+                 <asp:Button Text="AutoAccount" class="button panelButton form-control" Style="width: 150px;float: right;" runat="server"  ID="btnAutoAccount" OnClientClick="return ParentModal();" />
+            </div>
 
                     <div class="col-md-12 col-lg-3  divPadding customerInfoSidebar" style="color: #FFFFFF;">
                          <div class="row headingDiv tableDiv overviewHeading text-center" style="background-color: #475672;height:54px;font-size:16px;">

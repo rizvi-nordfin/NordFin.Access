@@ -28,6 +28,7 @@ namespace Nordfin.workflow.Entity
 
         public int CreditScoreAccepted { get; set; }
 		public int CreditScore { get; set; }
+		public string CreditPassword { get; set; }
 	}
 
 	// using System.Xml.Serialization;

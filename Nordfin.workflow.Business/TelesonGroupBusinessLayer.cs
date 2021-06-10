@@ -33,5 +33,15 @@ namespace Nordfin.workflow.BusinessLayer
         {
             return telsonGroupBusinessData.setCreditCheck(creditCheck);
         }
+
+        bool ITelsonGroupPresentationBusinessLayer.setCreditAutoAccount(CreditAutoAccount autoAccount)
+        {
+            return telsonGroupBusinessData.setCreditAutoAccount(autoAccount);
+        }
+
+        CreditAutoAccount ITelsonGroupPresentationBusinessLayer.getCreditAutoAccountDetails(int ClientID)
+        {
+            return telsonGroupBusinessData.getCreditAutoAccountDetails(ClientID);
+        }
     }
 }

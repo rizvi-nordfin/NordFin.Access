@@ -14,5 +14,7 @@ namespace Nordfin.workflow.PresentationBusinessLayer
         DataSet getContractList(string clientID);
         Tuple<IList<TelsonGroup>, IList<TelsonChart>> GetTelecomData();
         int setCreditCheck(CreditCheck creditCheck);
+        bool setCreditAutoAccount(CreditAutoAccount autoAccount);
+        CreditAutoAccount getCreditAutoAccountDetails(int ClientID);
     }
 }

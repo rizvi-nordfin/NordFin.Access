@@ -1,8 +1,12 @@
-﻿using Nordfin.workflow.BusinessDataLayerInterface;
+﻿using Dapper;
+using Dapper.Contrib.Extensions;
+using Nordfin.workflow.BusinessDataLayerInterface;
 using Nordfin.workflow.Entity;
 using System;
 using System.Collections.Generic;
+using System.Configuration;
 using System.Data;
+using System.Data.SqlClient;
 using System.Globalization;
 using System.Linq;
 using System.Text;
@@ -12,6 +16,7 @@ namespace Nordfin.workflow.DataAccessLayer
 {
     public class TelesonGroupDataAccessLayer : DBBase, ITelsonGroupBusinessDataLayer
     {
+        private string connectionString = ConfigurationManager.ConnectionStrings["NordfinConnec"].ToString();
         Tuple<IList<TelsonGroup>, IList<TelsonChart>, IList<ClientContracts>> ITelsonGroupBusinessDataLayer.GetTelsonGroupData(string ClientID)
         {
             DBInitialize("usp_getContractsDashboard");
@@ -143,9 +148,34 @@ namespace Nordfin.workflow.DataAccessLayer
             DatabaseName.AddInParameter(DBBaseCommand, "@CreditAccept", System.Data.DbType.Int32, creditSafe.CreditScoreAccepted);
             DatabaseName.AddInParameter(DBBaseCommand, "@CreditScore", System.Data.DbType.Int32, creditSafe.CreditScore);
             DatabaseName.AddInParameter(DBBaseCommand, "@ContractID", System.Data.DbType.Int32, 0);
+            DatabaseName.AddInParameter(DBBaseCommand, "@CreditPassword", System.Data.DbType.String, creditSafe.CreditPassword);
 
             DatabaseName.ExecuteNonQuery(DBBaseCommand);
             return 0;
+        }
+        bool ITelsonGroupBusinessDataLayer.setCreditAutoAccount(CreditAutoAccount autoAccount)
+        {
+            long result;
+            using (SqlConnection connection = new SqlConnection(connectionString))
+            {
+                result=connection.Insert(autoAccount);
+            }
+            return result > 0;
+        }
+        CreditAutoAccount ITelsonGroupBusinessDataLayer.getCreditAutoAccountDetails(int ClientID)
+        {
+            CreditAutoAccount creditAutoAccount = null;
+
+
+            using (SqlConnection connection = new SqlConnection(connectionString))
+            {
+                creditAutoAccount = connection.Query<CreditAutoAccount>(
+                                              @"select CreditUserName,CreditPassword from CreditAutoAccount 
+                                                    where ClientID=@ClientId and CreditUserName is not null ",
+                                              new { ClientId = ClientID }).FirstOrDefault();
+               
+            }
+            return creditAutoAccount;
         }
     }
 }

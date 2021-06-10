@@ -304,7 +304,7 @@
 
                <div class="modal" id="ModalMaster" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
                         <div class="modal-dialog" role="document">
-                            <div class="modal-content" style="top: 196px; background: none; border: none; width: 100%;">
+                            <div class="modal-content" style="top: 100px; background: none; border: none; width: 100%;">
                                 <div class="modal-header dashboardHeadline" style="background-color: #323e53; color: #fff; font-size: 16px;">
                                     <div class="ml-3">
                                         <h5 class="modal-title modalTextcolor dashboardHeadlineModal" id="ExportModal">External DC Status</h5>
@@ -314,12 +314,32 @@
                                     </button>
                                 </div>
                                 <div class="modal-body" style="background-color: #323e53; color: #fff; ">
-                                      <iframe id="FrameMaster" class="border-0" runat="server" style="    height: 394px;width:100%"></iframe>
+                                      <iframe id="FrameMaster" class="border-0" runat="server" style="    height: 500px;width:100%"></iframe>
                                 </div>
                             </div>
                         </div>
                     </div>
-
+            <div class="modal fade" id="mdlMasterConfirm" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                <div class="modal-dialog" role="document">
+                    <div class="modal-content" style="background: none;border:none;width: 50%;top:200px;">
+                        <div class="modal-header dashboardHeadline" style="background-color: #323e53; color: #fff;font-size:16px;">
+                            <h5 class="modal-title" id="masterModalLabel">Information</h5>
+                             <button type="button" class="modalcloseButton" data-dismiss="modal" aria-label="Close" style="top: 30px;right: 13px;">
+                                        <span aria-hidden="true">✕</span>
+                                    </button>
+                        </div>
+                        <div class="modal-body" style="background-color: #323e53; color: #fff;">
+                            <div>
+                                <span id="spnMasterInfo" style="color: #A9BFD5;text-transform: uppercase;font-size:12px;">  </span>
+                            </div>
+                        </div>
+                        <div class="modal-footer" style="background-color: #323E53;padding:0px;">
+                          
+                            <button type="button" class="modalbutton"  data-dismiss="modal">Ok</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
 
         </div>
 

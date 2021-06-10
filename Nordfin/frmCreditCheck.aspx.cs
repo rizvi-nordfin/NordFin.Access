@@ -1,4 +1,5 @@
 ﻿
+using Nordfin.AutoAccount;
 using Nordfin.CreditSafeTemplate;
 using Nordfin.GetDataTemplate;
 
@@ -28,12 +29,17 @@ namespace Nordfin
 
             if (!IsPostBack)
             {
+                ITelsonGroupPresentationBusinessLayer objTelsonData = new TelesonGroupBusinessLayer();
                 txtPassword.Attributes["type"] = "password";
-                txtUserName.Text = Decrypt(GetFromCookie("CreditUser", "UserName"));
-                txtPassword.Text = Decrypt(GetFromCookie("CreditToken", "Token"));
+                //txtUserName.Text = Decrypt(GetFromCookie("CreditUser", "UserName"));
+                //txtPassword.Text = Decrypt(GetFromCookie("CreditToken", "Token"));
                 lblClientName.Text = ClientSession.ClientName;
                 hdnCreditScore.Value ="0";
                 hdnCreditVisible.Value= Convert.ToString(ClientSession.CreditUser);
+                CreditAutoAccount creditAutoAccount = objTelsonData.getCreditAutoAccountDetails(Convert.ToInt32(ClientSession.ClientID));
+                btnAutoAccount.Visible = (creditAutoAccount == null) ? true: false;
+                txtUserName.Text = (creditAutoAccount == null) ? "" : creditAutoAccount.CreditUserName;
+                txtPassword.Text = (creditAutoAccount == null) ? "" :creditAutoAccount.CreditPassword;
             }
         }
 
@@ -59,12 +65,12 @@ namespace Nordfin
 
         private void GetCompanyCreditDetails()
         {
-
+            bool isEncrpt;
             var test = new GetDataSoapClient();
             GETDATA_REQUEST gETDATA_REQUEST = new GETDATA_REQUEST();
             var account = new GetDataTemplate.Account();
             account.UserName = txtUserName.Text;
-            account.Password = txtPassword.Text;
+            account.Password = Decrypt(txtPassword.Text,out isEncrpt);
             account.Language = GetDataTemplate.LANGUAGE.EN;
             gETDATA_REQUEST.account = account;
             gETDATA_REQUEST.Block_Name = "NORDFIN_C_CREDIT";
@@ -75,6 +81,8 @@ namespace Nordfin
             if (dataResponse.Error != null)
             {
                 hdnCreditScore.Value = "0";
+                ScriptManager.RegisterStartupScript(this, this.GetType(), "showModalInfo", "$('#mdlMasterConfirm').modal({ backdrop: 'static', keyboard: false }, 'show');" +
+                    "$('#spnMasterInfo').text('" + dataResponse.Error.Reject_text + "');", true);
                 return;
             }
              
@@ -97,7 +105,7 @@ namespace Nordfin
             CAS_COMPANY_REQUEST companyRequest = new CAS_COMPANY_REQUEST();
             CreditSafeTemplate.Account accountTemp = new CreditSafeTemplate.Account();
             accountTemp.UserName = txtUserName.Text;// "NORDFIN";
-            accountTemp.Password = txtPassword.Text;// "4!c3KFxpzXLQR69";
+            accountTemp.Password = Decrypt(txtPassword.Text, out isEncrpt);// "4!c3KFxpzXLQR69";
             accountTemp.Language = CreditSafeTemplate.LANGUAGE.EN;
 
             companyRequest.account = accountTemp;
@@ -142,8 +150,9 @@ namespace Nordfin
                 creditCheck.PersonalNumber = serachNumber;
                 creditCheck.ClientID = Convert.ToInt32(ClientSession.ClientID);
                 creditCheck.CreditScore = Convert.ToInt32(datasetReponse.CreditGetData.RATING);
-                SetCookie("CreditUser", "UserName", txtUserName.Text);
-                SetCookie("CreditToken", "Token", txtPassword.Text);
+                creditCheck.CreditPassword = isEncrpt ? "" : Encrypt(txtPassword.Text);
+                //SetCookie("CreditUser", "UserName", txtUserName.Text);
+                //SetCookie("CreditToken", "Token", txtPassword.Text);
                 creditCheckList = new List<CreditCheck>();
 
 
@@ -160,11 +169,12 @@ namespace Nordfin
 
         private void GetPersonCreditDetails()
         {
+            bool isEncrpt;
             var test = new GetDataSoapClient();
             GETDATA_REQUEST gETDATA_REQUEST = new GETDATA_REQUEST();
             var account = new GetDataTemplate.Account();
             account.UserName = txtUserName.Text;
-            account.Password = txtPassword.Text;
+            account.Password = Decrypt(txtPassword.Text, out isEncrpt);
             account.Language = GetDataTemplate.LANGUAGE.EN;
             gETDATA_REQUEST.account = account;
             gETDATA_REQUEST.Block_Name = "NORDFIN_P_CREDIT";
@@ -197,7 +207,7 @@ namespace Nordfin
             CAS_PERSON_REQUEST personRequest = new CAS_PERSON_REQUEST();
             CreditSafeTemplate.Account accountTemp = new CreditSafeTemplate.Account();
             accountTemp.UserName = txtUserName.Text;// "NORDFIN";
-            accountTemp.Password = txtPassword.Text;// "4!c3KFxpzXLQR69";
+            accountTemp.Password = Decrypt(txtPassword.Text, out isEncrpt);// "4!c3KFxpzXLQR69";
             accountTemp.Language = CreditSafeTemplate.LANGUAGE.EN;
 
             personRequest.account = accountTemp;
@@ -242,8 +252,9 @@ namespace Nordfin
                 creditCheck.PersonalNumber = serachNumber;
                 creditCheck.ClientID = Convert.ToInt32(ClientSession.ClientID);
                 creditCheck.CreditScore = Convert.ToInt32(datasetReponse.CreditGetData.SCORING);
-                SetCookie("CreditUser", "UserName", txtUserName.Text);
-                SetCookie("CreditToken", "Token", txtPassword.Text);
+                creditCheck.CreditPassword = isEncrpt ? "" : Encrypt(txtPassword.Text); 
+                //SetCookie("CreditUser", "UserName", txtUserName.Text);
+                //SetCookie("CreditToken", "Token", txtPassword.Text);
                 creditCheckList = new List<CreditCheck>();
                 CasData(creditCheck.Status, creditCheck.Error);
                 int Result = objTelsonData.setCreditCheck(creditCheck);
@@ -271,39 +282,10 @@ namespace Nordfin
             lblResultStatus.Style.Add("color", lblStatus.Text == "APPROVED" ? "lightgreen" : "#f83030");
             lblRejectCode.Text = Code ?? "";
         }
-        public  string GetFromCookie(string cookieName, string keyName)
-        {
-            HttpCookie cookie = HttpContext.Current.Request.Cookies[cookieName];
-            if (cookie != null)
-            {
-                string val = (!String.IsNullOrEmpty(keyName)) ? cookie[keyName] : cookie.Value;
-                if (!String.IsNullOrEmpty(val)) return Uri.UnescapeDataString(val);
-            }
-            return "";
-        }
-
-        public void SetCookie(string cookieName, string Name, string Value)
-        {
-
-
-            HttpCookie cookie = HttpContext.Current.Response.Cookies.AllKeys.Contains(cookieName) ? HttpContext.Current.Response.Cookies[cookieName]
-                                 : HttpContext.Current.Request.Cookies[cookieName];
-            //if (cookie == null)
-            //{
-            cookie = new HttpCookie(cookieName);
-            if (!String.IsNullOrEmpty(Name))
-                cookie.Values.Set(Name, Encrypt(Value));
-            cookie.HttpOnly = true;
-            cookie.Secure = true;
-            cookie.SameSite = SameSiteMode.Strict;
-           
-            HttpContext.Current.Response.Cookies.Set(cookie);
-            //}
-
-        }
-
         public string Encrypt(string text)
         {
+            if (string.IsNullOrEmpty(text))
+                return "";
             using (var md5 = new MD5CryptoServiceProvider())
             {
                 using (var tdes = new TripleDESCryptoServiceProvider())
@@ -322,28 +304,113 @@ namespace Nordfin
             }
         }
 
-        public  string Decrypt(string cipher)
+        public string Decrypt(string creditPassword,out bool bIsEncrypt)
         {
-            if(cipher=="")
+            try
             {
-                return "";
-            }
-            using (var md5 = new MD5CryptoServiceProvider())
-            {
-                using (var tdes = new TripleDESCryptoServiceProvider())
+                using (var md5 = new MD5CryptoServiceProvider())
                 {
-                    tdes.Key = md5.ComputeHash(UTF8Encoding.UTF8.GetBytes(key));
-                    tdes.Mode = CipherMode.ECB;
-                    tdes.Padding = PaddingMode.PKCS7;
-
-                    using (var transform = tdes.CreateDecryptor())
+                    using (var tdes = new TripleDESCryptoServiceProvider())
                     {
-                        byte[] cipherBytes = Convert.FromBase64String(cipher);
-                        byte[] bytes = transform.TransformFinalBlock(cipherBytes, 0, cipherBytes.Length);
-                        return UTF8Encoding.UTF8.GetString(bytes);
+                        tdes.Key = md5.ComputeHash(UTF8Encoding.UTF8.GetBytes(key));
+                        tdes.Mode = CipherMode.ECB;
+                        tdes.Padding = PaddingMode.PKCS7;
+
+                        using (var transform = tdes.CreateDecryptor())
+                        {
+                            byte[] cipherBytes = Convert.FromBase64String(creditPassword);
+                            byte[] bytes = transform.TransformFinalBlock(cipherBytes, 0, cipherBytes.Length);
+                            bIsEncrypt = true;
+                            return UTF8Encoding.UTF8.GetString(bytes);
+                        }
                     }
                 }
             }
+            catch
+            {
+                bIsEncrypt = false;
+                return creditPassword;
+            }
         }
+        //public  string GetFromCookie(string cookieName, string keyName)
+        //{
+        //    HttpCookie cookie = HttpContext.Current.Request.Cookies[cookieName];
+        //    if (cookie != null)
+        //    {
+        //        string val = (!String.IsNullOrEmpty(keyName)) ? cookie[keyName] : cookie.Value;
+        //        if (!String.IsNullOrEmpty(val)) return Uri.UnescapeDataString(val);
+        //    }
+        //    return "";
+        //}
+
+        //public void SetCookie(string cookieName, string Name, string Value)
+        //{
+
+
+        //    HttpCookie cookie = HttpContext.Current.Response.Cookies.AllKeys.Contains(cookieName) ? HttpContext.Current.Response.Cookies[cookieName]
+        //                         : HttpContext.Current.Request.Cookies[cookieName];
+        //    //if (cookie == null)
+        //    //{
+        //    cookie = new HttpCookie(cookieName);
+        //    if (!String.IsNullOrEmpty(Name))
+        //        cookie.Values.Set(Name, Encrypt(Value));
+        //    cookie.HttpOnly = true;
+        //    cookie.Secure = true;
+        //    cookie.SameSite = SameSiteMode.Strict;
+
+        //    HttpContext.Current.Response.Cookies.Set(cookie);
+        //    //}
+
+        //}
+
+        //public string Encrypt(string text)
+        //{
+        //    using (var md5 = new MD5CryptoServiceProvider())
+        //    {
+        //        using (var tdes = new TripleDESCryptoServiceProvider())
+        //        {
+        //            tdes.Key = md5.ComputeHash(UTF8Encoding.UTF8.GetBytes(key));
+        //            tdes.Mode = CipherMode.ECB;
+        //            tdes.Padding = PaddingMode.PKCS7;
+
+        //            using (var transform = tdes.CreateEncryptor())
+        //            {
+        //                byte[] textBytes = UTF8Encoding.UTF8.GetBytes(text);
+        //                byte[] bytes = transform.TransformFinalBlock(textBytes, 0, textBytes.Length);
+        //                return Convert.ToBase64String(bytes, 0, bytes.Length);
+        //            }
+        //        }
+        //    }
+        //}
+
+        //public  string Decrypt(string cipher)
+        //{
+        //    if(cipher=="")
+        //    {
+        //        return "";
+        //    }
+        //    using (var md5 = new MD5CryptoServiceProvider())
+        //    {
+        //        using (var tdes = new TripleDESCryptoServiceProvider())
+        //        {
+        //            tdes.Key = md5.ComputeHash(UTF8Encoding.UTF8.GetBytes(key));
+        //            tdes.Mode = CipherMode.ECB;
+        //            tdes.Padding = PaddingMode.PKCS7;
+
+        //            using (var transform = tdes.CreateDecryptor())
+        //            {
+        //                byte[] cipherBytes = Convert.FromBase64String(cipher);
+        //                byte[] bytes = transform.TransformFinalBlock(cipherBytes, 0, cipherBytes.Length);
+        //                return UTF8Encoding.UTF8.GetString(bytes);
+        //            }
+        //        }
+        //    }
+        //}
+
+        //protected void btnAutoAccount_Click(object sender, EventArgs e)
+        //{
+
+
+        //}
     }
 }
