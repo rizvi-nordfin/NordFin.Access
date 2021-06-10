@@ -16,6 +16,10 @@ namespace Nordfin
             ClearSession();
 
             hdnAdmin.Value = ClientSession.Admin;
+            if (ClientSession.Admin != "0" && ClientSession.Admin != "1")
+            {
+                pnlInvoiceBatches.Visible = false;
+            }
         }
 
         protected void btnLederlistReport_Click(object sender, EventArgs e)
@@ -40,6 +44,7 @@ namespace Nordfin
             using (XLWorkbook wb = new XLWorkbook())
             {
                 wb.Worksheets.Add(dataSet.Tables[0]);
+                wb.Worksheet(1).Columns().AdjustToContents();
                 Response.Clear();
                 Response.Buffer = true;
                 Response.Charset = "";
@@ -97,6 +102,10 @@ namespace Nordfin
             {
                 ExportPeriodicreport(objReportsLayer.usp_getPeriodicReport(ClientSession.ClientID, txtFromDate.Text.Trim(), txtToDate.Text.Trim()), "PeriodicReport_" + txtFromDate.Text.Trim() + "_" + txtToDate.Text.Trim());
 
+            }
+            else if(hdnExport.Value == "Transaction report")
+            {
+                ExporttoExcel(objReportsLayer.GetTransactionReport(ClientSession.ClientID, txtFromDate.Text.Trim(), txtToDate.Text.Trim()), "TransactionReport_" + txtFromDate.Text.Trim() + "_" + txtToDate.Text.Trim());
             }
             else
             {
@@ -218,6 +227,23 @@ namespace Nordfin
         {
             IReportsPresentationBusinessLayer objReportsLayer = new ReportsBusinessLayer();
             ExporttoExcel(objReportsLayer.GetContestedReport(ClientSession.ClientID), "ContestedList");
+        }
+
+        protected void btnStopped_Click(object sender, EventArgs e)
+        {
+            IReportsPresentationBusinessLayer objReportsLayer = new ReportsBusinessLayer();
+            ExporttoExcel(objReportsLayer.GetStoppedReport(ClientSession.ClientID), "StoppedList");
+        }
+
+        protected void btnTransactionReport_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        protected void btnInvoiceBatches_Click(object sender, EventArgs e)
+        {
+            IReportsPresentationBusinessLayer objReportsLayer = new ReportsBusinessLayer();
+            ExporttoExcel(objReportsLayer.GetInvoicesBatchesReport(ClientSession.ClientID), "InvoiceBatches");
         }
     }
 }

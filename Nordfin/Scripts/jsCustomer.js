@@ -125,7 +125,7 @@ function LinkClick(linkValues) {
     const combineInvoice = document.getElementById(linkValues.id).getAttribute("combineInvoice").replace(/\s/g, '');
     const custInvoice = document.getElementById(linkValues.id).getAttribute("custInvoice").replace(/\s/g, '');
 
-    const sFileName = document.getElementById("NordfinContentHolder_hdnFileName").value;
+    const sFileName = encodeURIComponent(document.getElementById("NordfinContentHolder_hdnFileName").value);
 
     const sClientName = document.getElementById("NordfinContentHolder_hdnClientName").value;
 
@@ -136,6 +136,7 @@ function LinkClick(linkValues) {
         Address2: $('#NordfinContentHolder_lblAddress1').text(),
         PostalCode: $('#NordfinContentHolder_lblPostalCode').text(),
         City: $('#NordfinContentHolder_lblCity').text(),
+        CustomerType: $('#NordfinContentHolder_hdnCustomerType').val(),
     }
 
     var customerJson = JSON.stringify(customerData);
@@ -353,6 +354,7 @@ function showManualInvoice() {
     $('#NordfinContentHolder_ucManualInvoice_txtCustAddress').val($('#NordfinContentHolder_lblAddress1').text());
     $('#NordfinContentHolder_ucManualInvoice_txtCustPostCode').val($('#NordfinContentHolder_lblPostalCode').text());
     $('#NordfinContentHolder_ucManualInvoice_txtCustCity').val($('#NordfinContentHolder_lblCity').text());
+    $('#NordfinContentHolder_ucManualInvoice_hdnCustomerType').val($('#NordfinContentHolder_hdnCustomerType').val());
     $('#NordfinContentHolder_ucManualInvoice_hdnTitle').val("Manual Invoice");
     $('#NordfinContentHolder_ucManualInvoice_spnTitle').text("Manual Invoice");
     $('#NordfinContentHolder_mdlManualInvoice').modal({ backdrop: 'static', keyboard: false }, 'show');
@@ -407,7 +409,7 @@ function PDFViewer(sFileName, collectionStatus) {
 
 
 
-function ExportClick(IsEmail, pdfArchive, bSent) {
+function ExportClick(IsEmail, pdfArchive, bSent, bMultidownlaod) {
     $(".modal-backdrop").remove();
     $(".modal-backdrop").remove();
     if (IsEmail == 1) {
@@ -427,17 +429,46 @@ function ExportClick(IsEmail, pdfArchive, bSent) {
     }
     else {
 
-        if (pdfArchive == undefined || pdfArchive == "")
-            $('#mdlExport').modal({ backdrop: 'static', keyboard: false }, 'show');
-        else
+        $('#mdlExport').modal({ backdrop: 'static', keyboard: false }, 'show');
+        if (bMultidownlaod.toUpperCase() == "TRUE") {
             PDFViewerArchive(pdfArchive);
+        }
+        //if (pdfArchive == undefined || pdfArchive == "")
+
+        //else {
+        //   // PDFViewerArchive(pdfArchive);
+        //    if (bMultidownlaod)
+        //        $('#mdlExport').modal({ backdrop: 'static', keyboard: false }, 'show');
+        //}
+
     }
 
 
 }
 
+function NotesPage() {
+
+    $('#mdlNotes').modal({ backdrop: 'static', keyboard: false }, 'show');
+
+    return false;
+}
 
 
+function maxLengthPaste(field, maxChars) {
+
+    if ((field.value.length + window.clipboardData.getData("Text").length) > maxChars) {
+        return false;
+    }
+
+}
+
+
+
+function ModalBackdrop() {
+    $(".modal-backdrop").remove();
+    $(".modal-backdrop").remove();
+    $('#mdlExport').modal({ backdrop: 'static', keyboard: false }, 'show');
+}
 
 
 function ExportExcel() {

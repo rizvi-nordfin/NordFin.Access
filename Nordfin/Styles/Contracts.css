@@ -738,11 +738,11 @@ Inline style {
 }
 
 .heightCustomer {
-    height: 220px;
+    height: 155px;
 }
 
 .heigthContract {
-    height: 200px;
+    height: 154px;
 }
 
 .heightCreditScoring {
@@ -750,11 +750,11 @@ Inline style {
 }
 
 .heightCreditTable {
-    height: 115px;
+    height: 111px !important;
 }
 
 .HeightEmpty {
-    height: 332px !important;
+    height: 442px !important;
     overflow:hidden;
 }
 

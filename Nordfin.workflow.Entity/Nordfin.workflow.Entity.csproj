@@ -31,6 +31,12 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Dapper, Version=2.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Dapper.2.0.78\lib\net461\Dapper.dll</HintPath>
+    </Reference>
+    <Reference Include="Dapper.Contrib, Version=2.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Dapper.Contrib.2.0.78\lib\net461\Dapper.Contrib.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
@@ -44,12 +50,17 @@
     <Compile Include="AccessLog.cs" />
     <Compile Include="AccountSettings.cs" />
     <Compile Include="AdvanceSearch.cs" />
+    <Compile Include="ApiOutgoing.cs" />
     <Compile Include="BatchVolume.cs" />
     <Compile Include="Chart.cs" />
     <Compile Include="ClientContracts.cs" />
     <Compile Include="ClientDetails.cs" />
     <Compile Include="ClientInformation.cs" />
     <Compile Include="ClientList.cs" />
+    <Compile Include="CreditAutoAccount.cs" />
+    <Compile Include="CreditAutoAccountReponse.cs" />
+    <Compile Include="CreditAutoAccountUserInfo.cs" />
+    <Compile Include="CreditCheck.cs" />
     <Compile Include="CustomerData.cs" />
     <Compile Include="CustomerGrowth.cs" />
     <Compile Include="CustomerInfo.cs" />
@@ -58,6 +69,7 @@
     <Compile Include="CustomerInvoiceNumber.cs" />
     <Compile Include="CustomerMap.cs" />
     <Compile Include="CustomerRegion.cs" />
+    <Compile Include="DebtCollectionList.cs" />
     <Compile Include="Demographics.cs" />
     <Compile Include="EMailInvoices.cs" />
     <Compile Include="Fees.cs" />
@@ -91,9 +103,13 @@
     <Compile Include="Payments.cs" />
     <Compile Include="Payout.cs" />
     <Compile Include="PDFMultiDownload.cs" />
+    <Compile Include="ServerJob.cs" />
+    <Compile Include="Result.cs" />
     <Compile Include="TelsonChart.cs" />
     <Compile Include="TelsonGroup.cs" />
     <Compile Include="Transaction.cs" />
+    <Compile Include="TransformationHeader.cs" />
+    <Compile Include="ManualInvoiceMapping.cs" />
     <Compile Include="UserChartData.cs" />
     <Compile Include="Users.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -104,6 +120,7 @@
     <None Include="..\.editorconfig">
       <Link>.editorconfig</Link>
     </None>
+    <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="InvoiceFile\XMLFile1.xml" />

@@ -168,6 +168,24 @@ namespace Nordfin
         protected global::System.Web.UI.HtmlControls.HtmlButton btnCustomer;
 
         /// <summary>
+        /// btnCreditCheck control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlButton btnCreditCheck;
+
+        /// <summary>
+        /// imgCreditcheck control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlImage imgCreditcheck;
+
+        /// <summary>
         /// btnReports control.
         /// </summary>
         /// <remarks>
@@ -258,6 +276,24 @@ namespace Nordfin
         protected global::System.Web.UI.HtmlControls.HtmlImage imgContracts;
 
         /// <summary>
+        /// pnlSideMenuAdd control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Panel pnlSideMenuAdd;
+
+        /// <summary>
+        /// btnAddNew control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlButton btnAddNew;
+
+        /// <summary>
         /// Button control.
         /// </summary>
         /// <remarks>
@@ -321,6 +357,24 @@ namespace Nordfin
         protected global::System.Web.UI.WebControls.Panel pnlTeleson;
 
         /// <summary>
+        /// pnlTelecom control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Panel pnlTelecom;
+
+        /// <summary>
+        /// pnlDebtCollection control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Panel pnlDebtCollection;
+
+        /// <summary>
         /// pnlSideMenuContracts control.
         /// </summary>
         /// <remarks>
@@ -355,6 +409,15 @@ namespace Nordfin
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.ContentPlaceHolder NordfinContentHolder;
+
+        /// <summary>
+        /// FrameMaster control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlIframe FrameMaster;
 
         /// <summary>
         /// hdnClientName control.

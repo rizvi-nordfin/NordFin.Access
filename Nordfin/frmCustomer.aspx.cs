@@ -51,7 +51,15 @@ namespace Nordfin
                     Session["CustomerGrid"] = ds.Tables[0];
                     grdCustomer.DataSource = ds;
                     grdCustomer.DataBind();
-
+                   
+                    cboInvoiceNumber.DataSource = ds.Tables[0] ;
+                    cboInvoiceNumber.DataTextField = "Invoicenumber";
+                    cboInvoiceNumber.DataValueField = "InvoiceID";
+                    cboInvoiceNumber.DataTextField = "Invoicenumber";
+                   
+                    cboInvoiceNumber.DataBind();
+                    cboInvoiceNumber.Items.Insert(0, new ListItem(String.Empty, String.Empty));
+                    cboInvoiceNumber.SelectedIndex = 0;
                     if (ds.Tables[0].Rows.Count > 0)
                     {
                         lblSumAmount.Text = string.Format("{0:#,0.00}", (ds.Tables[0].AsEnumerable().Sum(r => r.Field<decimal>("Invoiceamount"))));
@@ -76,6 +84,7 @@ namespace Nordfin
                             lblEmail.Text = dtResult.Rows[0].ItemArray[6].ToString();
                             lblPhone.Text = dtResult.Rows[0].ItemArray[7].ToString();
                             lblCustomerNumber.Text = dtResult.Rows[0].ItemArray[8].ToString();
+                            hdnCustomerType.Value = dtResult.Rows[0].ItemArray[17].ToString();
                             txtCustomerID.Text = Convert.ToString(dtResult.Rows[0].Field<int>("Customerid"));
 
 
@@ -196,13 +205,11 @@ namespace Nordfin
                     grdCustomer.DataBind();
                 }
 
-                if (ClientSession.AllowManualInvoice)
-                {
-                    ScriptManager.RegisterStartupScript(this, this.GetType(), "showManualInvoiceButton", "$('#divManualInvoiceRow').show(); $('#divManualInvoice').show();", true);
-                }
-
             }
-
+            if (ClientSession.AllowManualInvoice == 1)
+            {
+                ScriptManager.RegisterStartupScript(this, this.GetType(), "showManualInvoiceButton", "$('#divManualInvoiceRow').show(); $('#divManualInvoice').show();", true);
+            }
             pdfInvoices.Src = "";
             pdfRemind.Src = "";
             pdfDC.Src = "";
@@ -219,6 +226,8 @@ namespace Nordfin
         {
             EmailFunctions emailFunctions = new EmailFunctions();
             string PDFArchive = "";
+            if (chkInvoices.Attributes["EvryArchive"] != null)
+                chkInvoices.Attributes.Remove("EvryArchive");
             btnDownload.CommandArgument = ((Button)sender).CommandArgument.Trim().Replace("INV-", "");
             btnEmail.Attributes["custInvoice"] = ((Button)sender).Attributes["custInvoice"].ToString();
             btnEmail.Attributes["combineInvoice"] = ((Button)sender).Attributes["combineInvoice"].ToString();
@@ -230,11 +239,18 @@ namespace Nordfin
             chkInvoices.Checked = chkInvoices.Visible;
             chkDC.Checked = chkDC.Visible;
             chkRemind.Checked = chkRemind.Visible;
+            bool bMultidownlaod = false;
             if (!chkInvoices.Visible)
+            {
                 PDFArchive = hdnArchiveLink.Value + btnDownload.CommandArgument;
+                //bMultidownlaod = (chkDC.Visible || chkRemind.Visible) ? true : false;
+                chkInvoices.Attributes.Add("EvryArchive", "true");
+                chkInvoices.Checked = true;
+                chkInvoices.Visible = true;
+            }
 
-            ScriptManager.RegisterStartupScript(this, this.GetType(), "ExportClick", "ExportClick(0,'" + PDFArchive + "');", true);
-          
+            ScriptManager.RegisterStartupScript(this, this.GetType(), "ExportClick", "ExportClick(0,'" + PDFArchive + "','','" + bMultidownlaod + "');", true);
+
         }
 
 
@@ -565,10 +581,17 @@ namespace Nordfin
 
         protected void grdCustomer_OnRowDataBound(object sender, GridViewRowEventArgs e)
         {
-            if (e.Row.RowType == DataControlRowType.DataRow)
+            if (e.Row.RowIndex >= 0)
             {
-                e.Row.Attributes["onclick"] = Page.ClientScript.GetPostBackClientHyperlink(grdCustomer, "Select$" + e.Row.RowIndex);
-                e.Row.ToolTip = "click to create Credit Invoice";
+                LinkButton linkButton = (e.Row.FindControl("gridLinkCollectionSatatus") as LinkButton);
+                if (linkButton.Text.ToUpper() == "EXT")
+                {
+                    linkButton.CssClass = "linkcss";
+
+                    linkButton.OnClientClick = "return ParentModal(this);";
+                }
+                else
+                    linkButton.OnClientClick = "return false";
             }
         }
 
@@ -604,36 +627,58 @@ namespace Nordfin
             string FileStartName = hdnFileName.Value;
             string InvoiceNumber = ((Button)sender).CommandArgument.Trim();
             EmailFunctions emailFunctions = new EmailFunctions();
-            if (chkInvoices.Checked && chkInvoices.Visible)
+            bool isMultidownload = false;
+            string PDFArchive = "";
+            if (chkInvoices.Attributes["EvryArchive"] != null && chkInvoices.Attributes["EvryArchive"] == "true")
+            {
+                PDFArchive = hdnArchiveLink.Value + btnDownload.CommandArgument;
+                isMultidownload = true;
+            }
+            else if (chkInvoices.Checked && chkInvoices.Visible)
             {
                 string sFileName = emailFunctions.GetFileName(FileStartName, InvoiceNumber, "", out bool bExist);
                 if (bExist)
-                    pdfInvoices.Src = "frmPdfMultiDownload.aspx?FileName=" + sFileName;
+                    pdfInvoices.Src = "frmPdfMultiDownload.aspx?FileName=" + Server.UrlEncode(sFileName); 
             }
             if (chkRemind.Checked && chkRemind.Visible)
             {
                 string sFileName = emailFunctions.GetFileName(FileStartName, InvoiceNumber, "Rem", out bool bExist);
                 if (bExist)
-                    pdfRemind.Src = "frmPdfMultiDownload.aspx?FileName=" + sFileName;
+                    pdfRemind.Src = "frmPdfMultiDownload.aspx?FileName=" + Server.UrlEncode(sFileName);
             }
             if (chkDC.Checked && chkDC.Visible)
             {
                 string sFileName = emailFunctions.GetFileName(FileStartName, InvoiceNumber, "DC", out bool bExist);
                 if (bExist)
-                    pdfDC.Src = "frmPdfMultiDownload.aspx?FileName=" + sFileName;
+                    pdfDC.Src = "frmPdfMultiDownload.aspx?FileName=" + Server.UrlEncode(sFileName);
             }
 
-            ScriptManager.RegisterStartupScript(this, this.GetType(), "ExportClick", "ExportClick(0);", true);
+            ScriptManager.RegisterStartupScript(this, this.GetType(), "ExportClick", "ExportClick(0,'" + PDFArchive + "','','" + isMultidownload + "');", true);
         }
 
 
         protected void btnEmail_Click(object sender, EventArgs e)
         {
+            if (chkInvoices.Attributes["EvryArchive"] != null && chkInvoices.Attributes["EvryArchive"] == "true" && !chkDC.Checked && !chkRemind.Checked)
+            {
+                ScriptManager.RegisterStartupScript(this, this.GetType(), "ModalBackdrop", "ModalBackdrop();", true);
+                return;
+
+            }
             IInvoicesPresentationBusinessLayer objInvoicesLayer = new InvoicesBusinessLayer();
             string scustEmail = objInvoicesLayer.GetCustInvoiceEmailID(ClientSession.ClientID, btnEmail.Attributes["custInvoice"].ToString());
             txtCustEmail.Text = scustEmail;
-            txtEmailHeader.Text = ClientSession.ClientName + "; Invoice" + " " + btnEmail.Attributes["combineInvoice"];
-            txtEmailBody.Text = "Hei, Hi, Hej, Hallo!" + "\n\n" + "Your invoice copy has been attached" + "\n\n" + "Have a great day :-)" + "\n\n" + "Best Regards," + "\n" + ClientSession.ClientName;
+
+            if (ClientSession.ClientLand.ToUpper() == "FI")
+            {
+                txtEmailHeader.Text = ClientSession.ClientName + "; Lasku" + " " + btnEmail.Attributes["combineInvoice"];
+                txtEmailBody.Text = "Hei," + "\n\n" + "Liitteenä laskunne." + "\n\n" + "Hyvää päivänjatkoa!" + "\n\n" + "Ystävällisin terveisin," + "\n" + ClientSession.ClientName;
+            }
+            else
+            {
+                txtEmailHeader.Text = ClientSession.ClientName + "; Invoice" + " " + btnEmail.Attributes["combineInvoice"];
+                txtEmailBody.Text = "Hei, Hi, Hej, Hallo!" + "\n\n" + "Your invoice copy has been attached" + "\n\n" + "Have a great day :-)" + "\n\n" + "Best Regards," + "\n" + ClientSession.ClientName;
+            }
             ScriptManager.RegisterStartupScript(this, this.GetType(), "ExportClick", "ExportClick(1);", true);
         }
 
@@ -676,5 +721,33 @@ namespace Nordfin
       
 
 
+
+        protected void btnNotes_Click(object sender, EventArgs e)
+        {
+            Notes objNotes = new Notes
+            {
+                InvoiceID = Convert.ToInt32(cboInvoiceNumber.SelectedItem.Value),
+                InvoiceNumber = cboInvoiceNumber.SelectedItem.Text,
+                CustomerID = lblCustomerNumber.Text,
+                UserID = Convert.ToInt32(ClientSession.UserID),
+                ClientID = Convert.ToInt32(ClientSession.ClientID),
+                UserName = ClientSession.UserName,
+                NoteText = txtNotes.Text
+            };
+
+            IInvoicesPresentationBusinessLayer objInvoicesLayer = new InvoicesBusinessLayer();
+       
+            var objNotesInformation = objInvoicesLayer.InsertInvoiceInfo(objNotes);
+
+            grdNotes.DataSource = objNotesInformation;
+            grdNotes.DataBind();
+            cboInvoiceNumber.SelectedIndex = 0;
+            txtNotes.Text = "";
+        }
+
+        protected void grdInvoices_RowDataBound(object sender, GridViewRowEventArgs e)
+        {
+           
+        }
     }
 }

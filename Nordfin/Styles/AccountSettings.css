@@ -144,6 +144,7 @@ body ::-webkit-scrollbar-thumb {
 .customerdivHeading {
     font-size: x-small;
     color: #A9BFD5;
+    text-transform:uppercase;
 }
 
 .divTopHeading {
@@ -161,7 +162,19 @@ body ::-webkit-scrollbar-thumb {
 }
 
 
-
+.panelButton {
+    background-color: transparent;
+    border: 1px solid #3DADC5;
+    color: #3DADC5;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    width: 100%;
+    padding-left: 15px;
+    font-size: 10px;
+    height: 90%;
+    line-height: 25px
+}
 
 
 
@@ -448,3 +461,7 @@ body ::-webkit-scrollbar-thumb {
     width: 93.5%;
     display: block;
 }
+
+
+
+

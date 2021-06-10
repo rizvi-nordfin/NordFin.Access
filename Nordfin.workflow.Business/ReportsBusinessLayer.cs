@@ -35,5 +35,19 @@ namespace Nordfin.workflow.Business
             return objReportlist.GetContestedReport(ClientID);
         }
 
+        DataSet IReportsPresentationBusinessLayer.GetStoppedReport(string ClientID)
+        {
+            return objReportlist.GetStoppedReport(ClientID);
+        }
+
+        DataSet IReportsPresentationBusinessLayer.GetTransactionReport(string ClientID, string sFromDate, string sToDate)
+        {
+            return objReportlist.GetTransactionReport(ClientID, sFromDate, sToDate);
+        }
+        DataSet IReportsPresentationBusinessLayer.GetInvoicesBatchesReport(string ClientID)
+        {
+            return objReportlist.GetInvoicesBatchesReport(ClientID);
+        }
+
     }
 }

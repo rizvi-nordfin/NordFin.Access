@@ -42,8 +42,10 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="IAccountSettingsPresentationBusinessLayer.cs" />
+    <Compile Include="IApiOutgoingPresentationBusinessLayer.cs" />
     <Compile Include="IBatchPresentationBusinessLayer.cs" />
     <Compile Include="IClientInformationPresentationBusinessLayer.cs" />
+    <Compile Include="IDebtCollectionPresentationBusinessLayer.cs" />
     <Compile Include="IInvoiceDashboardPresentationBusinessLayer.cs" />
     <Compile Include="IManualInvoicePresentationBusinessLayer.cs" />
     <Compile Include="IPaymentInformationPresentationBusinessLayer.cs" />

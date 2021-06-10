@@ -34,6 +34,9 @@
     <Reference Include="Dapper, Version=2.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\Dapper.2.0.78\lib\net461\Dapper.dll</HintPath>
     </Reference>
+    <Reference Include="Dapper.Contrib, Version=2.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Dapper.Contrib.2.0.78\lib\net461\Dapper.Contrib.dll</HintPath>
+    </Reference>
     <Reference Include="Microsoft.Practices.EnterpriseLibrary.Common, Version=3.1.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
       <HintPath>..\packages\Microsoft.Practices.EnterpriseLibrary.Common.dll.3.1.0\lib\2.0\Microsoft.Practices.EnterpriseLibrary.Common.dll</HintPath>
     </Reference>
@@ -55,8 +58,10 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AccountSettingsDataAccessLayer.cs" />
+    <Compile Include="ApiOutgoingDataAccessLayer.cs" />
     <Compile Include="BatchesDataAccessLayer.cs" />
     <Compile Include="ClientInformationDataAccessLayer.cs" />
+    <Compile Include="DebtCollectionDataAccessLayer.cs" />
     <Compile Include="InvoiceDashboardDataAccessLayer.cs" />
     <Compile Include="InvoicesDataAccessLayer.cs" />
     <Compile Include="ManualInvoiceDataAccessLayer.cs" />

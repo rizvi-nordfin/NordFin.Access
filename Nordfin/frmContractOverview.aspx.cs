@@ -1,8 +1,10 @@
-﻿using Nordfin.workflow.BusinessLayer;
+﻿using ClosedXML.Excel;
+using Nordfin.workflow.BusinessLayer;
 using Nordfin.workflow.PresentationBusinessLayer;
 using System;
 using System.Collections.Generic;
 using System.Data;
+using System.IO;
 using System.Linq;
 using System.Web;
 using System.Web.UI;
@@ -72,6 +74,47 @@ namespace Nordfin
             Response.Redirect("frmCustomer.aspx");
         }
 
-        
+        protected void btnExport_Click(object sender, EventArgs e)
+        {
+            HttpResponse response = HttpContext.Current.Response;
+            response.Clear();
+            response.Charset = "";
+            DataTable dataTable = (DataTable)Session["ContractGrid"];
+            foreach (DataColumn column in dataTable.Columns)
+                column.ColumnName = column.ColumnName.ToUpper();
+            try
+
+            {
+
+                using (XLWorkbook wb = new XLWorkbook())
+                {
+
+                    var ws = wb.Worksheets.Add(dataTable);
+
+                    Response.Clear();
+                    Response.Buffer = true;
+                    Response.Charset = "";
+                    string filename = "Contracts" + DateTime.Now.ToString("yyyy-MM-dd hh:mm tt") + ".xlsx";
+                    //ws.Column(1).Delete();
+                    //ws.Column(1).Delete();
+                    //ws.Column(13).Delete();
+                    //ws.Column(14).Delete();
+                    //ws.Column(13).Delete();
+                    Response.ContentType = "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet";
+                    Response.AddHeader("Content-Disposition", "attachment;filename=\"" + filename + "\"");
+                    using (MemoryStream MyMemoryStream = new MemoryStream())
+                    {
+                        wb.SaveAs(MyMemoryStream);
+                        MyMemoryStream.WriteTo(Response.OutputStream);
+                        Response.Flush();
+                        Response.End();
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                //catch the issue
+            }
+        }
     }
 }

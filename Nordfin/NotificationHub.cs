@@ -15,7 +15,8 @@ namespace Nordfin
 
         public void Join(string ClientID)
         {
-            Groups.Add(Context.ConnectionId, ClientID);
+            if (ClientID != null)
+                Groups.Add(Context.ConnectionId, ClientID);
         }
     }
 }

@@ -46,11 +46,11 @@
 
                                 <asp:Label CssClass="customerdivText"  runat="server" ID="lblFirstName"></asp:Label>
 
-                                  <hr class="divHrLine" />
+                             
                             </div>
 
                            <div class="row innerDiv col-md-12 mt-2 m-0 heightCustomer">
-                               <div class="col-md-6" data-ng-repeat="telson in telsonData|limitTo:4">
+                               <div class="col-md-6" data-ng-repeat="telson in telsonData|limitTo:2">
 
                                     <div class="revenue">
 
@@ -58,6 +58,18 @@
                                             <asp:Label Text="{{telson.ColumnName}}" class="revenuelabelHeader" runat="server" /></div>
                                         <div>
                                             <asp:Label ID="lblTotalSentoutAmount" class="revenuelabelBody" Text="{{telson.RowValue}}{{telson.SpecialCharc}}" runat="server" /></div>
+
+                                    </div>
+                                  
+                               </div>
+                               <div class="col-md-6" data-ng-repeat="telson in telsonData|limitTo:2:3">
+
+                                    <div class="revenue">
+
+                                        <div>
+                                            <asp:Label Text="{{telson.ColumnName}}" class="revenuelabelHeader" runat="server" /></div>
+                                        <div>
+                                            <asp:Label ID="Label2" class="revenuelabelBody" Text="{{telson.RowValue}}{{telson.SpecialCharc}}" runat="server" /></div>
 
                                     </div>
                                   
@@ -73,7 +85,8 @@
                                         <div>
                                             <asp:Label Text="{{telson.ColumnName}}" class="revenuelabelHeader" runat="server" /></div>
                                         <div>
-                                            <asp:Label ID="Label1" class="revenuelabelBody" Text="{{telson.RowValue}}{{telson.SpecialCharc}}" runat="server" /></div>
+                                            <asp:Label ID="Label1" class="revenuelabelBody" Text="{{telson.ColorCode}}{{telson.RowValue}}{{telson.SpecialCharc}}" runat="server" /></div>
+                                        
 
                                     </div>
                                   
@@ -249,7 +262,7 @@
 
 
                                
-                                          <div data-ng-repeat="telson in telsonData|limitTo:4:31">
+                                          <div data-ng-repeat="telson in telsonData|limitTo:5:31">
                             <div data-ng-if="telson.ColumnName!='None'"  data-ng-style="telson.ColorCode != '' && {'background-color':'{{telson.ColorCode}}'} || {'background-color': '#38445D'}"
                                 style="margin-left: -18px; ">
                                 <div class="col-md-12 container"  style="text-align: center;height:72px;">

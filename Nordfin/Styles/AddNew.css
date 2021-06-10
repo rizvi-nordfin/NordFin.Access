@@ -1,0 +1,185 @@
+﻿.reportsCardContainer {
+    padding-left: 0;
+    padding-right: 10px;
+    padding-bottom: 10px;
+}
+
+.reportsCard {
+    background-color: #475672;
+    padding: 0 !important;
+    position: relative;
+    text-align: center;
+    height: 300px;
+    padding-bottom: 85px !important;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.info-icon {
+    background-image: url('../Images/info-icon.svg');
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center center;
+    width: 20px;
+    height: 20px;
+    color: #3DADC5;
+    position: absolute;
+    top: 10px;
+    right: 10px;
+}
+
+
+.reportsCard img {
+    width: 120px;
+    height: auto;
+}
+
+#tdAddNew {
+    background-color: rgb(44, 56, 80);
+}
+
+.reportsCardCaption {
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    font-size: 16px;
+    text-align: center;
+    color: #a9bed8;
+    margin-top: 10px;
+}
+
+
+.reportsCardBottom {
+    background-color: #536381;
+    text-align: center;
+    padding-top: 16px;
+    padding-bottom: 16px;
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    width: 100%;
+}
+
+input[type="submit"].reportsCardButton {
+    display: inline-block;
+    border: 2px solid #3DADC5;
+    background-color: #3DADC5;
+    color: #fff;
+    width: 140px;
+}
+
+    input[type="submit"].reportsCardButton:hover {
+        background-color: transparent;
+        border: 2px solid #3DADC5;
+    }
+
+    input[type="submit"].reportsCardButton:focus {
+        outline: 0;
+        box-shadow: none;
+    }
+
+.textboxColor, .textboxColor:focus {
+    background-color: #475672 !important;
+    border: 1px solid #475672 !important;
+    color: #a9bed8;
+}
+
+.modalbutton {
+    width: 100px;
+    text-transform: uppercase;
+    background-color: #232D41;
+    border: 1px solid #3DADC5;
+    height: 35px;
+    line-height: 29px;
+    color: #3DADC5;
+    display: inline-block;
+    text-transform: uppercase;
+    letter-spacing: 1.5px;
+    font-size: 11px;
+    margin: 0;
+    padding: 0px;
+    border-radius: 0;
+    box-shadow: none;
+    outline: 0;
+    background-clip: border-box;
+    margin: 20px;
+    margin-top: 25px;
+}
+
+.modalcloseButton {
+    background-color: transparent;
+    border: none;
+    color: #ffffff;
+    display: block;
+    width: 30px;
+    height: 30px;
+    line-height: 27px;
+    font-size: 16px;
+    position: absolute;
+    top: 1px;
+    right: 2px;
+    padding: 0;
+    z-index: 100;
+}
+
+.modalbutton:hover {
+    background-color: #3DADC5;
+    color: #fff;
+}
+
+.newCustomer {
+    height: 40px;
+    text-transform: uppercase;
+    letter-spacing: .5px;
+    font-size: 9px;
+    background-color: #2C3850;
+    border: 1px solid #3DADC5;
+    color: #3DADC5;
+    padding: 0px;
+    width: 75px;
+    float: right;
+}
+
+.errorModel {
+    border-color: #2C3850;
+    box-shadow: 0 0 0 1px #2C3850;
+    top: 350px;
+    background: none;
+    width: 85% !important;
+    left: 50px;
+}
+
+.addCustomerLabel {
+    color: #A9BFD5;
+    text-transform: uppercase;
+    font-size: 12px;
+}
+
+.addCustomerRowHeight {
+    height: 80px;
+}
+
+.summaryRow {
+    margin-top: -3px;
+}
+
+.textboxModalColor, .textboxModalColor:focus {
+    background-color: #2c3850 !important;
+    border-color: #2c3850 !important;
+    color: #a9bed8 !important;
+    width: 100%;
+}
+
+.custom-control-input:checked ~ .custom-control-label::before {
+    background-color: #3DADC5;
+    border: 1px solid #3DADC5;
+    color: #a9bed8;
+}
+
+input[type=number]::-webkit-inner-spin-button,
+input[type=number]::-webkit-outer-spin-button {
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    margin: 0;
+}

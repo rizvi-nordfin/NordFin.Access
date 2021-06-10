@@ -1,4 +1,6 @@
-﻿using System;
+﻿using Newtonsoft.Json.Linq;
+using Nordfin.workflow.Entity;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text.RegularExpressions;
@@ -13,6 +15,7 @@ namespace Nordfin
             switch(country)
             {
                 case "Sweden":
+                case "Sverige":
                     return BuildOcrForSweden(invoice, ocrLength, prefix);
                 case "Finland":
                     return BuildOcrForFinland(invoice, prefix);
@@ -26,6 +29,7 @@ namespace Nordfin
             switch (country)
             {
                 case "Sweden":
+                case "Sverige":
                     return CalculateCheckSumSweden(inputString);
                 case "Finland":
                     return CalculateCheckSumFinland(inputString);
@@ -182,6 +186,104 @@ namespace Nordfin
                 n3 += n2;
             }
             return newPath;
+        }
+
+        public static Column ConstructColumn(string value, string index)
+        {
+            return new Column
+            {
+                Index = index?.Trim(),
+                Col = value?.Trim(),
+            };
+        }
+
+        public static Row ConstructRow(string type = null)
+        {
+            return new Row
+            {
+                Type = type?.Trim(),
+            };
+        }
+
+        public static Row ConstructHeaderRow(IEnumerable<TransformationHeader> headerElements)
+        {
+            int index = 1;
+            Row headerRow = ConstructRow("Header");
+            foreach (var header in headerElements)
+            {
+                headerRow.Col.Add(ConstructColumn(header.HeaderName, (index++).ToString()));
+            }
+
+            return headerRow;
+        }
+
+        public static InvoiceFile ConstructInvoiceFile(Inv invoice, Client client, List<ManualInvoiceMapping> manualInvoiceMappings, List<TransformationHeader> transformationHeaders)
+        {
+            var invoiceFile = new InvoiceFile();
+            var invoiceText = new InvoiceText();
+            var invoiceDetail = new InvoiceDetail();
+            invoiceFile.Invoices.Add(invoice);
+            invoiceFile.Client = client;
+            var jsonString = Newtonsoft.Json.JsonConvert.SerializeObject(invoiceFile);
+            var jsonTokens = JToken.Parse(jsonString);
+            var invoiceTextMapping = manualInvoiceMappings.Where(h => h.SectionName == "InvoiceText").Select(h => h);
+            var invoiceDetailMapping = manualInvoiceMappings.Where(h => h.SectionName == "InvoiceDetail").Select(h => h);
+            var parsing = manualInvoiceMappings.FirstOrDefault(h => h.SectionName == "Parsing" && h.MappingValue == "UseInvoiceRow")?.OutputValue;
+            bool.TryParse(parsing, out bool useInvoiceRow);
+
+            if(invoiceDetailMapping.Any())
+            {
+                invoiceDetail.Rows.AddRange(CreateTransformationRows(jsonTokens, invoiceDetailMapping));
+            }
+
+            if (!useInvoiceRow)
+            {
+                invoiceText.Rows.AddRange(CreateTransformationRows(jsonTokens, invoiceTextMapping));
+            }
+            else
+            {
+                var headers = transformationHeaders.Where(h => h.SectionName == "InvoiceText").Select(h => h);
+                invoiceText.Rows.Add(ConstructHeaderRow(headers));
+
+                var rowId = 0;
+                foreach (var invoiceRow in invoice.InvoiceRows)
+                {
+                    var row = ConstructRow();
+                    var index = 1;
+                    foreach (var item in invoiceTextMapping)
+                    {
+                        var manualTag = item.MappingValue.Replace("[x]", "[" + rowId.ToString() + "]");
+                        var tokenValue = jsonTokens.SelectToken(manualTag)?.ToString();
+                        var value = tokenValue ?? item.AdditionalText;
+                        row.Col.Add(ConstructColumn(value, index.ToString()));
+                        index++;
+                    }
+
+                    invoiceText.Rows.Add(row);
+                    rowId++;
+                }
+            }
+
+            invoiceText.Columns = invoiceText.Rows.Max(r => r.Col.Count);
+            invoice.Print.InvoiceText = invoiceText;
+
+            invoiceDetail.Columns = invoiceDetail.Rows.Any()? invoiceDetail.Rows.Max(r => r.Col.Count) : 0;
+            invoice.Print.InvoiceDetail = invoiceDetail;
+            return invoiceFile;
+        }
+
+        private static List<Row> CreateTransformationRows(JToken jToken, IEnumerable<ManualInvoiceMapping> mappings)
+        {
+            var rowList = new List<Row>();
+            foreach (var item in mappings)
+            {
+                var row = item.MappingValue == "Header" ? ConstructRow("Header") : ConstructRow();
+                row.Col.Add(ConstructColumn(item.OutputValue, "1"));
+                var value = jToken.SelectToken(item.MappingValue)?.ToString() + " " + item.AdditionalText;
+                row.Col.Add(ConstructColumn(value, "2"));
+                rowList.Add(row);
+            }
+            return rowList;
         }
     }
 }

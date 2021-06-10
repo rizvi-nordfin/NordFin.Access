@@ -53,7 +53,7 @@ namespace Nordfin
                     pnlsideMenuButton.Visible = false;
                     btnStatistics.Visible = false;
                     imgStatistics.Visible = false;
-                    pnlContractsMenuButton.Visible = false;
+                   // pnlContractsMenuButton.Visible = false;
                 }
 
                 if (ClientSession.Admin != "0" && ClientSession.Admin != "1")
@@ -64,20 +64,26 @@ namespace Nordfin
                     pnlTrafficDetails.Visible = false;
                     pnlNotification.Visible = false;
                     pnlTeleson.Visible = false;
-                    pnlSideMenuContracts.Style.Add("top", "551px !important");
+                    pnlTelecom.Visible = false;
+
+
+                    pnlSideMenuContracts.CssClass = "sideContractMenuStatistics pnlSideMenuContractsTop hidden";//.Add("top", "551px !important");
 
                 }
-                else
+
+                if(ClientSession.AllowManualInvoice == 1)
                 {
-
-                    if (Contracts == 0)
-                    {
-                        pnlTeleson.Visible = false;
-                        pnlContractsMenuButton.Visible = false;
-                    }
-                  
-                       
+                    pnlSideMenuAdd.Visible = true;
                 }
+              
+
+                if (Contracts == 0)
+                {
+                    pnlTeleson.Visible = false;
+                    pnlContractsMenuButton.Visible = false;
+                }
+                  
+             
 
                 hdnClientID.Value = ClientSession.ClientID;
             }
@@ -140,6 +146,12 @@ namespace Nordfin
         {
 
             Response.Redirect("frmReports.aspx");
+        }
+
+        protected void btnAddNew_ServerClick(object sender, EventArgs e)
+        {
+
+            Response.Redirect("frmAddNew.aspx");
         }
 
         protected void lstStatistics_SelectedIndexChanged(object sender, EventArgs e)
@@ -211,6 +223,11 @@ namespace Nordfin
             }
         }
 
+       
 
+        protected void btnCreditCheck_ServerClick(object sender, EventArgs e)
+        {
+            Response.Redirect("frmCreditCheck.aspx");
+        }
     }
 }

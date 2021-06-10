@@ -8,8 +8,8 @@
     <link href="Styles/ManualInvoice.css?version=<%=ConfigurationManager.AppSettings["VersionConfiguration"].ToString() %>"" rel="stylesheet" />
     <script src="Scripts/jsManualInvoice.js?version=<%=ConfigurationManager.AppSettings["VersionConfiguration"].ToString() %>""></script>
     <script src="Scripts/jsCustomer.js?version=<%=ConfigurationManager.AppSettings["VersionConfiguration"].ToString() %>"></script>
-    
- 
+     <script src="Scripts/jsPsInformationModal.js?version=<%=ConfigurationManager.AppSettings["VersionConfiguration"].ToString() %>"></script>
+
     <div class="dashboardContainer">
         <div class="container-fluid">
             <div class="dashboardHeader">
@@ -189,6 +189,13 @@
                                     </asp:Panel>
                                 </div>
                             </div>
+                              <div class="row" >
+                                <div class="col-lg-12 actionButtonColumn" id="divNotes">
+                                    <asp:Panel runat="server" ID="Panel1" Visible="true" CssClass="updateInfoButtonContainer">
+                                        <asp:Button Text="Make a Note" class="button panelButton form-control" runat="server" OnClientClick="return NotesPage();" Style="padding-left: 10px;" />
+                                    </asp:Panel>
+                                </div>
+                            </div>
                         </div>
                     </div>
 
@@ -196,8 +203,8 @@
 
                           <asp:UpdatePanel runat="server" ID="UpdatePanel1" >
                 <ContentTemplate>
-                        <asp:GridView ID="grdCustomer" runat="server" EmptyDataRowStyle-CssClass="Emptyrow" AllowSorting="true" OnSorting="grdCustomer_Sorting" AutoGenerateColumns="False" ViewStateMode="Enabled" Visible="true" 
-                            Style="color: white; font-size: small; margin-top: -4px;" ShowHeaderWhenEmpty="true" CssClass="table" OnRowDataBound="grdCustomer_OnRowDataBound" SelectedRowStyle-BackColor="#475672">
+                        <asp:GridView ID="grdCustomer" runat="server" EmptyDataRowStyle-CssClass="Emptyrow" AllowSorting="true" OnRowDataBound="grdCustomer_OnRowDataBound" OnSorting="grdCustomer_Sorting" AutoGenerateColumns="False" ViewStateMode="Enabled" Visible="true" 
+                            Style="color: white; font-size: small; margin-top: -4px;" ShowHeaderWhenEmpty="true" CssClass="table"  SelectedRowStyle-BackColor="#475672">
                             <HeaderStyle BackColor="#475672" />
                             <Columns>
                                 <asp:TemplateField ItemStyle-CssClass="labelcolor itemalign" HeaderText="INVOICE" SortExpression="Invoicenumber" HeaderStyle-CssClass="itemalign">
@@ -219,7 +226,14 @@
                                 <asp:BoundField DataField="Remainingamount" DataFormatString="{0:#,0.00}" HeaderStyle-CssClass="itemalign" ItemStyle-CssClass="itemalign" HeaderText="REMAIN" SortExpression="Remainingamount" />
 
                                 <asp:BoundField DataField="TotalRemaining" DataFormatString="{0:#,0.00}" HeaderStyle-CssClass="itemalign" ItemStyle-CssClass="itemalign" HeaderText="TOTAL REMAIN" SortExpression="TotalRemaining" />
-                                <asp:BoundField DataField="Collectionstatus" HeaderStyle-CssClass="itemalign" ItemStyle-CssClass="itemalign" HeaderText="Collection Status" SortExpression="Collectionstatus" />
+                                <asp:TemplateField ItemStyle-CssClass="itemalign" HeaderText="Collection Status" SortExpression="Collectionstatus" HeaderStyle-CssClass="itemalign">
+                                    <ItemTemplate>
+
+                                        <asp:LinkButton CssClass="linkNormalcss" Text='<%# Bind("Collectionstatus") %>' CommandName="Sort" ID="gridLinkCollectionSatatus" 
+                                           invoice='<%# Eval("Invoicenumber") %>'   runat="server" />
+                                    </ItemTemplate>
+
+                                </asp:TemplateField>
 
                                 <asp:BoundField DataField="Paymentreference" HeaderStyle-CssClass="itemalign" ItemStyle-CssClass="itemalign" HeaderText="PAY REF" SortExpression="Paymentreference" />
                                 <asp:BoundField DataField="Overpayment" DataFormatString="{0:#,0.00}" HeaderStyle-CssClass="itemalign" ItemStyle-CssClass="itemalign" HeaderText="OVER PAID" SortExpression="Overpayment" />
@@ -285,7 +299,7 @@
                                             </asp:Panel>
                                             <asp:Panel runat="server" ID="pnlDC">
                                                 <asp:CheckBox ID="chkDC" AutoPostBack="false" Checked="true" Style="margin-top: 5px;" CssClass="checkbox"
-                                                    runat="server" Text="Debt Collection Letter"></asp:CheckBox>
+                                                    runat="server" Text="Debt Collection"></asp:CheckBox>
                                             </asp:Panel>
                                         </div>
 
@@ -469,7 +483,7 @@
                                     <asp:BoundField DataField="NoteDate" HeaderStyle-CssClass="Notesalign" ItemStyle-CssClass="Notesalign" HeaderText="DATE" SortExpression="NoteDate" />
 
                                     <asp:BoundField DataField="UserName" HeaderStyle-CssClass="Notesalign" ItemStyle-CssClass="Notesalign" HeaderText="USER" SortExpression="UserName" />
-                                    <asp:BoundField DataField="NoteText" HeaderStyle-CssClass="Notesalign" ItemStyle-CssClass="Notesalign" HeaderText="TEXT" SortExpression="NoteText" />
+                                    <asp:BoundField DataField="NoteText" HeaderStyle-CssClass="Notesalign" ItemStyle-CssClass="Notesalign" HeaderText="Information" SortExpression="NoteText" />
                                 </Columns>
                                 <EmptyDataTemplate>No Record Available</EmptyDataTemplate>
                             </asp:GridView>
@@ -501,7 +515,7 @@
                         <div>
                             <span id="spnBody" style="color: #A9BFD5;">
 
-                                <asp:GridView ID="grdInvoiceRemaining" runat="server" EmptyDataRowStyle-CssClass="Emptyrow" AutoGenerateColumns="False" ViewStateMode="Enabled" Visible="true" Style="color: white; font-size: small;" ShowHeaderWhenEmpty="true" CssClass="table">
+                                <asp:GridView ID="grdInvoiceRemaining" runat="server" EmptyDataRowStyle-CssClass="Emptyrow"  AutoGenerateColumns="False" ViewStateMode="Enabled" Visible="true" Style="color: white; font-size: small;" ShowHeaderWhenEmpty="true" CssClass="table">
                                     <HeaderStyle BackColor="#475672" />
                                     <Columns>
 
@@ -742,6 +756,57 @@
         </div>
     </div>
 
+
+     <div class="modal" id="mdlNotes" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                        <div class="modal-dialog" role="document">
+                            <div class="modal-content" style="top: 100px; background: none; border: none;">
+                                <div class="modal-header dashboardHeadline" style="background-color: #323e53; color: #fff; font-size: 16px;">
+                                    <h5 class="modal-title modalTextcolor dashboardHeadlineModal" id="NotesLabel">Notes</h5>
+                                    <button type="button" class="modalcloseButton" data-dismiss="modal" aria-label="Close" style="top: 35px; right: 20px;">
+                                        <span aria-hidden="true">✕</span>
+                                    </button>
+                                </div>
+                                <div class="modal-body" style="background-color: #323e53; color: #fff;">
+
+
+                               
+
+                                    <div class="form-group">
+                                        <label>
+                                            Invoice Number
+                                    <asp:DropDownList ID="cboInvoiceNumber" runat="server" autocomplete="nope" CssClass="form-control textboxModalColor"></asp:DropDownList>
+                                        </label>
+
+
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label>
+                                            Notes
+                                    <asp:TextBox TextMode="MultiLine" ID="txtNotes" runat="server" autocomplete="nope" CssClass="form-control textboxModalColor textareaHeight" onpaste="return maxLengthPaste(this, 500)" MaxLength="500" style="height:100px !important;"></asp:TextBox>
+                                        </label>
+                                        
+                                            <div style="text-align: right;font-size: small;color:#A9BFD5"><span>Max 500</span></div>
+
+
+                                    </div>
+
+                                    <div class="form-group">
+                                        <asp:Button Text="Submit" class="button updateInfoButton form-control" runat="server" ID="btnNotes"  OnClick="btnNotes_Click" Width="128px" />
+
+
+                                    </div>
+
+                                 
+                                </div>
+                             
+
+
+
+                            </div>
+                        </div>
+                    </div>
+
    
     
                  
@@ -749,6 +814,7 @@
     <asp:HiddenField ID="hdnEmailID" runat="server" />
     <asp:HiddenField ID="hdnMatch" runat="server" Value="true" />
      <asp:HiddenField ID="hdnAdmin" runat="server" Value="true" />
+    <asp:HiddenField ID="hdnCustomerType" runat="server" />
     <asp:TextBox ID="txtCustomerID" runat="server" autocomplete="off" Visible="false"></asp:TextBox>
 
 </asp:Content>

@@ -12,7 +12,11 @@ namespace Nordfin.workflow.PresentationBusinessLayer
         int UpdateCustomerInfo(CustomerInfo customerInfo, string ClientID);
         IList<MatchInvoices> GetMatchedInvoices(string NegativeInvoices, string PositiveInvoices, string UserID);
         DataSet getExportdetails(string custorinvoiceNum, string clientID);
+        IList<Notes> InsertInvoiceInfo(Notes notes);
+
+        bool AddNewCustomerInfo(CustomerInfo customerInfo);
         int setEmailSentAccessLog(AccessLog accessLog);
 
+        Dictionary<string, string> CheckCustomerAlreadyExists(string customerNumber, string personalNumber, int clientId);
     }
 }

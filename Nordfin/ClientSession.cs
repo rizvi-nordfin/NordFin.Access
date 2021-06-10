@@ -21,6 +21,7 @@ namespace Nordfin
         private const string clientLand = "ClientClientLand";
         private const string notesCount = "ClientNotesCount";
         private const string allowManualInvoice = "AllowManualInvoice";
+        private const string creditUser = "ClientCreditUser";
         private const string archive = "ClientArchive";
 
         #endregion
@@ -152,16 +153,28 @@ namespace Nordfin
             }
         }
 
-        public static bool AllowManualInvoice
+        public static int AllowManualInvoice
         {
             get
             {
-                return (bool)HttpContext.Current.Session[allowManualInvoice];
+                return (int)HttpContext.Current.Session[allowManualInvoice];
             }
 
             set
             {
                 HttpContext.Current.Session[allowManualInvoice] = value;
+            }
+        }
+        public static int CreditUser
+        {
+            get
+            {
+                return (int)HttpContext.Current.Session[creditUser];
+            }
+
+            set
+            {
+                HttpContext.Current.Session[creditUser] = value;
             }
         }
 

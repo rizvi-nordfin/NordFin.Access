@@ -89,7 +89,7 @@
                             </div>
 
                         </div>
-                        <asp:Button Text="Search" OnClick="Search_Click" ID="Search" OnClientClick="return AdvanceSearch();" class="button topMenuSearchButton" runat="server" />
+                        <asp:Button Text="Search" OnClick="Search_Click"  ID="Search" OnClientClick="return AdvanceSearch();" class="button topMenuSearchButton" runat="server" CausesValidation="false" />
 
 
                     </div>
@@ -176,7 +176,7 @@
 
                 <div class="sideMenuButton">
                     <div id="tdchart">
-                        <button runat="server" onserverclick="btnChart_ServerClick" id="btnChart">
+                        <button runat="server" onserverclick="btnChart_ServerClick" id="btnChart" causesvalidation="false">
                             <img class="sideMenuIcon" src="Images/NFC_dashboard.svg" id="iChart" alt="Dashboard" />
                         </button>
                     </div>
@@ -184,7 +184,7 @@
 
                 <div class="sideMenuButton">
                     <div id="tdInvoiceSearch">
-                        <button runat="server" onserverclick="btnUsd_ServerClick" id="btnInvoiceSearch">
+                        <button runat="server" onserverclick="btnUsd_ServerClick" id="btnInvoiceSearch" causesvalidation="false">
                             <img class="sideMenuIcon" src="Images/NFC_invoices.svg" id="faInvoiceSearch" alt="Invoices" />
                         </button>
                     </div>
@@ -192,15 +192,23 @@
 
                 <div class="sideMenuButton">
                     <div id="tdUser">
-                        <button runat="server" onserverclick="btnCustomer_ServerClick" id="btnCustomer">
+                        <button runat="server" onserverclick="btnCustomer_ServerClick" id="btnCustomer" causesvalidation="false">
                             <img class="sideMenuIcon" src="Images/NFC_customers.svg" id="iUser" alt="Customers" />
+                        </button>
+                    </div>
+                </div>
+
+                  <div class="sideMenuButton">
+                    <div id="tdCredicheck">
+                        <button runat="server" onserverclick="btnCreditCheck_ServerClick" id="btnCreditCheck" causesvalidation="false">
+                            <img class="sideMenuIcon iReports mtmlCredit" style="width:100px;" src="Images/Check.svg" runat="server" id="imgCreditcheck" alt="Reports" />
                         </button>
                     </div>
                 </div>
 
                 <div class="sideMenuButton">
                     <div id="tdReport">
-                        <button runat="server" onserverclick="btnPaymentInfo_ServerClick" id="btnReports">
+                        <button runat="server" onserverclick="btnPaymentInfo_ServerClick" id="btnReports" causesvalidation="false">
                             <img class="sideMenuIcon iReports" src="Images/NFC_reports.svg" runat="server" id="iReports" alt="Reports" />
                         </button>
                     </div>
@@ -209,12 +217,9 @@
                     <div class="sideMenuButton sideMenuButtonStatistics">
                         <div id="tbBatches" runat="server">
                             <%-- <button  runat="server" id="btnStatistics"  onclick="return StatisticsClick()" > --%>
-                            <button runat="server" id="btnStatistics">
+                            <button runat="server" id="btnStatistics" causesvalidation="false">
                                 <img class="sideMenuIcon imgStatistics" src="Images/NFC_batches.svg" id="imgStatistics" runat="server" alt="Batches" />
                             </button>
-
-
-
                         </div>
                     </div>
                 </asp:Panel>
@@ -223,15 +228,21 @@
                     <div class="sideMenuButton sideContractMenuButtonStatistics">
                         <div id="tdContracts" runat="server">
                             <%-- <button  runat="server" id="btnStatistics"  onclick="return StatisticsClick()" > --%>
-                            <button runat="server" id="btnContracts">
+                            <button runat="server" id="btnContracts" causesvalidation="false">
                                 <img class="sideMenuIcon imgContracts" src="Images/Contracts.svg" id="imgContracts" runat="server" alt="Batches" />
                             </button>
-
-
-
                         </div>
                     </div>
                 </asp:Panel>
+                <asp:Panel ID="pnlSideMenuAdd" runat="server" Visible="false">
+                <div id="addNew" class="sideMenuButton">
+                    <div id="tdAddNew">
+                        <button runat="server" onserverclick="btnAddNew_ServerClick" id="btnAddNew" causesvalidation="false">
+                            <i class="fas fa-plus sideMenuIcon" style="font-size: 1.7em;"></i>
+                        </button>
+                    </div>
+                </div>
+               </asp:Panel>
                 <!-- <div class="sideMenuButton">
                 <button  runat="server" id="Button">
                   <i class="fas fa-cog"></i>
@@ -262,6 +273,12 @@
                     <asp:Panel ID="pnlTeleson" runat="server">
                         <a href="/frmRisk.aspx">Risk</a>
                     </asp:Panel>
+                      <asp:Panel ID="pnlTelecom" runat="server">
+                        <a href="/frmTelecom.aspx">Telecom</a>
+                    </asp:Panel>
+                      <asp:Panel ID="pnlDebtCollection" runat="server">
+                        <a href="frmDebtCollection.aspx">Debt Collection List</a>
+                    </asp:Panel>
 
                 </div>
             </div>
@@ -276,7 +293,9 @@
                     <asp:Panel ID="Panel2" runat="server">
                         <a href="frmContractOverview.aspx">Contracts</a>
                     </asp:Panel>
-                   
+                   <%-- <asp:Panel ID="Panel3" runat="server">
+                        <a href="frmCreditCheck.aspx">CreditCheck</a>
+                    </asp:Panel>--%>
 
                 </asp:panel>
             </div>
@@ -286,6 +305,44 @@
             </asp:ContentPlaceHolder>
 
 
+               <div class="modal" id="ModalMaster" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                        <div class="modal-dialog" role="document">
+                            <div class="modal-content" style="top: 100px; background: none; border: none; width: 100%;">
+                                <div class="modal-header dashboardHeadline" style="background-color: #323e53; color: #fff; font-size: 16px;">
+                                    <div class="ml-3">
+                                        <h5 class="modal-title modalTextcolor dashboardHeadlineModal" id="ExportModal">External DC Status</h5>
+                                    </div>
+                                    <button type="button" class="modalcloseButton" data-dismiss="modal" aria-label="Close" style="top: 35px; right: 10px;">
+                                        <span aria-hidden="true">✕</span>
+                                    </button>
+                                </div>
+                                <div class="modal-body" style="background-color: #323e53; color: #fff; ">
+                                      <iframe id="FrameMaster" class="border-0" runat="server" style="    height: 500px;width:100%"></iframe>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+            <div class="modal fade" id="mdlMasterConfirm" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                <div class="modal-dialog" role="document">
+                    <div class="modal-content" style="background: none;border:none;width: 50%;top:200px;">
+                        <div class="modal-header dashboardHeadline" style="background-color: #323e53; color: #fff;font-size:16px;">
+                            <h5 class="modal-title" id="masterModalLabel">Information</h5>
+                             <button type="button" class="modalcloseButton" data-dismiss="modal" aria-label="Close" style="top: 30px;right: 13px;">
+                                        <span aria-hidden="true">✕</span>
+                                    </button>
+                        </div>
+                        <div class="modal-body" style="background-color: #323e53; color: #fff;">
+                            <div>
+                                <span id="spnMasterInfo" style="color: #A9BFD5;text-transform: uppercase;font-size:12px;">  </span>
+                            </div>
+                        </div>
+                        <div class="modal-footer" style="background-color: #323E53;padding:0px;">
+                          
+                            <button type="button" class="modalbutton"  data-dismiss="modal">Ok</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
 
         </div>
 
@@ -293,13 +350,18 @@
         <asp:HiddenField ID="hdnClientName" runat="server" />
         <asp:HiddenField ID="hdnClientID" runat="server" />
         <asp:HiddenField ID="hdnAdvanceSearch" runat="server" />
-        <asp:Button ID="btnClientName" runat="server" Style="display: none;" OnClick="btnClientName_Click" />
-        <asp:Button ID="btnlogout" runat="server" Style="display: none;" OnClick="lnkLogout_Click" />
-        <asp:Button ID="btnAccountSettings" runat="server" Style="display: none;" OnClick="btnAccountSettings_Click" />
+        <asp:Button ID="btnClientName" runat="server" Style="display: none;" OnClick="btnClientName_Click" CausesValidation="false" />
+        <asp:Button ID="btnlogout" runat="server" Style="display: none;" OnClick="lnkLogout_Click" CausesValidation="false" />
+        <asp:Button ID="btnAccountSettings" runat="server" Style="display: none;" OnClick="btnAccountSettings_Click" CausesValidation="false" />
 
         <input type="button" id="btnNotification" style="display: none;" />
     </form>
-   
+    <div class="featureNotAvailableBG hidden">
+        <div class="featureNotAvailable">
+            <div class="featureNotAvailableX">✕</div>
+           In order to use the credit scoring function please contact your nordfin contact
+        </div>
+    </div>
 
      <div class="featureNotAvailableMsgBG hidden">
         <div class="featureNotAvailableMsg">

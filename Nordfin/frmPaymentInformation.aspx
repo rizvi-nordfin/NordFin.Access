@@ -41,6 +41,7 @@
           <asp:Label runat="server" ID="lblInvoiceNum" Style="color: #FFB100; text-align: left; font-size: medium;"></asp:Label>
           <div class="paymentInfoButtons">
             <button class="button paymentInfoButton" onclick="return showManualInvoice();" style="width:auto !important;display:none" id="btnCreditInvoice">Credit Invoice</button>
+            <button class="button paymentInfoButton" onclick="return showCreditButton();" style="width:auto !important;display:none" id="btnCredit">Credit Invoice</button>
             <button class="button paymentInfoButton" data-ng-click="notesUpdate($event)" runat="server">Update</button>
             <asp:Button Text="Download" class="button paymentInfoButton" id="btnPDFDownload" OnClientClick="return ProcessingModal();" OnClick="btnPDFDownload_Click"  runat="server"></asp:Button>
           </div>
@@ -70,7 +71,7 @@
                                          Text="Payment Reference"
                                          AssociatedControlID="txtPaymentInfoReference"
                                          runat="server">
-                                         <asp:TextBox runat="server" class="form-control controlColor" disabled="disabled" ID="txtPaymentInfoReference"></asp:TextBox>
+                                         <asp:TextBox runat="server" class="form-control controlColor" style="color:#fff;"  ID="txtPaymentInfoReference"></asp:TextBox>
                               </asp:Label>
                                 
                             </div>
@@ -79,7 +80,7 @@
                                          Text="Delivery"
                                          AssociatedControlID="txtPaymentInfoDelivery"
                                          runat="server">
-                                         <asp:TextBox runat="server" class="form-control controlColor" disabled="disabled" ID="txtPaymentInfoDelivery"></asp:TextBox>
+                                         <asp:TextBox runat="server" class="form-control controlColor" style="color:#fff;" ID="txtPaymentInfoDelivery"></asp:TextBox>
                               </asp:Label>
                                 
                             </div>
@@ -94,7 +95,7 @@
                                          Text="Collection Status:"
                                          AssociatedControlID="txtCollectionStatus"
                                          runat="server">
-                                  <asp:TextBox runat="server" class="form-control controlColor" disabled="disabled" ID="txtCollectionStatus"></asp:TextBox>
+                                  <asp:TextBox runat="server" class="form-control controlColor" style="color:#fff;" ID="txtCollectionStatus"></asp:TextBox>
                               </asp:Label>
 
                               
@@ -104,7 +105,7 @@
                                          Text="Collection Date:"
                                          AssociatedControlID="txtCollectionDate"
                                          runat="server">
-                                  <asp:TextBox runat="server" class="form-control controlColor" disabled="disabled" ID="txtCollectionDate"></asp:TextBox>
+                                  <asp:TextBox runat="server" class="form-control controlColor" style="color:#fff;"  ID="txtCollectionDate"></asp:TextBox>
                               </asp:Label>
                             </div>
 
@@ -165,7 +166,7 @@
                                          Text="Contested Date"
                                          AssociatedControlID="txtContestedDate"
                                          runat="server">
-                                         <asp:TextBox runat="server" CssClass="form-control controlColor" disabled="disabled" AutoCompleteType="Disabled" ID="txtContestedDate"></asp:TextBox>
+                                         <asp:TextBox runat="server" CssClass="form-control controlColor" style="color:#fff;"  AutoCompleteType="Disabled" ID="txtContestedDate"></asp:TextBox>
                               </asp:Label>
                                 
                             </div>
@@ -179,7 +180,7 @@
                                          Text="Payment Method"
                                          AssociatedControlID="txtPaymentMethod"
                                          runat="server">
-                                         <asp:TextBox runat="server" CssClass="form-control controlColor" disabled="disabled" ID="txtPaymentMethod"></asp:TextBox>
+                                         <asp:TextBox runat="server" CssClass="form-control controlColor"  style="color:#fff;" ID="txtPaymentMethod"></asp:TextBox>
                               </asp:Label>
                                 
                             </div>
@@ -450,7 +451,7 @@
                                     <asp:BoundField DataField="NoteType" HeaderStyle-CssClass="Notesalign" ItemStyle-CssClass="Notesalign" HeaderText="Type" SortExpression="NoteType" />
                                     <asp:BoundField DataField="NoteDate" HeaderStyle-CssClass="Notesalign" ItemStyle-CssClass="Notesalign" HeaderText="Date" SortExpression="NoteDate" />
                                     <asp:BoundField DataField="UserName" HeaderStyle-CssClass="Notesalign" ItemStyle-CssClass="Notesalign" HeaderText="User" SortExpression="UserName" />
-                                    <asp:BoundField DataField="NoteText" HeaderStyle-CssClass="Notesalign" ItemStyle-CssClass="Notesalign" HeaderText="Text" SortExpression="NoteText" />
+                                    <asp:BoundField DataField="NoteText" HeaderStyle-CssClass="Notesalign" ItemStyle-CssClass="Notesalign" HeaderText="Information" SortExpression="NoteText" />
                                 </Columns>
                                 <EmptyDataTemplate>No Record Available</EmptyDataTemplate>
                             </asp:GridView>
@@ -489,7 +490,30 @@
                 </div>
             </div>
 
+             <div class="modal fade" style="top:100px !important;" id="mdlCreditConfirm" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                <div class="modal-dialog" role="document">
+                    <div class="modal-content" style="background: none;border:none;width: 75%;">
+                        <div class="modal-header dashboardHeadline" style="background-color: #323e53; color: #fff;font-size:16px;">
+                            <h5 class="modal-title" >Information</h5>
+                            <button type="button" class="modalcloseButton" data-dismiss="modal" aria-label="Close" style="top: 30px;right: 0px;">
+                                        <span aria-hidden="true">✕</span>
+                                    </button>
+                        </div>
+                        <div class="modal-body" style="background-color: #323e53; color: #fff;">
+                            <div>
+                                <span id="spnCredit" style="color: #A9BFD5;text-transform: uppercase;font-size:12px;">   </span>
+                            </div>
+                        </div>
 
+                           <div class="modal-footer" style="background-color: #323E53;padding:0px;">
+                               <button type="button" class="modalbutton" id="btnCreditYes" data-ng-click="creditAdded($event)" >Yes</button>
+                            <button type="button" class="modalbutton" id="btnCreditNo" data-dismiss="modal">No</button>
+                            
+                            </div>
+                        
+                    </div>
+                </div>
+            </div>
             
             <div class="modal fade" id="mdlInformConfirm" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
                 <div class="modal-dialog" role="document">
@@ -610,7 +634,7 @@
                                             </asp:Panel>
                                             <asp:Panel runat="server" ID="pnlDC">
                                                 <asp:CheckBox ID="chkDC" AutoPostBack="false" Checked="true" Style="margin-top: 5px;" CssClass="checkbox"
-                                                    runat="server" Text="Debt Collection Letter"></asp:CheckBox>
+                                                    runat="server" Text="Debt Collection"></asp:CheckBox>
                                             </asp:Panel>
                                         </div>
 

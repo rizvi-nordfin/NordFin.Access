@@ -47,8 +47,8 @@
     <Reference Include="AjaxControlToolkit, Version=20.1.0.0, Culture=neutral, PublicKeyToken=28f01b0e84b6d53e, processorArchitecture=MSIL">
       <HintPath>..\packages\AjaxControlToolkit.20.1.0\lib\net40\AjaxControlToolkit.dll</HintPath>
     </Reference>
-    <Reference Include="BouncyCastle.Crypto, Version=1.8.8.0, Culture=neutral, PublicKeyToken=0e99375e54769942, processorArchitecture=MSIL">
-      <HintPath>..\packages\Portable.BouncyCastle.1.8.8\lib\net40\BouncyCastle.Crypto.dll</HintPath>
+    <Reference Include="BouncyCastle.Crypto, Version=1.8.9.0, Culture=neutral, PublicKeyToken=0e99375e54769942, processorArchitecture=MSIL">
+      <HintPath>..\packages\Portable.BouncyCastle.1.8.9\lib\net40\BouncyCastle.Crypto.dll</HintPath>
     </Reference>
     <Reference Include="ClosedXML, Version=0.95.2.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\ClosedXML.0.95.2\lib\net46\ClosedXML.dll</HintPath>
@@ -150,8 +150,8 @@
       <HintPath>..\packages\MimeKit.2.10.1\lib\net47\MimeKit.dll</HintPath>
     </Reference>
     <Reference Include="Newtonsoft.Json, Version=12.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>lib\Newtonsoft.Json.dll</HintPath>
+      <HintPath>..\packages\Newtonsoft.Json.12.0.3\lib\net45\Newtonsoft.Json.dll</HintPath>
+      <Private>True</Private>
     </Reference>
     <Reference Include="Owin, Version=1.0.0.0, Culture=neutral, PublicKeyToken=f0ebd12fd5e55cc5, processorArchitecture=MSIL">
       <HintPath>..\packages\Owin.1.0\lib\net40\Owin.dll</HintPath>
@@ -194,6 +194,7 @@
       <HintPath>..\packages\System.IO.Packaging.4.0.0\lib\net46\System.IO.Packaging.dll</HintPath>
     </Reference>
     <Reference Include="System.Net.Http" />
+    <Reference Include="System.Runtime.Serialization" />
     <Reference Include="System.Security" />
     <Reference Include="System.Security.AccessControl, Version=5.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
@@ -207,6 +208,7 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>lib\System.Security.Principal.Windows.dll</HintPath>
     </Reference>
+    <Reference Include="System.ServiceModel" />
     <Reference Include="System.Threading.Tasks" />
     <Reference Include="System.Web.DynamicData" />
     <Reference Include="System.Web.Entity" />
@@ -247,25 +249,82 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <None Include="Connected Services\AutoAccount\AutoAccountService.wsdl" />
+    <Content Include="Connected Services\AutoAccount\Nordfin.AutoAccount.AutoAccountResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
+    <Content Include="Connected Services\AutoAccount\Nordfin.AutoAccount.GetPackageListResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
+    <None Include="Connected Services\CreditSafeTemplate\cas_service.disco" />
+    <None Include="Connected Services\CreditSafeTemplate\configuration91.svcinfo" />
+    <None Include="Connected Services\CreditSafeTemplate\configuration.svcinfo" />
+    <None Include="Connected Services\AutoAccount\AutoAccountService.disco" />
+    <None Include="Connected Services\AutoAccount\configuration91.svcinfo" />
+    <None Include="Connected Services\AutoAccount\configuration.svcinfo" />
+    <None Include="Connected Services\AutoAccount\Reference.svcmap">
+      <Generator>WCF Proxy Generator</Generator>
+      <LastGenOutput>Reference.cs</LastGenOutput>
+    </None>
+    <Content Include="Connected Services\CreditSafeTemplate\Nordfin.CreditSafeTemplate.CasCompanyServiceResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
+    <Content Include="Connected Services\CreditSafeTemplate\Nordfin.CreditSafeTemplate.CasPersonServiceResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
+    <Content Include="Connected Services\CreditSafeTemplate\Nordfin.CreditSafeTemplate.CAS_COMPANY_RESPONSE.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
+    <Content Include="Connected Services\CreditSafeTemplate\Nordfin.CreditSafeTemplate.CAS_PERSON_RESPONSE.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
+    <Content Include="Connected Services\CreditSafeTemplate\Nordfin.CreditSafeTemplate.CAS_SERVICE_RESPONSE.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
+    <Content Include="Connected Services\CreditSafeTemplate\Nordfin.CreditSafeTemplate.GetTemplateListResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
+    <None Include="Connected Services\CreditSafeTemplate\Reference.svcmap">
+      <Generator>WCF Proxy Generator</Generator>
+      <LastGenOutput>Reference.cs</LastGenOutput>
+    </None>
+    <None Include="Connected Services\GetDataTemplate\getdata.disco" />
+    <None Include="Connected Services\GetDataTemplate\configuration91.svcinfo" />
+    <None Include="Connected Services\GetDataTemplate\configuration.svcinfo" />
+    <Content Include="Connected Services\GetDataTemplate\Nordfin.GetDataTemplate.GETDATA_RESPONSE.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
+    <None Include="Connected Services\GetDataTemplate\Reference.svcmap">
+      <Generator>WCF Proxy Generator</Generator>
+      <LastGenOutput>Reference.cs</LastGenOutput>
+    </None>
     <Content Include="frmAccountSettings.aspx" />
+    <Content Include="frmAutoAccount.aspx" />
+    <Content Include="frmAddNew.aspx" />
     <Content Include="frmBatches.aspx" />
     <Content Include="frmClientInformation.aspx" />
     <Content Include="frmContractOverview.aspx" />
+    <Content Include="frmNordfinCreditCheck.aspx" />
+    <Content Include="frmCreditCheck.aspx" />
     <Content Include="frmCustomer.aspx" />
     <Content Include="frmDashboard.aspx" />
+    <Content Include="frmDebtCollection.aspx" />
     <Content Include="frmInvoiceBatches.aspx" />
     <Content Include="frmInvoices.aspx" />
     <Content Include="frmLogin.aspx" />
     <Content Include="frmMultiDownlaod.aspx" />
     <Content Include="frmPdfMultiDownload.aspx" />
+    <Content Include="frmPSInformation.aspx" />
     <Content Include="frmReports.aspx" />
     <Content Include="frmRisk.aspx" />
     <Content Include="frmContracts.aspx" />
+    <Content Include="frmTelecom.aspx" />
     <Content Include="frmTrafficDetails.aspx" />
     <Content Include="frmUserLoginInformation.aspx" />
     <Content Include="Global.asax" />
     <Content Include="Images\AgedList.png" />
     <Content Include="Images\Batches.png" />
+    <Content Include="Images\Check.svg" />
     <Content Include="Images\Contracts_Orange.svg" />
     <Content Include="Images\Contracts.svg" />
     <Content Include="Images\Customer.png" />
@@ -315,6 +374,7 @@
     <Content Include="Images\sweden.svg" />
     <Content Include="Images\ui-icons_cd0a0a_256x240.png" />
     <Content Include="Images\ui-icons_ffffff_256x240.png" />
+    <Content Include="Images\CreditSafe.svg" />
     <Content Include="lib\BouncyCastle.Crypto.dll" />
     <Content Include="lib\Common.Logging.Core.dll" />
     <Content Include="lib\Common.Logging.dll" />
@@ -341,11 +401,17 @@
     <Content Include="Scripts\angular.min.js" />
     <Content Include="Scripts\bootstrap.min.js" />
     <Content Include="Scripts\font-Awesome.js" />
+    <Content Include="Scripts\gauge.js" />
+    <Content Include="Scripts\gauge.min.js" />
+    <Content Include="Scripts\jAddNew.js" />
     <Content Include="Scripts\jquery-1.11.1.min.js" />
     <Content Include="libman.json" />
-    <Content Include="Files\GNP Energy Finland Oy_2714890_inv.pdf" />
-    <Content Include="Files\GNP Energy Finland Oy_DC2714890_inv.pdf" />
-    <Content Include="Files\GNP Energy Finland Oy_Rem2714890_inv.pdf" />
+    <None Include="Connected Services\CreditSafeTemplate\cas_service.wsdl" />
+    <None Include="Connected Services\GetDataTemplate\getdata.wsdl" />
+    <Content Include="NordfinCredit.Master" />
+    <None Include="Properties\PublishProfiles\FolderProfile-Prod.pubxml" />
+    <None Include="Properties\PublishProfiles\FolderProfile-Test.pubxml" />
+    <Content Include="Files\CSSE ÅF-villkor AutoAccount 20190101.pdf" />
     <None Include="Properties\PublishProfiles\FTPProfileProd.pubxml" />
     <None Include="Properties\PublishProfiles\FTPProfileTest.pubxml" />
     <None Include="Scripts\jquery-3.4.1.intellisense.js" />
@@ -364,18 +430,24 @@
     <Content Include="Scripts\jquery.signalR-2.2.2.min.js" />
     <Content Include="Scripts\jquery.table2excel.js" />
     <Content Include="Scripts\jsAccountSettings.js" />
+    <Content Include="Scripts\jsAutoAccount.js" />
     <Content Include="Scripts\jsClientInformation.js" />
     <Content Include="Scripts\jquery-3.3.1.slim.min.js" />
     <Content Include="Scripts\jquery-ui.js" />
+    <Content Include="Scripts\jsCreditCheck.js" />
     <Content Include="Scripts\jsCustomer.js" />
     <Content Include="Scripts\jsDashboard.js" />
     <Content Include="Scripts\jsInvoiceBatches.js" />
     <Content Include="Scripts\jsInvoices.js" />
     <Content Include="Scripts\jsLogin.js" />
     <Content Include="Scripts\jsManualInvoice.js" />
+    <Content Include="Scripts\jsNordfinCreditCheck.js" />
+    <Content Include="Scripts\NordfinCreditMaster.js" />
     <Content Include="Scripts\jsMultiDownload.js" />
     <Content Include="Scripts\jsPaymentInformation.js" />
+    <Content Include="Scripts\jsPsInformationModal.js" />
     <Content Include="Scripts\jsReports.js" />
+    <Content Include="Scripts\jsTelecom.js" />
     <Content Include="Scripts\jsTelsonGroup.js" />
     <Content Include="Scripts\jsTrafficDetails.js" />
     <Content Include="Scripts\mapsvg.js" />
@@ -383,9 +455,13 @@
     <Content Include="Scripts\NordfinMaster.js" />
     <Content Include="Scripts\popper.min.js" />
     <Content Include="Scripts\recaptcha_api.js" />
+    <Content Include="Styles\AddNew.css" />
     <Content Include="Styles\Batches.css" />
     <Content Include="Styles\bootstrap.min.css" />
     <Content Include="Styles\AccountSettings.css" />
+    <Content Include="Styles\DebtCollection.css" />
+    <Content Include="Styles\ContractsOverview.css" />
+    <Content Include="Styles\CreditCheck.css" />
     <Content Include="Styles\Customer.css" />
     <Content Include="Styles\Dashboard.css" />
     <Content Include="Styles\datepicker.css" />
@@ -393,7 +469,6 @@
     <Content Include="Styles\fontawesome.min.css" />
     <Content Include="Scripts\jquery-1.10.2.js" />
     <Content Include="Styles\InvoiceBatches.css" />
-    <Content Include="Styles\ContractsOverview.css" />
     <Content Include="Styles\Invoices.css" />
     <Content Include="Scripts\jquery-jvectormap-2.0.5.min.js" />
     <Content Include="Styles\jquery-jvectormap-2.0.5.css" />
@@ -409,6 +484,7 @@
     <Content Include="Styles\NordfinMaster.css" />
     <Content Include="Styles\normalize.css" />
     <Content Include="Styles\PaymentInformation.css" />
+    <Content Include="Styles\PSInformation.css" />
     <Content Include="Styles\Reports.css" />
     <Content Include="Styles\Contracts.css" />
     <Content Include="Styles\TelsonGroup.css" />
@@ -419,6 +495,21 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="ClientSession.cs" />
+    <Compile Include="Connected Services\AutoAccount\Reference.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Compile>
+    <Compile Include="Connected Services\CreditSafeTemplate\Reference.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Compile>
+    <Compile Include="Connected Services\GetDataTemplate\Reference.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Compile>
     <Compile Include="EmailFunctions.cs" />
     <Compile Include="frmAccountSettings.aspx.cs">
       <DependentUpon>frmAccountSettings.aspx</DependentUpon>
@@ -426,6 +517,20 @@
     </Compile>
     <Compile Include="frmAccountSettings.aspx.designer.cs">
       <DependentUpon>frmAccountSettings.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="frmAutoAccount.aspx.cs">
+      <DependentUpon>frmAutoAccount.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="frmAutoAccount.aspx.designer.cs">
+      <DependentUpon>frmAutoAccount.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="frmAddNew.aspx.cs">
+      <DependentUpon>frmAddNew.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="frmAddNew.aspx.designer.cs">
+      <DependentUpon>frmAddNew.aspx</DependentUpon>
     </Compile>
     <Compile Include="frmBatches.aspx.cs">
       <DependentUpon>frmBatches.aspx</DependentUpon>
@@ -448,6 +553,20 @@
     <Compile Include="frmContractOverview.aspx.designer.cs">
       <DependentUpon>frmContractOverview.aspx</DependentUpon>
     </Compile>
+    <Compile Include="frmNordfinCreditCheck.aspx.cs">
+      <DependentUpon>frmNordfinCreditCheck.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="frmNordfinCreditCheck.aspx.designer.cs">
+      <DependentUpon>frmNordfinCreditCheck.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="frmCreditCheck.aspx.cs">
+      <DependentUpon>frmCreditCheck.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="frmCreditCheck.aspx.designer.cs">
+      <DependentUpon>frmCreditCheck.aspx</DependentUpon>
+    </Compile>
     <Compile Include="frmCustomer.aspx.cs">
       <DependentUpon>frmCustomer.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -461,6 +580,13 @@
     </Compile>
     <Compile Include="frmDashboard.aspx.designer.cs">
       <DependentUpon>frmDashboard.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="frmDebtCollection.aspx.cs">
+      <DependentUpon>frmDebtCollection.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="frmDebtCollection.aspx.designer.cs">
+      <DependentUpon>frmDebtCollection.aspx</DependentUpon>
     </Compile>
     <Compile Include="frmInvoiceBatches.aspx.cs">
       <DependentUpon>frmInvoiceBatches.aspx</DependentUpon>
@@ -497,6 +623,13 @@
     <Compile Include="frmPdfMultiDownload.aspx.designer.cs">
       <DependentUpon>frmPdfMultiDownload.aspx</DependentUpon>
     </Compile>
+    <Compile Include="frmPSInformation.aspx.cs">
+      <DependentUpon>frmPSInformation.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="frmPSInformation.aspx.designer.cs">
+      <DependentUpon>frmPSInformation.aspx</DependentUpon>
+    </Compile>
     <Compile Include="frmReports.aspx.cs">
       <DependentUpon>frmReports.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -517,6 +650,13 @@
     </Compile>
     <Compile Include="frmContracts.aspx.designer.cs">
       <DependentUpon>frmContracts.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="frmTelecom.aspx.cs">
+      <DependentUpon>frmTelecom.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="frmTelecom.aspx.designer.cs">
+      <DependentUpon>frmTelecom.aspx</DependentUpon>
     </Compile>
     <Compile Include="frmTrafficDetails.aspx.cs">
       <DependentUpon>frmTrafficDetails.aspx</DependentUpon>
@@ -543,6 +683,13 @@
     <Compile Include="Nordfin.Master.designer.cs">
       <DependentUpon>Nordfin.Master</DependentUpon>
     </Compile>
+    <Compile Include="NordfinCredit.Master.cs">
+      <DependentUpon>NordfinCredit.Master</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="NordfinCredit.Master.designer.cs">
+      <DependentUpon>NordfinCredit.Master</DependentUpon>
+    </Compile>
     <Compile Include="NotificationHub.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="frmPaymentInformation.aspx.cs">
@@ -565,7 +712,6 @@
   <ItemGroup>
     <Content Include="Nordfin.Master" />
     <None Include="packages.config" />
-    <None Include="Properties\PublishProfiles\FolderProfile.pubxml" />
     <Content Include="Scripts\jquery-3.4.1.min.map" />
     <Content Include="Scripts\jquery-3.4.1.slim.min.map" />
     <None Include="Web.Debug.config">
@@ -597,9 +743,13 @@
       <Name>Nordfin.workflow.PresentationBusinessLayer</Name>
     </ProjectReference>
   </ItemGroup>
-  <ItemGroup />
   <ItemGroup>
     <WCFMetadata Include="Connected Services\" />
+  </ItemGroup>
+  <ItemGroup>
+    <WCFMetadataStorage Include="Connected Services\AutoAccount\" />
+    <WCFMetadataStorage Include="Connected Services\CreditSafeTemplate\" />
+    <WCFMetadataStorage Include="Connected Services\GetDataTemplate\" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

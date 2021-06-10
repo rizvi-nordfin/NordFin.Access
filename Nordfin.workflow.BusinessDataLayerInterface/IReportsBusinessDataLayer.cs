@@ -11,5 +11,8 @@ namespace Nordfin.workflow.BusinessDataLayerInterface
         DataSet usp_getInvoicePeriodReport(string ClientID, string sFromDate, string sToDate);
         DataSet usp_getPeriodicReport(string ClientID, string sFromDate, string sToDate);
         DataSet GetContestedReport(string ClientID);
+        DataSet GetStoppedReport(string ClientID);
+        DataSet GetTransactionReport(string ClientID, string sFromDate, string sToDate);
+        DataSet GetInvoicesBatchesReport(string ClientID);
     }
 }

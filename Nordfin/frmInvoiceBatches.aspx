@@ -1,4 +1,12 @@
-﻿<%@ Page Language="C#" MasterPageFile="~/Nordfin.Master" Title="NordfinCapital" Inherits="Nordfin.frmInvoiceBatches" %>
+﻿<%@ Page Language="C#" MasterPageFile="~/Nordfin.Master" Title="NFC ACCESS" Inherits="Nordfin.frmInvoiceBatches" %>
+
+<script runat="server">
+
+   
+
+   
+</script>
+
 
 <asp:Content ID="Content1" ContentPlaceHolderID="NordfinContentHolder" runat="server">
        
@@ -16,7 +24,7 @@
             <div class="form-group">
                 <div class="dashboardHeader">
                     <div class="dashboardHeadline">Invoice batches</div>
-                   <asp:Button Text="Download" CssClass="button button-table batchesDownloadButton" OnClientClick="tableToExcel();return false;" ID="btnPaidBatches" runat="server" />
+                   <asp:Button Text="Download" CssClass="button button-table batchesDownloadButton"  OnClick="btnPaidBatches_Click" ID="btnPaidBatches" runat="server" />
                 </div>
 
                 <div class="row">

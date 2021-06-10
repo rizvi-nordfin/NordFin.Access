@@ -1,0 +1,79 @@
+﻿.textboxModalColor, .textboxModalColor:focus {
+    background-color: #2c3850;
+    border-color: #2c3850;
+    color: #fff;
+    width: 100%;
+    font-family: 'Source Sans Pro', sans-serif;
+    font-size:12px;
+}
+
+.textareaHeight {
+    height: 350px !important;
+
+}
+
+.form-control[readonly] {
+    background-color: #2c3850 !important;
+    opacity: 1;
+}
+
+input.larger {
+    width: 25px;
+    height: 25px;
+}
+
+.aHyperLink {
+    color: #ffb100 !important;
+    cursor: pointer;
+    font-weight: bold;
+}
+.panelButton {
+    background-color: transparent;
+    border: 1px solid #3DADC5;
+    color: #3DADC5;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    width: 100%;
+    padding-left: 15px;
+    font-size: 10px;
+    height: 90%;
+    line-height: 25px;
+}
+
+.button {
+    text-transform: uppercase;
+    background-color: #232D41;
+    border: 1px solid #3DADC5;
+    height: 50px;
+    line-height: 46px;
+    color: #3DADC5;
+    display: inline-block;
+    text-transform: uppercase;
+    letter-spacing: 1.5px;
+    font-size: 11px;
+    margin: 0;
+    padding: 0;
+    padding-left: 20px;
+    padding-right: 20px;
+    border-radius: 0;
+    box-shadow: none;
+    outline: 0;
+    background-clip: border-box;
+}
+
+    .button:hover {
+        background-color: #3DADC5;
+        color: #fff;
+        cursor:pointer;
+    }
+
+
+.progress-bar {
+    background-color: #3DADC5;
+}
+
+
+.hidden {
+    display: none;
+}

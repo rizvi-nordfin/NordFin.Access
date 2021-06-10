@@ -324,10 +324,10 @@ namespace Nordfin
             }
         }
 
-        public FtpStatusCode UploadStandardXml(string standardFile, string fileName)
+        public FtpStatusCode UploadStandardXml(string standardFile, string fileName, bool sendToPrint)
         {
             var bytes = Encoding.UTF8.GetBytes(standardFile);
-            string uri = FTPAzureDomain + "Archive/" + fileName;
+            string uri = sendToPrint ? FTPAzureDomain + "ManualFiles/" + fileName : FTPAzureDomain + "Archive/" + fileName;
             FtpWebRequest request = (FtpWebRequest)WebRequest.Create(uri);
             request.Method = WebRequestMethods.Ftp.UploadFile;
             request.Credentials = new NetworkCredential(FTPManualInvoiceUserName, FTPManualInvoicePassword);

@@ -622,22 +622,13 @@ input[type="checkbox"]:checked {
     width: 75px;
 }
 
-/*input[type='checkbox'] {
-    width: 10px !important;
-    height: 10px !important;
-    -webkit-appearance: none;
-    -moz-appearance: none;
-    -o-appearance: none;
-    appearance: none;
-    outline: 2px solid lightblue;
-    background-color:red;
-    box-shadow: none;
-    font-size: 2em;
-    content: '✔';
+option {
+    font-size: 1rem;
+    font-weight: normal;
+    font-family: 'Source Sans Pro', sans-serif;
+   
    
 }
-
-*/
 
 input[type="checkbox" i]{
 

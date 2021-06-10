@@ -1,4 +1,4 @@
-﻿<%@ Control Language="C#" AutoEventWireup="true" CodeBehind="ucManualInvoice.ascx.cs" Inherits="Nordfin.ucManualInvoice" %>
+﻿  <%@ Control Language="C#" AutoEventWireup="true" CodeBehind="ucManualInvoice.ascx.cs" Inherits="Nordfin.ucManualInvoice" %>
 
 <link rel="stylesheet" href="Styles/jquery-ui-NordFin.css" />
       <script src="//code.jquery.com/jquery-1.10.2.js"></script>
@@ -15,7 +15,6 @@
         $("#<%= txtDueDate.ClientID %>").val(thirtyDays.toISOString().slice(0, 10));
         $("#<%= txtQuantity.ClientID %>").val(1);
     });
-
     function SetTotalAmount() {
         var itemPrice = $("#<%= txtAmount.ClientID %>").val();
         var percent = $("#<%= drpVat.ClientID %>").val();
@@ -25,23 +24,40 @@
         var vatPercent = percent.length != 0 ? parseInt(percent) : 0;
         var vatAmount = vatPercent == 0 ? 0 : (invoiceAmount * vatPercent) / 100;
         var total = vatAmount + invoiceAmount;
-        $("#<%= txtInvAmount.ClientID %>").val(invoiceAmount);
-        $("#<%= txtVat.ClientID %>").val(vatAmount);
-        $("#<%= txtRowTotal.ClientID %>").val(total);
+        $("#<%= txtInvAmount.ClientID %>").val(invoiceAmount.toFixed(2));
+        $("#<%= txtVat.ClientID %>").val(vatAmount.toFixed(2));
+        $("#<%= txtRowTotal.ClientID %>").val(total.toFixed(2));
     }
-
     function SetAmountFromTotal() {
         var totalAmount = $("#<%= txtRowTotal.ClientID %>").val();
         var percent = $("#<%= drpVat.ClientID %>").val();
         var quantity = $("#<%= txtQuantity.ClientID %>").val();
         var rowTotal = (totalAmount.length != 0 ? parseFloat(totalAmount) : 0.0);
         var vatPercent = (percent.length != 0 ? parseInt(percent) : 0);
-        var vatAmount = vatPercent == 0 ? 0 : (rowTotal * vatPercent) / 100;
-        var invoiceAmount = rowTotal - vatAmount;
+        var invoiceAmount = (rowTotal / (100 + vatPercent)) * 100;
         var itemPrice = quantity.length == 0 ? invoiceAmount : invoiceAmount / parseInt(quantity);
-        $("#<%= txtInvAmount.ClientID %>").val(invoiceAmount);
-        $("#<%= txtVat.ClientID %>").val(vatAmount);
-        $("#<%= txtAmount.ClientID %>").val(itemPrice);
+        var totalVat = (itemPrice * vatPercent) / 100;
+        $("#<%= txtInvAmount.ClientID %>").val(invoiceAmount.toFixed(2));
+        $("#<%= txtVat.ClientID %>").val(totalVat.toFixed(2));
+        $("#<%= txtAmount.ClientID %>").val(itemPrice.toFixed(2));
+    }
+
+    function setPrint() {
+        $("#<%= hdnSendToPrint.ClientID %>").val($('#swtchSendToPrint').prop('checked'));
+        var dropdown = document.getElementById("drpInvDelivery");
+        if ($('#swtchSendToPrint').prop('checked')) {
+            dropdown.options[0] = new Option('Paper', 'PAPER', true);
+            dropdown.options[1] = new Option('E-Mail', 'EMAIL');
+        }
+        else {
+            dropdown.options.length = 0;
+            dropdown.options[0] = new Option('PDF Only', 'PDF Only', true);
+        }
+        $("#<%= hdnDelivery.ClientID %>").val($('#drpInvDelivery').val());
+    }
+
+    function setInvoiceDelivery() {
+        $("#<%= hdnDelivery.ClientID %>").val($('#drpInvDelivery').val());
     }
 </script>
 <div>
@@ -51,7 +67,7 @@
                 <span class="header" id="spnTitle" runat="server"></span>
             </div>
             <div class="col-md-1">
-                <asp:Button ID="btnManualInvClose" Text ="✕" CssClass="modalcloseButton" style="float:right" OnClick="ClosePopup" runat="server" />
+                <asp:Button ID="btnManualInvClose" Text ="✕" CssClass="modalcloseButton" style="float:right" OnClick="ClosePopup" runat="server" CausesValidation="false" />
             </div>
         </div>
     </div>
@@ -91,11 +107,11 @@
                 <span class="title">Invoice Number</span>
                 <asp:Label Text="" runat="server" ID="lblInvoiceNumber" CssClass="invNumber"></asp:Label>
             </div>
-            <div class="col-md-3">
+            <div class="col-md-2">
                 <span class="title">Invoice Date</span>
                 <asp:TextBox ID="txtInvDate" runat="server" autocomplete="off" CssClass="form-control controls textboxColor"></asp:TextBox>
             </div>
-            <div class="col-md-3">
+            <div class="col-md-2">
                 <span class="title">Due Date</span>
                 <asp:TextBox ID="txtDueDate" runat="server" autocomplete="off" CssClass="form-control controls textboxColor"></asp:TextBox>
             </div>
@@ -105,10 +121,16 @@
                 </asp:DropDownList>
             </div>
             <div class="col-md-2">
+                <div class="custom-control custom-switch">
+                <input type="checkbox" class="custom-control-input" id="swtchSendToPrint" style="position:relative" onchange="setPrint()">
+                <label id="lblSendToPrint" class="custom-control-label title" for="swtchSendToPrint">Send To Print</label>
+                </div>
+            </div>
+            <div class="col-md-2">
                 <span class="title">Delivery Mode</span>
-                <asp:DropDownList ID="drpInvDelivery" runat="server" CssClass="form-control dropdown controls" Height="">
-                    <asp:ListItem>PDF Only</asp:ListItem>
-                </asp:DropDownList>
+                <select id="drpInvDelivery" class="form-control dropdown controls" onchange="setInvoiceDelivery()">
+                    <option value="PDF Only" selected="selected">PDF Only</option>
+                </select>
             </div>
         </div>
     </div>
@@ -144,7 +166,7 @@
         <div class="row">
             <div class="col-md-2">
                 <span class="title">Amount excl. VAT</span>
-                <asp:TextBox ID="txtAmount" runat="server" autocomplete="off" CssClass="form-control controls" ClientIDMode="Static" onkeypress="return ValidateAmount(this, event);" onblur="SetTotalAmount(); return false;"></asp:TextBox>
+                <asp:TextBox ID="txtAmount" runat="server" autocomplete="off" CssClass="form-control controls" ClientIDMode="Static" onkeypress="return ValidateAmount(this, event);" oninput="RestrictToTwoDecimal(this)" onblur="SetTotalAmount(); return false;"></asp:TextBox>
             </div>
             <div class="col-md-2">
                 <span class="title">VAT %</span>
@@ -153,7 +175,7 @@
             </div>
             <div class="col-md-2">
                 <span class="title">Invoice Amount</span>
-                <asp:TextBox ID="txtInvAmount" runat="server" autocomplete="off" CssClass="form-control controls" ClientIDMode="Static" onkeypress="return ValidateAmount(this, event);"></asp:TextBox>
+                <asp:TextBox ID="txtInvAmount" runat="server" autocomplete="off" CssClass="form-control controls" ClientIDMode="Static" Enabled="false"></asp:TextBox>
 
             </div>
             <div class="col-md-2">
@@ -260,7 +282,7 @@
                             <i class="far fa-times-circle errorIcon"></i>
                             </div>
                         <div class="col-md-11">
-                            <p style="color:white;font-size: 15px !important;" id="txtError"/>
+                            <p class="modelDialogText" id="txtError"/>
                         </div>
                     </div>
                     <div class="row">
@@ -286,7 +308,7 @@
                             <i class="far fa-thumbs-up successIcon"></i>
                             </div>
                         <div class="col-md-11">
-                            <p style="color: white; font-size: 15px !important;text-align:left">Invoice Imported Successfully.</p>
+                            <p class="modelDialogText">Invoice Imported Successfully.</p>
                         </div>
                     </div>
                     <div class="row">
@@ -302,7 +324,49 @@
     </div>
 </div>
 
+<div class="modal" id="mdlConfirmData" tabindex="-1" role="dialog">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content errorModel" style="width: 120% !important;height: 200px">
+            <div class="modal-body" style="background-color: #323e53; color: #fff; text-align: center">
+                <div class="container-fluid">
+                    <div class="row" style="height:50px">
+                        <div class="col-md-12">
+                            <p class="modelDialogText">Are you sure to create invoice with following details?</p>
+                        </div>
+                    </div>
+                    <div class="row" style="height:70px;text-align: left">
+                        <div class="col-md-4">
+                            <span class="title">Invoice Amount:</span>
+                            <asp:Label ID="lblInvoiceAmount" runat="server" CssClass="confirmData"></asp:Label>
+                        </div>
+                        <div class="col-md-4">
+                            <span class="title">Due Date:</span>
+                            <asp:Label ID="lblDueDate" runat="server" CssClass="confirmData"></asp:Label>
+                        </div>
+                        <div class="col-md-4">
+                            <span class="title">Delivery:</span>
+                            <asp:Label ID="lblDelivery" runat="server" CssClass="confirmData"></asp:Label>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-6">
+                        </div>
+                        <div class="col-md-3">
+                            <asp:Button ID="btnCreateInvoice" Text="Yes" CssClass="export rowButton" OnClick="CreateInvoicePdf" OnClientClick="closeConfirmModal();" runat="server" />
+                        </div>
+                        <div class="col-md-3">
+                            <button type="button" class="export rowButton" style="float: right" onclick="closeConfirmModal();">No</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
 <asp:HiddenField ID="hdnInvoiceNumber" runat="server" />
 <asp:HiddenField ID="hdnFileName" runat="server" />
 <asp:HiddenField ID="hdnTitle" runat="server" />
-
+<asp:HiddenField ID="hdnCustomerType" runat="server" />
+<asp:HiddenField ID="hdnSendToPrint" runat="server" Value="false" />
+<asp:HiddenField ID="hdnDelivery" runat="server" Value="PDF Only"/>

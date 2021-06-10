@@ -1,5 +1,5 @@
-﻿<%@ Page Language="C#" MasterPageFile="~/Nordfin.Master" AutoEventWireup="true" Title="NordfinCapital" CodeBehind="frmInvoices.aspx.cs" Inherits="Nordfin.frmInvoices"  UICulture="sv-SE" Culture="sv-SE" %>
-
+﻿<%@ Page Language="C#" MasterPageFile="~/Nordfin.Master" AutoEventWireup="true" Title="NFC ACCESS" CodeBehind="frmInvoices.aspx.cs" Inherits="Nordfin.frmInvoices"
+    UICulture="sv-SE" Culture="sv-SE" %>
 <%@ Register Assembly="AjaxControlToolkit" Namespace="AjaxControlToolkit" TagPrefix="ModalWindow" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="NordfinContentHolder" runat="server" style="padding: 5px;">
 
@@ -7,23 +7,20 @@
 
     <link href="Styles/Invoices.css?version=<%=ConfigurationManager.AppSettings["VersionConfiguration"].ToString() %>" rel="stylesheet" />
 
+    <script src="Scripts/jsPsInformationModal.js?version=<%=ConfigurationManager.AppSettings["VersionConfiguration"].ToString() %>"></script>
     <div class="dashboardContainer">
         <div class="container-fluid">
-
-            <div class="row dashboardHeader">
-                <div class="col-lg-3 dashboardHeadline">
+            <div class="row">
+                <div class="col-lg-3 dashboardHeadline" style="margin-top: 0px !important">
                     Invoices: Overview   
                     <asp:Button ID="btnExport" Text="Export" CssClass="export" Style="width: 75px; display: none;" OnClick="btnExport_Click" runat="server" />
                 </div>
-
-
-
-
-
-                <div class="col-lg-9">
-
-                    <div class="summaryInvoices">
-
+                </div>
+            <div class="row dashboardHeader">
+                <div class="col-lg-3 dashboardHeadline">
+                </div>
+                <div class="col-lg-9 summaryRow">
+                    <div class="summaryInvoices" style="margin-top: 60px !important">
                         <div class="summaryHeading">
                             <div class="textOrange" style="background: #38445D;">
 
@@ -76,13 +73,13 @@
                                 </div>
                             </div>
                         </div>
-
+                        
                     </div>
                 </div>
 
 
                 <div class="hidden">
-                    <asp:Button Text="Download As" class="form-control invoicesDownloadAsButton" runat="server" />
+                    <asp:Button Text="Download As" class="form-control invoicesDownloadAsButton" runat="server"/>
                 </div>
             </div>
 
@@ -100,7 +97,7 @@
             <asp:UpdatePanel runat="server" ID="UpdatePanel1" >
                 <ContentTemplate>
                     <div class="tableFixHead tableMarginBg">
-                        <asp:GridView ID="grdInvoices" runat="server" AutoGenerateColumns="False" AllowSorting="true" OnSorting="grdInvoices_Sorting" EmptyDataRowStyle-CssClass="Emptyrow" ViewStateMode="Enabled" Visible="true" Style="color: white; overflow-x: scroll; overflow-y: scroll;"
+                        <asp:GridView ID="grdInvoices" runat="server" AutoGenerateColumns="False" AllowSorting="true" OnSorting="grdInvoices_Sorting" OnRowDataBound="grdInvoices_RowDataBound" EmptyDataRowStyle-CssClass="Emptyrow" ViewStateMode="Enabled" Visible="true" Style="color: white; overflow-x: scroll; overflow-y: scroll;"
                             ShowHeaderWhenEmpty="true" CssClass="table table-borderless">
                             <HeaderStyle BackColor="#475672" CssClass="GVFixedHeader" />
                             <Columns>
@@ -131,9 +128,22 @@
                                 <asp:BoundField DataField="Duedate" HeaderStyle-CssClass="itemalign" ItemStyle-CssClass="itemalign tableNoWrap" HeaderText="DUE DATE" SortExpression="Duedate" />
                                 <asp:BoundField DataField="Remainingamount" DataFormatString="{0:#,0.00}" HeaderStyle-CssClass="itemalign" ItemStyle-CssClass="itemalign" HeaderText="REMAIN" SortExpression="Remainingamount" />
 
+
                                 <asp:BoundField DataField="TotalRemaining" DataFormatString="{0:#,0.00}" HeaderStyle-CssClass="itemalign" ItemStyle-CssClass="itemalign" HeaderText="TOTAL REMAIN" SortExpression="TotalRemaining" />
 
-                                <asp:BoundField DataField="Collectionstatus" HeaderStyle-CssClass="itemalign" ItemStyle-CssClass="itemalign" HeaderText="Collection Status" SortExpression="Collectionstatus" />
+                                <asp:TemplateField ItemStyle-CssClass="itemalign" HeaderText="Collection Status" SortExpression="Collectionstatus" HeaderStyle-CssClass="itemalign">
+                                    <ItemTemplate>
+
+                                        <asp:LinkButton CssClass="linkNormalcss" Text='<%# Bind("Collectionstatus") %>' CommandName="Sort" ID="gridLinkCollectionSatatus" 
+                                           invoice='<%# Eval("Invoicenumber") %>'   runat="server" />
+                                    </ItemTemplate>
+
+                                </asp:TemplateField>
+
+
+                                  <asp:BoundField DataField="Credited" HeaderStyle-CssClass="itemalign" ItemStyle-CssClass="itemalign" HeaderText="Credited" SortExpression="Credited" />
+                                <asp:BoundField DataField="ClosedCredit" HeaderStyle-CssClass="itemalign" ItemStyle-CssClass="itemalign" HeaderText="Closed with credit" SortExpression="ClosedCredit" />
+
 
                                 <asp:BoundField DataField="Paymentreference" HeaderStyle-CssClass="itemalign" ItemStyle-CssClass="itemalign" HeaderText="PAY REF" SortExpression="Paymentreference" />
                                 <asp:BoundField DataField="Overpayment" DataFormatString="{0:#,0.00}" HeaderStyle-CssClass="itemalign" ItemStyle-CssClass="itemalign" HeaderText="OVER PAID" SortExpression="Overpayment" />
@@ -214,7 +224,7 @@
                                     </div>
 
                                     <div class="form-group">
-                                        <asp:Button Text="Send" class="button updateInfoButton form-control" runat="server" ID="btnSend" OnClientClick="ProgressBarDisplay();" OnClick="btnSend_Click" Width="128px" />
+                                        <asp:Button Text="Send" class="button updateInfoButton form-control" runat="server" ID="btnSend" OnClientClick="ProgressBarDisplay();" OnClick="btnSend_Click" Width="128px"/>
 
 
                                     </div>
@@ -244,7 +254,6 @@
                         </div>
                     </div>
 
-
                     <div class="modal" id="mdlExport" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
                         <div class="modal-dialog" role="document">
                             <div class="modal-content" style="top: 200px; background: none; border: none; width: 75%;">
@@ -272,7 +281,7 @@
                                             </asp:Panel>
                                             <asp:Panel runat="server" ID="pnlDC">
                                                 <asp:CheckBox ID="chkDC" AutoPostBack="false" Checked="true" Style="margin-top: 5px;" CssClass="checkbox"
-                                                    runat="server" Text="Debt Collection Letter"></asp:CheckBox>
+                                                    runat="server" Text="Debt Collection"></asp:CheckBox>
                                             </asp:Panel>
                                         </div>
 
@@ -284,11 +293,7 @@
                                                 <asp:Button runat="server" CssClass="invoicesDownloadButton button button-table" OnClick="btnEmail_Click" ID="btnEmail" Text="Email" />
                                             </div>
                                         </div>
-
-
                                     </div>
-
-
                                     <div id="PnlDownloadMsg" style="display: none;" class="mt-2 alert alert-success" role="alert">
                                         <span id="spnDownloadMsg"></span>
                                     </div>
@@ -302,20 +307,11 @@
                                         </div>
                                     </div>
 
-
-
-
-
-
                                 </div>
-
-
-
 
                             </div>
                         </div>
                     </div>
-
                     <div style="display: none;">
                         <iframe id="pdfInvoices" runat="server"></iframe>
                         <iframe id="pdfDC" runat="server"></iframe>

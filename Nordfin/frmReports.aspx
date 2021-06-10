@@ -1,4 +1,4 @@
-﻿<%@ Page Language="C#" AutoEventWireup="true" MasterPageFile="~/Nordfin.Master" Title="NordfinCapital" CodeBehind="frmReports.aspx.cs" Inherits="Nordfin.frmReports" %>
+﻿<%@ Page Language="C#" AutoEventWireup="true" MasterPageFile="~/Nordfin.Master" Title="NFC ACCESS" CodeBehind="frmReports.aspx.cs" Inherits="Nordfin.frmReports" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="NordfinContentHolder" runat="server" style="background-color: #232D41;">
 
@@ -115,7 +115,7 @@
                                 <div class="reportsCardCaption"> Transactions in period <br>Bookkeeping</div>
                             </div>
                             <div class="reportsCardBottom">
-                                <asp:Button CssClass="button reportsCardButton form-control" runat="server" Text="Download" ID="Button5" OnClientClick="return Message();" ></asp:Button>
+                                <asp:Button CssClass="button reportsCardButton form-control" runat="server" Text="Download" ID="btnTransactionReport" OnClick="btnTransactionReport_Click"  OnClientClick="return DateSelection('Transaction report');"></asp:Button>
                             </div>
                         </div>
                     </div>
@@ -132,6 +132,32 @@
                             </div>
                         </div>
                     </div>
+
+                       <div class="reportsCardContainer col-md-3">
+                        <div class="reportsCard">
+                            <div class="info-icon"></div>
+                            <div class="reportsCardContent">
+                                <img src="Images/NFC_reports_ledgerlist.svg" alt="" />
+                                <div class="reportsCardCaption">Stopped Invoices</div>
+                            </div>
+                            <div class="reportsCardBottom">
+                                <asp:Button CssClass="button reportsCardButton form-control" runat="server" Text="Download" ID="btnStopped" OnClick="btnStopped_Click"></asp:Button>
+                            </div>
+                        </div>
+                    </div>
+
+                      <asp:Panel ID="pnlInvoiceBatches" runat="server" CssClass="reportsCardContainer col-md-3">
+                        <div class="reportsCard">
+                            <div class="info-icon"></div>
+                            <div class="reportsCardContent">
+                                <img src="Images/NFC_reports_ledgerlist.svg" alt="" />
+                                <div class="reportsCardCaption">Invoice Batches</div>
+                            </div>
+                            <div class="reportsCardBottom">
+                                <asp:Button CssClass="button reportsCardButton form-control" runat="server" Text="Download" ID="btnInvoiceBatches" OnClick="btnInvoiceBatches_Click"></asp:Button>
+                            </div>
+                        </div>
+                    </asp:Panel>
 
 
                     <div class="modal fade" id="mdlReport" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">

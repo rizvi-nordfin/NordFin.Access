@@ -25,6 +25,23 @@ namespace Nordfin.workflow.BusinessLayer
             return telsonGroupBusinessData.GetTelsonGroupData(ClientID);
         }
 
-        
+        Tuple<IList<TelsonGroup>, IList<TelsonChart>> ITelsonGroupPresentationBusinessLayer.GetTelecomData()
+        {
+            return telsonGroupBusinessData.GetTelecomData();
+        }
+        int ITelsonGroupPresentationBusinessLayer.setCreditCheck(CreditCheck creditCheck)
+        {
+            return telsonGroupBusinessData.setCreditCheck(creditCheck);
+        }
+
+        bool ITelsonGroupPresentationBusinessLayer.setCreditAutoAccount(CreditAutoAccount autoAccount)
+        {
+            return telsonGroupBusinessData.setCreditAutoAccount(autoAccount);
+        }
+
+        CreditAutoAccount ITelsonGroupPresentationBusinessLayer.getCreditAutoAccountDetails(int ClientID)
+        {
+            return telsonGroupBusinessData.getCreditAutoAccountDetails(ClientID);
+        }
     }
 }

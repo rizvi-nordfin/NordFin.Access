@@ -21,10 +21,11 @@ Array.prototype.unique = function () {
 }
 
 function CreateControl() {
-   
-     $("#NordfinContentHolder_grdInvoices tr:first").before("<tr id='trHead' class='trHead' ><th class='labelcolor itemalign trHead'> " + "" + "</th>" + "<th class='itemalign trHead'>" + "" + "</th> " +
+
+    $("#NordfinContentHolder_grdInvoices tr:first").before("<tr id='trHead' class='trHead' ><th class='labelcolor itemalign trHead'> " + "" + "</th>" + "<th class='itemalign trHead'>" + "" + "</th> " +
         "<th class='itemalign trHead' >" + "" + "</th> " + "<th class='itemalign trHead'>" + '' + "</th>" + "<th class='itemalign trHead'>" + "" + "</th> " +
-        "<th class='itemalign trHead'>" + "" + "</th> " + "<th class='itemalign trHead'>" + '' + "</th> " + "<th class='itemalign trHead'>" + '' + "</th> " + + "<th class='itemalign trHead'>"
+        "<th class='itemalign trHead'>" + "" + "</th> " + "<th class='itemalign trHead'>" + '' + "</th> " + "<th class='itemalign trHead'>" + '' + "</th> " +
+        "<th class='itemalign trHead'>" + '' + "</th> " + "<th class='itemalign trHead'>"
         + '' + "</th> " + "<th class='itemalign trHead'>" + "" + "</th> " + "<th class='itemalign trHead'>" + "" + "</th> " + "<th id='tdMatch' class='itemalign trHead'>" + '' + "</th> " + "<th id='tdMatch' class='itemalign trHead'>" + '' + "</th> "
         + "<th id='tdExport' class='itemalign trHead'>" + '' + "</th>" +
 
@@ -32,7 +33,7 @@ function CreateControl() {
 
 
     addButton();
-   
+
 
 }
 function addButton() {
@@ -52,11 +53,9 @@ function addButton() {
 
 function LinkClick(linkValues) {
 
-    
-
-
- 
-
+    if (linkValues.text == '0000') {
+        return false;
+    }
 
     const paramValues = document.getElementById(linkValues.id).getAttribute("invoiceData") + "|" + linkValues.text;
 
@@ -69,7 +68,7 @@ function LinkClick(linkValues) {
     document.getElementById("NordfinContentHolder_btnOpenModal").click();
 
 
-    const sFileName = document.getElementById("NordfinContentHolder_hdnFileName").value;//+ "_" + linkValues.text + "_" + "inv" + ".";
+    const sFileName = encodeURIComponent(document.getElementById("NordfinContentHolder_hdnFileName").value);//+ "_" + linkValues.text + "_" + "inv" + ".";
 
     const sClientName = document.getElementById("NordfinContentHolder_hdnClientName").value;
 
@@ -102,11 +101,7 @@ function PDFViewer(sFileName, sPDFViewerLink, sSessionId, bResult, buttonID, col
    
     $("#spnDownloadMsg").text("Downloaded Successfully!");
    
-   
 }
-
-
-
 
 function EmailIDEnable() {
     
@@ -119,8 +114,7 @@ function EmailIDEnable() {
     }
 }
 
-
-function ExportClick(IsEmail, pdfArchive, bSent) {
+function ExportClick(IsEmail, pdfArchive, bSent, bMultidownlaod) {
     $(".modal-backdrop").remove();
     $(".modal-backdrop").remove();
     if (IsEmail == 1) {
@@ -134,22 +128,27 @@ function ExportClick(IsEmail, pdfArchive, bSent) {
             else {
                 $("#spnMsg").text("Something went wrong please contact nordfin!");
             }
-            
-        }
+               }
        
     }
     else {
-
-        if (pdfArchive == undefined || pdfArchive == "")
-            $('#mdlExport').modal({ backdrop: 'static', keyboard: false }, 'show');
-        else
+       
+        $('#mdlExport').modal({ backdrop: 'static', keyboard: false }, 'show');
+        if (bMultidownlaod.toUpperCase()=="TRUE") {
             PDFViewerArchive(pdfArchive);
+        }
+        //if (pdfArchive == undefined || pdfArchive == "")
+           
+        //else {
+        //   // PDFViewerArchive(pdfArchive);
+        //    if (bMultidownlaod)
+        //        $('#mdlExport').modal({ backdrop: 'static', keyboard: false }, 'show');
+        //}
+            
     }
    
    
 }
-
-
 
 function ProgressBarDisplay() {
     $("#Pnlprogress").css("display", "block");
@@ -175,4 +174,40 @@ function PdfDownloadMsgNone() {
 
 function ProcessingModal() {
     $('.featureNotAvailablePnlBG').toggleClass('hidden');
+}
+
+function PDFDownloadClick(buttonValues) {
+    const sInvoiceNumer = document.getElementById(buttonValues.id).getAttribute("combineInvoice");
+
+    $.ajax({
+        type: "POST",
+        url: "frmInvoices.aspx/PDFDownload",
+        data: JSON.stringify({ hdnValue: document.getElementById("NordfinContentHolder_hdnFileName").value, InvoiceNum: sInvoiceNumer, hdnArchieveLink: document.getElementById("NordfinContentHolder_hdnArchiveLink").value, hdnClientName: document.getElementById("NordfinContentHolder_hdnClientName").value }),
+
+        contentType: "application/json; charset=utf-8",
+        dataType: "json",
+        success: function (response) {
+
+            sFileName = response.d.split('~')[0];
+            sPDFViewerLink = response.d.split('~')[1];
+            if (sFileName == "")
+                document.getElementById("NordfinContentHolder_pdfViewer").href = sPDFViewerLink;
+            else
+                document.getElementById("NordfinContentHolder_pdfViewer").href = "Documents/" + sFileName;
+            document.getElementById("NordfinContentHolder_pdfViewer").click();
+            document.getElementById("NordfinContentHolder_pdfViewer").href = "";
+        },
+        error: function OnError(xhr) {
+
+        }
+    });
+
+
+    return false;
+}
+
+function ModalBackdrop(){
+    $(".modal-backdrop").remove();
+    $(".modal-backdrop").remove();
+    $('#mdlExport').modal({ backdrop: 'static', keyboard: false }, 'show');
 }

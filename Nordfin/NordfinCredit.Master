@@ -1,0 +1,204 @@
+﻿<%@ Master Language="C#" AutoEventWireup="true" CodeBehind="NordfinCredit.master.cs" Inherits="Nordfin.NordfinCredit" %>
+
+<!DOCTYPE html>
+
+<!DOCTYPE html>
+
+<html>
+<head runat="server">
+    <title>NFC ACCESS</title>
+    <asp:ContentPlaceHolder ID="head" runat="server">
+    </asp:ContentPlaceHolder>
+
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+
+
+    <link href="Styles/bootstrap.min.css" rel="stylesheet" />
+    <link href="Styles/NordfinMaster.css?version=<%=ConfigurationManager.AppSettings["VersionConfiguration"].ToString() %>" rel="stylesheet" />
+
+    <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,300i,400,400i,600,600i,700,700i,900,900i&display=swap" rel="stylesheet">
+
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+    <script src="Scripts/popper.min.js"></script>
+    <script src="Scripts/bootstrap.min.js"></script>
+    <%--<script src="Scripts/NordfinMaster.js?version=<%=ConfigurationManager.AppSettings["VersionConfiguration"].ToString() %>"></script>--%>
+
+    <script src="Scripts/NordfinCreditMaster.js?version=<%=ConfigurationManager.AppSettings["VersionConfiguration"].ToString() %>"></script>
+
+    <script src="Scripts/font-Awesome.js"></script>
+    <link rel="icon" type="image/png" href="Images/NFC_logo_black.png" sizes="128x128" />
+
+
+</head>
+
+<body>
+    <form id="form1" runat="server">
+
+        <asp:ScriptManager EnablePartialRendering="true"
+            ID="ScriptManager1" runat="server">
+        </asp:ScriptManager>
+
+        <div>
+
+            <!-- Top Menu  -->
+            <div class="topMenu">
+
+                <asp:Panel runat="server" onclick="PanelClick();" style="cursor:pointer;" class="sideMenuLogo">
+
+                    <img  src="Images/NFC_logo_white.svg" />
+                </asp:Panel>
+
+                <div class="topMenuSearchContainer">
+                    <div class="topMenuSearch">
+                        <div class="topMenuSearchInputContainer">
+                            <img class="topMenuSearchLoupe" src="Images/NFC_search.svg" runat="server" style="height: 25px; width: 25px;" id="iSearch" alt="" />
+                            <asp:TextBox runat="server" class="form-control searchInput" AutoPostBack="false" placeholder="Add invoice number or customer number" ID="txtSearch"></asp:TextBox>
+                        </div>
+
+
+
+                        <div class="topMenuSearchAdvanced">
+                            <span>Advanced<span class="topMenuSearchAdvanced_searchText"> search</span></span>
+                            <i class="fa fa-bars"></i>
+                            <br />
+                        </div>
+                        <div id="dropdownAdvanceSearch" class="dropdownAdvanceSearch hidden">
+                            <div class="dropdownAdvanceSearchInput">
+                                <label>
+                                    Customer Name
+                        <asp:TextBox ID="txtCustomerName" runat="server" CssClass="form-control" ToolTip="Type min three letters of Customer Name" placeholder="Type min three letters of Customer Name"></asp:TextBox>
+                                </label>
+                            </div>
+
+                            <div class="dropdownAdvanceSearchInput">
+                                <label>
+                                    Email
+                          <asp:TextBox ID="txtEmail" runat="server" CssClass="form-control"></asp:TextBox>
+                                </label>
+                            </div>
+
+                            <div class="dropdownAdvanceSearchInput">
+                                <label>
+                                    SSN/REG.Number
+                          <asp:TextBox ID="txtPersonalNumber" runat="server" CssClass="form-control"></asp:TextBox>
+                                </label>
+                            </div>
+
+                        </div>
+                        <asp:Button Text="Search"   ID="Search" OnClientClick="return false;" class="button topMenuSearchButton" runat="server" />
+
+
+                    </div>
+
+                </div>
+
+
+                <div class="topMenuRight">
+                    <div class="topMenuNotification featureNotAvailableTriggerNotification">
+                    
+                    </div>
+                    <div id="dropdownNotification" class="dropdownNotification hidden">
+
+
+                        <div id="dropdownNotifiedText"  class="dropdownNotifiedtext">
+                        </div>
+                    </div>
+                    <div id="divDropdown" class="topMenuOpenDropdown">
+                        <div class="topMenuUser">
+                            <i style="color: lightgreen; font-size: 10px;" class="fa fa-circle"></i>
+                            <asp:Label runat="server" class="index" ID="lblUserName"></asp:Label>
+                        </div>
+
+                        <div class="topMenuClientName">
+                            <asp:TextBox ID="txtClientName" ReadOnly="true" runat="server"></asp:TextBox>
+
+                        </div>
+
+                        <div class="topMenuMenubutton">
+                            <hr class="menu_hr_one">
+                            <hr class="menu_hr_two">
+                            <hr class="menu_hr_three">
+                        </div>
+
+
+
+                        <div id="dropdownClientName" class="dropdownMenu hidden">
+                         
+                            <div class="dropdownMenuItem dropdownMenuLogout">
+                                <a href="#"  onclick="logout();" >Log Out</a>
+
+                                <%--<asp:ListBox runat="server" AutoPostBack="true" CssClass="logout"  OnSelectedIndexChanged="lstLogout_SelectedIndexChanged" ID="lstLogout" >
+                           <asp:ListItem Text="Log Out" />
+                        </asp:ListBox>--%>
+                            </div>
+
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+
+
+
+                <div class="sideMenu">
+                <div class="sideMenuButton">
+                    <div id="tdCalendar">
+                        <div class="sideMenuCalendar">
+                            <span id="spnCalendar"></span>
+                            <span id="spnDate"></span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="sideMenuEmptyCell">
+                </div>
+
+              
+
+               
+
+                  <div class="sideMenuButton">
+                    <div id="tdCredicheck">
+                        <button runat="server"  id="btnCreditCheck">
+                            <img class="sideMenuIcon iReports mtmlCredit" style="width:100px;" src="Images/Check.svg" runat="server" id="imgCreditcheck" alt="Reports" />
+                        </button>
+                    </div>
+                </div>
+
+            
+             
+
+               
+            </div>
+          
+          
+
+
+
+            <asp:ContentPlaceHolder ID="NordfinContentHolder" runat="server">
+            </asp:ContentPlaceHolder>
+
+
+         
+
+
+        </div>
+
+
+     
+        <asp:Button ID="btnlogout" runat="server" Style="display: none;"  OnClick="btnlogout_Click" />
+       
+
+        <input type="button" id="btnNotification" style="display: none;" />
+    </form>
+    <div class="featureNotAvailableBG hidden">
+        <div class="featureNotAvailable">
+            <div class="featureNotAvailableX">✕</div>
+           In order to use the credit scoring function please contact your nordfin contact
+        </div>
+    </div>
+
+   
+</body>
+</html>

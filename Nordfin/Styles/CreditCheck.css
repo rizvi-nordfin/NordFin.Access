@@ -1,0 +1,90 @@
+﻿
+.row {
+    margin-right: -7px !important;
+}
+
+.headingDiv {
+    padding: 15px;
+    background-color: #41546E;
+    margin-bottom: 10px !important;
+}
+
+.tableDiv {
+    background-color: #38445D;
+    color: #A9BFD5;
+    margin: 0px;
+    width: 100%;
+}
+.overviewHeading {
+    display: grid;
+    grid-template-columns: 5fr;
+    justify-content: center;
+    align-items: center;
+    margin-top: -1px;
+    background-color: #475672;
+   
+}
+
+.customerdivText
+{
+    visibility:visible;
+   
+}
+.ResultMainHeadingHeight {
+    height: 23px;
+}
+.ResultHeight{
+    height:24px;
+}
+.updateInfoButtonContainer {
+    height: 71px;
+    margin-top: -5px;
+}
+.ResultLastHeight {
+    height: 29px;
+}
+#tdCredicheck {
+    background-color: rgb(44, 56, 80);
+}
+
+#tdCredicheck img.sideMenuIcon {
+    filter: brightness(0) saturate(100%) invert(78%) sepia(49%) saturate(3809%) hue-rotate(359deg) brightness(101%) contrast(106%);
+}
+
+
+.creditMeter {
+    width:400px !important;
+    height:350px !important;
+   
+}
+.mt-mb {
+    margin-top: -1px;
+}
+@media (min-width:1024px) and (max-width:1440px) {
+    .creditMeter {
+        width: 300px !important;
+        height: 350px !important;
+    }
+}
+@media (min-width:500px) and (max-width:1024px) {
+    .creditMeter {
+        width: 200px !important;
+        height: 350px !important;
+    }
+}
+@media all and (max-width:500px) {
+    .creditMeterMl {
+        margin-left: -14px;
+        margin-top: -12px;
+    }
+    .w-mb{
+        width:105%;
+    }
+    .mt-mb {
+        margin-top: 6px;
+    }
+    .creditMeter {
+        width: 250px !important;
+        height:220px !important;
+    }
+}
