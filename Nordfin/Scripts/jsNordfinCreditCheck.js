@@ -3,7 +3,6 @@
 $(document).ready(function () {
     setCreditScore($('#NordfinContentHolder_hdnCreditScore').val(), $('#NordfinContentHolder_hdnCreditVisible').val())
     function setCreditScore(score, CreditUser) {
-        debugger;
         demoGauge = new Gauge(document.getElementById("demo"));
         var opts = {
             angle: -0.15,

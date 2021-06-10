@@ -1,7 +1,5 @@
 ﻿
 function ParentModal() {
-    debugger;
-
     document.getElementById("ExportModal").innerText = "Auto Account";
     document.getElementById("FrameMaster").src = "frmAutoAccount.aspx";
 

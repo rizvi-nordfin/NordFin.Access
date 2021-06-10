@@ -36,8 +36,6 @@ function MailClose() {
 }
 
 function Downloadlimit() {
-    debugger;
-
     $('.featureNotAvailableBG').toggleClass('hidden');
 }
 
