@@ -311,6 +311,10 @@ a.linkcss {
     {
         margin-top:0px;
     }
+
+    .summaryRow {
+        margin-top: -20px !important;
+    }
 }
 
 @media screen and (max-width: 1000px) and (min-width: 990px) {
@@ -323,6 +327,10 @@ a.linkcss {
     }
     .dashboardHeadline {
         margin-top: -10px;
+    }
+
+    .summaryRow {
+        margin-top: -20px !important;
     }
 }
 
@@ -339,6 +347,10 @@ a.linkcss {
     .dashboardHeadline {
         margin-top: -10px;
     }
+
+    .summaryRow {
+        margin-top: -75px !important;
+    }
 }
 
 @media screen and (max-width: 800px) and (min-width: 732px) {
@@ -351,7 +363,14 @@ a.linkcss {
     .tableMarginBg {
         margin-top: -4px !important;
     }
-  
+
+    .addCustomerRowHeight {
+        height: auto !important;
+    }
+
+    .summaryRow {
+        margin-top: -75px !important;
+    }
 }
 
 @media screen and (max-width: 732px) and (min-width: 500px) {
@@ -368,6 +387,14 @@ a.linkcss {
 
     .tableMarginBg {
         margin-top: 65px !important;
+    }
+
+    .addCustomerRowHeight {
+        height: auto !important;
+    }
+
+    .summaryRow {
+        margin-top: -75px !important;
     }
 }
 
@@ -389,10 +416,18 @@ a.linkcss {
     .tableMarginBg {
         margin-top: 160px !important;
     }
+
+    .addCustomerRowHeight {
+        height: auto !important;
+    }
+
+    .summaryRow {
+        margin-top: -75px !important;
+    }
 }
 
 .tableMarginBg {
-   background-color: #2C3850; margin-top: -25px;
+   background-color: #2C3850; margin-top: -44px;
 }
 
 ::-webkit-scrollbar {
@@ -447,12 +482,6 @@ input[type="checkbox"]:checked  {
     z-index: 10;
 }
 
-
-
-
-
-
-
 .featureNotAvailablePnl {
     
     position: fixed;
@@ -478,4 +507,3 @@ input[type="checkbox"]:checked  {
 .textareaHeight {
     height:140px !important;
 }
-

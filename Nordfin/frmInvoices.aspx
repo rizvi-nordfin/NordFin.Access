@@ -10,21 +10,17 @@
     <script src="Scripts/jsPsInformationModal.js?version=<%=ConfigurationManager.AppSettings["VersionConfiguration"].ToString() %>"></script>
     <div class="dashboardContainer">
         <div class="container-fluid">
-
-            <div class="row dashboardHeader">
-                <div class="col-lg-3 dashboardHeadline">
+            <div class="row">
+                <div class="col-lg-3 dashboardHeadline" style="margin-top: 0px !important">
                     Invoices: Overview   
                     <asp:Button ID="btnExport" Text="Export" CssClass="export" Style="width: 75px; display: none;" OnClick="btnExport_Click" runat="server" />
                 </div>
-
-
-
-
-
-                <div class="col-lg-9">
-
-                    <div class="summaryInvoices">
-
+                </div>
+            <div class="row dashboardHeader">
+                <div class="col-lg-3 dashboardHeadline">
+                </div>
+                <div class="col-lg-9 summaryRow">
+                    <div class="summaryInvoices" style="margin-top: 60px !important">
                         <div class="summaryHeading">
                             <div class="textOrange" style="background: #38445D;">
 
@@ -77,13 +73,13 @@
                                 </div>
                             </div>
                         </div>
-
+                        
                     </div>
                 </div>
 
 
                 <div class="hidden">
-                    <asp:Button Text="Download As" class="form-control invoicesDownloadAsButton" runat="server" />
+                    <asp:Button Text="Download As" class="form-control invoicesDownloadAsButton" runat="server"/>
                 </div>
             </div>
 
@@ -228,7 +224,7 @@
                                     </div>
 
                                     <div class="form-group">
-                                        <asp:Button Text="Send" class="button updateInfoButton form-control" runat="server" ID="btnSend" OnClientClick="ProgressBarDisplay();" OnClick="btnSend_Click" Width="128px" />
+                                        <asp:Button Text="Send" class="button updateInfoButton form-control" runat="server" ID="btnSend" OnClientClick="ProgressBarDisplay();" OnClick="btnSend_Click" Width="128px"/>
 
 
                                     </div>
@@ -257,7 +253,6 @@
                             </div>
                         </div>
                     </div>
-
 
                     <div class="modal" id="mdlExport" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
                         <div class="modal-dialog" role="document">
@@ -298,11 +293,7 @@
                                                 <asp:Button runat="server" CssClass="invoicesDownloadButton button button-table" OnClick="btnEmail_Click" ID="btnEmail" Text="Email" />
                                             </div>
                                         </div>
-
-
                                     </div>
-
-
                                     <div id="PnlDownloadMsg" style="display: none;" class="mt-2 alert alert-success" role="alert">
                                         <span id="spnDownloadMsg"></span>
                                     </div>
@@ -316,20 +307,11 @@
                                         </div>
                                     </div>
 
-
-
-
-
-
                                 </div>
-
-
-
 
                             </div>
                         </div>
                     </div>
-
                     <div style="display: none;">
                         <iframe id="pdfInvoices" runat="server"></iframe>
                         <iframe id="pdfDC" runat="server"></iframe>

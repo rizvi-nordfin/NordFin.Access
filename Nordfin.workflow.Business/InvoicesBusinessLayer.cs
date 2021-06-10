@@ -41,6 +41,16 @@ namespace Nordfin.workflow.Business
         {
             return objuser.InsertInvoiceInfo(notes);
         }
+
+        public bool AddNewCustomerInfo(CustomerInfo customerInfo)
+        {
+            return objuser.AddNewCustomerInfo(customerInfo);
+        }
+
+        public Dictionary<string, string> CheckCustomerAlreadyExists(string customerNumber, string personalNumber, int clientId)
+        {
+            return objuser.CheckCustomerAlreadyExists(customerNumber, personalNumber, clientId);
+        }
     }
 
 }

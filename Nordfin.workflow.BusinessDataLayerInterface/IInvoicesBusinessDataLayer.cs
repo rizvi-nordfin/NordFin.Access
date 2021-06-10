@@ -13,5 +13,9 @@ namespace Nordfin.workflow.BusinessDataLayerInterface
         IList<MatchInvoices> GetMatchedInvoices(string NegativeInvoices, string PositiveInvoices, string UserID);
         DataSet getExportdetails(string custorinvoiceNum, string clientID);
         IList<Notes> InsertInvoiceInfo(Notes notes);
+
+        bool AddNewCustomerInfo(CustomerInfo customerInfo);
+
+        Dictionary<string, string> CheckCustomerAlreadyExists(string customerNumber, string personalNumber, int clientId);
     }
 }

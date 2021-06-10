@@ -147,8 +147,8 @@
       <HintPath>..\packages\MimeKit.2.10.1\lib\net47\MimeKit.dll</HintPath>
     </Reference>
     <Reference Include="Newtonsoft.Json, Version=12.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>lib\Newtonsoft.Json.dll</HintPath>
+      <HintPath>..\packages\Newtonsoft.Json.12.0.3\lib\net45\Newtonsoft.Json.dll</HintPath>
+      <Private>True</Private>
     </Reference>
     <Reference Include="Owin, Version=1.0.0.0, Culture=neutral, PublicKeyToken=f0ebd12fd5e55cc5, processorArchitecture=MSIL">
       <HintPath>..\packages\Owin.1.0\lib\net40\Owin.dll</HintPath>
@@ -297,6 +297,7 @@
     </None>
     <Content Include="frmAccountSettings.aspx" />
     <Content Include="frmAutoAccount.aspx" />
+    <Content Include="frmAddNew.aspx" />
     <Content Include="frmBatches.aspx" />
     <Content Include="frmClientInformation.aspx" />
     <Content Include="frmContractOverview.aspx" />
@@ -398,11 +399,14 @@
     <Content Include="Scripts\font-Awesome.js" />
     <Content Include="Scripts\gauge.js" />
     <Content Include="Scripts\gauge.min.js" />
+    <Content Include="Scripts\jAddNew.js" />
     <Content Include="Scripts\jquery-1.11.1.min.js" />
     <Content Include="libman.json" />
     <None Include="Connected Services\CreditSafeTemplate\cas_service.wsdl" />
     <None Include="Connected Services\GetDataTemplate\getdata.wsdl" />
     <Content Include="NordfinCredit.Master" />
+    <None Include="Properties\PublishProfiles\FolderProfile-Prod.pubxml" />
+    <None Include="Properties\PublishProfiles\FolderProfile-Test.pubxml" />
     <Content Include="Files\CSSE ÅF-villkor AutoAccount 20190101.pdf" />
     <None Include="Properties\PublishProfiles\FTPProfileProd.pubxml" />
     <None Include="Properties\PublishProfiles\FTPProfileTest.pubxml" />
@@ -446,6 +450,7 @@
     <Content Include="Scripts\NordfinMaster.js" />
     <Content Include="Scripts\popper.min.js" />
     <Content Include="Scripts\recaptcha_api.js" />
+    <Content Include="Styles\AddNew.css" />
     <Content Include="Styles\Batches.css" />
     <Content Include="Styles\bootstrap.min.css" />
     <Content Include="Styles\AccountSettings.css" />
@@ -514,6 +519,13 @@
     </Compile>
     <Compile Include="frmAutoAccount.aspx.designer.cs">
       <DependentUpon>frmAutoAccount.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="frmAddNew.aspx.cs">
+      <DependentUpon>frmAddNew.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="frmAddNew.aspx.designer.cs">
+      <DependentUpon>frmAddNew.aspx</DependentUpon>
     </Compile>
     <Compile Include="frmBatches.aspx.cs">
       <DependentUpon>frmBatches.aspx</DependentUpon>
@@ -688,7 +700,6 @@
   <ItemGroup>
     <Content Include="Nordfin.Master" />
     <None Include="packages.config" />
-    <None Include="Properties\PublishProfiles\FolderProfile.pubxml" />
     <Content Include="Scripts\jquery-3.4.1.min.map" />
     <Content Include="Scripts\jquery-3.4.1.slim.min.map" />
     <None Include="Web.Debug.config">

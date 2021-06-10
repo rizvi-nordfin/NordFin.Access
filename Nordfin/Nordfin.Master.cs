@@ -65,6 +65,11 @@ namespace Nordfin
                     pnlSideMenuContracts.CssClass = "sideContractMenuStatistics pnlSideMenuContractsTop hidden";//.Add("top", "551px !important");
 
                 }
+
+                if(ClientSession.AllowManualInvoice == 1)
+                {
+                    pnlSideMenuAdd.Visible = true;
+                }
               
 
                 if (Contracts == 0)
@@ -128,6 +133,12 @@ namespace Nordfin
         {
 
             Response.Redirect("frmReports.aspx");
+        }
+
+        protected void btnAddNew_ServerClick(object sender, EventArgs e)
+        {
+
+            Response.Redirect("frmAddNew.aspx");
         }
 
         protected void lstStatistics_SelectedIndexChanged(object sender, EventArgs e)

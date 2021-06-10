@@ -105,6 +105,8 @@
     <Compile Include="TelsonChart.cs" />
     <Compile Include="TelsonGroup.cs" />
     <Compile Include="Transaction.cs" />
+    <Compile Include="TransformationHeader.cs" />
+    <Compile Include="ManualInvoiceMapping.cs" />
     <Compile Include="UserChartData.cs" />
     <Compile Include="Users.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

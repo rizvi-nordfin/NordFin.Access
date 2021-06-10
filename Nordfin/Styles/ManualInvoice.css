@@ -200,3 +200,13 @@ input[type="submit"]:disabled {
     padding-top: 15px
 }
 
+.modelDialogText {
+    color: white;
+    font-size: 15px !important;
+    text-align: left
+}
+
+.confirmData {
+    color: white !important;
+    font-size: 13px !important;
+}

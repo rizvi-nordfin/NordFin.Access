@@ -53,11 +53,9 @@ function addButton() {
 
 function LinkClick(linkValues) {
 
-    
-
-
- 
-
+    if (linkValues.text == '0000') {
+        return false;
+    }
 
     const paramValues = document.getElementById(linkValues.id).getAttribute("invoiceData") + "|" + linkValues.text;
 

@@ -1,8 +1,11 @@
-﻿using Nordfin.workflow.BusinessDataLayerInterface;
+﻿using Dapper;
+using Nordfin.workflow.BusinessDataLayerInterface;
 using Nordfin.workflow.Entity;
 using System;
 using System.Collections.Generic;
+using System.Configuration;
 using System.Data;
+using System.Data.SqlClient;
 using System.Globalization;
 using System.Linq;
 
@@ -10,6 +13,8 @@ namespace Nordfin.workflow.DataAccessLayer
 {
     public class InvoicesDataAccessLayer : DBBase, IInvoicesBusinessDataLayer
     {
+        private string connectionString = ConfigurationManager.ConnectionStrings["NordfinConnec"].ToString();
+
         DataSet IInvoicesBusinessDataLayer.getInvoicesList(string custorinvoiceNum, string clientID, bool bCustomer, AdvanceSearch advanceSearch)
         {
             if (advanceSearch != null)
@@ -159,7 +164,7 @@ namespace Nordfin.workflow.DataAccessLayer
             DatabaseName.AddInParameter(DBBaseCommand, "@ClientID", System.Data.DbType.Int32, Convert.ToInt32(objNotes.ClientID));
             DatabaseName.AddInParameter(DBBaseCommand, "@UserName", System.Data.DbType.String, objNotes.UserName);
             DatabaseName.AddInParameter(DBBaseCommand, "@InvoiceNum", System.Data.DbType.String, objNotes.InvoiceNumber);
-           
+
 
             DataSet ds = DatabaseName.ExecuteDataSet(DBBaseCommand);
 
@@ -177,6 +182,65 @@ namespace Nordfin.workflow.DataAccessLayer
                 }).ToList();
             }
             return objlstNotes;
+        }
+
+        bool IInvoicesBusinessDataLayer.AddNewCustomerInfo(CustomerInfo customerInfo)
+        {
+            int result = 0;
+            using (SqlConnection db = new SqlConnection(connectionString))
+            {
+                var sqlStatement = @"INSERT INTO [dbo].[Customers]
+                                       ([Customernumber]
+                                       ,[Customername]
+                                       ,[Personalnumber]
+                                       ,[Customeradress]
+                                       ,[CustomerPostalCode]
+                                       ,[CustomerCity]
+                                       ,[CustomerLand]
+                                       ,[CustomerEmail]
+                                       ,[ClientID]
+                                       ,[Customertype]
+                                       ,[CustomerPhone]
+                                       ,[Customeradress2])
+                                        VALUES
+                                       (@CustomerNumber,
+                                       @Name,  
+                                       @PersonalNumber,
+                                       @Address1,
+                                       @PostalCode,
+                                       @City, 
+                                       @Country, 
+                                       @Email,
+                                       @ClientID,     
+                                       @CustomerType, 
+                                       @PhoneNumber,     
+                                       @Address2)";
+
+                result =  db.Execute(sqlStatement, customerInfo);
+            };
+
+            return result > 0;
+        }
+
+        Dictionary<string, string> IInvoicesBusinessDataLayer.CheckCustomerAlreadyExists(string customerNumber, string personalNumber, int clientId)
+        {
+            var result = new Dictionary<string, string>();
+            using (SqlConnection db = new SqlConnection(connectionString))
+            {
+                var custNumber = db.Query<string>("SELECT CustomerNumber FROM Customers WHERE CustomerNumber = @CustomerNumber AND ClientId = @ClientId", new { CustomerNumber = customerNumber, ClientId = clientId }).FirstOrDefault();
+                if (!string.IsNullOrWhiteSpace(custNumber))
+                {
+                    result.Add("CustomerNumber", "Customer Number already exist. Change the number to proceed");
+                }
+
+                var pNumber = db.Query<string>("SELECT PersonalNumber FROM Customers WHERE PersonalNumber = @PersonalNumber", new { PersonalNumber = personalNumber }).FirstOrDefault();
+                if (!string.IsNullOrWhiteSpace(pNumber))
+                {
+                    result.Add("PersonalNumber", "Social Security/Registration Number already exist. Do you want to proceed?");
+                }
+            };
+
+            return result;
         }
     }
 }
