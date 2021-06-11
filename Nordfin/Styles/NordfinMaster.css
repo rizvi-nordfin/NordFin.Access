@@ -1956,3 +1956,10 @@ hr {
     margin-left: 21px;
     margin-top: 26px;
 }
+
+a.linkNormalcss {
+    color: #fff !important;
+    text-decoration: none;
+    border: none;
+    cursor: unset !important;
+}
