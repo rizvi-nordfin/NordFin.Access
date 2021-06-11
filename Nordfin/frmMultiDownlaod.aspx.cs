@@ -102,6 +102,7 @@ namespace Nordfin
                                 EMailInvoices eMailInvoices = new EMailInvoices();
                                 eMailInvoices.UserID = fileList[0].UserID;
                                 eMailInvoices.CustomerNumber = fileList[0].CustomerNumber;
+                                eMailInvoices.DisplayError = false;
                                 emailInvoiceList.Add(eMailInvoices);
                                 Application["EmailDetails"] = emailInvoiceList;
                                 return;
