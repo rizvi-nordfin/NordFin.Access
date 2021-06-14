@@ -986,6 +986,10 @@ option:hover {
         display: none;
     }
 
+    .dropdownMenuAccounts table tr td:nth-child(5), .dropdownMenuAccounts table tr th:nth-child(5) {
+        display: none;
+    }
+
     .dropdownMenuAccounts table th {
         display: none;
     }

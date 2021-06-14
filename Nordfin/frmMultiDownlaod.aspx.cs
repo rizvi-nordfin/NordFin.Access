@@ -434,5 +434,17 @@ namespace Nordfin
                
             }
         }
+
+        protected void chkSelectCollectionStatus_CheckedChanged(object sender, EventArgs e)
+        {
+            foreach (GridViewRow row in grdInvoiceDownlaod.Rows)
+            {
+                (row.FindControl("chkMultiInvoices") as CheckBox).Checked = chkSelectCollectionStatus.Checked ? true : false;
+
+                (row.FindControl("chkMultiDC") as CheckBox).Checked = chkSelectCollectionStatus.Checked ? true : false;
+
+                (row.FindControl("chkMultiRemind") as CheckBox).Checked = chkSelectCollectionStatus.Checked ? true : false;
+            }
+        }
     }
 }

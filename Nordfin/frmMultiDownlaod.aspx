@@ -1,4 +1,4 @@
-﻿<%@ Page Language="C#" AutoEventWireup="true" Async="true" CodeBehind="frmMultiDownlaod.aspx.cs" Inherits="Nordfin.frmMultiDownlaod" %>
+﻿<%@ Page Language="C#" AutoEventWireup="true" Async="true" CodeBehind="frmMultiDownlaod.aspx.cs" Inherits="Nordfin.frmMultiDownlaod"  UICulture="sv-SE" Culture="sv-SE" %>
 
 <!DOCTYPE html>
 
@@ -126,12 +126,16 @@
 
                     <div class="modal-footer flexnone" style="background-color: #3a475d; padding: 0px;">
 
-                        <asp:Panel runat="server" ID="pnlSelectAll" CssClass="text-left marginleft" Style="margin: auto; margin-left: 23px !important;">
+                        <asp:Panel runat="server" ID="pnlSelectAll" CssClass="text-left marginleft" Style="margin: auto; margin-left: 23px !important;width:38%;">
                              <div class="col-md-12" style="left:-15px;top:15px;">
                                  <asp:CheckBox ID="chkSelectAll" AutoPostBack="true" Checked="false" Style="margin-top: 5px;" OnCheckedChanged="chkSelectAll_CheckedChanged" CssClass="checkbox"
                                     runat="server" Text="Select All"></asp:CheckBox>
                             </div>
-                            <div class="col-md-12" style="left:-15px;">
+                             <div class="col-md-12" style="left:-15px;">
+                                 <asp:CheckBox ID="chkSelectCollectionStatus" AutoPostBack="true" Checked="false" Style="margin-top: 5px;" OnCheckedChanged="chkSelectCollectionStatus_CheckedChanged" CssClass="checkbox"
+                                    runat="server" Text="Select All,DC & Remind"></asp:CheckBox>
+                            </div>
+                            <div class="col-md-12" style="left:-15px;top:-13px;">
                                 <asp:CheckBox ID="chkUnpaid" AutoPostBack="true" Checked="false" Style="margin-top: 5px;" OnCheckedChanged="chkUnpaid_CheckedChanged" CssClass="checkbox"
                                     runat="server" Text="Select All Unpaid"></asp:CheckBox>
                             </div>
