@@ -31,15 +31,14 @@ namespace Nordfin
             {
                 ITelsonGroupPresentationBusinessLayer objTelsonData = new TelesonGroupBusinessLayer();
                 txtPassword.Attributes["type"] = "password";
-                //txtUserName.Text = Decrypt(GetFromCookie("CreditUser", "UserName"));
-                //txtPassword.Text = Decrypt(GetFromCookie("CreditToken", "Token"));
                 lblClientName.Text = ClientSession.ClientName;
                 hdnCreditScore.Value ="0";
                 hdnCreditVisible.Value= Convert.ToString(ClientSession.CreditUser);
                 CreditAutoAccount creditAutoAccount = objTelsonData.getCreditAutoAccountDetails(Convert.ToInt32(ClientSession.ClientID));
-                btnAutoAccount.Visible = (creditAutoAccount == null) ? true: false;
+                btnAutoAccount.Visible = (creditAutoAccount == null && ClientSession.CreditUser > 0) ? true : false;
                 txtUserName.Text = (creditAutoAccount == null) ? "" : creditAutoAccount.CreditUserName;
                 txtPassword.Text = (creditAutoAccount == null) ? "" :creditAutoAccount.CreditPassword;
+
             }
         }
 
@@ -55,7 +54,20 @@ namespace Nordfin
                 }
 
                 if (cboCustomerType.SelectedItem.Value.ToUpper() == "1")
+                {
+                    string sValue= GetFromCookie("PrivateMsg");
+
+                    int Hours = (!string.IsNullOrEmpty(sValue)) ? (DateTime.Now - Convert.ToDateTime(sValue)).Hours : 0;
+
+                    if (string.IsNullOrEmpty(sValue) || Hours > 8)
+                    {
+
+                        SetCookie("PrivateMsg");
+                        DisplayMessage();
+                        return;
+                    }
                     GetPersonCreditDetails();
+                }
                 else
                     GetCompanyCreditDetails();
             }
@@ -184,6 +196,8 @@ namespace Nordfin
             if (dataResponse.Error != null)
             {
                 hdnCreditScore.Value = "0";
+                ScriptManager.RegisterStartupScript(this, this.GetType(), "showModalInfo", "$('#mdlMasterConfirm').modal({ backdrop: 'static', keyboard: false }, 'show');" +
+                    "$('#spnMasterInfo').text('" + dataResponse.Error.Reject_text + "');", true);
                 return;
             }
             string xmlResponse = dataResponse.Parameters.GetXml();
@@ -332,85 +346,36 @@ namespace Nordfin
                 return creditPassword;
             }
         }
-        //public  string GetFromCookie(string cookieName, string keyName)
-        //{
-        //    HttpCookie cookie = HttpContext.Current.Request.Cookies[cookieName];
-        //    if (cookie != null)
-        //    {
-        //        string val = (!String.IsNullOrEmpty(keyName)) ? cookie[keyName] : cookie.Value;
-        //        if (!String.IsNullOrEmpty(val)) return Uri.UnescapeDataString(val);
-        //    }
-        //    return "";
-        //}
+        public string GetFromCookie(string cookieName)
+        {
+            HttpCookie cookie = HttpContext.Current.Request.Cookies[cookieName];
+            if (cookie != null)
+            {
+                string val = (!String.IsNullOrEmpty(cookieName)) ? cookie[cookieName] : cookie.Value;
+                if (!String.IsNullOrEmpty(val)) return Uri.UnescapeDataString(val);
+            }
+            return "";
+        }
 
-        //public void SetCookie(string cookieName, string Name, string Value)
-        //{
-
-
-        //    HttpCookie cookie = HttpContext.Current.Response.Cookies.AllKeys.Contains(cookieName) ? HttpContext.Current.Response.Cookies[cookieName]
-        //                         : HttpContext.Current.Request.Cookies[cookieName];
-        //    //if (cookie == null)
-        //    //{
-        //    cookie = new HttpCookie(cookieName);
-        //    if (!String.IsNullOrEmpty(Name))
-        //        cookie.Values.Set(Name, Encrypt(Value));
-        //    cookie.HttpOnly = true;
-        //    cookie.Secure = true;
-        //    cookie.SameSite = SameSiteMode.Strict;
-
-        //    HttpContext.Current.Response.Cookies.Set(cookie);
-        //    //}
-
-        //}
-
-        //public string Encrypt(string text)
-        //{
-        //    using (var md5 = new MD5CryptoServiceProvider())
-        //    {
-        //        using (var tdes = new TripleDESCryptoServiceProvider())
-        //        {
-        //            tdes.Key = md5.ComputeHash(UTF8Encoding.UTF8.GetBytes(key));
-        //            tdes.Mode = CipherMode.ECB;
-        //            tdes.Padding = PaddingMode.PKCS7;
-
-        //            using (var transform = tdes.CreateEncryptor())
-        //            {
-        //                byte[] textBytes = UTF8Encoding.UTF8.GetBytes(text);
-        //                byte[] bytes = transform.TransformFinalBlock(textBytes, 0, textBytes.Length);
-        //                return Convert.ToBase64String(bytes, 0, bytes.Length);
-        //            }
-        //        }
-        //    }
-        //}
-
-        //public  string Decrypt(string cipher)
-        //{
-        //    if(cipher=="")
-        //    {
-        //        return "";
-        //    }
-        //    using (var md5 = new MD5CryptoServiceProvider())
-        //    {
-        //        using (var tdes = new TripleDESCryptoServiceProvider())
-        //        {
-        //            tdes.Key = md5.ComputeHash(UTF8Encoding.UTF8.GetBytes(key));
-        //            tdes.Mode = CipherMode.ECB;
-        //            tdes.Padding = PaddingMode.PKCS7;
-
-        //            using (var transform = tdes.CreateDecryptor())
-        //            {
-        //                byte[] cipherBytes = Convert.FromBase64String(cipher);
-        //                byte[] bytes = transform.TransformFinalBlock(cipherBytes, 0, cipherBytes.Length);
-        //                return UTF8Encoding.UTF8.GetString(bytes);
-        //            }
-        //        }
-        //    }
-        //}
-
-        //protected void btnAutoAccount_Click(object sender, EventArgs e)
-        //{
+        public void SetCookie(string cookieName)
+        {
 
 
-        //}
+            HttpCookie cookie = HttpContext.Current.Response.Cookies.AllKeys.Contains(cookieName) ? HttpContext.Current.Response.Cookies[cookieName]
+                                 : HttpContext.Current.Request.Cookies[cookieName];
+            cookie = new HttpCookie(cookieName);
+            cookie[cookieName] = DateTime.Now.ToString("yyyy-MM-dd HH:mm");
+            cookie.HttpOnly = true;
+            cookie.Secure = true;
+            cookie.SameSite = SameSiteMode.Strict;
+            HttpContext.Current.Response.Cookies.Set(cookie);
+         
+
+        }
+        public void DisplayMessage()
+        {
+            ScriptManager.RegisterStartupScript(this, this.GetType(), "AlertPrivateCusttype", "AlertPrivateCustomer();", true);
+        }
+    
     }
 }

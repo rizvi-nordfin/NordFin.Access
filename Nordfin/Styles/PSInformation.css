@@ -77,3 +77,49 @@ input.larger {
 .hidden {
     display: none;
 }
+
+
+.modalcloseButton {
+    background-color: transparent;
+    border: none;
+    color: #ffffff;
+    display: block;
+    width: 30px;
+    height: 30px;
+    line-height: 27px;
+    font-size: 16px;
+    position: absolute;
+    top: 1px;
+    right: 2px;
+    padding: 0;
+    z-index: 100;
+}
+
+
+.modalbutton {
+    width: 100px;
+    text-transform: uppercase;
+    background-color: #232D41;
+    border: 1px solid #3DADC5;
+    height: 35px;
+    line-height: 29px;
+    color: #3DADC5;
+    display: inline-block;
+    text-transform: uppercase;
+    letter-spacing: 1.5px;
+    font-size: 11px;
+    margin: 0;
+    padding: 0px;
+    border-radius: 0;
+    box-shadow: none;
+    outline: 0;
+    background-clip: border-box;
+    margin: 20px;
+    margin-top: 25px;
+}
+
+    .modalbutton:hover {
+        background-color: #3DADC5;
+        color: #fff;
+        cursor: pointer;
+    }

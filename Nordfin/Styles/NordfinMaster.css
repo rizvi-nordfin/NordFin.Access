@@ -1915,3 +1915,7 @@ a.linkcss {
         margin-top: 17px;
     }
 }
+
+.progress-bar {
+    background-color: #3DADC5;
+}

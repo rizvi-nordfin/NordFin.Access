@@ -60,10 +60,21 @@ namespace Nordfin
                     {
                         autoAccountUserInfo = (CreditAutoAccountUserInfo)serializerUserInfo.Deserialize(readerUserinfo);
                     }
-                    creditAutoAccount.CreditUserName = autoAccountUserInfo.Userinfo.Username;
+                    if (autoAccountUserInfo.Userinfo.Username != null)
+                    {
+                        creditAutoAccount.CreditUserName = autoAccountUserInfo.Userinfo.Username;
 
-                    ITelsonGroupPresentationBusinessLayer objTelsonData = new TelesonGroupBusinessLayer();
-                    bool bInsert = objTelsonData.setCreditAutoAccount(creditAutoAccount);
+                        ITelsonGroupPresentationBusinessLayer objTelsonData = new TelesonGroupBusinessLayer();
+                        bool bInsert = objTelsonData.setCreditAutoAccount(creditAutoAccount);
+                        ScriptManager.RegisterStartupScript(this, this.GetType(), "windowReload", "ParentReload();", true);
+
+                    }
+                    else
+                    {
+                        ScriptManager.RegisterStartupScript(this, this.GetType(), "showModalInfo", "window.parent.$('#mdlMasterConfirm').modal({ backdrop: 'static', keyboard: false }, 'show');" +
+                 "window.parent.$('#mdlMastercontent').css({left: 150});window.parent.$('#spnMasterInfo').text('Please contact your nordfin contact');", true);
+                    }
+                    
                     autoAccountService.Close();
                 }
                 catch(Exception ex)
@@ -73,6 +84,17 @@ namespace Nordfin
             }
             
 
+        }
+
+        protected void btnConfirm_Click(object sender, EventArgs e)
+        {
+            if (!chkTerms.Checked)
+            {
+                ScriptManager.RegisterStartupScript(this, this.GetType(), "showModalInfo", "window.parent.$('#mdlMasterConfirm').modal({ backdrop: 'static', keyboard: false }, 'show');" +
+                   "window.parent.$('#mdlMastercontent').css({left: 150});window.parent.$('#spnMasterInfo').text('Kindly accept terms and conditions');", true);
+                return;
+            }
+            ScriptManager.RegisterStartupScript(this, this.GetType(), "confirmModalInfo", "GuideModal();", true);
         }
     }
 }

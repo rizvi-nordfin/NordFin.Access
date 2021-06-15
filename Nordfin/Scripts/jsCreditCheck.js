@@ -39,3 +39,10 @@ $(document).ready(function () {
             $('.featureNotAvailableBG').toggleClass('hidden');
     };
 });
+
+
+function AlertPrivateCustomer() {
+    $('#mdlCusttypeConfirm').modal({ backdrop: 'static', keyboard: false }, 'show');
+   // document.getElementById("#NordfinContentHolder_btnCreditCheck").click();
+
+}

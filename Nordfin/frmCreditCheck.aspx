@@ -84,7 +84,7 @@
 
 
                             <div class="updateInfoButtonContainer text-center">
-                                <asp:Button Text="Credit Check" class="button panelButton form-control" Style="width: 250px; margin-top: -7px;" runat="server" OnClick="btnCreditCheck_Click" OnClientClick="return CreditCheck();" ID="btnCreditCheck" />
+                                <asp:Button Text="Credit Check" class="button panelButton form-control" Style="width: 250px; margin-top: -7px;" runat="server" OnClick="btnCreditCheck_Click"  ID="btnCreditCheck" />
                             </div>
 
                         </div>
@@ -195,6 +195,26 @@
         <asp:HiddenField ID="hdnCreditVisible" runat="server" />
         </asp:Panel>
 
+        <div class="modal fade" id="mdlCusttypeConfirm" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                <div class="modal-dialog" role="document">
+                    <div class="modal-content" style="background: none;border:none;width: 80%;top:200px;">
+                        <div class="modal-header dashboardHeadline" style="background-color: #323e53; color: #fff;font-size:16px;">
+                            <h5 class="modal-title" id="custModalLabel">Information</h5>
+                             <button type="button" class="modalcloseButton" data-dismiss="modal" aria-label="Close" style="top: 30px;right: 13px;">
+                                        <span aria-hidden="true">✕</span>
+                                    </button>
+                        </div>
+                        <div class="modal-body" style="background-color: #323e53; color: #fff;">
+                            <div>
+                                <span id="spnCusttypeInfo" style="color: #A9BFD5;text-transform: uppercase;font-size:12px;"> Private customer always need to consent and a letter of disclosure will be sent </span>
+                            </div>
+                        </div>
+                        <div class="modal-footer" style="background-color: #323E53;padding:0px;">
+                            <asp:Button runat="server" CssClass="modalbutton" Text="Ok" ></asp:Button>
+                        </div>
+                    </div>
+                </div>
+            </div>
   <%--   <div class="featureNotAvailableBG hidden">
         <div class="featureNotAvailable">
             <div class="featureNotAvailableX">✕</div>
