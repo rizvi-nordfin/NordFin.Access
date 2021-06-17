@@ -14,8 +14,14 @@
         $("#<%= txtInvDate.ClientID %>").val(today);
         $("#<%= txtDueDate.ClientID %>").val(thirtyDays.toISOString().slice(0, 10));
         $("#<%= txtQuantity.ClientID %>").val(1);
+        <%--var dropdown = document.getElementById("<%= drpInvDelivery.ClientID %>");
+        dropdown.options[0] = new Option('PDF Only', 'PDF Only', true);--%>
+
     });
     function SetTotalAmount() {
+        if ($("#<%= hdnVatChanged.ClientID %>").val() == "true") {
+            return false;
+        }
         var itemPrice = $("#<%= txtAmount.ClientID %>").val();
         var percent = $("#<%= drpVat.ClientID %>").val();
         var quantity = $("#<%= txtQuantity.ClientID %>").val();
@@ -29,6 +35,9 @@
         $("#<%= txtRowTotal.ClientID %>").val(total.toFixed(2));
     }
     function SetAmountFromTotal() {
+        if ($("#<%= hdnVatChanged.ClientID %>").val() == "true") {
+            return false;
+        }
         var totalAmount = $("#<%= txtRowTotal.ClientID %>").val();
         var percent = $("#<%= drpVat.ClientID %>").val();
         var quantity = $("#<%= txtQuantity.ClientID %>").val();
@@ -40,6 +49,18 @@
         $("#<%= txtInvAmount.ClientID %>").val(invoiceAmount.toFixed(2));
         $("#<%= txtVat.ClientID %>").val(totalVat.toFixed(2));
         $("#<%= txtAmount.ClientID %>").val(itemPrice.toFixed(2));
+    }
+
+    function SetRowTotal() {
+        var invoiceAmount = $("#<%= txtInvAmount.ClientID %>").val();
+        var vatAmount = $("#<%= txtVat.ClientID %>").val();
+        var rowTotal = parseFloat(invoiceAmount) + parseFloat(vatAmount);
+        $("#<%= txtRowTotal.ClientID %>").val(rowTotal.toFixed(2));
+    }
+
+    function SetVatChanged(txt, evt, vatChanged) {
+        $("#<%= hdnVatChanged.ClientID %>").val(vatChanged);
+        return ValidateAmount(txt, evt);
     }
 
     function setPrint() {
@@ -166,7 +187,7 @@
         <div class="row">
             <div class="col-md-2">
                 <span class="title">Amount excl. VAT</span>
-                <asp:TextBox ID="txtAmount" runat="server" autocomplete="off" CssClass="form-control controls" ClientIDMode="Static" onkeypress="return ValidateAmount(this, event);" oninput="RestrictToTwoDecimal(this)" onblur="SetTotalAmount(); return false;"></asp:TextBox>
+                <asp:TextBox ID="txtAmount" runat="server" autocomplete="off" CssClass="form-control controls" ClientIDMode="Static" onkeypress="return SetVatChanged(this, event,'false');" oninput="RestrictToTwoDecimal(this)" onblur="SetTotalAmount(); return false;"></asp:TextBox>
             </div>
             <div class="col-md-2">
                 <span class="title">VAT %</span>
@@ -180,12 +201,11 @@
             </div>
             <div class="col-md-2">
                 <span class="title">VAT Amount</span>
-                <asp:TextBox ID="txtVat" runat="server" autocomplete="off" CssClass="form-control controls" ClientIDMode="Static" onkeypress="return ValidateAmount(this, event);"></asp:TextBox>
-
+                <asp:TextBox ID="txtVat" runat="server" autocomplete="off" CssClass="form-control controls" ClientIDMode="Static" onkeypress="return SetVatChanged(this, event,'true');" onblur="SetRowTotal();"></asp:TextBox>
             </div>
             <div class="col-md-2">
                 <span class="title">Row Total</span>
-                <asp:TextBox ID="txtRowTotal" runat="server" autocomplete="off" CssClass="form-control controls" onkeypress="return ValidateAmount(this, event);" onblur="SetAmountFromTotal(); return false;"></asp:TextBox>
+                <asp:TextBox ID="txtRowTotal" runat="server" autocomplete="off" CssClass="form-control controls" onkeypress="return SetVatChanged(this, event,'false');" onblur="SetAmountFromTotal(); return false;"></asp:TextBox>
             </div>
             <div class="col-md-2" style="padding-top: 26px">
                 <asp:Button ID="btnAddRow" Text="Add Row" CssClass="export rowButton" OnClick="AddRows_Click" runat="server" />
@@ -370,3 +390,4 @@
 <asp:HiddenField ID="hdnCustomerType" runat="server" />
 <asp:HiddenField ID="hdnSendToPrint" runat="server" Value="false" />
 <asp:HiddenField ID="hdnDelivery" runat="server" Value="PDF Only"/>
+<asp:HiddenField ID="hdnVatChanged" runat="server" Value="false"/>
