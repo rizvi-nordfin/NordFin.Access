@@ -18,7 +18,7 @@
     <form id="form1" runat="server" autocomplete="off" >
         <div style="background-color: #323e53;overflow:hidden">
             <div>
-                <asp:Label Style="color: #A9BFD5; text-transform: uppercase; font-size: 12px;" runat="server" Text="First Name"></asp:Label>
+                <asp:Label Style="color: #A9BFD5; text-transform: uppercase; font-size: 12px;" runat="server" Text="First Name"></asp:Label><br />
                 <asp:TextBox ID="txtFirstName" runat="server" required="required" autocomplete="nope" CssClass="form-control textboxModalColor"></asp:TextBox>
 
             </div>
@@ -33,15 +33,14 @@
                 <asp:TextBox ID="txtOrgNumber" runat="server" autocomplete="nope" required="required"  CssClass="form-control textboxModalColor" onkeypress="return isNumber(event)"></asp:TextBox>
 
             </div>
-
-            <div>
-                <asp:Label Style="color: #A9BFD5; text-transform: uppercase; font-size: 12px;" runat="server" Text="Country Code"></asp:Label>
-                <asp:TextBox ID="txtCountryCode" ReadOnly="true" runat="server" autocomplete="off" CssClass="form-control textboxModalColor" Text="+46"></asp:TextBox>
-
-            </div>
+           
             <div>
                 <asp:Label Style="color: #A9BFD5; text-transform: uppercase; font-size: 12px;" runat="server" Text="Mobile Number"></asp:Label>
-                <asp:TextBox ID="txtMobileNumber" runat="server" autocomplete="nope" required="required" CssClass="form-control textboxModalColor" onkeypress="return isNumber(event)"></asp:TextBox>
+                <div class="form-inline">
+                    <asp:TextBox ID="txtCountryCode" ReadOnly="true" runat="server" autocomplete="off" CssClass="form-control textboxModalColor" Style="width: 20%;" Text="+46"></asp:TextBox>
+                    &nbsp;
+                    <asp:TextBox ID="txtMobileNumber" runat="server" autocomplete="nope" required="required" CssClass="form-control textboxModalColor" Style="width: 79%;" onkeypress="return isNumber(event)"></asp:TextBox>
+                </div>
 
             </div>
             <div>
@@ -94,18 +93,18 @@
                         </div>
                         <div class="modal-body" style="background-color: #323e53; color: #fff;">
                             <div>
-                                <p id="spnAutoAccountInfo" style="color: #A9BFD5; text-transform: uppercase; font-size: 12px;">
+                                <p id="spnAutoAccountInfo" style="color: #fff; text-transform: uppercase; font-size: 12px;">
                                     Guide for registration:
-                                    <br />
+                                    <br />  <br />
                                     &emsp;           1. By click Submit, you will create your account. 
-                                    <br />
+                                    <br /><br />
                                     &emsp;          2. An email will then be sent to your specified email from<br />
                                     &emsp;   Creditsafe with log-in credentials. Be aware that this email
                                     <br />
                                     &emsp; could,on rare occasions, end up in your spam folder. 
-                                    <br />
+                                    <br /><br />
                                     &emsp;            3. Click on the link in the email and choose a password. 
-                                    <br />
+                                    <br /><br />
                                     &emsp;           4. COMPLETE – Log in with your Username and new Password and
                                     <br />
                                     &emsp;       start credit check your customers. 
@@ -116,6 +115,7 @@
                         <div class="modal-footer" style="background-color: #323E53;padding:0px;">
                           
                             <asp:Button runat="server" CssClass="modalbutton" OnClientClick="PdfDownloadClick();"  OnClick="btnSubmit_Click" Text="Ok" ></asp:Button>
+                            <button type="button" class="modalbutton"  data-dismiss="modal" onclick="window.parent.document.getElementById('FrameMaster').style.height = '425px';" >Close</button>
                         </div>
                     </div>
                 </div>

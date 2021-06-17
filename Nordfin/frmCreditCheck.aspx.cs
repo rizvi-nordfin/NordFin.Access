@@ -34,10 +34,13 @@ namespace Nordfin
                 lblClientName.Text = ClientSession.ClientName;
                 hdnCreditScore.Value ="0";
                 hdnCreditVisible.Value= Convert.ToString(ClientSession.CreditUser);
-                CreditAutoAccount creditAutoAccount = objTelsonData.getCreditAutoAccountDetails(Convert.ToInt32(ClientSession.ClientID));
-                btnAutoAccount.Visible = (creditAutoAccount == null && ClientSession.CreditUser > 0) ? true : false;
-                txtUserName.Text = (creditAutoAccount == null) ? "" : creditAutoAccount.CreditUserName;
-                txtPassword.Text = (creditAutoAccount == null) ? "" :creditAutoAccount.CreditPassword;
+                if (ClientSession.CreditUser == 1)
+                {
+                    CreditAutoAccount creditAutoAccount = objTelsonData.getCreditAutoAccountDetails(Convert.ToInt32(ClientSession.ClientID));
+                    btnAutoAccount.Visible = (creditAutoAccount == null && ClientSession.CreditUser > 0) ? true : false;
+                    txtUserName.Text = (creditAutoAccount == null) ? "" : creditAutoAccount.CreditUserName;
+                    txtPassword.Text = (creditAutoAccount == null) ? "" : creditAutoAccount.CreditPassword;
+                }
 
             }
         }

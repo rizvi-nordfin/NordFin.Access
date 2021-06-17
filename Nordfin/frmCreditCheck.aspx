@@ -23,8 +23,8 @@
             <div>
                 <div class="row " style="height: 50px; margin-left: 0px;">
 
-                    <div class="col-md-10" style="height:40px;">
-                 <asp:Button Text="AutoAccount" class="button panelButton form-control" Style="width: 150px;float: right;" runat="server"  ID="btnAutoAccount" OnClientClick="return ParentModal();" />
+                    <div class="col-md-10" style="height:40px;position:relative;">
+                 <asp:Button Text="AutoAccount" class="button panelButton form-control" Style="width: 150px;position:absolute;right:0;" runat="server" Visible="false"  ID="btnAutoAccount" OnClientClick="return ParentModal();" />
             </div>
 
                     <div class="col-md-12 col-lg-3  divPadding customerInfoSidebar" style="color: #FFFFFF;">

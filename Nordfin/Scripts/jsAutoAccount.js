@@ -2,20 +2,22 @@
 function ParentModal() {
     document.getElementById("ExportModal").innerText = "Auto Account";
     document.getElementById("FrameMaster").src = "frmAutoAccount.aspx";
-    document.getElementById("FrameMaster").style.height = "465px";
+    document.getElementById("FrameMaster").style.height = "425px";
     $('#ModalMaster').modal({ backdrop: 'static', keyboard: false }, 'show');
 
     return false;
 }
 
 function GuideModal() {
+    window.parent.document.getElementById("FrameMaster").style.height = "465px";
     $('#mdlAutoAccountConfirm').modal({ backdrop: 'static', keyboard: false }, 'show');
+    
 }
 
 function PdfDownloadClick() {
     debugger;
     $('#mdlAutoAccountConfirm').modal('hide');
-    window.parent.document.getElementById("FrameMaster").style.height = "500px";
+    window.parent.document.getElementById("FrameMaster").style.height = "465px";
     $("#PnlDownloadprogress").css("display", "block");
 
 }
@@ -37,12 +39,22 @@ function isNumber(evt) {
 
 
 function EmailValidation() {
-    debugger;
+  
     if (/^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/.test($('#txtEMail').val())) {
         return true;
     }
     else {
-        alert("You have entered an invalid email address!")
+        window.parent.$('#mdlMasterConfirm').modal({ backdrop: 'static', keyboard: false }, 'show');
+        window.parent.$('#mdlMastercontent').css({ left: 150 });
+        window.parent.$('#spnMasterInfo').text('You have entered an invalid email address!');
         return false;
     }
+}
+
+
+function CustomerSupprot() {
+    window.parent.$('#mdlMasterConfirm').modal({ backdrop: 'static', keyboard: false }, 'show');
+    window.parent.$('#mdlMastercontent').css({ left: 150 });
+    window.parent.document.getElementById('FrameMaster').style.height = '425px';
+    window.parent.$('#spnMasterInfo').text('Please contact your nordfin contact');
 }

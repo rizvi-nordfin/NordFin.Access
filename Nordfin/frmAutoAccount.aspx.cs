@@ -35,8 +35,8 @@ namespace Nordfin
                     creditAutoAccount.PhoneNumber = txtCountryCode.Text + "" + txtMobileNumber.Text;
                     creditAutoAccount.Email = txtEMail.Text;
                     creditAutoAccount.ConditionTimeStamp = DateTime.Now;
-                    string result = autoAccountService.AutoAccount("<xmlrequest> <header> <account> <username>NORDFABIN</username> " +
-                        "<password>Nordfintest@123</password> <grouporgnumber>5591234900</grouporgnumber> <servicesequence>1</servicesequence> <language>SE</language> </account> </header> </xmlrequest>");
+                    string result = autoAccountService.AutoAccount("<xmlrequest> <header> <account> <username>NORDFIN</username> " +
+                        "<password>4!c3KFxpzXLQR69</password> <grouporgnumber>5591234900</grouporgnumber> <servicesequence>1</servicesequence> <language>SE</language> </account> </header> </xmlrequest>");
 
                     XmlSerializer serializer = new XmlSerializer(typeof(CreditAutoAccountReponse));
                     CreditAutoAccountReponse autoAccountReponse = null;
@@ -44,13 +44,13 @@ namespace Nordfin
                     {
                         autoAccountReponse = (CreditAutoAccountReponse)serializer.Deserialize(reader);
                     }
-                    string requestpackagexml = "<xmlrequest> <header> <account> <username>NORDFABIN</username> <password>Nordfintest@123</password> " +
+                    string requestpackagexml = "<xmlrequest> <header> <account> <username>NORDFIN</username> <password>4!c3KFxpzXLQR69</password> " +
                            "<grouporgnumber>5591234900</grouporgnumber> <servicesequence>2</servicesequence> <language>EN</language> </account> </header> <body> <token>" + autoAccountReponse.Body.Returndetail.Token + "</token> " +
                            "<timestamp>" + autoAccountReponse.Body.Returndetail.Timestamp + "</timestamp> <contactperson>" + creditAutoAccount.Name + "</contactperson> " +
                            "<emailaddress>" + creditAutoAccount.Email + "</emailaddress> " +
                            "<phonenumber>" + txtMobileNumber.Text + "</phonenumber> <mobilecountrycode>" + txtCountryCode.Text + "</mobilecountrycode> " +
                            "<mobile>" + txtMobileNumber.Text + "</mobile>" +
-                           " <orgnumber>" + creditAutoAccount.OrgNumber + "</orgnumber> <package>NORDFINTEST_AA</package> </body> </xmlrequest>";
+                           " <orgnumber>" + creditAutoAccount.OrgNumber + "</orgnumber> <package>NORDFIN_AA</package> </body> </xmlrequest>";
 
 
                     string UserInfoResponse = autoAccountService.AutoAccount(requestpackagexml);
@@ -71,8 +71,7 @@ namespace Nordfin
                     }
                     else
                     {
-                        ScriptManager.RegisterStartupScript(this, this.GetType(), "showModalInfo", "window.parent.$('#mdlMasterConfirm').modal({ backdrop: 'static', keyboard: false }, 'show');" +
-                 "window.parent.$('#mdlMastercontent').css({left: 150});window.parent.$('#spnMasterInfo').text('Please contact your nordfin contact');", true);
+                        ScriptManager.RegisterStartupScript(this, this.GetType(), "showModalInfo","CustomerSupprot();", true);
                     }
                     
                     autoAccountService.Close();
