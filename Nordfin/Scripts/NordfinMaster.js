@@ -273,3 +273,8 @@ function funDoWork() {
     alert("BackGround");
 
 }
+
+
+function EmailAlert() {
+    alert("EmailAlert");
+}

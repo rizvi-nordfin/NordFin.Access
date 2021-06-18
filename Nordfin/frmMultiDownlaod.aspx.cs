@@ -102,6 +102,7 @@ namespace Nordfin
                                 EMailInvoices eMailInvoices = new EMailInvoices();
                                 eMailInvoices.UserID = fileList[0].UserID;
                                 eMailInvoices.CustomerNumber = fileList[0].CustomerNumber;
+                                eMailInvoices.DisplayError = false;
                                 emailInvoiceList.Add(eMailInvoices);
                                 Application["EmailDetails"] = emailInvoiceList;
                                 return;
@@ -431,6 +432,18 @@ namespace Nordfin
                     (row.FindControl("chkMultiInvoices") as CheckBox).Checked = chkUnpaid.Checked ? true : false;
                 }
                
+            }
+        }
+
+        protected void chkSelectCollectionStatus_CheckedChanged(object sender, EventArgs e)
+        {
+            foreach (GridViewRow row in grdInvoiceDownlaod.Rows)
+            {
+                (row.FindControl("chkMultiInvoices") as CheckBox).Checked = chkSelectCollectionStatus.Checked ? true : false;
+
+                (row.FindControl("chkMultiDC") as CheckBox).Checked = chkSelectCollectionStatus.Checked ? true : false;
+
+                (row.FindControl("chkMultiRemind") as CheckBox).Checked = chkSelectCollectionStatus.Checked ? true : false;
             }
         }
     }

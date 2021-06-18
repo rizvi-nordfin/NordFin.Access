@@ -986,6 +986,10 @@ option:hover {
         display: none;
     }
 
+    .dropdownMenuAccounts table tr td:nth-child(5), .dropdownMenuAccounts table tr th:nth-child(5) {
+        display: none;
+    }
+
     .dropdownMenuAccounts table th {
         display: none;
     }
@@ -1966,4 +1970,11 @@ hr {
 
 .progress-bar {
     background-color: #3DADC5;
+}
+
+a.linkNormalcss {
+    color: #fff !important;
+    text-decoration: none;
+    border: none;
+    cursor: unset !important;
 }

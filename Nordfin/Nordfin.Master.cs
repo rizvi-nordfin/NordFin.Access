@@ -70,7 +70,7 @@ namespace Nordfin
                     pnlSideMenuContracts.CssClass = "sideContractMenuStatistics pnlSideMenuContractsTop hidden";//.Add("top", "551px !important");
 
                 }
-
+    
                 if(ClientSession.AllowManualInvoice == 1)
                 {
                     pnlSideMenuAdd.Visible = true;
@@ -86,18 +86,31 @@ namespace Nordfin
              
 
                 hdnClientID.Value = ClientSession.ClientID;
-            }
 
-
-            if(Application["EmailDetails"]!=null)
-            {
-                IList<EMailInvoices> EmailDetails = (IList<EMailInvoices>)Application["EmailDetails"];
-                if(EmailDetails.Any(a=>a.UserID==Convert.ToInt32(ClientSession.UserID)))
+                if (Application["EmailDetails"] != null)
                 {
+                    IList<EMailInvoices> EmailDetails = (IList<EMailInvoices>)Application["EmailDetails"];
+                    if (EmailDetails.Any(a => a.UserID == Convert.ToInt32(ClientSession.UserID) && !a.DisplayError))
+                    {
+                        EmailDetails.Where(a => a.UserID == Convert.ToInt32(ClientSession.UserID)).ToList().ForEach(b => b.DisplayError = true);
+                        string ErrorMsg = "The Email is failed for the customer " + string.Join(" ", EmailDetails.Select(a => a.CustomerNumber)) + " due to limit exceed";
+                        ScriptManager.RegisterStartupScript(this, this.GetType(), "showMasterModalInfo", "$('#mdlMasterConfirm').modal({ backdrop: 'static', keyboard: false }, 'show');" +
+                       "$('#spnMasterInfo').text('" + ErrorMsg + "');", true);
+
+
+                    }
+                    else
+                    {
+                        EmailDetails = EmailDetails.Where(a => a.UserID != Convert.ToInt32(ClientSession.UserID)).ToList();
+                        if (EmailDetails.Count == 0)
+                            Application.Clear();
+                    }
 
                 }
 
             }
+
+
 
             ScriptManager.RegisterStartupScript(this, this.GetType(), "CallAlert", "save();", true);
         }

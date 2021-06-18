@@ -11,5 +11,6 @@ namespace Nordfin.workflow.Entity
         public int UserID { get; set; }
         public string CustomerNumber { get; set; }
 
+        public bool DisplayError { get; set; }
     }
 }
