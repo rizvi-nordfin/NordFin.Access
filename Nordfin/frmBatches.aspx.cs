@@ -32,7 +32,7 @@ namespace Nordfin
                     {
                         int number = int.Parse(a.ItemArray[i].ToString());
                         if (number > 0)
-                            a[i] = String.Format(CultureInfo.GetCultureInfo("sv-SE"), "{0:### ###}", number);
+                            a[i] = String.Format(CultureInfo.GetCultureInfo("sv-SE"), "{0:#,###0}", number);
                     }
 
                 });
@@ -46,10 +46,11 @@ namespace Nordfin
                 for (int i = 0; i < ds.Tables[3].Rows.Count; i++)
                 {
 
-                    for (int j = 2; j < ds.Tables[3].Rows[i].ItemArray.Length; j++)
+                    for (int j = 2; j < ds.Tables[3].Rows[i].ItemArray.Length - 1; j++)
                     {
-                        if (ds.Tables[3].Rows[i].ItemArray[j].ToString().IndexOf(",") > 0)
-                            ds.Tables[3].Rows[i][j] = ds.Tables[3].Rows[i].ItemArray[j].ToString().Substring(0, ds.Tables[3].Rows[i].ItemArray[j].ToString().IndexOf(','));
+                        int number = int.Parse(ds.Tables[3].Rows[i].ItemArray[j].ToString());
+                        if (number > 0)
+                            ds.Tables[3].Rows[i][j] = String.Format(CultureInfo.GetCultureInfo("sv-SE"), "{0:#,###0}", number);
                     }
                     ds.Tables[3].Rows[i]["Total"] = string.Format(CultureInfo.GetCultureInfo("sv-SE"), "{0:#,###0}", decimal.Truncate(ConvertStringToDecimal(ds.Tables[3].Rows[i]["Total"].ToString())));
                 }

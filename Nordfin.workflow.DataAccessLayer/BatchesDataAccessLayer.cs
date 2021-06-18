@@ -11,7 +11,7 @@ namespace Nordfin.workflow.DataAccessLayer
 
         DataSet IBatchesBusinessDataLayer.getInvoicesBatches(int Isdownload)
         {
-            DBInitialize("usp_getInvoiceBatches");
+            DBInitialize("usp_getStatisticsInfo");
             DatabaseName.AddInParameter(DBBaseCommand, "@Isdownload", System.Data.DbType.Int32, Isdownload);
             DataSet dataSet = DatabaseName.ExecuteDataSet(DBBaseCommand);
             return dataSet;
@@ -19,7 +19,7 @@ namespace Nordfin.workflow.DataAccessLayer
 
         DataSet IBatchesBusinessDataLayer.getInvoicesBatchesReports(string ClientID)
         {
-            DBInitialize("usp_getInvoiceBatchesReport");
+            DBInitialize("usp_getInvoiceBatchesClientReport");
             DatabaseName.AddInParameter(DBBaseCommand, "@ClientID", System.Data.DbType.Int32, Convert.ToInt32(ClientID));
             DataSet ds = DatabaseName.ExecuteDataSet(DBBaseCommand);
             return ds;

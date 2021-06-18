@@ -99,7 +99,7 @@ namespace Nordfin
                         userInformation.iStatus = 1;
 
 
-                      //  int Result = objUserLayer.InsertLoginUserInformation(userInformation);
+                        int Result = objUserLayer.InsertLoginUserInformation(userInformation);
                     }
 
                     ClientSession.UserName = objuser.UserName;

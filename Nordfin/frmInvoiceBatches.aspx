@@ -35,6 +35,7 @@
                                     <tr>
                                         <th colspan="2">Timeline</th>
                                         <th colspan="2">Invoices</th>
+                                         <th colspan="3">Credited</th>
                                         <th colspan="3">Unpaid</th>
                                         <th colspan="3">Paid</th>
                                         <th colspan="3">Reminder</th>

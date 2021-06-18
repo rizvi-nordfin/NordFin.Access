@@ -1,4 +1,5 @@
-<%@ Page Language="C#" MasterPageFile="~/Nordfin.Master" AutoEventWireup="true" CodeBehind="frmBatches.aspx.cs" Inherits="Nordfin.frmBatches" %>
+<%@ Page Language="C#" MasterPageFile="~/Nordfin.Master" AutoEventWireup="true" CodeBehind="frmBatches.aspx.cs" Inherits="Nordfin.frmBatches"
+    UICulture="sv-SE" Culture="sv-SE" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="NordfinContentHolder" runat="server">
 
