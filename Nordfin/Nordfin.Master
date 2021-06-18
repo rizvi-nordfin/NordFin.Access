@@ -317,14 +317,14 @@
                                     </button>
                                 </div>
                                 <div class="modal-body" style="background-color: #323e53; color: #fff; ">
-                                      <iframe id="FrameMaster" class="border-0" runat="server" style="    height: 500px;width:100%"></iframe>
+                                      <iframe id="FrameMaster" class="border-0" runat="server" style="    height: 400px;width:100%"></iframe>
                                 </div>
                             </div>
                         </div>
                     </div>
             <div class="modal fade" id="mdlMasterConfirm" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
                 <div class="modal-dialog" role="document">
-                    <div class="modal-content" style="background: none;border:none;width: 50%;top:200px;">
+                    <div class="modal-content" id="mdlMastercontent" style="background: none;border:none;width: 50%;top:200px;left:0px;">
                         <div class="modal-header dashboardHeadline" style="background-color: #323e53; color: #fff;font-size:16px;">
                             <h5 class="modal-title" id="masterModalLabel">Information</h5>
                              <button type="button" class="modalcloseButton" data-dismiss="modal" aria-label="Close" style="top: 30px;right: 13px;">
@@ -367,6 +367,17 @@
         <div class="featureNotAvailableMsg">
             <div class="featureNotAvailableMsgX">✕</div>
             This feature is still in development and will be available soon
+        </div>
+    </div>
+
+
+    <div id="PnlMasterprogress" style="display: none;">
+        <div style="text-align: center; color: #3DADC5;">
+            <span>Processing please wait...</span>
+        </div>
+        <div class="progress">
+
+            <div class="progress-bar progress-bar-striped progress-bar-animated" role="progressbar" style="width: 100%" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
         </div>
     </div>
 </body>
