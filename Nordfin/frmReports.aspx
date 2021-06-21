@@ -146,7 +146,7 @@
                         </div>
                     </div>
 
-                      <asp:Panel ID="pnlInvoiceBatches" runat="server" CssClass="reportsCardContainer col-md-3">
+                      <asp:Panel ID="pnlInvoiceBatches" runat="server" Visible="false" CssClass="reportsCardContainer col-md-3">
                         <div class="reportsCard">
                             <div class="info-icon"></div>
                             <div class="reportsCardContent">
