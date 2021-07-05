@@ -50,7 +50,7 @@ namespace Nordfin
                            "<emailaddress>" + creditAutoAccount.Email + "</emailaddress> " +
                            "<phonenumber>" + txtMobileNumber.Text + "</phonenumber> <mobilecountrycode>" + txtCountryCode.Text + "</mobilecountrycode> " +
                            "<mobile>" + txtMobileNumber.Text + "</mobile>" +
-                           " <orgnumber>" + creditAutoAccount.OrgNumber + "</orgnumber> <package>NORDFIN_AA</package> </body> </xmlrequest>";
+                           " <orgnumber>" + creditAutoAccount.OrgNumber.Replace("-", "").Trim() + "</orgnumber> <package>NORDFIN_AA</package> </body> </xmlrequest>";
 
 
                     string UserInfoResponse = autoAccountService.AutoAccount(requestpackagexml);
