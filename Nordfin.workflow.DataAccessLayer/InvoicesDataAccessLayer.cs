@@ -242,5 +242,19 @@ namespace Nordfin.workflow.DataAccessLayer
 
             return result;
         }
+
+        int IInvoicesBusinessDataLayer.setEmailSentAccessLog(AccessLog accessLog)
+        {
+            DBInitialize("usp_setAccessLogEMailSend");
+
+            DatabaseName.AddInParameter(DBBaseCommand, "@CustomerNumber", System.Data.DbType.String, accessLog.CustomerNumber);
+            DatabaseName.AddInParameter(DBBaseCommand, "@ClientID", System.Data.DbType.Int32, accessLog.ClientID);
+            DatabaseName.AddInParameter(DBBaseCommand, "@Comments", System.Data.DbType.String, accessLog.Comments);
+            DatabaseName.AddInParameter(DBBaseCommand, "@UserID", System.Data.DbType.Int32, accessLog.UserID);
+            DatabaseName.ExecuteNonQuery(DBBaseCommand);
+
+            return 0;
+        }
+
     }
 }

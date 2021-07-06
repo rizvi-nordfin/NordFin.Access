@@ -380,5 +380,88 @@ namespace Nordfin
             }
         }
 
+        public byte[] FileDownload(string FolderName, string subfolder ,out string ResultFileName, bool bAzure = false)
+        {
+            bool bFileExsits = false;
+            FtpWebRequest request = (FtpWebRequest)WebRequest.Create(FTPAzureDomain + FolderName + "/" + subfolder);
+            request.Method = WebRequestMethods.Ftp.DownloadFile;
+            request.Credentials = new NetworkCredential(FTPAzureUserName, FTPAzurePassword);
+            request.UseBinary = true;
+            request.UsePassive = true;
+            request.KeepAlive = true;
+            request.EnableSsl = true;
+            try
+            {
+                using (FtpWebResponse objresponse = (FtpWebResponse)request.GetResponse())
+                {
+                    using (MemoryStream stream = new MemoryStream())
+                    {
+                        objresponse.GetResponseStream().CopyTo(stream);
+                        bFileExsits = true;
+                        ResultFileName = "";
+                        return stream.ToArray();
+                    }
+                   
+                }
+            }
+            catch (Exception ex)
+            {
+                if (!bAzure && !bFileExsits)
+                {
+                    byte[] bArchievebyte = FileArchiveDownload(FolderName+"/"+ subfolder.Split('/')[1], out string sResultFileName);
+                    ResultFileName = sResultFileName;
+                    return bArchievebyte;
+
+
+                }
+               
+              
+            }
+            byte[] array = new byte[64];
+
+            Array.Clear(array, 0, array.Length);
+            ResultFileName = "";
+            return array;
+        }
+
+        public byte[] FileArchiveDownload(string FolderName, out string ResultFileName)
+        {
+            FtpWebRequest request = (FtpWebRequest)WebRequest.Create(FTPDomain + FolderName);
+            request.Method = WebRequestMethods.Ftp.DownloadFile;
+            request.Credentials = new NetworkCredential(FTPUserName, FTPPassword);
+            request.UseBinary = true;
+            request.UsePassive = true;
+            request.KeepAlive = true;
+            request.EnableSsl = true;
+            try
+            {
+                using (FtpWebResponse objresponse = (FtpWebResponse)request.GetResponse())
+                {
+                    using (MemoryStream stream = new MemoryStream())
+                    {
+                        objresponse.GetResponseStream().CopyTo(stream);
+                        ResultFileName = "";
+                        return stream.ToArray();
+                    }
+                   
+                }
+            }
+            catch (Exception ex)
+            {
+                //string sFileNameDownload = GetCombinedFilesDetailsFromFTP(FolderName.Replace("_inv.pdf", ""));
+                //bool bReturn = CombinedFileDownload(FolderName, sFileNameDownload, out string sCombinedResultFileName);
+                //ResultFileName = sCombinedResultFileName;
+                //return bReturn;
+            }
+
+            byte[] array = new byte[64];
+
+            Array.Clear(array, 0, array.Length);
+            ResultFileName = "";
+            return array;
+        }
+
+      
+
     }
 }

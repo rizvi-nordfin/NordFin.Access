@@ -47,6 +47,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AccessLog.cs" />
     <Compile Include="AccountSettings.cs" />
     <Compile Include="AdvanceSearch.cs" />
     <Compile Include="ApiOutgoing.cs" />
@@ -70,8 +71,10 @@
     <Compile Include="CustomerRegion.cs" />
     <Compile Include="DebtCollectionList.cs" />
     <Compile Include="Demographics.cs" />
+    <Compile Include="EMailInvoices.cs" />
     <Compile Include="Fees.cs" />
     <Compile Include="FessDetails.cs" />
+    <Compile Include="FilesDownload.cs" />
     <Compile Include="FTPFileDetails.cs" />
     <Compile Include="FTPFolderDetails.cs" />
     <Compile Include="Interest.cs" />

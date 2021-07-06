@@ -17,5 +17,6 @@ namespace Nordfin.workflow.BusinessDataLayerInterface
         bool AddNewCustomerInfo(CustomerInfo customerInfo);
 
         Dictionary<string, string> CheckCustomerAlreadyExists(string customerNumber, string personalNumber, int clientId);
+        int setEmailSentAccessLog(AccessLog accessLog);
     }
 }

@@ -51,6 +51,11 @@ namespace Nordfin.workflow.Business
         {
             return objuser.CheckCustomerAlreadyExists(customerNumber, personalNumber, clientId);
         }
+
+        int IInvoicesPresentationBusinessLayer.setEmailSentAccessLog(AccessLog accessLog)
+        {
+            return objuser.setEmailSentAccessLog(accessLog);
+        }
     }
 
 }

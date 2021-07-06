@@ -38,7 +38,7 @@
 <body>
     <form id="form1" runat="server">
 
-        <asp:ScriptManager EnablePartialRendering="true"
+        <asp:ScriptManager EnablePartialRendering="true" AsyncPostBackTimeout="3600"
             ID="ScriptManager1" runat="server">
         </asp:ScriptManager>
 

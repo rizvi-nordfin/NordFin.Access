@@ -986,6 +986,10 @@ option:hover {
         display: none;
     }
 
+    .dropdownMenuAccounts table tr td:nth-child(5), .dropdownMenuAccounts table tr th:nth-child(5) {
+        display: none;
+    }
+
     .dropdownMenuAccounts table th {
         display: none;
     }
@@ -1715,6 +1719,11 @@ option:hover {
         width: 430px;
         height: 385px;
     }
+    .heightwidthMulti {
+        width: 100% !important;
+        height: 78% !important;
+    }
+   
 }
 
 
@@ -1872,36 +1881,79 @@ hr {
             text-decoration: none;
         }
 
-.pnlSideMenuContractsTop {
-    top: 637px !important;
+
+
+.heightwidth {
+    height: 90%;
+    width: 95%;
 }
+.heightwidthMulti {
+    height: 66%;
+    width: 35%;
+    
+}
+.flexnone {
+    display: flex !important;
+}
+@media (min-width:1430px) and (max-width:1540px) {
+    .heightwidthMulti {
+        height: 66% !important;
 
-
-
-@media all and (max-width: 600px) {
-    .pnlSideMenuContractsTop {
-        top: 432px !important;
+        width: 38% !important;
+      
+    }
+    .flexnone {
+        display: flex !important;
+    }
+   
+}
+@media (min-width:1380px) and (max-width:1540px) {
+    .heightwidthMulti {
+        height: 66% !important;
+        width: 40% !important;
+    }
+    .flexnone {
+        display: flex !important;
+    }
+}
+@media (min-width:1220px) and (max-width:1380px) {
+    .heightwidthMulti {
+        height: 66%;
+        width: 45%;
+    }
+    .flexnone {
+        display: flex !important;
     }
 
-    .sideContractMenuStatistics {
-        height: auto;
+}
+@media (min-width:1024px) and (max-width:1220px) {
+    .heightwidthMulti {
+        height: 66%;
+        width: 55%;
+    }
+    .flexnone {
+        display: flex !important;
+    }
+}
+@media (min-width:700px)  and (max-width:1024px) {
+    .heightwidthMulti {
+        height: 66%;
+        width: 65%;
+    }
+    .flexnone {
+        display: flex !important;
     }
 }
 
-
-
-a.linkNormalcss {
-    color: #fff !important;
-    text-decoration: none;
-    border: none;
-    cursor: unset !important;
-}
-
-a.linkcss {
-    color: #FFB100;
-    text-decoration: none;
-    border: none;
-    cursor: pointer;
+@media all and (max-width:700px) {
+    .heightwidthMulti {
+        height: 78%;
+        width: 100%;
+    }
+    .marginleft
+    {
+        margin-left:3px !important;
+    }
 }
 
 .mtmlCredit {
@@ -1918,4 +1970,11 @@ a.linkcss {
 
 .progress-bar {
     background-color: #3DADC5;
+}
+
+a.linkNormalcss {
+    color: #fff !important;
+    text-decoration: none;
+    border: none;
+    cursor: unset !important;
 }

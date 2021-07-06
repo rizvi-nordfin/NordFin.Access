@@ -267,3 +267,14 @@ $(function () {
 function PanelClick() {
     window.location.href = "frmDashboard.aspx";
 }
+
+
+function funDoWork() {
+    alert("BackGround");
+
+}
+
+
+function EmailAlert() {
+    alert("EmailAlert");
+}

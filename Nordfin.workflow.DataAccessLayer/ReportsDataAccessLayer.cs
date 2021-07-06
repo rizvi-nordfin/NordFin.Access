@@ -17,7 +17,7 @@ namespace Nordfin.workflow.DataAccessLayer
 
         DataSet IReportsBusinessDataLayer.GetBatchesReport(string ClientID)
         {
-            DBInitialize("usp_getBatchesReport");
+            DBInitialize("usp_getBatchesClientReport");
             DatabaseName.AddInParameter(DBBaseCommand, "@ClientID", System.Data.DbType.Int32, Convert.ToInt32(ClientID));
             DataSet dataSet = DatabaseName.ExecuteDataSet(DBBaseCommand);
             return dataSet;

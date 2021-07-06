@@ -746,7 +746,6 @@ app.controller("myCtrl", function ($scope, $http) {
             }
         }).then(function (response) {
 
-            debugger;
             const resData = response.data.d;
             const jobList = JSON.parse(resData);
 

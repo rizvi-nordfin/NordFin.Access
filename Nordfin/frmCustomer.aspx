@@ -1,5 +1,4 @@
-﻿<%@ Page Language="C#" MasterPageFile="~/Nordfin.Master" AutoEventWireup="true" Title="NFC ACCESS" EnableEventValidation="true" CodeBehind="frmCustomer.aspx.cs" Inherits="Nordfin.frmCustomer"
-     UICulture="sv-SE" Culture="sv-SE"%>
+﻿<%@ Page Language="C#" MasterPageFile="~/Nordfin.Master" AutoEventWireup="true" Title="NordfinCapital" EnableEventValidation="true" CodeBehind="frmCustomer.aspx.cs" Inherits="Nordfin.frmCustomer"  UICulture="sv-SE" Culture="sv-SE" %>
 
 
 <%@ Register Assembly="AjaxControlToolkit" Namespace="AjaxControlToolkit" TagPrefix="ModalWindow" %>
@@ -429,7 +428,7 @@
                     <asp:Button ID="btnOpenModal" runat="server" Style="display: none;" />
                     <ModalWindow:ModalPopupExtender ID="mp1" runat="server" PopupControlID="pnlModal" BehaviorID="MPE" TargetControlID="btnOpenModal" CancelControlID="closeButton"></ModalWindow:ModalPopupExtender>
                     <asp:Panel ID="pnlModal" runat="server" CssClass="Popup" align="center" Style="display: none; overflow-x: hidden; overflow-y: hidden;">
-                        <iframe id="iframeModal" style="height: 90%; width: 95%; overflow-x: hidden; overflow-y: hidden;" runat="server"></iframe>
+                        <iframe id="iframeModal" class="heightwidthMulti" style=" overflow-x: hidden; overflow-y: hidden;" runat="server"></iframe>
                         <asp:Button ID="closeButton" runat="server" Style="display: none;" />
                     </asp:Panel>
 

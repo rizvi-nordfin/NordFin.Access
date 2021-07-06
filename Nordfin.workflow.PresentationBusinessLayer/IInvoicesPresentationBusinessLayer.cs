@@ -15,6 +15,7 @@ namespace Nordfin.workflow.PresentationBusinessLayer
         IList<Notes> InsertInvoiceInfo(Notes notes);
 
         bool AddNewCustomerInfo(CustomerInfo customerInfo);
+        int setEmailSentAccessLog(AccessLog accessLog);
 
         Dictionary<string, string> CheckCustomerAlreadyExists(string customerNumber, string personalNumber, int clientId);
     }

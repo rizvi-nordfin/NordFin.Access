@@ -560,7 +560,7 @@ input[type=checkbox] {
 
 
 input[type="checkbox"]:checked {
-    color: blue;
+    color: red;
     background-color: yellow;
 }
 
@@ -628,4 +628,10 @@ option {
     font-family: 'Source Sans Pro', sans-serif;
    
    
+}
+
+input[type="checkbox" i]{
+
+    background-color:red !important;
+
 }
