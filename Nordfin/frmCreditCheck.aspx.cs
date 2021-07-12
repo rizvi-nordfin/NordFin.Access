@@ -32,22 +32,31 @@ namespace Nordfin
                 ITelsonGroupPresentationBusinessLayer objTelsonData = new TelesonGroupBusinessLayer();
                 txtPassword.Attributes["type"] = "password";
                 lblClientName.Text = ClientSession.ClientName;
-                hdnCreditScore.Value ="0";
-                hdnCreditVisible.Value= Convert.ToString(ClientSession.CreditUser);
-                if (ClientSession.CreditUser == 1)
+                hdnCreditScore.Value = "0";
+                hdnCreditVisible.Value = Convert.ToString(ClientSession.CreditUser);
+                CreditAutoAccount creditAutoAccount = objTelsonData.getCreditAutoAccountDetails(Convert.ToInt32(ClientSession.ClientID));
+                if (creditAutoAccount == null)
                 {
-                    CreditAutoAccount creditAutoAccount = objTelsonData.getCreditAutoAccountDetails(Convert.ToInt32(ClientSession.ClientID));
-                    btnAutoAccount.Visible = (creditAutoAccount == null && ClientSession.CreditUser > 0) ? true : false;
-                    txtUserName.Text = (creditAutoAccount == null) ? "" : creditAutoAccount.CreditUserName;
-                    txtPassword.Text = (creditAutoAccount == null) ? "" : creditAutoAccount.CreditPassword;
+                    btnAutoAccount.Visible = true;
+                    txtUserName.Text = "";
+                    txtPassword.Text = "";
+                    hdnCreditVisible.Value = "0";
                 }
+                else
+                {
+                    btnAutoAccount.Visible = false;
+                    txtUserName.Text = creditAutoAccount.CreditUserName;
+                    txtPassword.Text = creditAutoAccount.CreditPassword;
+                    hdnCreditVisible.Value = "1";
+                }
+
 
             }
         }
 
         protected void btnCreditCheck_Click(object sender, EventArgs e)
         {
-            if (ClientSession.CreditUser == 1)
+            if (!btnAutoAccount.Visible)
             {
 
                 if (cboCustomerType.SelectedItem.Text == "" || string.IsNullOrWhiteSpace(txtUserName.Text) || string.IsNullOrWhiteSpace(txtPersonalNumber.Text) || string.IsNullOrWhiteSpace(txtPassword.Text))
@@ -58,7 +67,7 @@ namespace Nordfin
 
                 if (cboCustomerType.SelectedItem.Value.ToUpper() == "1")
                 {
-                    string sValue= GetFromCookie("PrivateMsg");
+                    string sValue = GetFromCookie("PrivateMsg");
 
                     int Hours = (!string.IsNullOrEmpty(sValue)) ? (DateTime.Now - Convert.ToDateTime(sValue)).Hours : 0;
 

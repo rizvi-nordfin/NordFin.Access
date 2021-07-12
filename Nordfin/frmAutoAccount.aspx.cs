@@ -46,11 +46,11 @@ namespace Nordfin
                     }
                     string requestpackagexml = "<xmlrequest> <header> <account> <username>NORDFIN</username> <password>4!c3KFxpzXLQR69</password> " +
                            "<grouporgnumber>5591234900</grouporgnumber> <servicesequence>2</servicesequence> <language>EN</language> </account> </header> <body> <token>" + autoAccountReponse.Body.Returndetail.Token + "</token> " +
-                           "<timestamp>" + autoAccountReponse.Body.Returndetail.Timestamp + "</timestamp> <contactperson>" + creditAutoAccount.Name + "</contactperson> " +
+                           "<timestamp>" + autoAccountReponse.Body.Returndetail.Timestamp + "</timestamp> <contactperson>" + ""+ "</contactperson> " +
                            "<emailaddress>" + creditAutoAccount.Email + "</emailaddress> " +
                            "<phonenumber>" + txtMobileNumber.Text + "</phonenumber> <mobilecountrycode>" + txtCountryCode.Text + "</mobilecountrycode> " +
                            "<mobile>" + txtMobileNumber.Text + "</mobile>" +
-                           " <orgnumber>" + creditAutoAccount.OrgNumber + "</orgnumber> <package>NORDFIN_AA</package> </body> </xmlrequest>";
+                           " <orgnumber>" + creditAutoAccount.OrgNumber.Replace("-", "").Trim() + "</orgnumber> <package>NORDFIN_AA</package> </body> </xmlrequest>";
 
 
                     string UserInfoResponse = autoAccountService.AutoAccount(requestpackagexml);

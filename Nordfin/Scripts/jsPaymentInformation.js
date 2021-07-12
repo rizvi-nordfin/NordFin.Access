@@ -48,7 +48,12 @@ jQuery(document).ready(function () {
         var iPurchased = document.getElementById("hdnPurchased").value;
 
         let dueData = 0;
-        if (iPurchased == "0" && jq142("#txtCollectionStatus").val().trim() == "") {
+        if (jq142("#txtCollectionStatus").val().trim().toUpperCase() == "EXT2") {
+            jq142("#txtCollectionStopUntil").attr("disabled", "disabled");
+            jq142("#cboCollectionStop").attr("disabled", "disabled");
+
+        }
+        else if (iPurchased == "0" && jq142("#txtCollectionStatus").val().trim() == "") {
             dueData = 60;
         }
         else {
